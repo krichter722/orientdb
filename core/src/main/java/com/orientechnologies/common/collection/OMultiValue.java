@@ -751,4 +751,7 @@ public class OMultiValue {
 
     return -1;
   }
+
+  private OMultiValue() {
+  }
 }

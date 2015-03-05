@@ -77,4 +77,7 @@ public abstract class GraphNoTxAbstractTest {
   public static void afterClass() throws Exception {
     graph.shutdown();
   }
+
+  protected GraphNoTxAbstractTest() {
+  }
 }

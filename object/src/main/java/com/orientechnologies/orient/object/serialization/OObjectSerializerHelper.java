@@ -1193,4 +1193,7 @@ public class OObjectSerializerHelper {
     }
     return null;
   }
+
+  private OObjectSerializerHelper() {
+  }
 }

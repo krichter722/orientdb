@@ -118,4 +118,7 @@ public class OArrays {
     return hash;
   }
 
+  private OArrays() {
+  }
+
 }

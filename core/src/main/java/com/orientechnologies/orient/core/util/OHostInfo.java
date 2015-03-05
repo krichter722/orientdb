@@ -53,4 +53,7 @@ public class OHostInfo {
     throw new IllegalStateException("Node id is possible to generate only on machine which have at least"
         + " one network interface with mac address.");
   }
+
+  private OHostInfo() {
+  }
 }

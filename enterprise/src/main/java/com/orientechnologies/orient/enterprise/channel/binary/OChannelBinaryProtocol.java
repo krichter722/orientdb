@@ -140,4 +140,7 @@ public class OChannelBinaryProtocol {
       return record;
     }
   }
+
+  private OChannelBinaryProtocol() {
+  }
 }

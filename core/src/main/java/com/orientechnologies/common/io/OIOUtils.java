@@ -313,4 +313,7 @@ public class OIOUtils {
     }
     return isLong;
   }
+
+  private OIOUtils() {
+  }
 }

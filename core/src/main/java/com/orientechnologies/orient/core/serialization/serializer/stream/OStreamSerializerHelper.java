@@ -74,4 +74,7 @@ public class OStreamSerializerHelper {
 
 		return cls;
 	}
+
+  private OStreamSerializerHelper() {
+  }
 }

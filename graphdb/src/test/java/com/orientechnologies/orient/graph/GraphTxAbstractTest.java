@@ -79,4 +79,7 @@ public abstract class GraphTxAbstractTest {
     graph = null;
   }
 
+  protected GraphTxAbstractTest() {
+  }
+
 }

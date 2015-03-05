@@ -1421,4 +1421,7 @@ public class OObjectEntitySerializer {
     return isEmbeddedField(f.getDeclaringClass(), f.getName());
   }
 
+  private OObjectEntitySerializer() {
+  }
+
 }

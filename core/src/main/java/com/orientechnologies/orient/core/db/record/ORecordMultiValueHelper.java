@@ -70,4 +70,7 @@ public class ORecordMultiValueHelper {
 		iMultivalue.setAutoConvertToRecord(previousAutoConvertSetting);
 		return result;
 	}
+
+  private ORecordMultiValueHelper() {
+  }
 }

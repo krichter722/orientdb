@@ -70,4 +70,7 @@ public class OVariableParser {
 
     return resolved;
   }
+
+  private OVariableParser() {
+  }
 }

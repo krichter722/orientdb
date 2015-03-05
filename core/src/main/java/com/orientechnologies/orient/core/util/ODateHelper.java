@@ -85,4 +85,7 @@ public class ODateHelper {
   public static Date now() {
     return getDatabaseCalendar().getTime();
   }
+
+  private ODateHelper() {
+  }
 }

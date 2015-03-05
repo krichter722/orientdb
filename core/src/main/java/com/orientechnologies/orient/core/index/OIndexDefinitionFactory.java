@@ -205,4 +205,7 @@ public class OIndexDefinitionFactory {
         return fieldName;
     }
   }
+
+  private OIndexDefinitionFactory() {
+  }
 }

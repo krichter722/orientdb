@@ -251,4 +251,7 @@ public class OReflectionHelper {
     }
     return false;
   }
+
+  private OReflectionHelper() {
+  }
 }

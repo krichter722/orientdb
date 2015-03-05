@@ -53,4 +53,7 @@ public class OStreamSerializerFactory {
       throw new OConfigurationException("Error on retrieving of Stream Serializer '" + iName + "'", e);
     }
   }
+
+  private OStreamSerializerFactory() {
+  }
 }

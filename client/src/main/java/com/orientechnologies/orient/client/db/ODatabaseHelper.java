@@ -171,4 +171,7 @@ public class ODatabaseHelper {
     }
     return file;
   }
+
+  private ODatabaseHelper() {
+  }
 }

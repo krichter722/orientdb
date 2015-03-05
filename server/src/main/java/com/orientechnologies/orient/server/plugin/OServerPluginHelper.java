@@ -89,4 +89,7 @@ public class OServerPluginHelper {
     }
   }
 
+  protected OServerPluginHelper() {
+  }
+
 }

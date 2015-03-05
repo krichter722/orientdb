@@ -164,4 +164,7 @@ public class OFindReferenceHelper {
         map.get(value.getIdentity()).add(iRootObject.getIdentity());
     }
   }
+
+  private OFindReferenceHelper() {
+  }
 }

@@ -176,4 +176,7 @@ public class OZIPCompressionUtil {
     }
     return total;
   }
+
+  private OZIPCompressionUtil() {
+  }
 }

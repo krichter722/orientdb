@@ -47,4 +47,7 @@ public class OConstants {
 
     return buildNumber;
   }
+
+  private OConstants() {
+  }
 }
