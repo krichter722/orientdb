@@ -44,6 +44,7 @@ import java.io.IOException;
  public class OServerCommandPostStudio extends OServerCommandAuthenticatedDbAbstract {
    private static final String[] NAMES = { "POST|studio/*" };
 
+   @Override
    public boolean execute(final OHttpRequest iRequest, OHttpResponse iResponse) throws Exception {
      ODatabaseDocumentTx db = null;
 
@@ -351,6 +352,7 @@ import java.io.IOException;
      }
    }
 
+   @Override
    public String[] getNames() {
      return NAMES;
    }

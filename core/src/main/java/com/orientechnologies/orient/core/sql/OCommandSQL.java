@@ -36,6 +36,7 @@ public class OCommandSQL extends OCommandRequestTextAbstract {
     super(iText);
   }
 
+  @Override
   public boolean isIdempotent() {
     return false;
   }

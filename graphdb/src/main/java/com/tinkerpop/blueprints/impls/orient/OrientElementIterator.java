@@ -41,11 +41,13 @@ class OrientElementIterator<T extends Element> implements Iterator<T> {
     this.graph = graph;
   }
 
+  @Override
   public boolean hasNext() {
     return this.itty.hasNext();
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public T next() {
     OrientElement currentElement = null;
 
@@ -85,6 +87,7 @@ class OrientElementIterator<T extends Element> implements Iterator<T> {
     return (T) currentElement;
   }
 
+  @Override
   public void remove() {
     throw new UnsupportedOperationException();
   }

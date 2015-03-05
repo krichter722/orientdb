@@ -92,6 +92,7 @@ public class OSQLFilter extends OSQLPredicate implements OCommandPredicate {
     return iCondition;
   }
 
+  @Override
   public Object evaluate(final ORecord iRecord, final ODocument iCurrentResult, final OCommandContext iContext) {
     if (rootCondition == null) {
       return true;
@@ -100,6 +101,7 @@ public class OSQLFilter extends OSQLPredicate implements OCommandPredicate {
     return rootCondition.evaluate(iRecord, iCurrentResult, iContext);
   }
 
+  @Override
   public OSQLFilterCondition getRootCondition() {
     return rootCondition;
   }

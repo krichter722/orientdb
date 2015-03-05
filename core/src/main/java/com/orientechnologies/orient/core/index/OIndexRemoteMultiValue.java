@@ -50,6 +50,7 @@ public class OIndexRemoteMultiValue extends OIndexRemote<Collection<OIdentifiabl
     super(iName, iWrappedType, iRid, iIndexDefinition, iConfiguration, clustersToIndex);
   }
 
+  @Override
   public Collection<OIdentifiable> get(final Object iKey) {
     final OCommandRequest cmd = formatCommand(QUERY_GET, name);
     return new HashSet<OIdentifiable>((Collection<OIdentifiable>) getDatabase().command(cmd).execute(iKey));

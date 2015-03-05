@@ -216,6 +216,7 @@ public abstract class ODistributedAbstractPlugin extends OServerPluginAbstract i
     return "cluster";
   }
 
+  @Override
   public String getLocalNodeId() {
     return nodeName;
   }
@@ -283,6 +284,7 @@ public abstract class ODistributedAbstractPlugin extends OServerPluginAbstract i
     return true;
   }
 
+  @Override
   public ODistributedConfiguration getDatabaseConfiguration(final String iDatabaseName) {
     synchronized (cachedDatabaseConfiguration) {
       ODocument cfg = cachedDatabaseConfiguration.get(iDatabaseName);

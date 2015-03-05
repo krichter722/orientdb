@@ -34,6 +34,7 @@ import com.orientechnologies.orient.core.db.record.OIdentifiable;
 public abstract class OCommandExecutorSQLEarlyResultsetAbstract extends OCommandExecutorSQLResultsetAbstract {
   private Iterator<OIdentifiable> iterator;
 
+  @Override
   public Iterator<OIdentifiable> iterator() {
     return iterator(null);
   }

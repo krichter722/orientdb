@@ -265,6 +265,7 @@ public class OGremlinHelper {
       } catch (Throwable e1) {
         try {
           final ByteArrayOutputStream bytes = new ByteArrayOutputStream() {
+            @Override
             public synchronized byte[] toByteArray() {
               return buf;
             }

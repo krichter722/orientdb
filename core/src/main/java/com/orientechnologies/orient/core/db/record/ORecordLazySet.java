@@ -144,6 +144,7 @@ public class ORecordLazySet extends ORecordTrackedSet implements Set<OIdentifiab
     return true;
   }
 
+  @Override
   public void convertLinks2Records() {
     Iterator<Entry<OIdentifiable, Object>> all = map.entrySet().iterator();
     while (all.hasNext()) {
@@ -194,6 +195,7 @@ public class ORecordLazySet extends ORecordTrackedSet implements Set<OIdentifiab
     return removed;
   }
 
+  @Override
   public boolean remove(Object o) {
     if (o == null) {
         return clearDeletedRecords();

@@ -48,6 +48,7 @@ public class OCommandExecutorSQLAlterProperty extends OCommandExecutorSQLAbstrac
   private ATTRIBUTES         attribute;
   private String             value;
 
+  @Override
   public OCommandExecutorSQLAlterProperty parse(final OCommandRequest iRequest) {
 
     init((OCommandRequestText) iRequest);
@@ -115,6 +116,7 @@ public class OCommandExecutorSQLAlterProperty extends OCommandExecutorSQLAbstrac
   /**
    * Execute the ALTER PROPERTY.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (attribute == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not yet been parsed");
@@ -134,6 +136,7 @@ public class OCommandExecutorSQLAlterProperty extends OCommandExecutorSQLAbstrac
     return null;
   }
 
+  @Override
   public String getSyntax() {
     return "ALTER PROPERTY <class>.<property> <attribute-name> <attribute-value>";
   }

@@ -39,6 +39,7 @@ public class OStreamSerializerAnyRuntime implements OStreamSerializer {
 	private static final String											NAME			= "au";
 	public static final OStreamSerializerAnyRuntime	INSTANCE	= new OStreamSerializerAnyRuntime();
 
+        @Override
 	public String getName() {
 		return NAME;
 	}
@@ -46,6 +47,7 @@ public class OStreamSerializerAnyRuntime implements OStreamSerializer {
 	/**
 	 * Re-Create any object if the class has a public constructor that accepts a String as unique parameter.
 	 */
+        @Override
 	public Object fromStream(final byte[] iStream) throws IOException {
 		if (iStream == null || iStream.length == 0) {
                     // NULL VALUE
@@ -64,6 +66,7 @@ public class OStreamSerializerAnyRuntime implements OStreamSerializer {
 		}
 	}
 
+        @Override
 	public byte[] toStream(final Object iObject) throws IOException {
 		if (iObject == null) {
                     return new byte[0];

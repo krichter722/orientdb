@@ -103,30 +103,37 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     fromStream(raw.buffer);
   }
 
+  @Override
   public ORID getIdentity() {
     return record.getIdentity();
   }
 
+  @Override
   public int getSize() {
     return size;
   }
 
+  @Override
   public int getPageSize() {
     return pageSize;
   }
 
+  @Override
   public ORID getParent() {
     return parentRid;
   }
 
+  @Override
   public ORID getLeft() {
     return leftRid;
   }
 
+  @Override
   public ORID getRight() {
     return rightRid;
   }
 
+  @Override
   public boolean setLeft(final ORID iRid) {
     if (leftRid.equals(iRid)) {
         return false;
@@ -135,6 +142,7 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     return setDirty();
   }
 
+  @Override
   public boolean setRight(final ORID iRid) {
     if (rightRid.equals(iRid)) {
         return false;
@@ -143,6 +151,7 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     return setDirty();
   }
 
+  @Override
   public boolean setParent(final ORID iRid) {
     if (parentRid.equals(iRid)) {
         return false;
@@ -151,19 +160,23 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     return setDirty();
   }
 
+  @Override
   public boolean getColor() {
     return color;
   }
 
+  @Override
   public boolean setColor(final boolean iColor) {
     this.color = iColor;
     return setDirty();
   }
 
+  @Override
   public boolean isEntryDirty() {
     return record.isDirty();
   }
 
+  @Override
   public void save() {
     if (treeDataProvider.storage == null) {
         save(OMVRBTreeProviderAbstract.getDatabase());
@@ -211,6 +224,7 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     }
   }
 
+  @Override
   public void delete() {
     ORecordListenerManager.removeListener(record, this);
     if (treeDataProvider.storage == null) {
@@ -230,6 +244,7 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     iSt.deleteRecord((ORecordId) record.getIdentity(), record.getRecordVersion(), (byte) 0, null);
   }
 
+  @Override
   public void onEvent(ORecord record, ORecordListener.EVENT event) {
     if (ORecordListener.EVENT.IDENTITY_CHANGED.equals(event)) {
         if (identityChangedListener != null) {
@@ -241,10 +256,12 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     }
   }
 
+  @Override
   public void setIdentityChangedListener(final OIdentityChangedListener listener) {
     this.identityChangedListener = new WeakReference<OIdentityChangedListener>(listener);
   }
 
+  @Override
   public void removeIdentityChangedListener(final OIdentityChangedListener listener) {
     if (identityChangedListener != null) {
       final OIdentityChangedListener identityListener = identityChangedListener.get();
@@ -254,6 +271,7 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     }
   }
 
+  @Override
   public void clear() {
     if (stream != null) {
       stream.close();
@@ -273,6 +291,7 @@ public abstract class OMVRBTreeEntryDataProviderAbstract<K, V> implements OMVRBT
     return true;
   }
 
+  @Override
   public String toString() {
     final StringBuilder buffer = new StringBuilder(256);
     buffer.append("mvrb-tree entry ");

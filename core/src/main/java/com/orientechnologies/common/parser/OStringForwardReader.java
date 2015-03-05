@@ -59,6 +59,7 @@ public class OStringForwardReader implements CharSequence {
 		size = file.length();
 	}
 
+        @Override
 	public char charAt(final int iIndex) {
 		if (iIndex < start) {
                     throw new IllegalStateException("Cannot read backward");
@@ -108,10 +109,12 @@ public class OStringForwardReader implements CharSequence {
 		}
 	}
 
+        @Override
 	public int length() {
 		return (int) size;
 	}
 
+        @Override
 	public CharSequence subSequence(final int start, final int end) {
 		throw new UnsupportedOperationException();
 	}

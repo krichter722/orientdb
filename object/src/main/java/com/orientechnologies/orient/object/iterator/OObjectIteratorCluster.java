@@ -40,10 +40,12 @@ public class OObjectIteratorCluster<T> implements OObjectIteratorClusterInterfac
     underlying = new ORecordIteratorCluster<ODocument>(iDatabase.getUnderlying(), iUnderlyingDatabase, iClusterId, true);
   }
 
+  @Override
   public boolean hasNext() {
     return underlying.hasNext();
   }
 
+  @Override
   public T next() {
     return next(fetchPlan);
   }
@@ -52,10 +54,12 @@ public class OObjectIteratorCluster<T> implements OObjectIteratorClusterInterfac
     return (T) database.getUserObjectByRecord(underlying.next(), iFetchPlan);
   }
 
+  @Override
   public void remove() {
     underlying.remove();
   }
 
+  @Override
   public Iterator<T> iterator() {
     return this;
   }

@@ -55,6 +55,7 @@ public class OTraverse implements OCommand, Iterable<OIdentifiable>, Iterator<OI
    * 
    * @see com.orientechnologies.orient.core.command.OCommand#execute()
    */
+  @Override
   public List<OIdentifiable> execute() {
     final List<OIdentifiable> result = new ArrayList<OIdentifiable>();
     while (hasNext())
@@ -66,6 +67,7 @@ public class OTraverse implements OCommand, Iterable<OIdentifiable>, Iterator<OI
     return context.next();
   }
 
+  @Override
   public boolean hasNext() {
     if (limit > 0 && resultCount >= limit) {
         return false;
@@ -88,6 +90,7 @@ public class OTraverse implements OCommand, Iterable<OIdentifiable>, Iterator<OI
     return lastTraversed != null;
   }
 
+  @Override
   public OIdentifiable next() {
     if (Thread.interrupted()) {
         throw new OCommandExecutionException("The traverse execution has been interrupted");
@@ -118,14 +121,17 @@ public class OTraverse implements OCommand, Iterable<OIdentifiable>, Iterator<OI
     return null;
   }
 
+  @Override
   public void remove() {
     throw new UnsupportedOperationException("remove()");
   }
 
+  @Override
   public Iterator<OIdentifiable> iterator() {
     return this;
   }
 
+  @Override
   public OTraverseContext getContext() {
     return context;
   }

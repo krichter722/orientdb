@@ -36,10 +36,12 @@ public class OBooleanSerializer implements OBinarySerializer<Boolean> {
   public static final byte         ID           = 1;
   public static OBooleanSerializer INSTANCE     = new OBooleanSerializer();
 
+  @Override
   public int getObjectSize(Boolean object, Object... hints) {
     return BOOLEAN_SIZE;
   }
 
+  @Override
   public void serialize(final Boolean object, final byte[] stream, final int startPosition, final Object... hints) {
     stream[startPosition] = object ? (byte) 1 : (byte) 0;
   }
@@ -48,6 +50,7 @@ public class OBooleanSerializer implements OBinarySerializer<Boolean> {
     stream[startPosition] = value ? (byte) 1 : (byte) 0;
   }
 
+  @Override
   public Boolean deserialize(final byte[] stream, final int startPosition) {
     return stream[startPosition] == 1;
   }
@@ -56,14 +59,17 @@ public class OBooleanSerializer implements OBinarySerializer<Boolean> {
     return stream[startPosition] == 1;
   }
 
+  @Override
   public int getObjectSize(byte[] stream, int startPosition) {
     return BOOLEAN_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return BOOLEAN_SIZE;
   }
@@ -115,10 +121,12 @@ public class OBooleanSerializer implements OBinarySerializer<Boolean> {
     return BOOLEAN_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return BOOLEAN_SIZE;
   }

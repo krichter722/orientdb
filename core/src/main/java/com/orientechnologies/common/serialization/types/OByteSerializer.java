@@ -36,10 +36,12 @@ public class OByteSerializer implements OBinarySerializer<Byte> {
   public static final byte      ID        = 2;
   public static OByteSerializer INSTANCE  = new OByteSerializer();
 
+  @Override
   public int getObjectSize(Byte object, Object... hints) {
     return BYTE_SIZE;
   }
 
+  @Override
   public void serialize(final Byte object, final byte[] stream, final int startPosition, final Object... hints) {
     stream[startPosition] = object.byteValue();
   }
@@ -48,6 +50,7 @@ public class OByteSerializer implements OBinarySerializer<Byte> {
     stream[startPosition] = value;
   }
 
+  @Override
   public Byte deserialize(final byte[] stream, final int startPosition) {
     return stream[startPosition];
   }
@@ -56,14 +59,17 @@ public class OByteSerializer implements OBinarySerializer<Byte> {
     return stream[startPosition];
   }
 
+  @Override
   public int getObjectSize(byte[] stream, int startPosition) {
     return BYTE_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return getObjectSize(stream, startPosition);
   }
@@ -109,10 +115,12 @@ public class OByteSerializer implements OBinarySerializer<Byte> {
     return BYTE_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return BYTE_SIZE;
   }

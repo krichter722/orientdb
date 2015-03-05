@@ -43,6 +43,7 @@ public class OTraverseContext extends OBasicCommandContext {
     memory.add(iProcess);
   }
 
+  @Override
   public Map<String, Object> getVariables() {
     final HashMap<String, Object> map = new HashMap<String, Object>();
     map.put("depth", getDepth());
@@ -53,6 +54,7 @@ public class OTraverseContext extends OBasicCommandContext {
     return map;
   }
 
+  @Override
   public Object getVariable(final String iName) {
     final String name = iName.trim().toUpperCase();
 

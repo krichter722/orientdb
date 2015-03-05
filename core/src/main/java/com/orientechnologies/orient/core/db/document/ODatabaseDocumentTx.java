@@ -291,6 +291,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
    *          Authentication token
    * @return The Database instance itself giving a "fluent interface". Useful to call multiple methods in chain.
    */
+  @Override
   public <DB extends ODatabase> DB open(final OToken iToken) {
     setCurrentDatabaseInThreadLocal();
 
@@ -528,6 +529,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <RET extends ORecord> RET getRecord(final OIdentifiable iIdentifiable) {
     if (iIdentifiable instanceof ORecord) {
         return (RET) iIdentifiable;
@@ -544,6 +546,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <RET extends ORecord> RET load(final ORID iRecordId, final String iFetchPlan, final boolean iIgnoreCache) {
     return (RET) executeReadRecord((ORecordId) iRecordId, null, iFetchPlan, iIgnoreCache, false, OStorage.LOCKING_STRATEGY.DEFAULT);
   }
@@ -551,34 +554,42 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * Deletes the record checking the version.
    */
+  @Override
   public ODatabase<ORecord> delete(final ORID iRecord, final ORecordVersion iVersion) {
     executeDeleteRecord(iRecord, iVersion, true, true, OPERATION_MODE.SYNCHRONOUS, false);
     return this;
   }
 
+  @Override
   public ODatabase<ORecord> cleanOutRecord(final ORID iRecord, final ORecordVersion iVersion) {
     executeDeleteRecord(iRecord, iVersion, true, true, OPERATION_MODE.SYNCHRONOUS, true);
     return this;
   }
 
+  @Override
   public ORecord getRecordByUserObject(final Object iUserObject, final boolean iCreateIfNotAvailable) {
     return (ORecord) iUserObject;
   }
 
+  @Override
   public void registerUserObject(final Object iObject, final ORecord iRecord) {
   }
 
+  @Override
   public void registerUserObjectAfterLinkSave(ORecord iRecord) {
   }
 
+  @Override
   public Object getUserObjectByRecord(final OIdentifiable record, final String iFetchPlan) {
     return record;
   }
 
+  @Override
   public boolean existsUserObjectByRID(final ORID iRID) {
     return true;
   }
 
+  @Override
   public String getType() {
     return TYPE;
   }
@@ -601,6 +612,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
     return this;
   }
 
+  @Override
   public <REC extends ORecord> ORecordIteratorCluster<REC> browseCluster(final String iClusterName, final Class<REC> iClass) {
     checkSecurity(ORule.ResourceGeneric.CLUSTER, ORole.PERMISSION_READ, iClusterName);
 
@@ -630,6 +642,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public OCommandRequest command(final OCommandRequest iCommand) {
     checkSecurity(ORule.ResourceGeneric.COMMAND, ORole.PERMISSION_READ);
 
@@ -649,6 +662,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <RET extends List<?>> RET query(final OQuery<?> iCommand, final Object... iArgs) {
     setCurrentDatabaseInThreadLocal();
 
@@ -659,6 +673,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public byte getRecordType() {
     return recordType;
   }
@@ -726,6 +741,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public OMetadataDefault getMetadata() {
     checkOpeness();
     return metadata;
@@ -734,6 +750,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabaseDocument> DB checkSecurity(ORule.ResourceGeneric resourceGeneric, String resourceSpecific,
       final int iOperation) {
     if (user != null) {
@@ -756,6 +773,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabaseDocument> DB checkSecurity(final ORule.ResourceGeneric iResourceGeneric, final int iOperation,
       final Object... iResourcesSpecific) {
 
@@ -784,6 +802,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabaseDocument> DB checkSecurity(final ORule.ResourceGeneric iResourceGeneric, final int iOperation,
       final Object iResourceSpecific) {
     checkOpeness();
@@ -832,6 +851,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public boolean isRetainRecords() {
     return retainRecords;
   }
@@ -839,6 +859,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public ODatabaseDocument setRetainRecords(boolean retainRecords) {
     this.retainRecords = retainRecords;
     return this;
@@ -847,6 +868,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabase> DB setStatus(final STATUS status) {
     setStatusInternal(status);
     return (DB) this;
@@ -863,6 +885,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setInternal(final ATTRIBUTES iAttribute, final Object iValue) {
     set(iAttribute, iValue);
   }
@@ -870,6 +893,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public OSecurityUser getUser() {
     return user;
   }
@@ -877,6 +901,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public void setUser(OSecurityUser user) {
     if (user instanceof OUser) {
       OMetadata metadata = getMetadata();
@@ -894,6 +919,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public boolean isMVCC() {
     return mvcc;
   }
@@ -901,6 +927,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabase<?>> DB setMVCC(boolean mvcc) {
     this.mvcc = mvcc;
     return (DB) this;
@@ -909,6 +936,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public ODictionary<ORecord> getDictionary() {
     checkOpeness();
     return metadata.getIndexManager().getDictionary();
@@ -917,6 +945,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabase<?>> DB registerHook(final ORecordHook iHookImpl, final ORecordHook.HOOK_POSITION iPosition) {
     final Map<ORecordHook, ORecordHook.HOOK_POSITION> tmp = new LinkedHashMap<ORecordHook, ORecordHook.HOOK_POSITION>(hooks);
     tmp.put(iHookImpl, iPosition);
@@ -934,6 +963,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabase<?>> DB registerHook(final ORecordHook iHookImpl) {
     return (DB) registerHook(iHookImpl, ORecordHook.HOOK_POSITION.REGULAR);
   }
@@ -941,6 +971,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabase<?>> DB unregisterHook(final ORecordHook iHookImpl) {
     if (iHookImpl != null) {
       iHookImpl.onUnregister();
@@ -960,6 +991,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public Map<ORecordHook, ORecordHook.HOOK_POSITION> getHooks() {
     return unmodifiableHooks;
   }
@@ -973,6 +1005,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
    *          Record received in the callback
    * @return True if the input record is changed, otherwise false
    */
+  @Override
   public ORecordHook.RESULT callbackHooks(final ORecordHook.TYPE type, final OIdentifiable id) {
     if (id == null || !OHookThreadLocal.INSTANCE.push(id)) {
         return ORecordHook.RESULT.RECORD_NOT_CHANGED;
@@ -1028,6 +1061,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public boolean isValidationEnabled() {
     return !getStatus().equals(STATUS.IMPORTING) && validation;
   }
@@ -1035,20 +1069,24 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <DB extends ODatabaseDocument> DB setValidationEnabled(final boolean iEnabled) {
     validation = iEnabled;
     return (DB) this;
   }
 
+  @Override
   public ORecordConflictStrategy getConflictStrategy() {
     return getStorage().getConflictStrategy();
   }
 
+  @Override
   public ODatabaseDocumentTx setConflictStrategy(final ORecordConflictStrategy iResolver) {
     getStorage().setConflictStrategy(iResolver);
     return this;
   }
 
+  @Override
   public ODatabaseDocumentTx setConflictStrategy(final String iStrategyName) {
     getStorage().setConflictStrategy(Orient.instance().getRecordConflictStrategy().getStrategy(iStrategyName));
     return this;
@@ -1456,6 +1494,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
     }
   }
 
+  @Override
   public OTransaction getTransaction() {
     return currentTx;
   }
@@ -1526,6 +1565,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * Deletes the record without checking the version.
    */
+  @Override
   public ODatabaseDocument delete(final ORID iRecord) {
     checkOpeness();
     final ORecord rec = iRecord.getRecord();
@@ -1550,6 +1590,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
     return componentsFactory.binarySerializerFactory;
   }
 
+  @Override
   public ODatabaseDocument begin(final OTransaction iTx) {
     checkOpeness();
     if (currentTx.isActive() && iTx.equals(currentTx)) {
@@ -1577,6 +1618,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public <RET extends ORecord> RET load(final ORecord iRecord, final String iFetchPlan, final boolean iIgnoreCache) {
     return (RET) executeReadRecord((ORecordId) iRecord.getIdentity(), iRecord, iFetchPlan, iIgnoreCache, false,
         OStorage.LOCKING_STRATEGY.DEFAULT);
@@ -1993,10 +2035,12 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
     }
   }
 
+  @Override
   public ODatabaseDocumentTx begin() {
     return begin(OTransaction.TXTYPE.OPTIMISTIC);
   }
 
+  @Override
   public ODatabaseDocumentTx begin(final OTransaction.TXTYPE iType) {
     checkOpeness();
     setCurrentDatabaseInThreadLocal();
@@ -2131,6 +2175,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * Creates a new ODocument.
    */
+  @Override
   public ODocument newInstance() {
     return new ODocument();
   }
@@ -2150,6 +2195,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public ORecordIteratorClass<ODocument> browseClass(final String iClassName) {
     return browseClass(iClassName, true);
   }
@@ -2157,6 +2203,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public ORecordIteratorClass<ODocument> browseClass(final String iClassName, final boolean iPolymorphic) {
     if (((OMetadataInternal) getMetadata()).getImmutableSchemaSnapshot().getClass(iClassName) == null) {
         throw new IllegalArgumentException("Class '" + iClassName + "' not found in current database");
@@ -2407,6 +2454,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
    * @return The Database instance itself giving a "fluent interface". Useful to call multiple methods in chain.
    * @see #setMVCC(boolean), {@link #isMVCC()}
    */
+  @Override
   public ODatabaseDocumentTx delete(final ORecord record) {
     checkOpeness();
     if (record == null) {
@@ -2436,6 +2484,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * Returns the number of the records of the class iClassName.
    */
+  @Override
   public long countClass(final String iClassName) {
     return countClass(iClassName, true);
   }
@@ -2443,6 +2492,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * Returns the number of the records of the class iClassName considering also sub classes if polymorphic is true.
    */
+  @Override
   public long countClass(final String iClassName, final boolean iPolymorphic) {
     ODatabaseRecordThreadLocal.INSTANCE.set(this);
 
@@ -2632,6 +2682,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
   /**
    * {@inheritDoc}
    */
+  @Override
   public OSBTreeCollectionManager getSbTreeCollectionManager() {
     return sbTreeCollectionManager;
   }
@@ -2641,6 +2692,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
     return componentsFactory;
   }
 
+  @Override
   public ORecordSerializer getSerializer() {
     return serializer;
   }
@@ -2951,6 +3003,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
         final Collection<OIndex<?>> indexes = cls.getIndexes();
         if (indexes != null) {
           final SortedSet<OIndex<?>> indexesToLock = new TreeSet<OIndex<?>>(new Comparator<OIndex<?>>() {
+            @Override
             public int compare(OIndex<?> indexOne, OIndex<?> indexTwo) {
               return indexOne.getName().compareTo(indexTwo.getName());
             }
@@ -3004,6 +3057,7 @@ public class ODatabaseDocumentTx extends OListenerManger<ODatabaseListener> impl
       }
 
       Collections.sort(indexesToFreeze, new Comparator<OIndex<?>>() {
+        @Override
         public int compare(OIndex<?> o1, OIndex<?> o2) {
           return o1.getName().compareTo(o2.getName());
         }

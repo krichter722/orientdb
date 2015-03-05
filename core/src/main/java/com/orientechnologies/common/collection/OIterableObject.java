@@ -44,6 +44,7 @@ public class OIterableObject<T> implements Iterable<T>, OResettable, Iterator<T>
    * 
    * @return an Iterator.
    */
+  @Override
   public Iterator<T> iterator() {
     return this;
   }

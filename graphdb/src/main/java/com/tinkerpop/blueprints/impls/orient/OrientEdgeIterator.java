@@ -116,6 +116,7 @@ public class OrientEdgeIterator extends OLazyWrapperIterator<OrientEdge> {
     return null;
   }
 
+  @Override
   public boolean filter(final OrientEdge iObject) {
     if (targetVertex != null && !targetVertex.equals(iObject.getVertex(connection.getKey().opposite()))) {
         return false;

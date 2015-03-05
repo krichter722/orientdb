@@ -49,14 +49,17 @@ public class OPropertyIndexDefinition extends OAbstractIndexDefinition {
   public OPropertyIndexDefinition() {
   }
 
+  @Override
   public String getClassName() {
     return className;
   }
 
+  @Override
   public List<String> getFields() {
     return Collections.singletonList(field);
   }
 
+  @Override
   public List<String> getFieldsToIndex() {
     if (collate == null || collate.getName().equals(ODefaultCollate.NAME)) {
         return Collections.singletonList(field);
@@ -65,6 +68,7 @@ public class OPropertyIndexDefinition extends OAbstractIndexDefinition {
     return Collections.singletonList(field + " collate " + collate.getName());
   }
 
+  @Override
   public Object getDocumentValueToIndex(final ODocument iDocument) {
     if (OType.LINK.equals(keyType)) {
       final OIdentifiable identifiable = iDocument.field(field);
@@ -120,6 +124,7 @@ public class OPropertyIndexDefinition extends OAbstractIndexDefinition {
         + ", collate=" + collate + ", null values ignored = " + isNullValuesIgnored() + '}';
   }
 
+  @Override
   public Object createValue(final List<?> params) {
     return OType.convert(params.get(0), keyType.getDefaultJavaType());
   }
@@ -127,14 +132,17 @@ public class OPropertyIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public Object createValue(final Object... params) {
     return OType.convert(params[0], keyType.getDefaultJavaType());
   }
 
+  @Override
   public int getParamCount() {
     return 1;
   }
 
+  @Override
   public OType[] getTypes() {
     return new OType[] { keyType };
   }
@@ -182,6 +190,7 @@ public class OPropertyIndexDefinition extends OAbstractIndexDefinition {
    * @param indexName
    * @param indexType
    */
+  @Override
   public String toCreateIndexDDL(final String indexName, final String indexType) {
     return createIndexDDLWithFieldType(indexName, indexType).toString();
   }

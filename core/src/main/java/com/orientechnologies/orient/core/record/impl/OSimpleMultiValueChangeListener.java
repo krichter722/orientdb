@@ -48,6 +48,7 @@ final class OSimpleMultiValueChangeListener<K, V> implements OMultiValueChangeLi
     this.fieldName = fieldName;
   }
 
+  @Override
   public void onAfterRecordChanged(final OMultiValueChangeEvent<K, V> event) {
     if (this.oDocument.getInternalStatus() != STATUS.UNMARSHALLING) {
       if (event.isChangesOwnerContent()) {

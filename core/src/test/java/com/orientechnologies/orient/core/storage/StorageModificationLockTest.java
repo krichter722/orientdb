@@ -62,6 +62,7 @@ public class StorageModificationLockTest {
   private final class Counter implements Callable<Void> {
     private final Random random = new Random();
 
+    @Override
     public Void call() throws Exception {
       countDownLatch.await();
       for (int n = 0; n < CYCLES_COUNT; n++) {
@@ -81,6 +82,7 @@ public class StorageModificationLockTest {
   }
 
   private final class Prohibiter implements Callable<Void> {
+    @Override
     public Void call() throws Exception {
       countDownLatch.await();
 

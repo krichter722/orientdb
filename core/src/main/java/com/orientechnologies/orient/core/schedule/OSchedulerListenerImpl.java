@@ -39,12 +39,14 @@ public class OSchedulerListenerImpl implements OSchedulerListener {
   public OSchedulerListenerImpl() {
   }
 
+  @Override
   public void addScheduler(OScheduler scheduler) {
     if (!schedulers.containsKey(scheduler.getSchduleName())) {
       schedulers.put(scheduler.getSchduleName(), scheduler);
     }
   }
 
+  @Override
   public void removeScheduler(OScheduler scheduler) {
     if (scheduler.isRunning()) {
         throw new OException("Cannot delete scheduler " + scheduler.getSchduleName() + " due to it is still running");
@@ -52,15 +54,18 @@ public class OSchedulerListenerImpl implements OSchedulerListener {
     schedulers.remove(scheduler.getSchduleName());
   }
 
+  @Override
   public Map<String, OScheduler> getSchedulers() {
     return schedulers;
   }
 
+  @Override
   public OScheduler getScheduler(String name) {
     return schedulers.get(name);
   }
 
   // loaded when open database
+  @Override
   public void load() {
     schedulers.clear();
     final ODatabaseDocument db = ODatabaseRecordThreadLocal.INSTANCE.get();
@@ -73,10 +78,12 @@ public class OSchedulerListenerImpl implements OSchedulerListener {
     }
   }
 
+  @Override
   public void close() {
     schedulers.clear();
   }
 
+  @Override
   public void create() {
     final ODatabaseDocument db = ODatabaseRecordThreadLocal.INSTANCE.get();
     if (db.getMetadata().getSchema().existsClass(OScheduler.CLASSNAME)) {

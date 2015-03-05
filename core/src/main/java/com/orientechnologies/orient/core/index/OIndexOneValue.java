@@ -48,6 +48,7 @@ public abstract class OIndexOneValue extends OIndexAbstract<OIdentifiable> {
     super(type, algorithm, engine, valueContainerAlgorithm, metadata);
   }
 
+  @Override
   public OIdentifiable get(Object iKey) {
     checkForRebuild();
 
@@ -106,6 +107,7 @@ public abstract class OIndexOneValue extends OIndexAbstract<OIdentifiable> {
     }
   }
 
+  @Override
   public OIndexOneValue create(final String name, final OIndexDefinition indexDefinition, final String clusterIndexName,
       final Set<String> clustersToIndex, boolean rebuild, final OProgressListener progressListener) {
     return (OIndexOneValue) super.create(name, indexDefinition, clusterIndexName, clustersToIndex, rebuild, progressListener,
@@ -215,6 +217,7 @@ public abstract class OIndexOneValue extends OIndexAbstract<OIdentifiable> {
     }
   }
 
+  @Override
   public long getSize() {
     checkForRebuild();
 
@@ -226,6 +229,7 @@ public abstract class OIndexOneValue extends OIndexAbstract<OIdentifiable> {
     }
   }
 
+  @Override
   public long getKeySize() {
     checkForRebuild();
 

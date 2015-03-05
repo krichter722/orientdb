@@ -42,6 +42,7 @@ public class OSignalHandler implements SignalHandler {
     }
   }
 
+  @Override
   public void handle(Signal signal) {
     OLogManager.instance().info(this, "Received signal: %s", signal);
 

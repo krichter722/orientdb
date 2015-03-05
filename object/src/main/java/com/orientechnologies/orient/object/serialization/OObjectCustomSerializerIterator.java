@@ -43,15 +43,18 @@ public class OObjectCustomSerializerIterator<TYPE> implements Iterator<TYPE>, Se
 		this.deserializeClass = iDeserializeClass;
 	}
 
+        @Override
 	public TYPE next() {
 		final Object value = underlying.next();
 		return (TYPE) OObjectEntitySerializer.deserializeFieldValue(deserializeClass, value);
 	}
 
+        @Override
 	public boolean hasNext() {
 		return underlying.hasNext();
 	}
 
+        @Override
 	public void remove() {
 		underlying.remove();
 		if (sourceRecord != null) {

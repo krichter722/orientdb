@@ -48,6 +48,7 @@ public class OSQLFunctionLabel extends OSQLFunctionConfigurableAbstract {
     super(NAME, 0, 0);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, final Object iCurrentResult, final Object[] iParameters,
       OCommandContext iContext) {
     final OModifiableBoolean shutdownFlag = new OModifiableBoolean();
@@ -89,6 +90,7 @@ public class OSQLFunctionLabel extends OSQLFunctionConfigurableAbstract {
     }
   }
 
+  @Override
   public String getSyntax() {
     return "Syntax error: label()";
   }

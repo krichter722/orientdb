@@ -67,6 +67,7 @@ public class ODefaultQueryOperatorFactory implements OQueryOperatorFactory{
     /**
      * {@inheritDoc}
      */
+    @Override
     public Set<OQueryOperator> getOperators() {
         return OPERATORS;
     }

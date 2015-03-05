@@ -33,6 +33,7 @@ public abstract class ORecordHookAbstract implements ORecordHook {
   /**
    * Called on unregistration.
    */
+  @Override
   public void onUnregister() {
   }
 
@@ -176,6 +177,7 @@ public abstract class ORecordHookAbstract implements ORecordHook {
   public void onRecordFinalizeCreation(final ORecord record) {
   }
 
+  @Override
   public RESULT onTrigger(final TYPE iType, final ORecord record) {
     switch (iType) {
     case BEFORE_CREATE:

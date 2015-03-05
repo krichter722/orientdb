@@ -323,6 +323,7 @@ public abstract class OrientElement implements Element, OSerializableStream, Ext
     }
   }
 
+  @Override
   public int hashCode() {
     return ((rawElement == null) ? 0 : rawElement.hashCode());
   }
@@ -509,10 +510,12 @@ public abstract class OrientElement implements Element, OSerializableStream, Ext
     return getGraph() == null;
   }
 
+  @Override
   public boolean equals(final Object object) {
     return ElementHelper.areEqual(this, object);
   }
 
+  @Override
   public int compare(final OIdentifiable iFirst, final OIdentifiable iSecond) {
     if (iFirst == null || iSecond == null) {
         return -1;
@@ -520,6 +523,7 @@ public abstract class OrientElement implements Element, OSerializableStream, Ext
     return iFirst.compareTo(iSecond);
   }
 
+  @Override
   public int compareTo(final OIdentifiable iOther) {
     if (iOther == null) {
         return 1;

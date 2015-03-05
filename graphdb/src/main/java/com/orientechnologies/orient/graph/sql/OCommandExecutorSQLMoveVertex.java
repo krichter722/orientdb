@@ -63,6 +63,7 @@ public class OCommandExecutorSQLMoveVertex extends OCommandExecutorSQLSetAware i
   private ODocument                     merge;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLMoveVertex parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -125,6 +126,7 @@ public class OCommandExecutorSQLMoveVertex extends OCommandExecutorSQLSetAware i
   /**
    * Executes the command and return the ODocument object created.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (className == null && clusterName == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

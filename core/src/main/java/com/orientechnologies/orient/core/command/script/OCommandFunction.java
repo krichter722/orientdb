@@ -39,6 +39,7 @@ public class OCommandFunction extends OCommandRequestTextAbstract {
     super(iName);
   }
 
+  @Override
   public boolean isIdempotent() {
     return false;
   }

@@ -533,6 +533,7 @@ public class OSBTreeRidBag implements ORidBagDelegate {
     this.owner = owner;
   }
 
+  @Override
   public Iterator<OIdentifiable> iterator() {
     return new RIDBagIterator(new IdentityHashMap<OIdentifiable, OModifiableInteger>(newEntries), changes,
         collectionPointer != null ? new SBTreeMapEntryIterator(1000) : null, autoConvertToRecord);
@@ -630,12 +631,14 @@ public class OSBTreeRidBag implements ORidBagDelegate {
     return convertRecords2Links();
   }
 
+  @Override
   public void addAll(Collection<OIdentifiable> values) {
     for (OIdentifiable identifiable : values) {
       add(identifiable);
     }
   }
 
+  @Override
   public void add(final OIdentifiable identifiable) {
     if (identifiable.getIdentity().isValid()) {
       Change counter = changes.get(identifiable);
@@ -667,6 +670,7 @@ public class OSBTreeRidBag implements ORidBagDelegate {
     }
   }
 
+  @Override
   public void remove(OIdentifiable identifiable) {
     if (removeFromNewEntries(identifiable)) {
       if (size >= 0) {
@@ -702,6 +706,7 @@ public class OSBTreeRidBag implements ORidBagDelegate {
     }
   }
 
+  @Override
   public int size() {
     if (size >= 0) {
         return size;
@@ -715,14 +720,17 @@ public class OSBTreeRidBag implements ORidBagDelegate {
     return "[size=" + size + "]";
   }
 
+  @Override
   public boolean isEmpty() {
     return size() == 0;
   }
 
+  @Override
   public void addChangeListener(final OMultiValueChangeListener<OIdentifiable, OIdentifiable> changeListener) {
     changeListeners.add(changeListener);
   }
 
+  @Override
   public void removeRecordChangeListener(final OMultiValueChangeListener<OIdentifiable, OIdentifiable> changeListener) {
     changeListeners.remove(changeListener);
   }

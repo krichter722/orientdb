@@ -152,10 +152,12 @@ public class OMVRBTreeEntryMemory<K, V> extends OMVRBTreeEntry<K, V> {
 		return p;
 	}
 
+        @Override
 	public int getSize() {
 		return size;
 	}
 
+        @Override
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -175,10 +177,12 @@ public class OMVRBTreeEntryMemory<K, V> extends OMVRBTreeEntry<K, V> {
 		return right;
 	}
 
+        @Override
 	protected K getKeyAt(final int iIndex) {
 		return keys[iIndex];
 	}
 
+        @Override
 	protected V getValueAt(int iIndex) {
 		return values[iIndex];
 	}
@@ -188,12 +192,14 @@ public class OMVRBTreeEntryMemory<K, V> extends OMVRBTreeEntry<K, V> {
 	 * 
 	 * @return the value associated with the key before this method was called
 	 */
+        @Override
 	public V setValue(final V value) {
 		V oldValue = this.getValue();
 		this.values[tree.pageIndex] = value;
 		return oldValue;
 	}
 
+        @Override
 	protected void insert(final int iPosition, final K key, final V value) {
 		if (iPosition < size) {
 			// MOVE RIGHT TO MAKE ROOM FOR THE ITEM
@@ -206,6 +212,7 @@ public class OMVRBTreeEntryMemory<K, V> extends OMVRBTreeEntry<K, V> {
 		size++;
 	}
 
+        @Override
 	protected void remove() {
 		if (tree.pageIndex == size - 1) {
 			// LAST ONE: JUST REMOVE IT
@@ -223,6 +230,7 @@ public class OMVRBTreeEntryMemory<K, V> extends OMVRBTreeEntry<K, V> {
 		tree.pageIndex = 0;
 	}
 
+        @Override
 	protected void copyFrom(final OMVRBTreeEntry<K, V> iSource) {
 		OMVRBTreeEntryMemory<K, V> source = (OMVRBTreeEntryMemory<K, V>) iSource;
 		keys = (K[]) new Object[source.keys.length];

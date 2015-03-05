@@ -39,10 +39,12 @@ public abstract class OAbstractIndexDefinition extends ODocumentWrapperNoClass i
     super(new ODocument());
   }
 
+  @Override
   public OCollate getCollate() {
     return collate;
   }
 
+  @Override
   public void setCollate(final OCollate collate) {
     if (collate == null) {
         throw new IllegalArgumentException("COLLATE cannot be null");

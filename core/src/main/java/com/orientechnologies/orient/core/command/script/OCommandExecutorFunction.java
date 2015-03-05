@@ -49,11 +49,13 @@ public class OCommandExecutorFunction extends OCommandExecutorAbstract {
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorFunction parse(final OCommandRequest iRequest) {
     request = (OCommandFunction) iRequest;
     return this;
   }
 
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     return executeInContext(null, iArgs);
   }
@@ -117,6 +119,7 @@ public class OCommandExecutorFunction extends OCommandExecutorAbstract {
     }
   }
 
+  @Override
   public boolean isIdempotent() {
     return false;
   }

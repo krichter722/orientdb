@@ -36,10 +36,12 @@ import com.orientechnologies.common.exception.OException;
 public class OSharedContainerImpl implements OSharedContainer {
 	protected Map<String, Object>	sharedResources	= new HashMap<String, Object>();
 
+        @Override
 	public synchronized boolean existsResource(final String iName) {
 		return sharedResources.containsKey(iName);
 	}
 
+        @Override
 	public synchronized <T> T removeResource(final String iName) {
 		T resource = (T) sharedResources.remove(iName);
 
@@ -50,6 +52,7 @@ public class OSharedContainerImpl implements OSharedContainer {
 		return resource;
 	}
 
+        @Override
 	public synchronized <T> T getResource(final String iName, final Callable<T> iCallback) {
 		T value = (T) sharedResources.get(iName);
 		if (value == null) {

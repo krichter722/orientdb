@@ -41,10 +41,12 @@ public class OObjectIteratorClass<T> implements OObjectIteratorClassInterface<T>
         true, false);
   }
 
+  @Override
   public boolean hasNext() {
     return underlying.hasNext();
   }
 
+  @Override
   public T next() {
     return next(fetchPlan);
   }
@@ -53,10 +55,12 @@ public class OObjectIteratorClass<T> implements OObjectIteratorClassInterface<T>
     return (T) database.getUserObjectByRecord(underlying.next(), iFetchPlan);
   }
 
+  @Override
   public void remove() {
     underlying.remove();
   }
 
+  @Override
   public Iterator<T> iterator() {
     return this;
   }

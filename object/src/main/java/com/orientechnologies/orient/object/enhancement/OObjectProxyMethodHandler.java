@@ -96,6 +96,7 @@ public class OObjectProxyMethodHandler implements MethodHandler {
     return orphans;
   }
 
+  @Override
   public Object invoke(final Object self, final Method m, final Method proceed, final Object[] args) throws Throwable {
     final OObjectMethodFilter filter = OObjectEntityEnhancer.getInstance().getMethodFilter(self.getClass());
     if (filter.isSetterMethod(m.getName(), m)) {

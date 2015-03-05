@@ -37,6 +37,7 @@ public class OCommandExecutorSQLGrant extends OCommandExecutorSQLPermissionAbstr
   private static final String KEYWORD_TO    = "TO";
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLGrant parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -92,6 +93,7 @@ public class OCommandExecutorSQLGrant extends OCommandExecutorSQLPermissionAbstr
   /**
    * Execute the GRANT.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (role == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
@@ -103,6 +105,7 @@ public class OCommandExecutorSQLGrant extends OCommandExecutorSQLPermissionAbstr
     return role;
   }
 
+  @Override
   public String getSyntax() {
     return "GRANT <permission> ON <resource> TO <role>";
   }

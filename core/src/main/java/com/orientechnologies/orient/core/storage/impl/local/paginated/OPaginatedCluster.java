@@ -142,6 +142,7 @@ public class OPaginatedCluster extends ODurableComponent implements OCluster {
     }
   }
 
+  @Override
   public boolean exists() {
     return diskCache.exists(name + DEF_EXTENSION);
   }
@@ -207,6 +208,7 @@ public class OPaginatedCluster extends ODurableComponent implements OCluster {
     close(true);
   }
 
+  @Override
   public void close(boolean flush) throws IOException {
     externalModificationLock.requestModificationLock();
     try {
@@ -341,6 +343,7 @@ public class OPaginatedCluster extends ODurableComponent implements OCluster {
     throw new UnsupportedOperationException("convertToTombstone");
   }
 
+  @Override
   public OPhysicalPosition createRecord(byte[] content, final ORecordVersion recordVersion, final byte recordType)
       throws IOException {
     content = compression.compress(content);
@@ -514,6 +517,7 @@ public class OPaginatedCluster extends ODurableComponent implements OCluster {
     }
   }
 
+  @Override
   public ORawBuffer readRecord(long clusterPosition) throws IOException {
     acquireSharedLock();
     try {
@@ -575,6 +579,7 @@ public class OPaginatedCluster extends ODurableComponent implements OCluster {
     }
   }
 
+  @Override
   public boolean deleteRecord(long clusterPosition) throws IOException {
     externalModificationLock.requestModificationLock();
     boolean operationStarted = false;
@@ -696,6 +701,7 @@ public class OPaginatedCluster extends ODurableComponent implements OCluster {
 
   }
 
+  @Override
   public void updateRecord(long clusterPosition, byte[] content, final ORecordVersion recordVersion,
       final byte recordType) throws IOException {
     content = compression.compress(content);
@@ -1152,10 +1158,12 @@ public class OPaginatedCluster extends ODurableComponent implements OCluster {
     }
   }
 
+  @Override
   public OModificationLock getExternalModificationLock() {
     return externalModificationLock;
   }
 
+  @Override
   public ORecordConflictStrategy getRecordConflictStrategy() {
     return recordConflictStrategy;
   }

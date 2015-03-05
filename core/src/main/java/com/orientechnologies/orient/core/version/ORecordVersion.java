@@ -69,10 +69,13 @@ public interface ORecordVersion extends Comparable<ORecordVersion>, Externalizab
 
   ORecordVersionSerializer getSerializer();
 
+  @Override
   boolean equals(Object other);
 
+  @Override
   int hashCode();
 
+  @Override
   String toString();
 
   boolean isTombstone();
@@ -155,6 +158,7 @@ public interface ORecordVersion extends Comparable<ORecordVersion>, Externalizab
      */
     byte[] toByteArray(ORecordVersion version);
 
+    @Override
     String toString();
 
     String toString(ORecordVersion version);

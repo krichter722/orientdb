@@ -41,10 +41,12 @@ public class OIntegerSerializer implements OBinarySerializer<Integer> {
   private static final OBinaryConverter CONVERTER = OBinaryConverterFactory.getConverter();
   public static OIntegerSerializer      INSTANCE  = new OIntegerSerializer();
 
+  @Override
   public int getObjectSize(Integer object, Object... hints) {
     return INT_SIZE;
   }
 
+  @Override
   public void serialize(final Integer object, final byte[] stream, final int startPosition, final Object... hints) {
     serializeLiteral(object.intValue(), stream, startPosition);
   }
@@ -56,6 +58,7 @@ public class OIntegerSerializer implements OBinarySerializer<Integer> {
     stream[startPosition + 3] = (byte) ((value >>> 0) & 0xFF);
   }
 
+  @Override
   public Integer deserialize(final byte[] stream, final int startPosition) {
     return deserializeLiteral(stream, startPosition);
   }
@@ -65,14 +68,17 @@ public class OIntegerSerializer implements OBinarySerializer<Integer> {
         | ((0xff & stream[startPosition + 3]));
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return INT_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(final byte[] stream, final int startPosition) {
     return INT_SIZE;
   }
@@ -120,10 +126,12 @@ public class OIntegerSerializer implements OBinarySerializer<Integer> {
     return INT_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return INT_SIZE;
   }

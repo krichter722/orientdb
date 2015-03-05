@@ -149,6 +149,7 @@ public abstract class OCommandExecutorSQLResultsetAbstract extends OCommandExecu
   /**
    * Compile the filter conditions only the first time.
    */
+  @Override
   public OCommandExecutorSQLResultsetAbstract parse(final OCommandRequest iRequest) {
     final OCommandRequestText textRequest = (OCommandRequestText) iRequest;
 

@@ -183,6 +183,7 @@ public class OMemoryInputStream extends InputStream {
     return value;
   }
 
+  @Override
   public void close() {
     buffer = null;
   }

@@ -212,6 +212,7 @@ public class MersenneTwisterFast implements Serializable, Cloneable {
   }
 
   /* We're overriding all internal data, to my knowledge, so this should be okay */
+  @Override
   public Object clone() {
     try {
       MersenneTwisterFast f = (MersenneTwisterFast) (super.clone());

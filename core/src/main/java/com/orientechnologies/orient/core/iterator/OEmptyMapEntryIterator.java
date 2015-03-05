@@ -25,14 +25,17 @@ import java.util.Map;
 public class OEmptyMapEntryIterator<K,V> implements Iterator<Map.Entry<K, V>> {
   public static final OEmptyMapEntryIterator INSTANCE = new OEmptyMapEntryIterator();
 
+  @Override
   public boolean hasNext() {
     return false;
   }
 
+  @Override
   public Map.Entry<K, V> next() {
     return null;
   }
 
+  @Override
   public void remove() {
   }
 }

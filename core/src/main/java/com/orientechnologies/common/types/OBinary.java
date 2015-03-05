@@ -32,6 +32,7 @@ public class OBinary implements Comparable<OBinary> {
     value = buffer;
   }
 
+  @Override
   public int compareTo(final OBinary o) {
     final int size = value.length;
 

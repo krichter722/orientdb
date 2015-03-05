@@ -47,6 +47,7 @@ public class OUnsafeMemory implements ODirectMemory {
   static {
     OUnsafeMemory futureInstance;
     unsafe = (Unsafe) AccessController.doPrivileged(new PrivilegedAction<Object>() {
+      @Override
       public Object run() {
         try {
           Field f = Unsafe.class.getDeclaredField("theUnsafe");

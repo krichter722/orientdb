@@ -44,6 +44,7 @@ public class OIterableObjectArray<T> implements Iterable<T> {
 	 * 
 	 * @return an Iterator.
 	 */
+        @Override
 	public Iterator<T> iterator() {
 		return new ObjIterator();
 	}
@@ -57,6 +58,7 @@ public class OIterableObjectArray<T> implements Iterable<T> {
 		 * 
 		 * @return <tt>true</tt> if the iterator has more elements.
 		 */
+                @Override
 		public boolean hasNext() {
 			return p < length;
 		}
@@ -69,6 +71,7 @@ public class OIterableObjectArray<T> implements Iterable<T> {
 		 *           iteration has no more elements.
 		 */
 		@SuppressWarnings("unchecked")
+                @Override
 		public T next() {
 			if (p < length) {
 				return (T) Array.get(object, p++);
@@ -88,6 +91,7 @@ public class OIterableObjectArray<T> implements Iterable<T> {
 		 *           if the <tt>next</tt> method has not yet been called, or the <tt>remove</tt> method has already been called after
 		 *           the last call to the <tt>next</tt> method.
 		 */
+                @Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}

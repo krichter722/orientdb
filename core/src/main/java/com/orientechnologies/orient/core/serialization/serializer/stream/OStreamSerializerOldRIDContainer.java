@@ -45,6 +45,7 @@ public class OStreamSerializerOldRIDContainer implements OStreamSerializer, OBin
 
   public static final byte                              ID       = 20;
 
+  @Override
   public Object fromStream(final byte[] iStream) throws IOException {
     if (iStream == null) {
         return null;
@@ -55,6 +56,7 @@ public class OStreamSerializerOldRIDContainer implements OStreamSerializer, OBin
     return containerFromStream(s);
   }
 
+  @Override
   public byte[] toStream(final Object object) throws IOException {
     if (object == null) {
         return null;
@@ -63,6 +65,7 @@ public class OStreamSerializerOldRIDContainer implements OStreamSerializer, OBin
     return containerToStream((OIndexRIDContainer) object);
   }
 
+  @Override
   public String getName() {
     return NAME;
   }

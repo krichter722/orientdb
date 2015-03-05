@@ -39,6 +39,7 @@ public class PropertyIndexTest extends DocumentDBBaseTest {
 	}
 
   @BeforeClass
+        @Override
   public void beforeClass() throws Exception {
 		super.beforeClass();
 
@@ -53,6 +54,7 @@ public class PropertyIndexTest extends DocumentDBBaseTest {
   }
 
   @AfterClass
+        @Override
   public void afterClass() {
     if (database.isClosed()) {
         database.open("admin", "admin");

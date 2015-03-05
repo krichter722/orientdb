@@ -39,6 +39,7 @@ public class OBuffer implements Externalizable {
     this.buffer = buffer;
   }
 
+  @Override
   public void readExternal(final ObjectInput iInput) throws IOException, ClassNotFoundException {
     final int bufferLenght = iInput.readInt();
     if (bufferLenght > 0) {
@@ -51,6 +52,7 @@ public class OBuffer implements Externalizable {
     }
   }
 
+  @Override
   public void writeExternal(final ObjectOutput iOutput) throws IOException {
     final int bufferLenght = buffer != null ? buffer.length : 0;
     iOutput.writeInt(bufferLenght);

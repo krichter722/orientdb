@@ -32,10 +32,12 @@ public class OStringSerializer implements OBinarySerializer<String> {
   public static final OStringSerializer INSTANCE = new OStringSerializer();
   public static final byte              ID       = 13;
 
+  @Override
   public int getObjectSize(final String object, Object... hints) {
     return object.length() * 2 + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public void serialize(final String object, final byte[] stream, int startPosition, Object... hints) {
     final int length = object.length();
     OIntegerSerializer.INSTANCE.serializeLiteral(length, stream, startPosition);
@@ -54,6 +56,7 @@ public class OStringSerializer implements OBinarySerializer<String> {
     }
   }
 
+  @Override
   public String deserialize(final byte[] stream, int startPosition) {
     final int len = OIntegerSerializer.INSTANCE.deserializeLiteral(stream, startPosition);
     final char[] buffer = new char[len];
@@ -68,14 +71,17 @@ public class OStringSerializer implements OBinarySerializer<String> {
     return new String(buffer);
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return OIntegerSerializer.INSTANCE.deserializeLiteral(stream, startPosition) * 2 + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return OIntegerSerializer.INSTANCE.deserializeNative(stream, startPosition) * 2 + OIntegerSerializer.INT_SIZE;
   }
@@ -99,6 +105,7 @@ public class OStringSerializer implements OBinarySerializer<String> {
     }
   }
 
+  @Override
   public String deserializeNativeObject(byte[] stream, int startPosition) {
     int len = OIntegerSerializer.INSTANCE.deserializeNative(stream, startPosition);
     char[] buffer = new char[len];
@@ -158,10 +165,12 @@ public class OStringSerializer implements OBinarySerializer<String> {
     return pointer.getInt(offset) * 2 + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return false;
   }
 
+  @Override
   public int getFixedLength() {
     throw new UnsupportedOperationException("Length of serialized string is not fixed.");
   }

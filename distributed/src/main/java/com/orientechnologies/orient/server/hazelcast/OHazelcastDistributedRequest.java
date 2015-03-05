@@ -58,10 +58,12 @@ public class OHazelcastDistributedRequest implements ODistributedRequest, Extern
     id = -1;
   }
 
+  @Override
   public long getId() {
     return id;
   }
 
+  @Override
   public void setId(final long iReqId) {
     id = iReqId;
   }
@@ -88,19 +90,23 @@ public class OHazelcastDistributedRequest implements ODistributedRequest, Extern
     return this;
   }
 
+  @Override
   public String getSenderNodeName() {
     return senderNodeName;
   }
 
+  @Override
   public OHazelcastDistributedRequest setSenderNodeName(final String senderNodeName) {
     this.senderNodeName = senderNodeName;
     return this;
   }
 
+  @Override
   public String getUserName() {
     return userName;
   }
 
+  @Override
   public void setUserName(final String userName) {
     this.userName = userName;
   }

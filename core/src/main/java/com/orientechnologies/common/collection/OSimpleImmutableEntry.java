@@ -57,6 +57,7 @@ public class OSimpleImmutableEntry<K, V> implements Entry<K, V>, java.io.Seriali
 	 * 
 	 * @return the key corresponding to this entry
 	 */
+        @Override
 	public K getKey() {
 		return key;
 	}
@@ -66,6 +67,7 @@ public class OSimpleImmutableEntry<K, V> implements Entry<K, V>, java.io.Seriali
 	 * 
 	 * @return the value corresponding to this entry
 	 */
+        @Override
 	public V getValue() {
 		return value;
 	}
@@ -80,6 +82,7 @@ public class OSimpleImmutableEntry<K, V> implements Entry<K, V>, java.io.Seriali
 	 * @throws UnsupportedOperationException
 	 *           always
 	 */
+        @Override
 	public V setValue(V value) {
 		throw new UnsupportedOperationException();
 	}

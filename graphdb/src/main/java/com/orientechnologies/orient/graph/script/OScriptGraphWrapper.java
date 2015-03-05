@@ -90,14 +90,17 @@ public class OScriptGraphWrapper implements TransactionalGraph {
     return graph.getFeatures();
   }
 
+  @Override
   public int hashCode() {
     return graph.hashCode();
   }
 
+  @Override
   public void commit() {
     graph.commit();
   }
 
+  @Override
   public void rollback() {
     graph.rollback();
   }
@@ -116,12 +119,14 @@ public class OScriptGraphWrapper implements TransactionalGraph {
     }
   }
 
+  @Override
   public void stopTransaction(Conclusion conclusion) {
     if (graph instanceof OrientGraph) {
         ((OrientGraph) graph).stopTransaction(conclusion);
     }
   }
 
+  @Override
   public boolean equals(Object obj) {
     return graph.equals(obj);
   }
@@ -146,6 +151,7 @@ public class OScriptGraphWrapper implements TransactionalGraph {
     graph.dropIndex(indexName);
   }
 
+  @Override
   public OrientVertex addVertex(Object id) {
     return graph.addVertex(id);
   }
@@ -158,18 +164,22 @@ public class OScriptGraphWrapper implements TransactionalGraph {
     return graph.addTemporaryVertex(iClassName, prop);
   }
 
+  @Override
   public OrientEdge addEdge(Object id, Vertex outVertex, Vertex inVertex, String label) {
     return graph.addEdge(id, outVertex, inVertex, label);
   }
 
+  @Override
   public OrientVertex getVertex(Object id) {
     return graph.getVertex(id);
   }
 
+  @Override
   public void removeVertex(Vertex vertex) {
     graph.removeVertex(vertex);
   }
 
+  @Override
   public Iterable<Vertex> getVertices() {
     return graph.getVertices();
   }
@@ -186,10 +196,12 @@ public class OScriptGraphWrapper implements TransactionalGraph {
     return graph.getVerticesOfClass(iClassName, iPolymorphic);
   }
 
+  @Override
   public Iterable<Vertex> getVertices(final String iKey, Object iValue) {
     return graph.getVertices(iKey, iValue);
   }
 
+  @Override
   public Iterable<Edge> getEdges() {
     return graph.getEdges();
   }
@@ -206,14 +218,17 @@ public class OScriptGraphWrapper implements TransactionalGraph {
     return graph.getEdgesOfClass(iClassName, iPolymorphic);
   }
 
+  @Override
   public Iterable<Edge> getEdges(final String iKey, final Object iValue) {
     return graph.getEdges(iKey, iValue);
   }
 
+  @Override
   public OrientEdge getEdge(final Object id) {
     return graph.getEdge(id);
   }
 
+  @Override
   public void removeEdge(final Edge edge) {
     graph.removeEdge(edge);
   }
@@ -226,10 +241,12 @@ public class OScriptGraphWrapper implements TransactionalGraph {
     return graph.isClosed();
   }
 
+  @Override
   public void shutdown() {
     graph.shutdown();
   }
 
+  @Override
   public String toString() {
     return graph.toString();
   }
@@ -306,6 +323,7 @@ public class OScriptGraphWrapper implements TransactionalGraph {
     return graph.getIndexedKeys(elementClass, includeClassNames);
   }
 
+  @Override
   public GraphQuery query() {
     return graph.query();
   }

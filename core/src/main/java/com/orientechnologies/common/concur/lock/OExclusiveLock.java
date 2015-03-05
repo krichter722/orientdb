@@ -34,10 +34,12 @@ public class OExclusiveLock extends OAbstractLock {
     lock = iLock;
   }
 
+  @Override
   public void lock() {
     lock.writeLock().lock();
   }
 
+  @Override
   public void unlock() {
     lock.writeLock().unlock();
   }

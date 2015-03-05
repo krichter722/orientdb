@@ -75,6 +75,7 @@ public class FreezeMultiThreadingTestNonTX {
   private CountDownLatch                 countDownLatch                     = new CountDownLatch(1);
 
   private class NonTransactionalAdder implements Callable<Void> {
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("Adder - " + Thread.currentThread().getId());
       ODatabaseDocumentTx database = new ODatabaseDocumentTx(URL);
@@ -111,6 +112,7 @@ public class FreezeMultiThreadingTestNonTX {
   }
 
   private class TransactionalAdder implements Callable<Void> {
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("TransactionalAdder - " + Thread.currentThread().getId());
       ODatabaseDocumentTx database = new ODatabaseDocumentTx(URL);
@@ -153,6 +155,7 @@ public class FreezeMultiThreadingTestNonTX {
 
     private int updateCounter = 0;
 
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("Updater - " + Thread.currentThread().getId());
       ODatabaseDocumentTx database = new ODatabaseDocumentTx(URL);
@@ -234,6 +237,7 @@ public class FreezeMultiThreadingTestNonTX {
   private class TransactionalUpdater implements Callable<Void> {
     private int updateCounter = 0;
 
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("TransactionalUpdater - " + Thread.currentThread().getId());
       ODatabaseDocumentTx database = new ODatabaseDocumentTx(URL);
@@ -317,6 +321,7 @@ public class FreezeMultiThreadingTestNonTX {
 
   private class NonTransactionalDeleter implements Callable<Void> {
 
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("Deleter - " + Thread.currentThread().getId());
 
@@ -377,6 +382,7 @@ public class FreezeMultiThreadingTestNonTX {
 
   private class TransactionalDeleter implements Callable<Void> {
 
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("TransactionalDeleterDeleter - " + Thread.currentThread().getId());
 
@@ -442,6 +448,7 @@ public class FreezeMultiThreadingTestNonTX {
 
   private class Locker implements Callable<Void> {
 
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("Locker - " + Thread.currentThread().getId());
       ODatabaseDocumentTx database = new ODatabaseDocumentTx(URL);

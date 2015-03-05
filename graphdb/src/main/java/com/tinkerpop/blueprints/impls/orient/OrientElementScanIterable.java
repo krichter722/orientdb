@@ -42,12 +42,14 @@ class OrientElementScanIterable<T extends Element> implements CloseableIterable<
     this.polymorphic = polymorphic;
   }
 
+  @Override
   public Iterator<T> iterator() {
     final ODatabaseDocumentTx rawGraph = this.graph.getRawGraph();
     return new OrientElementIterator<T>(this.graph,
         new ORecordIteratorClass<ORecord>(rawGraph, rawGraph, elementClass, polymorphic));
   }
 
+  @Override
   public void close() {
   }
 }

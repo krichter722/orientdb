@@ -61,6 +61,7 @@ public class OCommandExecutorSQLCreateLink extends OCommandExecutorSQLAbstract {
   private OType               linkType;
   private boolean             inverse        = false;
 
+  @Override
   public OCommandExecutorSQLCreateLink parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -168,6 +169,7 @@ public class OCommandExecutorSQLCreateLink extends OCommandExecutorSQLAbstract {
   /**
    * Execute the CREATE LINK.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (destField == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

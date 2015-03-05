@@ -38,6 +38,7 @@ public class OCommandExecutorSQLRevoke extends OCommandExecutorSQLPermissionAbst
   private static final String KEYWORD_FROM   = "FROM";
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLRevoke parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -95,6 +96,7 @@ public class OCommandExecutorSQLRevoke extends OCommandExecutorSQLPermissionAbst
   /**
    * Execute the command.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (role == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not yet been parsed");
@@ -106,6 +108,7 @@ public class OCommandExecutorSQLRevoke extends OCommandExecutorSQLPermissionAbst
     return role;
   }
 
+  @Override
   public String getSyntax() {
     return "REVOKE <permission> ON <resource> FROM <role>";
   }

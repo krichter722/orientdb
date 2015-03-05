@@ -41,10 +41,12 @@ public class OLongSerializer implements OBinarySerializer<Long> {
   private static final OBinaryConverter CONVERTER = OBinaryConverterFactory.getConverter();
   public static OLongSerializer         INSTANCE  = new OLongSerializer();
 
+  @Override
   public int getObjectSize(final Long object, final Object... hints) {
     return LONG_SIZE;
   }
 
+  @Override
   public void serialize(final Long object, final byte[] stream, final int startPosition, final Object... hints) {
     serializeLiteral(object.longValue(), stream, startPosition);
   }
@@ -60,6 +62,7 @@ public class OLongSerializer implements OBinarySerializer<Long> {
     stream[startPosition + 7] = (byte) ((value >>> 0) & 0xFF);
   }
 
+  @Override
   public Long deserialize(final byte[] stream, final int startPosition) {
     return deserializeLiteral(stream, startPosition);
   }
@@ -70,14 +73,17 @@ public class OLongSerializer implements OBinarySerializer<Long> {
         | (long) (0xff & stream[startPosition + 2]) << 40 | (long) (0xff & stream[startPosition + 1]) << 48 | (long) (0xff & stream[startPosition]) << 56);
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return LONG_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(final byte[] stream, final int startPosition) {
     return LONG_SIZE;
   }
@@ -125,10 +131,12 @@ public class OLongSerializer implements OBinarySerializer<Long> {
     return LONG_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return LONG_SIZE;
   }

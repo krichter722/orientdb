@@ -53,30 +53,37 @@ public class ORuntimeKeyIndexDefinition<T> extends OAbstractIndexDefinition {
   public ORuntimeKeyIndexDefinition() {
   }
 
+  @Override
   public List<String> getFields() {
     return Collections.emptyList();
   }
 
+  @Override
   public List<String> getFieldsToIndex() {
     return Collections.emptyList();
   }
 
+  @Override
   public String getClassName() {
     return null;
   }
 
+  @Override
   public Comparable<?> createValue(final List<?> params) {
     return (Comparable<?>) params.get(0);
   }
 
+  @Override
   public Comparable<?> createValue(final Object... params) {
     return createValue(Arrays.asList(params));
   }
 
+  @Override
   public int getParamCount() {
     return 1;
   }
 
+  @Override
   public OType[] getTypes() {
     return null;
   }
@@ -111,6 +118,7 @@ public class ORuntimeKeyIndexDefinition<T> extends OAbstractIndexDefinition {
     setNullValuesIgnored(!Boolean.FALSE.equals(document.<Boolean> field("nullValuesIgnored")));
   }
 
+  @Override
   public Object getDocumentValueToIndex(final ODocument iDocument) {
     throw new OIndexException("This method is not supported in given index definition.");
   }
@@ -146,6 +154,7 @@ public class ORuntimeKeyIndexDefinition<T> extends OAbstractIndexDefinition {
    * @param indexName
    * @param indexType
    */
+  @Override
   public String toCreateIndexDDL(final String indexName, final String indexType) {
     final StringBuilder ddl = new StringBuilder("create index ");
     ddl.append(indexName).append(' ').append(indexType).append(' ');

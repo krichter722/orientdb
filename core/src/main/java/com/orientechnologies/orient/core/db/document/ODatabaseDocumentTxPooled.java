@@ -49,6 +49,7 @@ public class ODatabaseDocumentTxPooled extends ODatabaseDocumentTx implements OD
     super.open(iUserName, iUserPassword);
   }
 
+  @Override
   public void reuse(final Object iOwner, final Object[] iAdditionalArgs) {
     ownerPool = (ODatabaseDocumentPool) iOwner;
     getLocalCache().invalidate();
@@ -81,6 +82,7 @@ public class ODatabaseDocumentTxPooled extends ODatabaseDocumentTx implements OD
         "Database instance was retrieved from a pool. You cannot open the database in this way. Use directly a ODatabaseDocumentTx instance if you want to manually open the connection");
   }
 
+  @Override
   public boolean isUnderlyingOpen() {
     return !super.isClosed();
   }
@@ -129,6 +131,7 @@ public class ODatabaseDocumentTxPooled extends ODatabaseDocumentTx implements OD
     ODatabaseRecordThreadLocal.INSTANCE.remove();
   }
 
+  @Override
   public void forceClose() {
     super.close();
   }

@@ -101,6 +101,7 @@ public abstract class OIdentifiableIterator<REC extends OIdentifiable> implement
     this.fetchPlan = fetchPlan;
   }
 
+  @Override
   public void remove() {
     throw new UnsupportedOperationException("remove");
   }
@@ -142,6 +143,7 @@ public abstract class OIdentifiableIterator<REC extends OIdentifiable> implement
    * }<br>
    * </code>
    */
+  @Override
   public Iterator<REC> iterator() {
     return this;
   }

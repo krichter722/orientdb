@@ -83,6 +83,7 @@ public class ODirectMemoryStorage extends OAbstractPaginatedStorage {
     return OEngineMemory.NAME;
   }
 
+  @Override
   public String getURL() {
     return OEngineMemory.NAME + ":" + url;
   }

@@ -28,47 +28,60 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
  * 
  */
 public class ORemoteFetchContext implements OFetchContext {
+  @Override
   public void onBeforeStandardField(Object iFieldValue, String iFieldName, Object iUserObject) {
   }
 
+  @Override
   public void onAfterStandardField(Object iFieldValue, String iFieldName, Object iUserObject) {
   }
 
+  @Override
   public void onBeforeMap(ODocument iRootRecord, String iFieldName, final Object iUserObject) throws OFetchException {
   }
 
+  @Override
   public void onBeforeFetch(ODocument iRootRecord) throws OFetchException {
   }
 
+  @Override
   public void onBeforeArray(ODocument iRootRecord, String iFieldName, Object iUserObject, OIdentifiable[] iArray)
       throws OFetchException {
   }
 
+  @Override
   public void onAfterArray(ODocument iRootRecord, String iFieldName, Object iUserObject) throws OFetchException {
   }
 
+  @Override
   public void onBeforeDocument(ODocument iRecord, final ODocument iDocument, String iFieldName,
       final Object iUserObject) throws OFetchException {
   }
 
+  @Override
   public void onBeforeCollection(ODocument iRootRecord, String iFieldName, final Object iUserObject,
       final Iterable<?> iterable) throws OFetchException {
   }
 
+  @Override
   public void onAfterMap(ODocument iRootRecord, String iFieldName, final Object iUserObject) throws OFetchException {
   }
 
+  @Override
   public void onAfterFetch(ODocument iRootRecord) throws OFetchException {
   }
 
+  @Override
   public void onAfterDocument(ODocument iRootRecord, final ODocument iDocument, String iFieldName,
       final Object iUserObject) throws OFetchException {
   }
 
+  @Override
   public void onAfterCollection(ODocument iRootRecord, String iFieldName, final Object iUserObject)
       throws OFetchException {
   }
 
+  @Override
   public boolean fetchEmbeddedDocuments() {
     return false;
   }

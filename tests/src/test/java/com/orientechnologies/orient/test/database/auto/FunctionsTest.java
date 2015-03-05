@@ -99,6 +99,7 @@ public class FunctionsTest extends DocumentDBBaseTest {
     final Thread[] threads = new Thread[threadNum];
     for (int i = 0; i < threadNum; ++i) {
       threads[i] = new Thread() {
+        @Override
         public void run() {
           for (int cycle = 0; cycle < TOT; ++cycle) {
             OResultSet<OIdentifiable> res1 = database.command(new OCommandSQL("select testMTCall()")).execute();

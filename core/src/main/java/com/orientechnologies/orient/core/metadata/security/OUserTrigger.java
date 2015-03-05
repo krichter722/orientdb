@@ -35,6 +35,7 @@ public class OUserTrigger extends ODocumentHookAbstract {
     setIncludeClasses("OUser", "ORole");
   }
 
+  @Override
   public DISTRIBUTED_EXECUTION_MODE getDistributedExecutionMode() {
     return DISTRIBUTED_EXECUTION_MODE.TARGET_NODE;
   }

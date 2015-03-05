@@ -41,6 +41,7 @@ public class OImmutableRole implements OSecurityRole {
 
   }
 
+  @Override
   public boolean allow(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iCRUDOperation) {
     final ORule rule = rules.get(resourceGeneric);
     if (rule != null) {
@@ -58,6 +59,7 @@ public class OImmutableRole implements OSecurityRole {
     return mode == ALLOW_MODES.ALLOW_ALL_BUT;
   }
 
+  @Override
   public boolean hasRule(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific) {
     ORule rule = rules.get(resourceGeneric);
 
@@ -72,14 +74,17 @@ public class OImmutableRole implements OSecurityRole {
     return true;
   }
 
+  @Override
   public OSecurityRole addRule(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public OSecurityRole grant(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public ORole revoke(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     throw new UnsupportedOperationException();
   }
@@ -125,26 +130,32 @@ public class OImmutableRole implements OSecurityRole {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public ALLOW_MODES getMode() {
     return mode;
   }
 
+  @Override
   public ORole setMode(final ALLOW_MODES iMode) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public OSecurityRole getParentRole() {
     return parentRole;
   }
 
+  @Override
   public ORole setParentRole(final OSecurityRole iParent) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public Set<ORule> getRuleSet() {
     return new HashSet<ORule>(rules.values());
   }

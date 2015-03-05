@@ -271,6 +271,7 @@ public class ONetworkProtocolBinary extends OBinaryNetworkProtocolAbstract {
     }
   }
 
+  @Override
   protected boolean executeRequest() throws IOException {
     try {
       switch (requestType) {
@@ -742,6 +743,7 @@ public class ONetworkProtocolBinary extends OBinaryNetworkProtocolAbstract {
     }
   }
 
+  @Override
   protected void sendError(final int iClientTxId, final Throwable t) throws IOException {
     channel.acquireWriteLock();
     try {
@@ -1632,6 +1634,7 @@ public class ONetworkProtocolBinary extends OBinaryNetworkProtocolAbstract {
     }
   }
 
+  @Override
   protected void sendOk(final int iClientTxId) throws IOException {
     channel.writeByte(OChannelBinaryProtocol.RESPONSE_STATUS_OK);
     channel.writeInt(iClientTxId);
@@ -1848,6 +1851,7 @@ public class ONetworkProtocolBinary extends OBinaryNetworkProtocolAbstract {
    */
   private void runShutdownInNonDaemonThread() {
     Thread shutdownThread = new Thread("OrientDB server shutdown thread") {
+      @Override
       public void run() {
         server.shutdown();
         ShutdownHelper.shutdown(1);

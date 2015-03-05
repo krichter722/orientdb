@@ -92,36 +92,52 @@ public abstract class OAbstractFile implements OFile {
   private final ReadWriteLock lock                     = new ReentrantReadWriteLock();
   private boolean             wasSoftlyClosed          = true;
 
+  @Override
   public abstract long getFileSize();
 
+  @Override
   public abstract long getFilledUpTo();
 
+  @Override
   public abstract void setSize(long iSize) throws IOException;
 
+  @Override
   public abstract void writeHeaderLong(int iPosition, long iValue) throws IOException;
 
+  @Override
   public abstract long readHeaderLong(int iPosition) throws IOException;
 
+  @Override
   public abstract boolean synch() throws IOException;
 
+  @Override
   public abstract void read(long iOffset, byte[] iDestBuffer, int iLenght) throws IOException;
 
+  @Override
   public abstract short readShort(long iLogicalPosition) throws IOException;
 
+  @Override
   public abstract int readInt(long iLogicalPosition) throws IOException;
 
+  @Override
   public abstract long readLong(long iOffset) throws IOException;
 
+  @Override
   public abstract byte readByte(long iOffset) throws IOException;
 
+  @Override
   public abstract void writeInt(long iOffset, int iValue) throws IOException;
 
+  @Override
   public abstract void writeLong(long iOffset, long iValue) throws IOException;
 
+  @Override
   public abstract void writeShort(long iOffset, short iValue) throws IOException;
 
+  @Override
   public abstract void writeByte(long iOffset, byte iValue) throws IOException;
 
+  @Override
   public abstract long write(long iOffset, byte[] iSourceBuffer) throws IOException;
 
   protected abstract void init() throws IOException;
@@ -135,6 +151,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#open()
    */
+  @Override
   public boolean open() throws IOException {
     acquireWriteLock();
     try {
@@ -211,6 +228,7 @@ public abstract class OAbstractFile implements OFile {
     }
   }
 
+  @Override
   public boolean wasSoftlyClosed() {
     acquireReadLock();
     try {
@@ -225,6 +243,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#create(int)
    */
+  @Override
   public void create(int iStartSize) throws IOException {
     acquireWriteLock();
     try {
@@ -249,6 +268,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#close()
    */
+  @Override
   public void close() throws IOException {
     acquireWriteLock();
     try {
@@ -314,6 +334,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#delete()
    */
+  @Override
   public void delete() throws IOException {
     acquireWriteLock();
     try {
@@ -339,6 +360,7 @@ public abstract class OAbstractFile implements OFile {
   /*
    * Locks a portion of file.
    */
+  @Override
   public FileLock lock(final long iRangeFrom, final long iRangeSize, final boolean iShared) throws IOException {
     acquireWriteLock();
     try {
@@ -351,6 +373,7 @@ public abstract class OAbstractFile implements OFile {
   /*
    * Unlocks a portion of file.
    */
+  @Override
   public OFile unlock(final FileLock iLock) throws IOException {
     acquireWriteLock();
     try {
@@ -371,6 +394,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#lock()
    */
+  @Override
   public void lock() throws IOException {
     if (channel == null) {
         return;
@@ -407,6 +431,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#unlock()
    */
+  @Override
   public void unlock() throws IOException {
     acquireWriteLock();
     try {
@@ -446,6 +471,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#removeTail(int)
    */
+  @Override
   public void removeTail(long iSizeToShrink) throws IOException {
     acquireWriteLock();
     try {
@@ -465,6 +491,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#shrink(int)
    */
+  @Override
   public void shrink(final long iSize) throws IOException {
     acquireWriteLock();
     try {
@@ -486,6 +513,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#allocateSpace(int)
    */
+  @Override
   public long allocateSpace(final long iSize) throws IOException {
     acquireWriteLock();
     try {
@@ -550,6 +578,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#getFreeSpace()
    */
+  @Override
   public long getFreeSpace() {
     acquireReadLock();
     try {
@@ -564,6 +593,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#canOversize(int)
    */
+  @Override
   public boolean canOversize(final int iRecordSize) {
     acquireReadLock();
     try {
@@ -616,6 +646,7 @@ public abstract class OAbstractFile implements OFile {
 
   }
 
+  @Override
   public OAbstractFile init(final String iFileName, final String iMode) {
     acquireWriteLock();
     try {
@@ -679,6 +710,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#getMaxSize()
    */
+  @Override
   public long getMaxSize() {
     acquireReadLock();
     try {
@@ -694,6 +726,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#setMaxSize(int)
    */
+  @Override
   public void setMaxSize(int maxSize) {
     acquireWriteLock();
     try {
@@ -709,6 +742,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#getIncrementSize()
    */
+  @Override
   public int getIncrementSize() {
     acquireReadLock();
     try {
@@ -724,6 +758,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#setIncrementSize(int)
    */
+  @Override
   public void setIncrementSize(int incrementSize) {
     acquireWriteLock();
     try {
@@ -739,6 +774,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#isOpen()
    */
+  @Override
   public boolean isOpen() {
     acquireReadLock();
     try {
@@ -754,6 +790,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#exists()
    */
+  @Override
   public boolean exists() {
     acquireReadLock();
     try {
@@ -768,6 +805,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#isFailCheck()
    */
+  @Override
   public boolean isFailCheck() {
     acquireReadLock();
     try {
@@ -783,6 +821,7 @@ public abstract class OAbstractFile implements OFile {
    * 
    * @see com.orientechnologies.orient.core.storage.fs.OFileAAA#setFailCheck(boolean)
    */
+  @Override
   public void setFailCheck(boolean failCheck) {
     acquireWriteLock();
     try {
@@ -815,6 +854,7 @@ public abstract class OAbstractFile implements OFile {
     }
   }
 
+  @Override
   public String getName() {
     acquireReadLock();
     try {
@@ -824,6 +864,7 @@ public abstract class OAbstractFile implements OFile {
     }
   }
 
+  @Override
   public String getPath() {
     acquireReadLock();
     try {
@@ -833,6 +874,7 @@ public abstract class OAbstractFile implements OFile {
     }
   }
 
+  @Override
   public String getAbsolutePath() {
     acquireReadLock();
     try {
@@ -842,6 +884,7 @@ public abstract class OAbstractFile implements OFile {
     }
   }
 
+  @Override
   public boolean renameTo(final File newFile) throws IOException {
     acquireWriteLock();
     try {

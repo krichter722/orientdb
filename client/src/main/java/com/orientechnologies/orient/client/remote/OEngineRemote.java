@@ -39,6 +39,7 @@ public class OEngineRemote extends OEngineAbstract {
         OGlobalConfiguration.NETWORK_LOCK_TIMEOUT.getValueAsLong());
   }
 
+  @Override
   public OStorage createStorage(final String iURL, final Map<String, String> iConfiguration) {
     try {
       synchronized (sharedStorages) {
@@ -87,10 +88,12 @@ public class OEngineRemote extends OEngineAbstract {
     return connectionManager;
   }
 
+  @Override
   public String getName() {
     return NAME;
   }
 
+  @Override
   public boolean isShared() {
     return false;
   }

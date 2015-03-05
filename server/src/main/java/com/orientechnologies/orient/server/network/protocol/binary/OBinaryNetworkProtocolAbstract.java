@@ -141,6 +141,7 @@ public abstract class OBinaryNetworkProtocolAbstract extends ONetworkProtocol {
     }
   }
 
+  @Override
   public String getType() {
     return "binary";
   }

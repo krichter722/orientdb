@@ -96,6 +96,7 @@ public abstract class AbstractServerClusterGraphTest extends AbstractServerClust
     }
   }
 
+  @Override
   protected void onAfterExecution() {
     factory.close();
   }

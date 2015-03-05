@@ -151,6 +151,7 @@ public interface OFile {
 
   public abstract boolean canOversize(final int iRecordSize);
 
+  @Override
   public abstract String toString();
 
   public abstract long getMaxSize();

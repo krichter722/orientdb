@@ -37,9 +37,11 @@ public class OStorageMemoryConfiguration extends OStorageConfiguration {
     super(iStorage);
   }
 
+  @Override
   public void close() throws IOException {
   }
 
+  @Override
   public void create() throws IOException {
   }
 
@@ -70,6 +72,7 @@ public class OStorageMemoryConfiguration extends OStorageConfiguration {
     }
   }
 
+  @Override
   public void synch() throws IOException {
   }
 

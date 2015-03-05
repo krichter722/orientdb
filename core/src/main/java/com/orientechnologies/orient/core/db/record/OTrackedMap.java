@@ -157,6 +157,7 @@ public class OTrackedMap<T> extends LinkedHashMap<Object, T> implements ORecordE
   }
 
   @SuppressWarnings({ "unchecked" })
+  @Override
   public OTrackedMap<T> setDirty() {
     if (status != STATUS.UNMARSHALLING && sourceRecord != null
         && !(sourceRecord.isDirty() && ORecordInternal.isContentChanged(sourceRecord))) {
@@ -172,22 +173,27 @@ public class OTrackedMap<T> extends LinkedHashMap<Object, T> implements ORecordE
     }
   }
 
+  @Override
   public STATUS getInternalStatus() {
     return status;
   }
 
+  @Override
   public void setInternalStatus(final STATUS iStatus) {
     status = iStatus;
   }
 
+  @Override
   public void addChangeListener(OMultiValueChangeListener<Object, T> changeListener) {
     changeListeners.add(changeListener);
   }
 
+  @Override
   public void removeRecordChangeListener(OMultiValueChangeListener<Object, T> changeListener) {
     changeListeners.remove(changeListener);
   }
 
+  @Override
   public Map<Object, T> returnOriginalState(final List<OMultiValueChangeEvent<Object, T>> multiValueChangeEvents) {
     final Map<Object, T> reverted = new HashMap<Object, T>(this);
 
@@ -227,6 +233,7 @@ public class OTrackedMap<T> extends LinkedHashMap<Object, T> implements ORecordE
     }
   }
 
+  @Override
   public Class<?> getGenericClass() {
     return genericClass;
   }

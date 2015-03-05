@@ -41,10 +41,12 @@ public class OShortSerializer implements OBinarySerializer<Short> {
   private static final OBinaryConverter CONVERTER  = OBinaryConverterFactory.getConverter();
   public static OShortSerializer        INSTANCE   = new OShortSerializer();
 
+  @Override
   public int getObjectSize(Short object, Object... hints) {
     return SHORT_SIZE;
   }
 
+  @Override
   public void serialize(final Short object, final byte[] stream, final int startPosition, final Object... hints) {
     serializeLiteral(object.shortValue(), stream, startPosition);
   }
@@ -54,6 +56,7 @@ public class OShortSerializer implements OBinarySerializer<Short> {
     stream[startPosition + 1] = (byte) ((value >>> 0) & 0xFF);
   }
 
+  @Override
   public Short deserialize(final byte[] stream, final int startPosition) {
     return deserializeLiteral(stream, startPosition);
   }
@@ -62,14 +65,17 @@ public class OShortSerializer implements OBinarySerializer<Short> {
     return (short) ((stream[startPosition] << 8) | (stream[startPosition + 1] & 0xff));
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return SHORT_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(final byte[] stream, final int startPosition) {
     return SHORT_SIZE;
   }
@@ -115,10 +121,12 @@ public class OShortSerializer implements OBinarySerializer<Short> {
     return SHORT_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return SHORT_SIZE;
   }

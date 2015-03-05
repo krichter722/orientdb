@@ -120,6 +120,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 * @return an iterator over the elements in this set in descending order
 	 * @since 1.6
 	 */
+        @Override
 	public OLazyIterator<E> descendingIterator() {
 		return m.descendingKeySet().iterator();
 	}
@@ -127,6 +128,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	/**
 	 * @since 1.6
 	 */
+        @Override
 	public ONavigableSet<E> descendingSet() {
 		return new OMVRBTreeSet<E>(m.descendingMap());
 	}
@@ -251,6 +253,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 *           {@inheritDoc}
 	 * @since 1.6
 	 */
+        @Override
 	public ONavigableSet<E> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
 		return new OMVRBTreeSet<E>(m.subMap(fromElement, fromInclusive, toElement, toInclusive));
 	}
@@ -264,6 +267,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 *           {@inheritDoc}
 	 * @since 1.6
 	 */
+        @Override
 	public ONavigableSet<E> headSet(E toElement, boolean inclusive) {
 		return new OMVRBTreeSet<E>(m.headMap(toElement, inclusive));
 	}
@@ -277,6 +281,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 *           {@inheritDoc}
 	 * @since 1.6
 	 */
+        @Override
 	public ONavigableSet<E> tailSet(E fromElement, boolean inclusive) {
 		return new OMVRBTreeSet<E>(m.tailMap(fromElement, inclusive));
 	}
@@ -290,6 +295,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	public SortedSet<E> subSet(E fromElement, E toElement) {
 		return subSet(fromElement, true, toElement, false);
 	}
@@ -302,6 +308,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	public SortedSet<E> headSet(E toElement) {
 		return headSet(toElement, false);
 	}
@@ -314,10 +321,12 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	public SortedSet<E> tailSet(E fromElement) {
 		return tailSet(fromElement, true);
 	}
 
+        @Override
 	public Comparator<? super E> comparator() {
 		return m.comparator();
 	}
@@ -326,6 +335,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 * @throws NoSuchElementException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	public E first() {
 		return m.firstKey();
 	}
@@ -334,6 +344,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 * @throws NoSuchElementException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	public E last() {
 		return m.lastKey();
 	}
@@ -347,6 +358,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 *           if the specified element is null and this set uses natural ordering, or its comparator does not permit null elements
 	 * @since 1.6
 	 */
+        @Override
 	public E lower(E e) {
 		return m.lowerKey(e);
 	}
@@ -358,6 +370,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 *           if the specified element is null and this set uses natural ordering, or its comparator does not permit null elements
 	 * @since 1.6
 	 */
+        @Override
 	public E floor(E e) {
 		return m.floorKey(e);
 	}
@@ -369,6 +382,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 *           if the specified element is null and this set uses natural ordering, or its comparator does not permit null elements
 	 * @since 1.6
 	 */
+        @Override
 	public E ceiling(E e) {
 		return m.ceilingKey(e);
 	}
@@ -380,6 +394,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	 *           if the specified element is null and this set uses natural ordering, or its comparator does not permit null elements
 	 * @since 1.6
 	 */
+        @Override
 	public E higher(E e) {
 		return m.higherKey(e);
 	}
@@ -387,6 +402,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	/**
 	 * @since 1.6
 	 */
+        @Override
 	public E pollFirst() {
 		Map.Entry<E, ?> e = m.pollFirstEntry();
 		return (e == null) ? null : e.getKey();
@@ -395,6 +411,7 @@ public class OMVRBTreeSet<E> extends AbstractSet<E> implements ONavigableSet<E>,
 	/**
 	 * @since 1.6
 	 */
+        @Override
 	public E pollLast() {
 		Map.Entry<E, ?> e = m.pollLastEntry();
 		return (e == null) ? null : e.getKey();

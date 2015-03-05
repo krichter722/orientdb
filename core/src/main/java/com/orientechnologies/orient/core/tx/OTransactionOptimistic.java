@@ -117,6 +117,7 @@ public class OTransactionOptimistic extends OTransactionRealAbstract {
     super(iDatabase, txSerial.incrementAndGet());
   }
 
+  @Override
   public void begin() {
     if (txStartCounter == 0) {
         status = TXSTATUS.BEGUN;
@@ -129,6 +130,7 @@ public class OTransactionOptimistic extends OTransactionRealAbstract {
     }
   }
 
+  @Override
   public void commit() {
     commit(false);
   }
@@ -164,6 +166,7 @@ public class OTransactionOptimistic extends OTransactionRealAbstract {
     return txStartCounter;
   }
 
+  @Override
   public void rollback() {
     rollback(false, -1);
   }
@@ -186,6 +189,7 @@ public class OTransactionOptimistic extends OTransactionRealAbstract {
 
     database.getStorage().callInLock(new Callable<Void>() {
 
+      @Override
       public Void call() throws Exception {
 
         database.getStorage().rollback(OTransactionOptimistic.this);
@@ -211,6 +215,7 @@ public class OTransactionOptimistic extends OTransactionRealAbstract {
     status = TXSTATUS.ROLLED_BACK;
   }
 
+  @Override
   public ORecord loadRecord(final ORID iRid, final ORecord iRecord, final String iFetchPlan, final boolean ignoreCache,
       final boolean loadTombstone, final OStorage.LOCKING_STRATEGY iLockingStrategy) {
     checkTransaction();
@@ -247,6 +252,7 @@ public class OTransactionOptimistic extends OTransactionRealAbstract {
     return record;
   }
 
+  @Override
   public void deleteRecord(final ORecord iRecord, final OPERATION_MODE iMode) {
     if (!iRecord.getIdentity().isValid()) {
         return;
@@ -255,6 +261,7 @@ public class OTransactionOptimistic extends OTransactionRealAbstract {
     addRecord(iRecord, ORecordOperation.DELETED, null);
   }
 
+  @Override
   public ORecord saveRecord(final ORecord iRecord, final String iClusterName, final OPERATION_MODE iMode, boolean iForceCreate,
       final ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<ORecordVersion> iRecordUpdatedCallback) {
     if (iRecord == null) {
@@ -272,10 +279,12 @@ public class OTransactionOptimistic extends OTransactionRealAbstract {
         + indexEntries.size() + ']';
   }
 
+  @Override
   public boolean isUsingLog() {
     return usingLog;
   }
 
+  @Override
   public void setUsingLog(final boolean useLog) {
     this.usingLog = useLog;
   }

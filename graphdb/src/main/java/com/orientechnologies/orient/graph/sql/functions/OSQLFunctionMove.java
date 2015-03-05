@@ -57,10 +57,12 @@ public abstract class OSQLFunctionMove extends OSQLFunctionConfigurableAbstract 
 
   protected abstract Object move(final OrientBaseGraph graph, final OIdentifiable iRecord, final String[] iLabels);
 
+  @Override
   public String getSyntax() {
     return "Syntax error: " + name + "([<labels>])";
   }
 
+  @Override
   public Object execute(final Object iThis, final OIdentifiable iCurrentRecord, final Object iCurrentResult,
       final Object[] iParameters, final OCommandContext iContext) {
     final OModifiableBoolean shutdownFlag = new OModifiableBoolean();

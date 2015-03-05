@@ -202,6 +202,7 @@ public class OrientGraphAsynch implements OrientExtendedGraph {
     }));
   }
 
+  @Override
   public Vertex addVertex(final Object id, final Object... prop) {
     beginAsynchOperation();
 
@@ -709,6 +710,7 @@ public class OrientGraphAsynch implements OrientExtendedGraph {
     factory.close();
   }
 
+  @Override
   public Features getFeatures() {
     return FEATURES;
   }
@@ -814,6 +816,7 @@ public class OrientGraphAsynch implements OrientExtendedGraph {
     }
   }
 
+  @Override
   public long countVertices() {
     final OrientBaseGraph g = acquire();
     try {
@@ -834,6 +837,7 @@ public class OrientGraphAsynch implements OrientExtendedGraph {
     }
   }
 
+  @Override
   public long countEdges() {
 
     final OrientBaseGraph g = acquire();
@@ -893,15 +897,18 @@ public class OrientGraphAsynch implements OrientExtendedGraph {
     this.maxRetries = maxRetries;
   }
 
+  @Override
   public ORecordConflictStrategy getConflictStrategy() {
     return conflictStrategy;
   }
 
+  @Override
   public OrientGraphAsynch setConflictStrategy(final String iStrategyName) {
     conflictStrategy = Orient.instance().getRecordConflictStrategy().getStrategy(iStrategyName);
     return this;
   }
 
+  @Override
   public OrientGraphAsynch setConflictStrategy(final ORecordConflictStrategy iResolver) {
     conflictStrategy = iResolver;
     return this;

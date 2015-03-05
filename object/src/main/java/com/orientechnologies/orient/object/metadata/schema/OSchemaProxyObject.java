@@ -440,6 +440,7 @@ public class OSchemaProxyObject implements OSchema {
     return underlying.getGlobalProperties();
   }
 
+  @Override
   public OGlobalProperty createGlobalProperty(String name, OType type, Integer id) {
     return underlying.createGlobalProperty(name, type, id);
   }

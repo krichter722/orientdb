@@ -50,6 +50,7 @@ public class CollectionIndexTest extends ObjectDBBaseTest {
     database.getMetadata().getSchema().save();
   }
   @AfterMethod
+        @Override
   public void afterMethod() throws Exception {
     database.command(new OCommandSQL("delete from Collector")).execute();
 

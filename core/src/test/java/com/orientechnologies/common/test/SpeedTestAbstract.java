@@ -22,17 +22,22 @@ public abstract class SpeedTestAbstract implements SpeedTest {
   }
 
   @Test(enabled = false)
+  @Override
   public abstract void cycle() throws Exception;
 
+  @Override
   public void init() throws Exception {
   }
 
+  @Override
   public void deinit() throws Exception {
   }
 
+  @Override
   public void beforeCycle() throws Exception {
   }
 
+  @Override
   public void afterCycle() throws Exception {
   }
 

@@ -43,6 +43,7 @@ public class OTraverseRecordProcess extends OTraverseAbstractProcess<ODocument> 
     this.path = parentPath.append(iTarget);
   }
 
+  @Override
   public OIdentifiable process() {
     if (target == null) {
         return drop();

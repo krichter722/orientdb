@@ -71,6 +71,7 @@ public class OCommandExecutorSQLCreateIndex extends OCommandExecutorSQLAbstract 
   private ODocument          metadataDoc      = null;
   private String[]           collates;
 
+  @Override
   public OCommandExecutorSQLCreateIndex parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -233,6 +234,7 @@ public class OCommandExecutorSQLCreateIndex extends OCommandExecutorSQLAbstract 
    * Execute the CREATE INDEX.
    */
   @SuppressWarnings("rawtypes")
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (indexName == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

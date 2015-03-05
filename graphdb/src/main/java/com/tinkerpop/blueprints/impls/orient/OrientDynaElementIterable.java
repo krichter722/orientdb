@@ -42,10 +42,12 @@ public class OrientDynaElementIterable implements CloseableIterable<Object> {
     this.iterator = iterator;
   }
 
+  @Override
   public Iterator<Object> iterator() {
     return new OrientDynaElementIterator(this.graph, iterator);
   }
 
+  @Override
   public void close() {
 
   }

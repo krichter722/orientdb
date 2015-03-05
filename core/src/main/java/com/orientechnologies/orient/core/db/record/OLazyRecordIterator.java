@@ -64,6 +64,7 @@ public class OLazyRecordIterator implements OLazyIterator<OIdentifiable>, OReset
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OIdentifiable next() {
     OIdentifiable value = underlying.next();
 
@@ -88,11 +89,13 @@ public class OLazyRecordIterator implements OLazyIterator<OIdentifiable>, OReset
     return value;
   }
 
+  @Override
   public boolean hasNext() {
     return underlying.hasNext();
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OIdentifiable update(final OIdentifiable iValue) {
     if (underlying instanceof OLazyIterator) {
       final OIdentifiable old = ((OLazyIterator<OIdentifiable>) underlying).update(iValue);
@@ -105,6 +108,7 @@ public class OLazyRecordIterator implements OLazyIterator<OIdentifiable>, OReset
     }
   }
 
+  @Override
   public void remove() {
     underlying.remove();
     if (sourceRecord != null) {

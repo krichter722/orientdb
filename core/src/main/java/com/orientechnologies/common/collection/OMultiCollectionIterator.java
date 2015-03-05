@@ -120,6 +120,7 @@ public class OMultiCollectionIterator<T> implements Iterator<T>, Iterable<T>, OR
     return this;
   }
 
+  @Override
   public int size() {
     // SUM ALL THE COLLECTION SIZES
     int size = 0;

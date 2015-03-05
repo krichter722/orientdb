@@ -131,10 +131,12 @@ public abstract class OrientGraphTest extends GraphTest {
     printTestPerformance("OrientGraphSpecificTestSuite", this.stopWatch());
   }
 
+  @Override
   public Graph generateGraph() {
     return generateGraph("graph");
   }
 
+  @Override
   public Graph generateGraph(final String graphDirectoryName) {
     final String url = getStorageType() + ":" + getWorkingDirectory() + "/" + graphDirectoryName;
 
@@ -157,6 +159,7 @@ public abstract class OrientGraphTest extends GraphTest {
     return graph;
   }
 
+  @Override
   public void doTestSuite(final TestSuite testSuite) throws Exception {
     dropGraph("graph");
     for (Method method : testSuite.getClass().getDeclaredMethods()) {

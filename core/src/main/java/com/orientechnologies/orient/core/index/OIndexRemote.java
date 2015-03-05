@@ -90,12 +90,14 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     this.databaseName = ODatabaseRecordThreadLocal.INSTANCE.get().getName();
   }
 
+  @Override
   public OIndexRemote<T> create(final String name, final OIndexDefinition indexDefinition, final String clusterIndexName,
       final Set<String> clustersToIndex, boolean rebuild, final OProgressListener progressListener) {
     this.name = name;
     return this;
   }
 
+  @Override
   public OIndexRemote<T> delete() {
     final OCommandRequest cmd = formatCommand(QUERY_DROP, name);
     getDatabase().command(cmd).execute();
@@ -107,10 +109,12 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     throw new UnsupportedOperationException("deleteWithoutIndexLoad");
   }
 
+  @Override
   public String getDatabaseName() {
     return databaseName;
   }
 
+  @Override
   public boolean contains(final Object iKey) {
     final OCommandRequest cmd = formatCommand(QUERY_CONTAINS, name);
     final List<ODocument> result = getDatabase().command(cmd).execute(iKey);
@@ -149,6 +153,7 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     return (Long) getDatabase().command(cmd).execute(iRangeFrom, iRangeTo);
   }
 
+  @Override
   public OIndexRemote<T> put(final Object iKey, final OIdentifiable iValue) {
     if (iValue instanceof ORecord && !iValue.getIdentity().isValid()) {
         // SAVE IT BEFORE TO PUT
@@ -165,11 +170,13 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     return this;
   }
 
+  @Override
   public boolean remove(final Object key) {
     final OCommandRequest cmd = formatCommand(QUERY_REMOVE, name);
     return ((Integer) getDatabase().command(cmd).execute(key)) > 0;
   }
 
+  @Override
   public boolean remove(final Object iKey, final OIdentifiable iRID) {
     final int deleted;
     if (iRID != null) {
@@ -197,33 +204,39 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     throw new UnsupportedOperationException("autoRebuild()");
   }
 
+  @Override
   public long rebuild() {
     final OCommandRequest cmd = formatCommand(QUERY_REBUILD, name);
     return (Long) getDatabase().command(cmd).execute();
   }
 
+  @Override
   public OIndexRemote<T> clear() {
     final OCommandRequest cmd = formatCommand(QUERY_CLEAR, name);
     getDatabase().command(cmd).execute();
     return this;
   }
 
+  @Override
   public long getSize() {
     final OCommandRequest cmd = formatCommand(QUERY_SIZE, name);
     final List<ODocument> result = getDatabase().command(cmd).execute();
     return (Long) result.get(0).field("size");
   }
 
+  @Override
   public long getKeySize() {
     final OCommandRequest cmd = formatCommand(QUERY_KEY_SIZE, name);
     final List<ODocument> result = getDatabase().command(cmd).execute();
     return (Long) result.get(0).field("size");
   }
 
+  @Override
   public boolean isAutomatic() {
     return indexDefinition != null && indexDefinition.getClassName() != null;
   }
 
+  @Override
   public String getName() {
     return name;
   }
@@ -232,10 +245,12 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
   public void flush() {
   }
 
+  @Override
   public String getType() {
     return wrappedType;
   }
 
+  @Override
   public ODocument getConfiguration() {
     return configuration;
   }
@@ -245,6 +260,7 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     return configuration.field("metadata", OType.EMBEDDED);
   }
 
+  @Override
   public ORID getIdentity() {
     return rid;
   }
@@ -252,14 +268,17 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
   public void commit(final ODocument iDocument) {
   }
 
+  @Override
   public OIndexInternal<T> getInternal() {
     return null;
   }
 
+  @Override
   public long rebuild(final OProgressListener iProgressListener) {
     return rebuild();
   }
 
+  @Override
   public OType[] getKeyTypes() {
     if (indexDefinition != null) {
         return indexDefinition.getTypes();
@@ -280,6 +299,7 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     return (Collection<ODocument>) getDatabase().command(cmd).execute(iKeys.toArray());
   }
 
+  @Override
   public OIndexDefinition getDefinition() {
     return indexDefinition;
   }
@@ -321,10 +341,12 @@ public abstract class OIndexRemote<T> implements OIndex<T> {
     return getDatabase().command(cmd).execute(iKeys.toArray());
   }
 
+  @Override
   public Set<String> getClusters() {
     return Collections.unmodifiableSet(clustersToIndex);
   }
 
+  @Override
   public ODocument checkEntry(final OIdentifiable iRecord, final Object iKey) {
     return null;
   }

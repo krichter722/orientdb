@@ -51,14 +51,17 @@ public abstract class OCommandRequestAbstract implements OCommandRequestInternal
   protected OCommandRequestAbstract() {
   }
 
+  @Override
   public OCommandResultListener getResultListener() {
     return resultListener;
   }
 
+  @Override
   public void setResultListener(OCommandResultListener iListener) {
     resultListener = iListener;
   }
 
+  @Override
   public Map<Object, Object> getParameters() {
     return parameters;
   }
@@ -91,32 +94,39 @@ public abstract class OCommandRequestAbstract implements OCommandRequestInternal
     return params;
   }
 
+  @Override
   public OProgressListener getProgressListener() {
     return progressListener;
   }
 
+  @Override
   public OCommandRequestAbstract setProgressListener(OProgressListener progressListener) {
     this.progressListener = progressListener;
     return this;
   }
 
+  @Override
   public void reset() {
   }
 
+  @Override
   public int getLimit() {
     return limit;
   }
 
+  @Override
   public OCommandRequestAbstract setLimit(final int limit) {
     this.limit = limit;
     return this;
   }
 
+  @Override
   public String getFetchPlan() {
     return fetchPlan;
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public <RET extends OCommandRequest> RET setFetchPlan(String fetchPlan) {
     this.fetchPlan = fetchPlan;
     return (RET) this;
@@ -126,6 +136,7 @@ public abstract class OCommandRequestAbstract implements OCommandRequestInternal
     return useCache;
   }
 
+  @Override
   public void setUseCache(boolean useCache) {
     this.useCache = useCache;
   }
@@ -138,20 +149,24 @@ public abstract class OCommandRequestAbstract implements OCommandRequestInternal
     return context;
   }
 
+  @Override
   public OCommandRequestAbstract setContext(final OCommandContext iContext) {
     context = iContext;
     return this;
   }
 
+  @Override
   public long getTimeoutTime() {
     return timeoutMs;
   }
 
+  @Override
   public void setTimeout(final long timeout, final TIMEOUT_STRATEGY strategy) {
     this.timeoutMs = timeout;
     this.timeoutStrategy = strategy;
   }
 
+  @Override
   public TIMEOUT_STRATEGY getTimeoutStrategy() {
     return timeoutStrategy;
   }

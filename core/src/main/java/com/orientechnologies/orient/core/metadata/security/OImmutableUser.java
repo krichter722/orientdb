@@ -40,6 +40,7 @@ public class OImmutableUser implements OSecurityUser {
     }
   }
 
+  @Override
   public OSecurityRole allow(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     if (roles.isEmpty()) {
         throw new OSecurityAccessException(getName(), "User '" + getName() + "' has no role defined");
@@ -55,6 +56,7 @@ public class OImmutableUser implements OSecurityUser {
     return role;
   }
 
+  @Override
   public OSecurityRole checkIfAllowed(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     for (OImmutableRole r : roles) {
       if (r == null) {
@@ -68,6 +70,7 @@ public class OImmutableUser implements OSecurityUser {
     return null;
   }
 
+  @Override
   public boolean isRuleDefined(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific) {
     for (OImmutableRole r : roles) {
         if (r == null) {
@@ -120,50 +123,62 @@ public class OImmutableUser implements OSecurityUser {
     return isRuleDefined(resourceGeneric, resourceSpecific);
   }
 
+  @Override
   public boolean checkPassword(final String iPassword) {
     return OSecurityManager.instance().check(iPassword, getPassword());
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public OUser setName(final String iName) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public String getPassword() {
     return password;
   }
 
+  @Override
   public OUser setPassword(final String iPassword) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public STATUSES getAccountStatus() {
     return status;
   }
 
+  @Override
   public void setAccountStatus(STATUSES accountStatus) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public Set<OImmutableRole> getRoles() {
     return Collections.unmodifiableSet(roles);
   }
 
+  @Override
   public OUser addRole(final String iRole) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public OUser addRole(final OSecurityRole iRole) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public boolean removeRole(final String iRoleName) {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public boolean hasRole(final String iRoleName, final boolean iIncludeInherited) {
     for (Iterator<OImmutableRole> it = roles.iterator(); it.hasNext();) {
       final OSecurityRole role = it.next();

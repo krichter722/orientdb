@@ -55,6 +55,7 @@ public class OSQLFunctionGremlin extends OSQLFunctionAbstract {
     super(NAME, 1, 1);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       final OCommandContext iContext) {
     if (!(iCurrentRecord instanceof ODocument)) {
@@ -105,6 +106,7 @@ public class OSQLFunctionGremlin extends OSQLFunctionAbstract {
     return false;
   }
 
+  @Override
   public String getSyntax() {
     return "gremlin(<gremlin-expression>)";
   }

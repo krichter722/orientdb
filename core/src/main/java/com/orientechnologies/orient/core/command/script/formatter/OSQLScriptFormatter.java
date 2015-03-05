@@ -28,6 +28,7 @@ import com.orientechnologies.orient.core.metadata.function.OFunction;
  * 
  */
 public class OSQLScriptFormatter implements OScriptFormatter {
+  @Override
   public String getFunctionDefinition(final OFunction f) {
     return null;
   }

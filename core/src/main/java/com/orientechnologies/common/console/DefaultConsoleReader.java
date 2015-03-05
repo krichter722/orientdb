@@ -27,6 +27,7 @@ import java.io.InputStreamReader;
 public class DefaultConsoleReader implements OConsoleReader {
   final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+  @Override
   public String readLine() {
     try {
       return reader.readLine();
@@ -35,10 +36,12 @@ public class DefaultConsoleReader implements OConsoleReader {
     }
   }
 
+  @Override
   public OConsoleApplication getConsole() {
     return null;
   }
 
+  @Override
   public void setConsole(OConsoleApplication console) {
   }
 }

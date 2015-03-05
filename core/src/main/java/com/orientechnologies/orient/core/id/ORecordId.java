@@ -101,23 +101,28 @@ public class ORecordId implements ORID {
     return iString.matches("#(-?[0-9]+):(-?[0-9]+)");
   }
 
+  @Override
   public void reset() {
     clusterId = CLUSTER_ID_INVALID;
     clusterPosition = CLUSTER_POS_INVALID;
   }
 
+  @Override
   public boolean isValid() {
     return clusterPosition != CLUSTER_POS_INVALID;
   }
 
+  @Override
   public boolean isPersistent() {
     return clusterId > -1 && clusterPosition > CLUSTER_POS_INVALID;
   }
 
+  @Override
   public boolean isNew() {
     return clusterPosition < 0;
   }
 
+  @Override
   public boolean isTemporary() {
     return clusterId != -1 && clusterPosition < CLUSTER_POS_INVALID;
   }
@@ -127,6 +132,7 @@ public class ORecordId implements ORID {
     return generateString(clusterId, clusterPosition);
   }
 
+  @Override
   public StringBuilder toString(StringBuilder iBuffer) {
     if (iBuffer == null) {
         iBuffer = new StringBuilder();
@@ -168,6 +174,7 @@ public class ORecordId implements ORID {
     return result;
   }
 
+  @Override
   public int compareTo(final OIdentifiable iOther) {
     if (iOther == this) {
         return 0;
@@ -189,6 +196,7 @@ public class ORecordId implements ORID {
     return -1;
   }
 
+  @Override
   public int compare(final OIdentifiable iObj1, final OIdentifiable iObj2) {
     if (iObj1 == iObj2) {
         return 0;
@@ -201,6 +209,7 @@ public class ORecordId implements ORID {
     return -1;
   }
 
+  @Override
   public ORecordId copy() {
     return new ORecordId(clusterId, clusterPosition);
   }
@@ -217,6 +226,7 @@ public class ORecordId implements ORID {
     return this;
   }
 
+  @Override
   public ORecordId fromStream(final byte[] iBuffer) {
     if (iBuffer != null) {
       clusterId = OBinaryProtocol.bytes2short(iBuffer, 0);
@@ -225,6 +235,7 @@ public class ORecordId implements ORID {
     return this;
   }
 
+  @Override
   public int toStream(final OutputStream iStream) throws IOException {
     final int beginOffset = OBinaryProtocol.short2bytes((short) clusterId, iStream);
     OBinaryProtocol.long2bytes(clusterPosition, iStream);
@@ -237,6 +248,7 @@ public class ORecordId implements ORID {
     return beginOffset;
   }
 
+  @Override
   public byte[] toStream() {
     final byte[] buffer = new byte[OBinaryProtocol.SIZE_SHORT + OBinaryProtocol.SIZE_LONG];
 
@@ -246,10 +258,12 @@ public class ORecordId implements ORID {
     return buffer;
   }
 
+  @Override
   public int getClusterId() {
     return clusterId;
   }
 
+  @Override
   public long getClusterPosition() {
     return clusterPosition;
   }
@@ -302,6 +316,7 @@ public class ORecordId implements ORID {
     ODatabaseRecordThreadLocal.INSTANCE.get().getTransaction().unlockRecord(this);
   }
 
+  @Override
   public String next() {
     return generateString(clusterId, clusterPosition + 1);
   }
@@ -311,11 +326,13 @@ public class ORecordId implements ORID {
     return new ORecordId(clusterId, clusterPosition + 1);
   }
 
+  @Override
   public ORID getIdentity() {
     return this;
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public <T extends ORecord> T getRecord() {
     if (!isValid()) {
         return null;

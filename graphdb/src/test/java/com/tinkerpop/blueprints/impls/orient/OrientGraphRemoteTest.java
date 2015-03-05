@@ -61,6 +61,7 @@ public abstract class OrientGraphRemoteTest extends OrientGraphTest {
     Orient.instance().startup();
   }
 
+  @Override
   public Graph generateGraph(final String graphDirectoryName) {
     final String url = "remote:localhost:3080/" + graphDirectoryName;
     OrientGraph graph = currentGraphs.get(url);

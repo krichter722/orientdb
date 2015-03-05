@@ -66,32 +66,39 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     addAll(iSourceCollection);
   }
 
+  @Override
   public Iterator<TYPE> iterator() {
     return new OObjectLazyIterator<TYPE>(getDatabase(), sourceRecord, (!converted ? underlying.iterator() : super.iterator()),
         convertToRecord, orphanRemoval);
   }
 
+  @Override
   public int size() {
     return underlying.size();
   }
 
+  @Override
   public boolean isEmpty() {
     return super.isEmpty() && underlying.isEmpty();
   }
 
+  @Override
   public boolean contains(final Object o) {
     return super.contains(o) || underlying.contains(getDatabase().getRecordByUserObject(o, false));
   }
 
+  @Override
   public Object[] toArray() {
     return toArray(new Object[size()]);
   }
 
+  @Override
   public <T> T[] toArray(final T[] a) {
     convertAll();
     return super.toArray(a);
   }
 
+  @Override
   public boolean add(final TYPE e) {
     if (underlying != null && underlying.size() > 0 && !converted) {
       convertAllInternal();
@@ -112,6 +119,7 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     return false;
   }
 
+  @Override
   public boolean remove(final Object o) {
     setDirty();
     OIdentifiable record = getDatabase().getRecordByUserObject(o, false);
@@ -123,6 +131,7 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     return thisModified || underlyingModified;
   }
 
+  @Override
   public boolean containsAll(final Collection<?> c) {
     convertAll();
     for (Object o : c) {
@@ -134,6 +143,7 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     return true;
   }
 
+  @Override
   public boolean addAll(final Collection<? extends TYPE> c) {
     boolean modified = false;
     for (Object o : c) {
@@ -142,6 +152,7 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     return modified;
   }
 
+  @Override
   public boolean retainAll(final Collection<?> c) {
     setDirty();
     final ODatabasePojoAbstract<TYPE> database = getDatabase();
@@ -169,6 +180,7 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     return modified;
   }
 
+  @Override
   public void clear() {
     setDirty();
     super.clear();
@@ -180,6 +192,7 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     underlying.clear();
   }
 
+  @Override
   public boolean removeAll(final Collection<?> c) {
     setDirty();
     final ODatabasePojoAbstract<TYPE> database = getDatabase();
@@ -200,6 +213,7 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     return fetchPlan;
   }
 
+  @Override
   public boolean isConverted() {
     return converted;
   }
@@ -213,6 +227,7 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     return convertToRecord;
   }
 
+  @Override
   public void setConvertToRecord(boolean convertToRecord) {
     this.convertToRecord = convertToRecord;
   }
@@ -232,10 +247,12 @@ public class OObjectLazySet<TYPE> extends HashSet<TYPE> implements OLazyObjectSe
     convertAll();
   }
 
+  @Override
   public void detach(boolean nonProxiedInstance) {
     convertAll();
   }
 
+  @Override
   public void detachAll(boolean nonProxiedInstance, Map<Object, Object> alreadyDetached) {
     convertAndDetachAll(nonProxiedInstance, alreadyDetached);
   }

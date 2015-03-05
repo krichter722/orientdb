@@ -109,6 +109,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     this.globalRef = global;
   }
 
+  @Override
   public String getName() {
     acquireSchemaReadLock();
     try {
@@ -118,6 +119,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public String getFullName() {
     acquireSchemaReadLock();
     try {
@@ -127,6 +129,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OType getType() {
     acquireSchemaReadLock();
     try {
@@ -136,6 +139,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setType(final OType type) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -166,6 +170,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     return this;
   }
 
+  @Override
   public int compareTo(final OProperty o) {
     acquireSchemaReadLock();
     try {
@@ -189,6 +194,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
    * @return
    * @see {@link OClass#createIndex(String, OClass.INDEX_TYPE, String...)} instead.
    */
+  @Override
   public OIndex<?> createIndex(final OClass.INDEX_TYPE iType) {
     return createIndex(iType.toString());
   }
@@ -201,6 +207,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
    * @return
    * @see {@link OClass#createIndex(String, OClass.INDEX_TYPE, String...)} instead.
    */
+  @Override
   public OIndex<?> createIndex(final String iType) {
     acquireSchemaReadLock();
     try {
@@ -216,6 +223,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
    * @deprecated Use {@link OIndexManager#dropIndex(String)} instead.
    */
   @Deprecated
+  @Override
   public OPropertyImpl dropIndexes() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_DELETE);
 
@@ -263,6 +271,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
    * @deprecated Use {@link OClass#getInvolvedIndexes(String...)} instead.
    */
   @Deprecated
+  @Override
   public OIndex<?> getIndex() {
     acquireSchemaReadLock();
     try {
@@ -281,6 +290,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
    * @deprecated Use {@link OClass#getInvolvedIndexes(String...)} instead.
    */
   @Deprecated
+  @Override
   public Set<OIndex<?>> getIndexes() {
     acquireSchemaReadLock();
     try {
@@ -295,6 +305,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
    * @deprecated Use {@link OClass#areIndexed(String...)} instead.
    */
   @Deprecated
+  @Override
   public boolean isIndexed() {
     acquireSchemaReadLock();
     try {
@@ -304,10 +315,12 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OClass getOwnerClass() {
     return owner;
   }
 
+  @Override
   public OProperty setName(final String name) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -343,6 +356,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
    * 
    * @return
    */
+  @Override
   public OClass getLinkedClass() {
     acquireSchemaReadLock();
     try {
@@ -355,6 +369,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setLinkedClass(final OClass linkedClass) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -406,6 +421,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
 
   }
 
+  @Override
   public OType getLinkedType() {
     acquireSchemaReadLock();
     try {
@@ -415,6 +431,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OProperty setLinkedType(final OType linkedType) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -463,6 +480,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
 
   }
 
+  @Override
   public boolean isNotNull() {
     acquireSchemaReadLock();
     try {
@@ -472,6 +490,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setNotNull(final boolean isNotNull) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -501,6 +520,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     return this;
   }
 
+  @Override
   public boolean isMandatory() {
     acquireSchemaReadLock();
     try {
@@ -510,6 +530,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setMandatory(final boolean isMandatory) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -539,6 +560,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     return this;
   }
 
+  @Override
   public boolean isReadonly() {
     acquireSchemaReadLock();
     try {
@@ -548,6 +570,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setReadonly(final boolean isReadonly) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -578,6 +601,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     return this;
   }
 
+  @Override
   public String getMin() {
     acquireSchemaReadLock();
     try {
@@ -587,6 +611,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setMin(final String min) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -617,6 +642,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     return this;
   }
 
+  @Override
   public String getMax() {
     acquireSchemaReadLock();
     try {
@@ -626,6 +652,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setMax(final String max) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -656,6 +683,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     return this;
   }
 
+  @Override
   public String getRegexp() {
     acquireSchemaReadLock();
     try {
@@ -665,6 +693,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setRegexp(final String regexp) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -694,6 +723,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     return this;
   }
 
+  @Override
   public String getCustom(final String iName) {
     acquireSchemaReadLock();
     try {
@@ -707,6 +737,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OPropertyImpl setCustom(final String name, final String value) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -749,10 +780,12 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public void removeCustom(final String iName) {
     setCustom(iName, null);
   }
 
+  @Override
   public void clearCustom() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -780,6 +813,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public Set<String> getCustomKeys() {
     acquireSchemaReadLock();
     try {
@@ -793,6 +827,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public Object get(final ATTRIBUTES attribute) {
     if (attribute == null) {
         throw new IllegalArgumentException("attribute is null");
@@ -826,6 +861,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     throw new IllegalArgumentException("Cannot find attribute '" + attribute + "'");
   }
 
+  @Override
   public void set(final ATTRIBUTES attribute, final Object iValue) {
     if (attribute == null) {
         throw new IllegalArgumentException("attribute is null");
@@ -888,6 +924,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OCollate getCollate() {
     acquireSchemaReadLock();
     try {
@@ -897,11 +934,13 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
     }
   }
 
+  @Override
   public OProperty setCollate(final OCollate collate) {
     setCollate(collate.getName());
     return this;
   }
 
+  @Override
   public OProperty setCollate(String collate) {
     if (collate == null) {
         collate = ODefaultCollate.NAME;
@@ -1032,6 +1071,7 @@ public class OPropertyImpl extends ODocumentWrapperNoClass implements OProperty 
         .field("customFields", OType.EMBEDDEDMAP) : null);
   }
 
+  @Override
   public Collection<OIndex<?>> getAllIndexes() {
     acquireSchemaReadLock();
     try {

@@ -32,34 +32,42 @@ public class ONullSerializer implements OBinarySerializer<Object> {
   public static final byte      ID       = 11;
   public static ONullSerializer INSTANCE = new ONullSerializer();
 
+  @Override
   public int getObjectSize(final Object object, Object... hints) {
     return 0;
   }
 
+  @Override
   public void serialize(final Object object, final byte[] stream, final int startPosition, Object... hints) {
     // nothing to serialize
   }
 
+  @Override
   public Object deserialize(final byte[] stream, final int startPosition) {
     // nothing to deserialize
     return null;
   }
 
+  @Override
   public int getObjectSize(byte[] stream, int startPosition) {
     return 0;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return 0;
   }
 
+  @Override
   public void serializeNativeObject(Object object, byte[] stream, int startPosition, Object... hints) {
   }
 
+  @Override
   public Object deserializeNativeObject(byte[] stream, int startPosition) {
     return null;
   }
@@ -78,10 +86,12 @@ public class ONullSerializer implements OBinarySerializer<Object> {
     return 0;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return 0;
   }

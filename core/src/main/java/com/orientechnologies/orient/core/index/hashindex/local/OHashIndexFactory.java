@@ -69,14 +69,17 @@ public class OHashIndexFactory implements OIndexFactory {
    * <li>DICTIONARY</li>
    * </ul>
    */
+  @Override
   public Set<String> getTypes() {
     return TYPES;
   }
 
+  @Override
   public Set<String> getAlgorithms() {
     return ALGORITHMS;
   }
 
+  @Override
   public OIndexInternal<?> createIndex(ODatabaseDocumentInternal database, String indexType, String algorithm,
       String valueContainerAlgorithm, ODocument metadata) throws OConfigurationException {
     if (valueContainerAlgorithm == null) {

@@ -29,6 +29,7 @@ public class DateIndexTest  extends DocumentDBBaseTest {
 	}
 
 	@BeforeClass
+        @Override
   public void beforeClass() throws Exception {
 		super.beforeClass();
 

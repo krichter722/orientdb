@@ -44,10 +44,12 @@ public class OSecurityProxy extends OProxedResource<OSecurity> implements OSecur
     return delegate.isAllowed(iAllowAll, iAllowOperation);
   }
 
+  @Override
   public OIdentifiable allowUser(final ODocument iDocument, final String iAllowFieldName, final String iUserName) {
     return delegate.allowUser(iDocument, iAllowFieldName, iUserName);
   }
 
+  @Override
   public OIdentifiable allowRole(final ODocument iDocument, final String iAllowFieldName, final String iRoleName) {
     return delegate.allowRole(iDocument, iAllowFieldName, iRoleName);
   }
@@ -57,10 +59,12 @@ public class OSecurityProxy extends OProxedResource<OSecurity> implements OSecur
     return delegate.allowIdentity(iDocument, iAllowFieldName, iId);
   }
 
+  @Override
   public OIdentifiable disallowUser(final ODocument iDocument, final String iAllowFieldName, final String iUserName) {
     return delegate.disallowUser(iDocument, iAllowFieldName, iUserName);
   }
 
+  @Override
   public OIdentifiable disallowRole(final ODocument iDocument, final String iAllowFieldName, final String iRoleName) {
     return delegate.disallowRole(iDocument, iAllowFieldName, iRoleName);
   }
@@ -70,80 +74,99 @@ public class OSecurityProxy extends OProxedResource<OSecurity> implements OSecur
     return delegate.disallowIdentity(iDocument, iAllowFieldName, iId);
   }
 
+  @Override
   public OUser create() {
     return delegate.create();
   }
 
+  @Override
   public void load() {
     delegate.load();
   }
 
+  @Override
   public void close(boolean onDelete) {
     if (delegate != null) {
         delegate.close(false);
     }
   }
 
+  @Override
   public OUser authenticate(final String iUsername, final String iUserPassword) {
     return delegate.authenticate(iUsername, iUserPassword);
   }
 
+  @Override
   public OUser authenticate(final OToken authToken) {
     return delegate.authenticate(authToken);
   }
 
+  @Override
   public OUser getUser(final String iUserName) {
     return delegate.getUser(iUserName);
   }
 
+  @Override
   public OUser getUser(final ORID iUserId) {
     return delegate.getUser(iUserId);
   }
 
+  @Override
   public OUser createUser(final String iUserName, final String iUserPassword, final String... iRoles) {
     return delegate.createUser(iUserName, iUserPassword, iRoles);
   }
 
+  @Override
   public OUser createUser(final String iUserName, final String iUserPassword, final ORole... iRoles) {
     return delegate.createUser(iUserName, iUserPassword, iRoles);
   }
 
+  @Override
   public ORole getRole(final String iRoleName) {
     return delegate.getRole(iRoleName);
   }
 
+  @Override
   public ORole getRole(final OIdentifiable iRole) {
     return delegate.getRole(iRole);
   }
 
+  @Override
   public ORole createRole(final String iRoleName, final OSecurityRole.ALLOW_MODES iAllowMode) {
     return delegate.createRole(iRoleName, iAllowMode);
   }
 
+  @Override
   public ORole createRole(final String iRoleName, final ORole iParent, final OSecurityRole.ALLOW_MODES iAllowMode) {
     return delegate.createRole(iRoleName, iParent, iAllowMode);
   }
 
+  @Override
   public List<ODocument> getAllUsers() {
     return delegate.getAllUsers();
   }
 
+  @Override
   public List<ODocument> getAllRoles() {
     return delegate.getAllRoles();
   }
 
+  @Override
   public String toString() {
     return delegate.toString();
   }
 
+  @Override
   public boolean dropUser(final String iUserName) {
     return delegate.dropUser(iUserName);
   }
 
+  @Override
   public boolean dropRole(final String iRoleName) {
     return delegate.dropRole(iRoleName);
   }
 
+  @Override
   public void createClassTrigger() {
     delegate.createClassTrigger();
   }

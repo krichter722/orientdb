@@ -36,6 +36,7 @@ public class OSQLFilterItemVariable extends OSQLFilterItemAbstract {
     super(iQueryToParse, iName.substring(1));
   }
 
+  @Override
   public Object getValue(final OIdentifiable iRecord, Object iCurrentResult, final OCommandContext iContext) {
     if (iContext == null) {
         return null;
@@ -44,10 +45,12 @@ public class OSQLFilterItemVariable extends OSQLFilterItemAbstract {
     return transformValue(iRecord, iContext, iContext.getVariable(name));
   }
 
+  @Override
   public String getRoot() {
     return name;
   }
 
+  @Override
   public void setRoot(final OBaseParser iQueryToParse, final String iRoot) {
     this.name = iRoot;
   }

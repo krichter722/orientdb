@@ -34,10 +34,12 @@ public class OSharedLock extends OAbstractLock {
     lock = iLock;
   }
 
+  @Override
   public void lock() {
     lock.readLock().lock();
   }
 
+  @Override
   public void unlock() {
     lock.readLock().unlock();
   }

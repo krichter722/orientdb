@@ -53,6 +53,7 @@ public class OCommandExecutorSQLAlterCluster extends OCommandExecutorSQLAbstract
   protected ATTRIBUTES       attribute;
   protected String           value;
 
+  @Override
   public OCommandExecutorSQLAlterCluster parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -118,6 +119,7 @@ public class OCommandExecutorSQLAlterCluster extends OCommandExecutorSQLAbstract
   /**
    * Execute the ALTER CLASS.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (attribute == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
@@ -158,6 +160,7 @@ public class OCommandExecutorSQLAlterCluster extends OCommandExecutorSQLAbstract
     }
   }
 
+  @Override
   public String getSyntax() {
     return "ALTER CLUSTER <cluster-name>|<cluster-id> <attribute-name> <attribute-value>";
   }

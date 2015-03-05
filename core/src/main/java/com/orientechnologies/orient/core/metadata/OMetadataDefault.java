@@ -70,6 +70,7 @@ public class OMetadataDefault implements OMetadataInternal {
   public OMetadataDefault() {
   }
 
+  @Override
   public void load() {
     final long timer = PROFILER.startChrono();
 
@@ -86,6 +87,7 @@ public class OMetadataDefault implements OMetadataInternal {
     }
   }
 
+  @Override
   public void create() throws IOException {
     init(false);
 
@@ -97,6 +99,7 @@ public class OMetadataDefault implements OMetadataInternal {
     scheduler.create();
   }
 
+  @Override
   public OSchemaProxy getSchema() {
     return schema;
   }
@@ -162,14 +165,17 @@ public class OMetadataDefault implements OMetadataInternal {
     return newSchema;
   }
 
+  @Override
   public OSecurity getSecurity() {
     return security;
   }
 
+  @Override
   public OIndexManagerProxy getIndexManager() {
     return indexManager;
   }
 
+  @Override
   public int getSchemaClusterId() {
     return schemaClusterId;
   }
@@ -179,6 +185,7 @@ public class OMetadataDefault implements OMetadataInternal {
     schemaClusterId = database.getClusterIdByName(CLUSTER_INTERNAL_NAME);
 
     schema = new OSchemaProxy(database.getStorage().getResource(OSchema.class.getSimpleName(), new Callable<OSchemaShared>() {
+      @Override
       public OSchemaShared call() {
         ODatabaseDocumentInternal database = getDatabase();
         final OSchemaShared instance = new OSchemaShared(database.getStorageVersions().classesAreDetectedByClusterId());
@@ -191,6 +198,7 @@ public class OMetadataDefault implements OMetadataInternal {
 
     indexManager = new OIndexManagerProxy(database.getStorage().getResource(OIndexManager.class.getSimpleName(),
         new Callable<OIndexManager>() {
+          @Override
           public OIndexManager call() {
             OIndexManager instance;
             if (database.getStorage() instanceof OStorageProxy) {
@@ -219,6 +227,7 @@ public class OMetadataDefault implements OMetadataInternal {
     } else {
         security = new OSecurityProxy(database.getStorage().getResource(OSecurity.class.getSimpleName(),
                 new Callable<OSecurityShared>() {
+                    @Override
                     public OSecurityShared call() {
                         final OSecurityShared instance = new OSecurityShared();
                         if (iLoad) {
@@ -232,6 +241,7 @@ public class OMetadataDefault implements OMetadataInternal {
 
     functionLibrary = new OFunctionLibraryProxy(database.getStorage().getResource(OFunctionLibrary.class.getSimpleName(),
         new Callable<OFunctionLibrary>() {
+          @Override
           public OFunctionLibrary call() {
             final OFunctionLibraryImpl instance = new OFunctionLibraryImpl();
             if (iLoad) {
@@ -242,6 +252,7 @@ public class OMetadataDefault implements OMetadataInternal {
         }), database);
     scheduler = new OSchedulerListenerProxy(database.getStorage().getResource(OSchedulerListener.class.getSimpleName(),
         new Callable<OSchedulerListener>() {
+          @Override
           public OSchedulerListener call() {
             final OSchedulerListenerImpl instance = new OSchedulerListenerImpl();
             if (iLoad) {
@@ -255,6 +266,7 @@ public class OMetadataDefault implements OMetadataInternal {
   /**
    * Reloads the internal objects.
    */
+  @Override
   public void reload() {
     if (schema != null) {
         schema.reload();
@@ -273,6 +285,7 @@ public class OMetadataDefault implements OMetadataInternal {
   /**
    * Closes internal objects
    */
+  @Override
   public void close() {
     if (schema != null) {
         schema.close();
@@ -286,10 +299,12 @@ public class OMetadataDefault implements OMetadataInternal {
     return ODatabaseRecordThreadLocal.INSTANCE.get();
   }
 
+  @Override
   public OFunctionLibrary getFunctionLibrary() {
     return functionLibrary;
   }
 
+  @Override
   public OSchedulerListener getSchedulerListener() {
     return scheduler;
   }

@@ -70,6 +70,7 @@ public abstract class ORecordAbstract implements ORecord {
     unsetDirty();
   }
 
+  @Override
   public ORID getIdentity() {
     return _recordId;
   }
@@ -84,20 +85,24 @@ public abstract class ORecordAbstract implements ORecord {
     return null;
   }
 
+  @Override
   public ORecord getRecord() {
     return this;
   }
 
+  @Override
   public boolean detach() {
     return true;
   }
 
+  @Override
   public ORecordAbstract clear() {
     setDirty();
     invokeListenerEvent(ORecordListener.EVENT.CLEAR);
     return this;
   }
 
+  @Override
   public ORecordAbstract reset() {
     _status = ORecordElement.STATUS.LOADED;
     _recordVersion.reset();
@@ -114,6 +119,7 @@ public abstract class ORecordAbstract implements ORecord {
     return this;
   }
 
+  @Override
   public byte[] toStream() {
     if (_source == null) {
         _source = _recordFormat.toStream(this, false);
@@ -124,6 +130,7 @@ public abstract class ORecordAbstract implements ORecord {
     return _source;
   }
 
+  @Override
   public ORecordAbstract fromStream(final byte[] iRecordBuffer) {
     _dirty = false;
     _contentChanged = false;
@@ -141,6 +148,7 @@ public abstract class ORecordAbstract implements ORecord {
     return this;
   }
 
+  @Override
   public ORecordAbstract setDirty() {
     if (!_dirty && _status != STATUS.UNMARSHALLING) {
       _dirty = true;
@@ -159,6 +167,7 @@ public abstract class ORecordAbstract implements ORecord {
     }
   }
 
+  @Override
   public boolean isDirty() {
     return _dirty;
   }
@@ -170,6 +179,7 @@ public abstract class ORecordAbstract implements ORecord {
     return (RET) this;
   }
 
+  @Override
   public <RET extends ORecord> RET fromJSON(final String iSource) {
     ORecordSerializerJSON.INSTANCE.fromString(iSource, this, null);
     return (RET) this;
@@ -187,10 +197,12 @@ public abstract class ORecordAbstract implements ORecord {
     return (RET) this;
   }
 
+  @Override
   public String toJSON() {
     return toJSON("rid,version,class,type,attribSameRow,keepTypes,alwaysFetchEmbedded,fetchPlan:*:0");
   }
 
+  @Override
   public String toJSON(final String iFormat) {
     return ORecordSerializerJSON.INSTANCE.toString(this, new StringBuilder(1024), iFormat == null ? "" : iFormat).toString();
   }
@@ -201,6 +213,7 @@ public abstract class ORecordAbstract implements ORecord {
         + _recordVersion.toString();
   }
 
+  @Override
   public int getVersion() {
     // checkForLoading();
     return _recordVersion.getCounter();
@@ -210,11 +223,13 @@ public abstract class ORecordAbstract implements ORecord {
     _recordVersion.setCounter(iVersion);
   }
 
+  @Override
   public ORecordVersion getRecordVersion() {
     // checkForLoading();
     return _recordVersion;
   }
 
+  @Override
   public ORecordAbstract unload() {
     _status = ORecordElement.STATUS.NOT_LOADED;
     _source = null;
@@ -223,6 +238,7 @@ public abstract class ORecordAbstract implements ORecord {
     return this;
   }
 
+  @Override
   public ORecord load() {
     if (!getIdentity().isValid()) {
         throw new ORecordNotFoundException("The record has no id, probably it's new or transient yet ");
@@ -241,6 +257,7 @@ public abstract class ORecordAbstract implements ORecord {
     }
   }
 
+  @Override
   public ODatabaseDocumentInternal getDatabase() {
     return ODatabaseRecordThreadLocal.INSTANCE.get();
   }
@@ -249,6 +266,7 @@ public abstract class ORecordAbstract implements ORecord {
     return ODatabaseRecordThreadLocal.INSTANCE.getIfDefined();
   }
 
+  @Override
   public ORecord reload() {
     return reload(null);
   }
@@ -273,29 +291,35 @@ public abstract class ORecordAbstract implements ORecord {
     }
   }
 
+  @Override
   public ORecordAbstract save() {
     return save(false);
   }
 
+  @Override
   public ORecordAbstract save(final String iClusterName) {
     return save(iClusterName, false);
   }
 
+  @Override
   public ORecordAbstract save(boolean forceCreate) {
     getDatabase().save(this, ODatabase.OPERATION_MODE.SYNCHRONOUS, forceCreate, null, null);
     return this;
   }
 
+  @Override
   public ORecordAbstract save(String iClusterName, boolean forceCreate) {
     return getDatabase().save(this, iClusterName, ODatabase.OPERATION_MODE.SYNCHRONOUS, forceCreate, null, null);
   }
 
+  @Override
   public ORecordAbstract delete() {
     getDatabase().delete(this);
     setDirty();
     return this;
   }
 
+  @Override
   public int getSize() {
     return _size;
   }
@@ -332,6 +356,7 @@ public abstract class ORecordAbstract implements ORecord {
     return false;
   }
 
+  @Override
   public int compare(final OIdentifiable iFirst, final OIdentifiable iSecond) {
     if (iFirst == null || iSecond == null) {
         return -1;
@@ -339,6 +364,7 @@ public abstract class ORecordAbstract implements ORecord {
     return iFirst.compareTo(iSecond);
   }
 
+  @Override
   public int compareTo(final OIdentifiable iOther) {
     if (iOther == null) {
         return 1;
@@ -351,10 +377,12 @@ public abstract class ORecordAbstract implements ORecord {
     return _recordId.compareTo(iOther.getIdentity());
   }
 
+  @Override
   public ORecordElement.STATUS getInternalStatus() {
     return _status;
   }
 
+  @Override
   public void setInternalStatus(final ORecordElement.STATUS iStatus) {
     this._status = iStatus;
   }

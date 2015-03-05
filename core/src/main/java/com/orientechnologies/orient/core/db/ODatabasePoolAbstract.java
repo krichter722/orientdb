@@ -264,6 +264,7 @@ public abstract class ODatabasePoolAbstract<DB extends ODatabaseInternal> extend
   /**
    * Closes all the databases.
    */
+  @Override
   public void close() {
     lock();
     try {
@@ -326,12 +327,14 @@ public abstract class ODatabasePoolAbstract<DB extends ODatabaseInternal> extend
     return maxSize;
   }
 
+  @Override
   public void onStorageRegistered(final OStorage iStorage) {
   }
 
   /**
    * Removes from memory the pool associated to the closed storage. This avoids pool open against closed storages.
    */
+  @Override
   public void onStorageUnregistered(final OStorage iStorage) {
     final String storageURL = iStorage.getURL();
 

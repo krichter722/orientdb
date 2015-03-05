@@ -962,6 +962,7 @@ public class ODocumentHelper {
 
     if (iMyDb != null) {
         makeDbCall(iMyDb, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
                 if (iCurrent.getInternalStatus() == STATUS.NOT_LOADED) {
                     iCurrent.reload();
@@ -973,6 +974,7 @@ public class ODocumentHelper {
 
     if (iOtherDb != null) {
         makeDbCall(iOtherDb, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
                 if (iOther.getInternalStatus() == STATUS.NOT_LOADED) {
                     iOther.reload();
@@ -984,6 +986,7 @@ public class ODocumentHelper {
 
     if (iMyDb != null) {
         makeDbCall(iMyDb, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
                 iCurrent.checkForFields();
                 return null;
@@ -995,6 +998,7 @@ public class ODocumentHelper {
 
     if (iOtherDb != null) {
         makeDbCall(iOtherDb, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
                 iOther.checkForFields();
                 return null;
@@ -1086,28 +1090,33 @@ public class ODocumentHelper {
     try {
       final Iterator<Entry<Object, Object>> myEntryIterator = makeDbCall(iMyDb,
           new ODbRelatedCall<Iterator<Entry<Object, Object>>>() {
+            @Override
             public Iterator<Entry<Object, Object>> call() {
               return myMap.entrySet().iterator();
             }
           });
 
       while (makeDbCall(iMyDb, new ODbRelatedCall<Boolean>() {
+        @Override
         public Boolean call() {
           return myEntryIterator.hasNext();
         }
       })) {
         final Entry<Object, Object> myEntry = makeDbCall(iMyDb, new ODbRelatedCall<Entry<Object, Object>>() {
+          @Override
           public Entry<Object, Object> call() {
             return myEntryIterator.next();
           }
         });
         final Object myKey = makeDbCall(iMyDb, new ODbRelatedCall<Object>() {
+          @Override
           public Object call() {
             return myEntry.getKey();
           }
         });
 
         if (makeDbCall(iOtherDb, new ODbRelatedCall<Boolean>() {
+          @Override
           public Boolean call() {
             return !otherMap.containsKey(myKey);
           }
@@ -1117,10 +1126,12 @@ public class ODocumentHelper {
 
         if (myEntry.getValue() instanceof ODocument) {
           if (!hasSameContentOf(makeDbCall(iMyDb, new ODbRelatedCall<ODocument>() {
+            @Override
             public ODocument call() {
               return (ODocument) myEntry.getValue();
             }
           }), iMyDb, makeDbCall(iOtherDb, new ODbRelatedCall<ODocument>() {
+            @Override
             public ODocument call() {
               return (ODocument) otherMap.get(myEntry.getKey());
             }
@@ -1129,12 +1140,14 @@ public class ODocumentHelper {
           }
         } else {
           final Object myValue = makeDbCall(iMyDb, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
               return myEntry.getValue();
             }
           });
 
           final Object otherValue = makeDbCall(iOtherDb, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
               return otherMap.get(myEntry.getKey());
             }
@@ -1181,29 +1194,34 @@ public class ODocumentHelper {
 
     try {
       final Iterator<?> myIterator = makeDbCall(iMyDb, new ODbRelatedCall<Iterator<?>>() {
+        @Override
         public Iterator<?> call() {
           return myCollection.iterator();
         }
       });
 
       final Iterator<?> otherIterator = makeDbCall(iOtherDb, new ODbRelatedCall<Iterator<?>>() {
+        @Override
         public Iterator<?> call() {
           return otherCollection.iterator();
         }
       });
 
       while (makeDbCall(iMyDb, new ODbRelatedCall<Boolean>() {
+        @Override
         public Boolean call() {
           return myIterator.hasNext();
         }
       })) {
         final Object myNextVal = makeDbCall(iMyDb, new ODbRelatedCall<Object>() {
+          @Override
           public Object call() {
             return myIterator.next();
           }
         });
 
         final Object otherNextVal = makeDbCall(iOtherDb, new ODbRelatedCall<Object>() {
+          @Override
           public Object call() {
             return otherIterator.next();
           }
@@ -1231,12 +1249,14 @@ public class ODocumentHelper {
     final Set<?> otherSet = otherFieldValue;
 
     final int mySize = makeDbCall(iMyDb, new ODbRelatedCall<Integer>() {
+      @Override
       public Integer call() {
         return mySet.size();
       }
     });
 
     final int otherSize = makeDbCall(iOtherDb, new ODbRelatedCall<Integer>() {
+      @Override
       public Integer call() {
         return otherSet.size();
       }
@@ -1261,24 +1281,28 @@ public class ODocumentHelper {
 
     try {
       final Iterator<?> myIterator = makeDbCall(iMyDb, new ODbRelatedCall<Iterator<?>>() {
+        @Override
         public Iterator<?> call() {
           return mySet.iterator();
         }
       });
 
       while (makeDbCall(iMyDb, new ODbRelatedCall<Boolean>() {
+        @Override
         public Boolean call() {
           return myIterator.hasNext();
         }
       })) {
 
         final Iterator<?> otherIterator = makeDbCall(iOtherDb, new ODbRelatedCall<Iterator<?>>() {
+          @Override
           public Iterator<?> call() {
             return otherSet.iterator();
           }
         });
 
         final Object myNextVal = makeDbCall(iMyDb, new ODbRelatedCall<Object>() {
+          @Override
           public Object call() {
             return myIterator.next();
           }
@@ -1286,11 +1310,13 @@ public class ODocumentHelper {
 
         boolean found = false;
         while (!found && makeDbCall(iOtherDb, new ODbRelatedCall<Boolean>() {
+          @Override
           public Boolean call() {
             return otherIterator.hasNext();
           }
         })) {
           final Object otherNextVal = makeDbCall(iOtherDb, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
               return otherIterator.next();
             }
@@ -1321,12 +1347,14 @@ public class ODocumentHelper {
     final ORidBag otherBag = otherFieldValue;
 
     final int mySize = makeDbCall(iMyDb, new ODbRelatedCall<Integer>() {
+      @Override
       public Integer call() {
         return myBag.size();
       }
     });
 
     final int otherSize = makeDbCall(iOtherDb, new ODbRelatedCall<Integer>() {
+      @Override
       public Integer call() {
         return otherBag.size();
       }
@@ -1361,12 +1389,14 @@ public class ODocumentHelper {
 
     try {
       final Iterator<OIdentifiable> myIterator = makeDbCall(iMyDb, new ODbRelatedCall<Iterator<OIdentifiable>>() {
+        @Override
         public Iterator<OIdentifiable> call() {
           return myBag.iterator();
         }
       });
 
       while (makeDbCall(iMyDb, new ODbRelatedCall<Boolean>() {
+        @Override
         public Boolean call() {
           return myIterator.hasNext();
         }

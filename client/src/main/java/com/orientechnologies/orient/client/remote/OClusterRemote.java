@@ -46,6 +46,7 @@ public class OClusterRemote implements OCluster {
    * @see com.orientechnologies.orient.core.storage.OCluster#configure(com.orientechnologies.orient.core.storage.OStorage, int,
    * java.lang.String, java.lang.String, int, java.lang.Object[])
    */
+  @Override
   public void configure(OStorage iStorage, int iId, String iClusterName, Object... iParameters) throws IOException {
     id = iId;
     name = iClusterName;
@@ -57,6 +58,7 @@ public class OClusterRemote implements OCluster {
    * @see com.orientechnologies.orient.core.storage.OCluster#configure(com.orientechnologies.orient.core.storage.OStorage,
    * com.orientechnologies.orient.core.config.OStorageClusterConfiguration)
    */
+  @Override
   public void configure(OStorage iStorage, OStorageClusterConfiguration iConfig) throws IOException {
     id = iConfig.getId();
     name = iConfig.getName();
@@ -67,6 +69,7 @@ public class OClusterRemote implements OCluster {
    * 
    * @see com.orientechnologies.orient.core.storage.OCluster#create(int)
    */
+  @Override
   public void create(int iStartSize) throws IOException {
 
   }
@@ -76,9 +79,11 @@ public class OClusterRemote implements OCluster {
    * 
    * @see com.orientechnologies.orient.core.storage.OCluster#open()
    */
+  @Override
   public void open() throws IOException {
   }
 
+  @Override
   public void close() throws IOException {
   }
 
@@ -116,21 +121,26 @@ public class OClusterRemote implements OCluster {
     throw new UnsupportedOperationException("exists");
   }
 
+  @Override
   public void delete() throws IOException {
   }
 
+  @Override
   public Object set(ATTRIBUTES iAttribute, Object iValue) throws IOException {
     return null;
   }
 
+  @Override
   public void truncate() throws IOException {
   }
 
+  @Override
   public OPhysicalPosition getPhysicalPosition(OPhysicalPosition iPPosition) throws IOException {
     return null;
   }
 
 
+  @Override
   public long getEntries() {
     return 0;
   }
@@ -150,21 +160,26 @@ public class OClusterRemote implements OCluster {
     throw new UnsupportedOperationException("hasTombstonesSupport()");
   }
 
+  @Override
   public long getFirstPosition() {
     return 0;
   }
 
+  @Override
   public long getLastPosition() {
     return 0;
   }
 
+  @Override
   public int getId() {
     return id;
   }
 
+  @Override
   public void synch() throws IOException {
   }
 
+  @Override
   public void setSoftlyClosed(boolean softlyClosed) throws IOException {
   }
 
@@ -173,18 +188,22 @@ public class OClusterRemote implements OCluster {
     return true;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public long getRecordsSize() {
     throw new UnsupportedOperationException("getRecordsSize()");
   }
 
+  @Override
   public boolean isHashBased() {
     return false;
   }
 
+  @Override
   public OClusterEntryIterator absoluteIterator() {
     throw new UnsupportedOperationException("getRecordsSize()");
   }

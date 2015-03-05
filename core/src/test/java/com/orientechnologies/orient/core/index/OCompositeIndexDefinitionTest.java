@@ -560,6 +560,7 @@ public class OCompositeIndexDefinitionTest {
     final List<OMultiValueChangeEvent<Integer, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<Integer, String>>();
 
     trackedList.addChangeListener(new OMultiValueChangeListener<Integer, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Integer, String> event) {
         firedEvents.add(event);
       }
@@ -596,6 +597,7 @@ public class OCompositeIndexDefinitionTest {
 		final List<OMultiValueChangeEvent<OIdentifiable, OIdentifiable>> firedEvents = new ArrayList<OMultiValueChangeEvent<OIdentifiable, OIdentifiable>>();
 
 		ridBag.addChangeListener(new OMultiValueChangeListener<OIdentifiable, OIdentifiable>() {
+                        @Override
 			public void onAfterRecordChanged(final OMultiValueChangeEvent<OIdentifiable, OIdentifiable> event) {
 				firedEvents.add(event);
 			}
@@ -642,6 +644,7 @@ public class OCompositeIndexDefinitionTest {
     trackedList.remove("l2");
 
     trackedList.addChangeListener(new OMultiValueChangeListener<Integer, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Integer, String> event) {
         firedEvents.add(event);
       }
@@ -680,6 +683,7 @@ public class OCompositeIndexDefinitionTest {
 		ridBag.remove(new ORecordId("#10:2"));
 
 		ridBag.addChangeListener(new OMultiValueChangeListener<OIdentifiable, OIdentifiable>() {
+                        @Override
 			public void onAfterRecordChanged(final OMultiValueChangeEvent<OIdentifiable, OIdentifiable> event) {
 				firedEvents.add(event);
 			}
@@ -717,6 +721,7 @@ public class OCompositeIndexDefinitionTest {
     final List<OMultiValueChangeEvent<String, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<String, String>>();
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         firedEvents.add(event);
       }
@@ -761,6 +766,7 @@ public class OCompositeIndexDefinitionTest {
     trackedMap.remove("l2");
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         firedEvents.add(event);
       }
@@ -799,6 +805,7 @@ public class OCompositeIndexDefinitionTest {
     final List<OMultiValueChangeEvent<Object, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<Object, String>>();
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         firedEvents.add(event);
       }
@@ -845,6 +852,7 @@ public class OCompositeIndexDefinitionTest {
     final List<OMultiValueChangeEvent<Object, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<Object, String>>();
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         firedEvents.add(event);
       }

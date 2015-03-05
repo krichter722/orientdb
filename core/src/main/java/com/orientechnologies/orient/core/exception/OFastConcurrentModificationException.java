@@ -47,6 +47,7 @@ public class OFastConcurrentModificationException extends OConcurrentModificatio
     return INSTANCE;
   }
 
+  @Override
   public String getMessage() {
 	  return MESSAGE;
   }

@@ -122,14 +122,17 @@ public class OMVRBTreeRIDProvider extends OMVRBTreeProviderAbstract<OIdentifiabl
     return copy;
   }
 
+  @Override
   public OMVRBTreeRIDEntryProvider getEntry(final ORID iRid) {
     return new OMVRBTreeRIDEntryProvider(this, iRid);
   }
 
+  @Override
   public OMVRBTreeRIDEntryProvider createEntry() {
     return new OMVRBTreeRIDEntryProvider(this);
   }
 
+  @Override
   public OStringBuilderSerializable toStream(final StringBuilder iBuffer) throws OSerializationException {
     final long timer = PROFILER.startChrono();
 
@@ -190,12 +193,14 @@ public class OMVRBTreeRIDProvider extends OMVRBTreeProviderAbstract<OIdentifiabl
     return this;
   }
 
+  @Override
   public OSerializableStream fromStream(final byte[] iStream) throws OSerializationException {
     record.fromStream(iStream);
     fromDocument((ODocument) record);
     return this;
   }
 
+  @Override
   public OStringBuilderSerializable fromStream(final StringBuilder iInput) throws OSerializationException {
     if (iInput != null) {
       // COPY THE BUFFER: IF THE TREE IS UNTOUCHED RETURN IT
@@ -240,6 +245,7 @@ public class OMVRBTreeRIDProvider extends OMVRBTreeProviderAbstract<OIdentifiabl
     }
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     return toDocument().toStream();
   }

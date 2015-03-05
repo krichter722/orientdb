@@ -51,16 +51,19 @@ public class ORecordFactoryManager {
 
   public ORecordFactoryManager() {
     declareRecordType(ODocument.RECORD_TYPE, "document", ODocument.class, new ORecordFactory() {
+      @Override
       public ORecord newRecord() {
         return new ODocument();
       }
     });
     declareRecordType(ORecordFlat.RECORD_TYPE, "flat", ORecordFlat.class, new ORecordFactory() {
+      @Override
       public ORecord newRecord() {
         return new ORecordFlat();
       }
     });
     declareRecordType(ORecordBytes.RECORD_TYPE, "bytes", ORecordBytes.class, new ORecordFactory() {
+      @Override
       public ORecord newRecord() {
         return new ORecordBytes();
       }

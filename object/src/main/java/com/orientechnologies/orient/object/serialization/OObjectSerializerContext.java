@@ -80,6 +80,7 @@ public class OObjectSerializerContext implements OObjectSerializer<Object, Objec
 	        }
 	}
 
+        @Override
 	public Object serializeFieldValue(final Class<?> iClass, Object iFieldValue) {
 		for (Class<?> type : customSerializers.keySet()) {
 			if (type.isInstance(iFieldValue) || (iFieldValue == null && type == Void.class)) {
@@ -91,6 +92,7 @@ public class OObjectSerializerContext implements OObjectSerializer<Object, Objec
 		return iFieldValue;
 	}
 
+        @Override
 	public Object unserializeFieldValue(final Class<?> iClass, final Object iFieldValue) {
 		if (iClass != null) {
                     for (Class<?> type : customSerializers.keySet()) {

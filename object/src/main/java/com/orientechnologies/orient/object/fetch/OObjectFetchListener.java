@@ -42,6 +42,7 @@ import com.orientechnologies.orient.object.serialization.OObjectSerializerHelper
 public class OObjectFetchListener implements OFetchListener {
 
   @SuppressWarnings({ "unchecked", "rawtypes" })
+  @Override
   public void processStandardField(final ODocument iRecord, final Object iFieldValue, final String iFieldName,
       final OFetchContext iContext, final Object iUserObject, final String iFormat) throws OFetchException {
     if (iFieldValue instanceof ORecordLazyList) {
@@ -61,11 +62,13 @@ public class OObjectFetchListener implements OFetchListener {
   public void processStandardCollectionValue(Object iFieldValue, OFetchContext iContext) throws OFetchException {
   }
 
+  @Override
   public void parseLinkedCollectionValue(ODocument iRootRecord, OIdentifiable iLinked, Object iUserObject, String iFieldName,
       OFetchContext iContext) throws OFetchException {
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public void parseLinked(final ODocument iRootRecord, final OIdentifiable iLinked, final Object iUserObject,
       final String iFieldName, final OFetchContext iContext) throws OFetchException {
     final Class<?> type = OObjectSerializerHelper.getFieldType(iUserObject, iFieldName);
@@ -87,6 +90,7 @@ public class OObjectFetchListener implements OFetchListener {
     }
   }
 
+  @Override
   public Object fetchLinkedMapEntry(final ODocument iRoot, final Object iUserObject, final String iFieldName, String iKey,
       final ODocument iLinked, final OFetchContext iContext) throws OFetchException {
     Object value = null;
@@ -102,6 +106,7 @@ public class OObjectFetchListener implements OFetchListener {
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public Object fetchLinkedCollectionValue(final ODocument iRoot, final Object iUserObject, final String iFieldName,
       final ODocument iLinked, final OFetchContext iContext) throws OFetchException {
     Object value = null;
@@ -122,6 +127,7 @@ public class OObjectFetchListener implements OFetchListener {
   }
 
   @SuppressWarnings({ "unchecked", "rawtypes" })
+  @Override
   public Object fetchLinked(ODocument iRoot, Object iUserObject, String iFieldName, ODocument iLinked, OFetchContext iContext)
       throws OFetchException {
     if (iUserObject == null) {

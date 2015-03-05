@@ -61,6 +61,7 @@ public class OStreamSerializerSBTreeIndexRIDContainer implements OStreamSerializ
                                                                                             + OIntegerSerializer.INT_SIZE;
   public static final OLinkSerializer                          LINK_SERIALIZER          = OLinkSerializer.INSTANCE;
 
+  @Override
   public Object fromStream(final byte[] iStream) throws IOException {
     if (iStream == null) {
         return null;
@@ -69,6 +70,7 @@ public class OStreamSerializerSBTreeIndexRIDContainer implements OStreamSerializ
     throw new UnsupportedOperationException("not implemented yet");
   }
 
+  @Override
   public byte[] toStream(final Object iObject) throws IOException {
     if (iObject == null) {
         return null;
@@ -77,6 +79,7 @@ public class OStreamSerializerSBTreeIndexRIDContainer implements OStreamSerializ
     throw new UnsupportedOperationException("not implemented yet");
   }
 
+  @Override
   public String getName() {
     return NAME;
   }

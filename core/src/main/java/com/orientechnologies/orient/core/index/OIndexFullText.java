@@ -249,10 +249,12 @@ public class OIndexFullText extends OIndexMultiValues {
     return configuration;
   }
 
+  @Override
   public boolean canBeUsedInEqualityOperators() {
     return false;
   }
 
+  @Override
   public boolean supportsOrderedIterations() {
     return false;
   }

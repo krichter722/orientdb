@@ -41,6 +41,7 @@ public class OSQLFunctionMap extends OSQLFunctionMultiValueAbstract<Map<Object, 
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
 
@@ -75,6 +76,7 @@ public class OSQLFunctionMap extends OSQLFunctionMultiValueAbstract<Map<Object, 
     return prepareResult(context);
   }
 
+  @Override
   public String getSyntax() {
     return "map(<map>|[<key>,<value>]*)";
   }

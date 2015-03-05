@@ -709,6 +709,7 @@ public abstract class ORecordSerializerStringAbstract implements ORecordSerializ
     return fromString(iSource, (ORecord) ODatabaseRecordThreadLocal.INSTANCE.get().newInstance(), null);
   }
 
+  @Override
   public ORecord fromStream(final byte[] iSource, final ORecord iRecord, final String[] iFields) {
     final long timer = PROFILER.startChrono();
 
@@ -721,6 +722,7 @@ public abstract class ORecordSerializerStringAbstract implements ORecordSerializ
     }
   }
 
+  @Override
   public byte[] toStream(final ORecord iRecord, boolean iOnlyDelta) {
     final long timer = PROFILER.startChrono();
 

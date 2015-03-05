@@ -38,6 +38,7 @@ public class OCommandExecutorSQLDelegate extends OCommandExecutorSQLAbstract {
   protected OCommandExecutorSQLAbstract delegate;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLDelegate parse(final OCommandRequest iCommand) {
     if (iCommand instanceof OCommandRequestText) {
       final OCommandRequestText textRequest = (OCommandRequestText) iCommand;
@@ -63,6 +64,7 @@ public class OCommandExecutorSQLDelegate extends OCommandExecutorSQLAbstract {
     return this;
   }
 
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     return delegate.execute(iArgs);
   }
@@ -77,6 +79,7 @@ public class OCommandExecutorSQLDelegate extends OCommandExecutorSQLAbstract {
     return delegate.toString();
   }
 
+  @Override
   public String getSyntax() {
     return delegate.getSyntax();
   }
@@ -86,6 +89,7 @@ public class OCommandExecutorSQLDelegate extends OCommandExecutorSQLAbstract {
     return delegate.getFetchPlan();
   }
 
+  @Override
   public boolean isIdempotent() {
     return delegate.isIdempotent();
   }

@@ -55,6 +55,7 @@ public class AIXCLibrary implements CLibrary {
         memmoveFc != null ? "yes" : "no", bcopyFc != null ? "yes" : "no");
   }
 
+  @Override
   public void memoryMove(long src, long dest, long len) {
     final Pointer srcPointer = new Pointer(src);
     final Pointer destPointer = new Pointer(dest);

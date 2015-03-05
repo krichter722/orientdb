@@ -49,6 +49,7 @@ public class OObjectLazyListIterator<TYPE> implements Iterator<TYPE>, Serializab
     this.sourceRecord = iSourceRecord;
   }
 
+  @Override
   public TYPE next() {
     return next(fetchPlan);
   }
@@ -59,10 +60,12 @@ public class OObjectLazyListIterator<TYPE> implements Iterator<TYPE>, Serializab
     return (TYPE) value;
   }
 
+  @Override
   public boolean hasNext() {
     return cursor < (list.size());
   }
 
+  @Override
   public void remove() {
     if (lastRet == -1) {
         throw new IllegalStateException();

@@ -113,6 +113,7 @@ public class OLocalPaginatedStorage extends OAbstractPaginatedStorage implements
     super.create(iProperties);
   }
 
+  @Override
   public boolean exists() {
     return exists(storagePath);
   }
@@ -270,10 +271,12 @@ public class OLocalPaginatedStorage extends OAbstractPaginatedStorage implements
     throw new OStorageException("Cannot delete database '" + name + "' located in: " + dbDir + ". Database files seem locked");
   }
 
+  @Override
   protected void makeStorageDirty() throws IOException {
     dirtyFlag.makeDirty();
   }
 
+  @Override
   protected void clearStorageDirty() throws IOException {
     dirtyFlag.clearDirty();
   }
@@ -283,6 +286,7 @@ public class OLocalPaginatedStorage extends OAbstractPaginatedStorage implements
     return dirtyFlag.isDirty();
   }
 
+  @Override
   protected void initWalAndDiskCache() throws IOException {
     if (configuration.getContextConfiguration().getValueAsBoolean(OGlobalConfiguration.USE_WAL)) {
       checkpointExecutor = Executors.newSingleThreadExecutor(new FullCheckpointThreadFactory());

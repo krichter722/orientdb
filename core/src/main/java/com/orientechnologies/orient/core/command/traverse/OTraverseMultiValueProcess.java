@@ -35,6 +35,7 @@ public class OTraverseMultiValueProcess extends OTraverseAbstractProcess<Iterato
     this.parentPath = parentPath;
   }
 
+  @Override
   public OIdentifiable process() {
     while (target.hasNext()) {
       value = target.next();

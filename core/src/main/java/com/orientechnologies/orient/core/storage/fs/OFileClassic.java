@@ -68,6 +68,7 @@ public class OFileClassic extends OAbstractFile {
     return size;
   }
 
+  @Override
   public void read(long iOffset, byte[] iData, int iLength, int iArrayOffset) throws IOException {
     acquireReadLock();
     try {
@@ -80,6 +81,7 @@ public class OFileClassic extends OAbstractFile {
     }
   }
 
+  @Override
   public void write(long iOffset, byte[] iData, int iSize, int iArrayOffset) throws IOException {
     acquireWriteLock();
     try {
@@ -240,6 +242,7 @@ public class OFileClassic extends OAbstractFile {
     }
   }
 
+  @Override
   protected void flushHeader() throws IOException {
     acquireWriteLock();
     try {
@@ -342,6 +345,7 @@ public class OFileClassic extends OAbstractFile {
     }
   }
 
+  @Override
   public void setSoftlyClosed(final boolean value) throws IOException {
     acquireWriteLock();
     try {

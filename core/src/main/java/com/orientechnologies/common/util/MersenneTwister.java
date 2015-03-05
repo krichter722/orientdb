@@ -220,6 +220,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
   }
 
   /* We're overriding all internal data, to my knowledge, so this should be okay */
+  @Override
   public Object clone() {
     try {
       MersenneTwister f = (MersenneTwister) (super.clone());
@@ -294,6 +295,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
    * first 32 bits for its seed).
    */
 
+  @Override
   synchronized public void setSeed(final long seed) {
     // it's always good style to call super
     super.setSeed(seed);
@@ -362,6 +364,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
   /**
    * This method is missing from jdk 1.0.x and below. JDK 1.1 includes this for us, but what the heck.
    */
+  @Override
   public boolean nextBoolean() {
     return next(1) != 0;
   }
@@ -409,6 +412,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
    * This method is missing from JDK 1.1 and below. JDK 1.2 includes this for us, but what the heck.
    */
 
+  @Override
   public int nextInt(final int n) {
     if (n <= 0) {
         throw new IllegalArgumentException("n must be positive, got: " + n);
@@ -447,6 +451,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
   /**
    * A bug fix for versions of JDK 1.1 and below. JDK 1.2 fixes this for us, but what the heck.
    */
+  @Override
   public double nextDouble() {
     return (((long) next(26) << 27) + next(27)) / (double) (1L << 53);
   }
@@ -492,6 +497,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
    * A bug fix for versions of JDK 1.1 and below. JDK 1.2 fixes this for us, but what the heck.
    */
 
+  @Override
   public float nextFloat() {
     return next(24) / ((float) (1 << 24));
   }
@@ -538,6 +544,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
    * wrong. I've submitted a bug report.
    */
 
+  @Override
   public void nextBytes(final byte[] bytes) {
     for (int x = 0; x < bytes.length; x++) {
         bytes[x] = (byte) next(8);
@@ -569,6 +576,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
    * http://developer.java.sun.com/developer/bugParade/bugs/4254501.html</a>
    */
 
+  @Override
   synchronized public double nextGaussian() {
     if (__haveNextNextGaussian) {
       __haveNextNextGaussian = false;
@@ -590,6 +598,7 @@ public strictfp class MersenneTwister extends java.util.Random implements Serial
   /**
    * Returns an integer with <i>bits</i> bits filled with a random number.
    */
+  @Override
   synchronized protected int next(final int bits) {
     int y;
 

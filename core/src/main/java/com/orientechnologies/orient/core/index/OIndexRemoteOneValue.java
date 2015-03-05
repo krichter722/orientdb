@@ -48,6 +48,7 @@ public class OIndexRemoteOneValue extends OIndexRemote<OIdentifiable> {
     super(iName, iWrappedType, iRid, iIndexDefinition, iConfiguration, clustersToIndex);
   }
 
+  @Override
   public OIdentifiable get(final Object iKey) {
     final OCommandRequest cmd = formatCommand(QUERY_GET, name);
     final List<OIdentifiable> result = getDatabase().command(cmd).execute(iKey);

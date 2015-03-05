@@ -26,6 +26,7 @@ public class SQLSelectCompositeIndexDirectSearchTest extends DocumentDBBaseTest 
 	}
 
 	@BeforeClass
+  @Override
   public void beforeClass() throws Exception {
 		super.beforeClass();
 
@@ -61,6 +62,7 @@ public class SQLSelectCompositeIndexDirectSearchTest extends DocumentDBBaseTest 
   }
 
   @AfterClass
+  @Override
   public void afterClass() throws Exception {
 		if (database.isClosed()) {
                     database.open("admin", "admin");

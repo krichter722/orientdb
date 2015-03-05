@@ -59,6 +59,7 @@ public abstract class AbstractEntryIterator<K, V, T> implements OLazyIterator<T>
     init();
   }
 
+  @Override
   public boolean hasNext() {
     if (tree != null && expectedModCount != tree.modCount) {
       // CONCURRENT CHANGE: TRY TO REUSE LAST POSITION
@@ -136,6 +137,7 @@ public abstract class AbstractEntryIterator<K, V, T> implements OLazyIterator<T>
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public T update(final T iValue) {
     if (lastReturned == null) {
         throw new IllegalStateException();
@@ -147,6 +149,7 @@ public abstract class AbstractEntryIterator<K, V, T> implements OLazyIterator<T>
     return (T) next.setValue((V) iValue);
   }
 
+  @Override
   public void remove() {
     if (lastReturned == null) {
         throw new IllegalStateException();

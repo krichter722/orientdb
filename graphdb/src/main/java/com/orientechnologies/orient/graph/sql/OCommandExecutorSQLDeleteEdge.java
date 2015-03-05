@@ -68,6 +68,7 @@ public class OCommandExecutorSQLDeleteEdge extends OCommandExecutorSQLRetryAbstr
   private String             label;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLDeleteEdge parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -163,6 +164,7 @@ public class OCommandExecutorSQLDeleteEdge extends OCommandExecutorSQLRetryAbstr
   /**
    * Execute the command and return the ODocument object created.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (fromExpr == null && toExpr == null && rid == null && query == null && compiledFilter == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
@@ -305,6 +307,7 @@ public class OCommandExecutorSQLDeleteEdge extends OCommandExecutorSQLRetryAbstr
   /**
    * Delete the current edge.
    */
+  @Override
   public boolean result(final Object iRecord) {
     final OIdentifiable id = (OIdentifiable) iRecord;
 

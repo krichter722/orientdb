@@ -64,6 +64,7 @@ public class OCommandExecutorSQLTraverse extends OCommandExecutorSQLResultsetAbs
   /**
    * Compile the filter conditions only the first time.
    */
+  @Override
   public OCommandExecutorSQLTraverse parse(final OCommandRequest iRequest) {
     super.parse(iRequest);
 
@@ -133,6 +134,7 @@ public class OCommandExecutorSQLTraverse extends OCommandExecutorSQLResultsetAbs
     return this;
   }
 
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (!assignTarget(iArgs)) {
         throw new OQueryParsingException("No source found in query: specify class, cluster(s) or single record(s)");
@@ -162,15 +164,18 @@ public class OCommandExecutorSQLTraverse extends OCommandExecutorSQLResultsetAbs
     return traverse.getContext();
   }
 
+  @Override
   public Iterator<OIdentifiable> iterator() {
     return iterator(null);
   }
 
+  @Override
   public Iterator<OIdentifiable> iterator(final Map<Object, Object> iArgs) {
     assignTarget(iArgs);
     return traverse;
   }
 
+  @Override
   public String getSyntax() {
     return "TRAVERSE <field>* FROM <target> [WHILE <condition>] [STRATEGY <strategy>]";
   }

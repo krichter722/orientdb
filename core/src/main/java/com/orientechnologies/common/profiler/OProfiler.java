@@ -36,6 +36,7 @@ public class OProfiler extends OAbstractProfiler {
     super(profiler);
   }
 
+  @Override
   public void configure(final String iConfiguration) {
     if (iConfiguration == null || iConfiguration.length() == 0) {
         return;
@@ -48,6 +49,7 @@ public class OProfiler extends OAbstractProfiler {
     startRecording();
   }
 
+  @Override
   public boolean startRecording() {
     if (super.startRecording()) {
       counters.clear();
@@ -57,6 +59,7 @@ public class OProfiler extends OAbstractProfiler {
     return false;
   }
 
+  @Override
   public boolean stopRecording() {
     if (super.stopRecording()) {
       counters.clear();
@@ -66,6 +69,7 @@ public class OProfiler extends OAbstractProfiler {
     return false;
   }
 
+  @Override
   public void updateCounter(final String statName, final String description, final long plus, final String metadata) {
     if (statName == null || !isRecording()) {
         return;
@@ -85,6 +89,7 @@ public class OProfiler extends OAbstractProfiler {
     } while (!counters.replace(statName, oldValue, newValue));
   }
 
+  @Override
   public long getCounter(final String statName) {
     if (statName == null || !isRecording()) {
         return -1;
@@ -174,6 +179,7 @@ public class OProfiler extends OAbstractProfiler {
   /**
    * Updates the metric metadata.
    */
+  @Override
   protected void updateMetadata(final String iName, final String iDescription, final METRIC_TYPE iType) {
     if (iDescription != null && dictionary.putIfAbsent(iName, iDescription) == null) {
         types.put(iName, iType);

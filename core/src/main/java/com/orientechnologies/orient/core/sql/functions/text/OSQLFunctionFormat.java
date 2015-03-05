@@ -36,6 +36,7 @@ public class OSQLFunctionFormat extends OSQLFunctionAbstract {
     super(NAME, 1, -1);
   }
 
+  @Override
   public Object execute(Object iThis, OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] params,
       OCommandContext iContext) {
     final Object[] args = new Object[params.length - 1];
@@ -47,6 +48,7 @@ public class OSQLFunctionFormat extends OSQLFunctionAbstract {
     return String.format((String) params[0], args);
   }
 
+  @Override
   public String getSyntax() {
     return "format(<format>, <arg1> [,<argN>]*)";
   }

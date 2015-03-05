@@ -42,6 +42,7 @@ public class OCommandExecutorSQLDropCluster extends OCommandExecutorSQLAbstract 
 
   private String             clusterName;
 
+  @Override
   public OCommandExecutorSQLDropCluster parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -74,6 +75,7 @@ public class OCommandExecutorSQLDropCluster extends OCommandExecutorSQLAbstract 
   /**
    * Execute the DROP CLUSTER.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (clusterName == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

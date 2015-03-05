@@ -678,10 +678,12 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public void addFullCheckpointListener(OFullCheckpointRequestListener listener) {
     fullCheckpointListeners.add(new WeakReference<OFullCheckpointRequestListener>(listener));
   }
 
+  @Override
   public void removeFullCheckpointListener(OFullCheckpointRequestListener listener) {
     List<WeakReference<OFullCheckpointRequestListener>> itemsToRemove = new ArrayList<WeakReference<OFullCheckpointRequestListener>>();
 
@@ -815,6 +817,7 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     return walLocation;
   }
 
+  @Override
   public OLogSequenceNumber begin() throws IOException {
     syncObject.lock();
     try {
@@ -832,6 +835,7 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public OLogSequenceNumber end() throws IOException {
     syncObject.lock();
     try {
@@ -854,6 +858,7 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public void flush() {
     syncObject.lock();
     try {
@@ -896,6 +901,7 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public OLogSequenceNumber log(OWALRecord record) throws IOException {
     syncObject.lock();
     try {
@@ -980,6 +986,7 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public void truncate() throws IOException {
     syncObject.lock();
     try {
@@ -1000,10 +1007,12 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public void close() throws IOException {
     close(true);
   }
 
+  @Override
   public void close(boolean flush) throws IOException {
     syncObject.lock();
     try {
@@ -1023,10 +1032,12 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public void delete() throws IOException {
     delete(false);
   }
 
+  @Override
   public void delete(boolean flush) throws IOException {
     syncObject.lock();
     try {
@@ -1052,6 +1063,7 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public OWALRecord read(OLogSequenceNumber lsn) throws IOException {
     syncObject.lock();
     try {
@@ -1080,6 +1092,7 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public OLogSequenceNumber next(OLogSequenceNumber lsn) throws IOException {
     syncObject.lock();
     try {
@@ -1115,10 +1128,12 @@ public class ODiskWriteAheadLog extends OAbstractWriteAheadLog {
     }
   }
 
+  @Override
   public OLogSequenceNumber getFlushedLSN() {
     return flushedLsn;
   }
 
+  @Override
   public void cutTill(OLogSequenceNumber lsn) throws IOException {
     syncObject.lock();
     try {

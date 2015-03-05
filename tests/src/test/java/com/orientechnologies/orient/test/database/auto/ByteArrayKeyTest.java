@@ -34,6 +34,7 @@ public class ByteArrayKeyTest extends DocumentDBBaseTest {
   }
 
   @BeforeClass
+  @Override
   public void beforeClass() throws Exception {
     super.beforeClass();
 
@@ -55,6 +56,7 @@ public class ByteArrayKeyTest extends DocumentDBBaseTest {
   }
 
   @BeforeMethod
+  @Override
   public void beforeMethod() throws Exception {
 		super.beforeMethod();
 

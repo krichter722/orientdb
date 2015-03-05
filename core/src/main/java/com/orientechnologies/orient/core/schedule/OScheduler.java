@@ -134,6 +134,7 @@ public OFunction getFunctionSafe()
     return this.isRunning;
   }
 
+  @Override
   public String toString() {
     String str = "OSchedule <name:" + getSchduleName() + ",rule:" + getSchedulingRule() + ",current status:" + getStatus() + ",func:"
         + getFunctionSafe() + ",start:" + isStarted() + ">";

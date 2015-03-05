@@ -109,6 +109,7 @@ public class DistributedHookTest extends AbstractServerClusterTest {
     }
   }
 
+  @Override
   public String getDatabaseName() {
     return "distributed-hook";
   }

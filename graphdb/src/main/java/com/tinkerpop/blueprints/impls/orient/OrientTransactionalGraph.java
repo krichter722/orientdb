@@ -161,6 +161,7 @@ public abstract class OrientTransactionalGraph extends OrientBaseGraph implement
   /**
    * Commits the current active transaction.
    */
+  @Override
   public void commit() {
     makeActive();
 
@@ -177,6 +178,7 @@ public abstract class OrientTransactionalGraph extends OrientBaseGraph implement
   /**
    * Rollbacks the current active transaction. All the pending changes are rollbacked.
    */
+  @Override
   public void rollback() {
     makeActive();
 

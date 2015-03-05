@@ -34,18 +34,22 @@ public class OLazyIteratorListWrapper<T> implements OLazyIterator<T> {
 		underlying = iUnderlying;
 	}
 
+        @Override
 	public boolean hasNext() {
 		return underlying.hasNext();
 	}
 
+        @Override
 	public T next() {
 		return underlying.next();
 	}
 
+        @Override
 	public void remove() {
 		underlying.remove();
 	}
 
+        @Override
 	public T update(T e) {
 		underlying.set(e);
 		return null;

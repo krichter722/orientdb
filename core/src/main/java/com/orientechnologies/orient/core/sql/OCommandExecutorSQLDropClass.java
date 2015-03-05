@@ -44,6 +44,7 @@ public class OCommandExecutorSQLDropClass extends OCommandExecutorSQLAbstract im
   private String             className;
   private boolean            unsafe;
 
+  @Override
   public OCommandExecutorSQLDropClass parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -78,6 +79,7 @@ public class OCommandExecutorSQLDropClass extends OCommandExecutorSQLAbstract im
   /**
    * Execute the DROP CLASS.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (className == null) {
       throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

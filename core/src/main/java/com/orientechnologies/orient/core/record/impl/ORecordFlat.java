@@ -58,6 +58,7 @@ public class ORecordFlat extends ORecordAbstract implements ORecordStringable {
     _recordId = (ORecordId) iRID;
   }
 
+  @Override
   public ORecordFlat value(final String iValue) {
     value = iValue;
     setDirty();
@@ -85,6 +86,7 @@ public class ORecordFlat extends ORecordAbstract implements ORecordStringable {
     return this;
   }
 
+  @Override
   public ORecordFlat copy() {
     ORecordFlat cloned = new ORecordFlat();
     cloned._source = _source;
@@ -96,6 +98,7 @@ public class ORecordFlat extends ORecordAbstract implements ORecordStringable {
     return cloned;
   }
 
+  @Override
   public String value() {
     if (value == null) {
       // LAZY DESERIALIZATION
@@ -141,6 +144,7 @@ public class ORecordFlat extends ORecordAbstract implements ORecordStringable {
     return v != null ? v.length() : 0;
   }
 
+  @Override
   public byte getRecordType() {
     return RECORD_TYPE;
   }

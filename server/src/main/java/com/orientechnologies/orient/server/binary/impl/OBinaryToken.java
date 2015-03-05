@@ -105,6 +105,7 @@ public class OBinaryToken implements OToken {
     return expiry;
   }
 
+  @Override
   public void setExpiry(long expiry) {
     this.expiry = expiry;
   }

@@ -54,42 +54,51 @@ public class OObjectEnumLazySet<TYPE extends Enum> extends HashSet<TYPE> impleme
     addAll(iSourceCollection);
   }
 
+  @Override
   public Iterator<TYPE> iterator() {
     return (Iterator<TYPE>) new OObjectEnumLazyIterator<TYPE>(enumClass, sourceRecord, underlying.iterator());
   }
 
+  @Override
   public int size() {
     return underlying.size();
   }
 
+  @Override
   public boolean isEmpty() {
     return underlying.isEmpty();
   }
 
+  @Override
   public boolean contains(final Object o) {
     boolean underlyingContains = underlying.contains(o.toString());
     return underlyingContains || super.contains(o);
   }
 
+  @Override
   public Object[] toArray() {
     return toArray(new Object[size()]);
   }
 
+  @Override
   public <T> T[] toArray(final T[] a) {
     convertAll();
     return super.toArray(a);
   }
 
+  @Override
   public boolean add(final TYPE e) {
     underlying.add(e.name());
     return super.add(e);
   }
 
+  @Override
   public boolean remove(final Object e) {
     underlying.remove(e.toString());
     return super.remove(e);
   }
 
+  @Override
   public boolean containsAll(final Collection<?> c) {
     for (Object o : c) {
         if (!super.contains(o) && !underlying.contains(o.toString())) {
@@ -100,6 +109,7 @@ public class OObjectEnumLazySet<TYPE extends Enum> extends HashSet<TYPE> impleme
     return true;
   }
 
+  @Override
   public boolean addAll(final Collection<? extends TYPE> c) {
     boolean modified = false;
     setDirty();
@@ -109,6 +119,7 @@ public class OObjectEnumLazySet<TYPE extends Enum> extends HashSet<TYPE> impleme
     return modified;
   }
 
+  @Override
   public boolean retainAll(final Collection<?> c) {
     boolean modified = false;
     Iterator<TYPE> e = iterator();
@@ -121,11 +132,13 @@ public class OObjectEnumLazySet<TYPE extends Enum> extends HashSet<TYPE> impleme
     return modified;
   }
 
+  @Override
   public void clear() {
     setDirty();
     underlying.clear();
   }
 
+  @Override
   public boolean removeAll(final Collection<?> c) {
     setDirty();
     boolean modified = super.removeAll(c);
@@ -154,10 +167,12 @@ public class OObjectEnumLazySet<TYPE extends Enum> extends HashSet<TYPE> impleme
     convertAll();
   }
 
+  @Override
   public void detach(boolean nonProxiedInstance) {
     convertAll();
   }
 
+  @Override
   public void detachAll(boolean nonProxiedInstance, Map<Object, Object> alreadyDetached) {
     convertAll();
   }

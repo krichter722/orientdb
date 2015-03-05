@@ -55,6 +55,7 @@ public abstract class OLazyWrapperIterator<T> implements Iterator<T>, Iterable<T
     return this;
   }
 
+  @Override
   public int size() {
     if (size > -1) {
         return size;

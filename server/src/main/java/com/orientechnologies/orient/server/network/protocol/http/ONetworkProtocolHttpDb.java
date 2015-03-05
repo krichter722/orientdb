@@ -53,6 +53,7 @@ public class ONetworkProtocolHttpDb extends ONetworkProtocolHttpAbstract {
      return CURRENT_PROTOCOL_VERSION;
    }
 
+   @Override
    public String getType() {
      return "http";
    }

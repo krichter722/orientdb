@@ -109,6 +109,7 @@ public class OTriple<K extends Comparable<K>, V, SV> implements Comparable<OTrip
 		return true;
 	}
 
+        @Override
 	public int compareTo(final OTriple<K, V, SV> o) {
 		return key.compareTo(o.key);
 	}

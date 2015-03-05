@@ -63,6 +63,7 @@ public class OSQLSynchQuery<T extends Object> extends OSQLAsynchQuery<T> impleme
     result.clear();
   }
 
+  @Override
   public boolean result(final Object iRecord) {
     if (iRecord != null) {
         result.add((T) iRecord);
@@ -117,6 +118,7 @@ public class OSQLSynchQuery<T extends Object> extends OSQLAsynchQuery<T> impleme
     nextPageRID = null;
   }
 
+  @Override
   public Iterator<T> iterator() {
     execute();
     return ((Iterable<T>) getResult()).iterator();

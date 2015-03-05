@@ -40,14 +40,17 @@ public class ODynamicSQLElementFactory implements OCommandExecutorSQLFactory, OQ
   static final Set<OQueryOperator>                                       OPERATORS = Collections
                                                                                        .synchronizedSet(new HashSet<OQueryOperator>());
 
+  @Override
   public Set<String> getFunctionNames() {
     return FUNCTIONS.keySet();
   }
 
+  @Override
   public boolean hasFunction(final String name) {
     return FUNCTIONS.containsKey(name);
   }
 
+  @Override
   public OSQLFunction createFunction(final String name) throws OCommandExecutionException {
     final Object obj = FUNCTIONS.get(name);
 
@@ -69,10 +72,12 @@ public class ODynamicSQLElementFactory implements OCommandExecutorSQLFactory, OQ
     }
   }
 
+  @Override
   public Set<String> getCommandNames() {
     return COMMANDS.keySet();
   }
 
+  @Override
   public OCommandExecutorSQLAbstract createCommand(final String name) throws OCommandExecutionException {
     final Class<? extends OCommandExecutorSQLAbstract> clazz = COMMANDS.get(name);
 
@@ -88,6 +93,7 @@ public class ODynamicSQLElementFactory implements OCommandExecutorSQLFactory, OQ
     }
   }
 
+  @Override
   public Set<OQueryOperator> getOperators() {
     return OPERATORS;
   }

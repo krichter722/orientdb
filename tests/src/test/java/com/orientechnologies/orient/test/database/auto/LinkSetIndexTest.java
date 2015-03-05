@@ -42,11 +42,13 @@ public class LinkSetIndexTest extends DocumentDBBaseTest {
   }
 
   @BeforeMethod
+  @Override
   public void beforeMethod() {
     database.open("admin", "admin");
   }
 
   @AfterMethod
+  @Override
   public void afterMethod() throws Exception {
     database.command(new OCommandSQL("DELETE FROM LinkSetIndexTestClass")).execute();
 

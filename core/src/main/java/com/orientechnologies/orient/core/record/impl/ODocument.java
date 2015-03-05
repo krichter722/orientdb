@@ -551,6 +551,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
    * Copies the current instance to a new one. Hasn't been choose the clone() to let ODocument return type. Once copied the new
    * instance has the same identity and values but all the internal structure are totally independent by the source.
    */
+  @Override
   public ODocument copy() {
     return (ODocument) copyTo(new ODocument());
   }
@@ -628,6 +629,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
    * 
    * @return true if the record has been detached, otherwise false
    */
+  @Override
   public boolean detach() {
     deserializeFields();
     boolean fullyDetached = true;
@@ -864,6 +866,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
   /**
    * Returns the set of field names.
    */
+  @Override
   public String[] fieldNames() {
     checkForLoading();
     checkForFields();
@@ -878,6 +881,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
   /**
    * Returns the array of field values.
    */
+  @Override
   public Object[] fieldValues() {
     checkForLoading();
     checkForFields();
@@ -912,6 +916,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
    *          field name
    * @return field value if defined, otherwise null
    */
+  @Override
   public <RET> RET field(final String iFieldName) {
     RET value = this.rawField(iFieldName);
 
@@ -962,6 +967,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
    *          Forced type.
    * @return field value if defined, otherwise null
    */
+  @Override
   public <RET> RET field(final String iFieldName, final OType iFieldType) {
     RET value = (RET) field(iFieldName);
     OType original;
@@ -1010,6 +1016,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
    *          field value
    * @return The Record instance itself giving a "fluent interface". Useful to call multiple methods in chain.
    */
+  @Override
   public ODocument field(final String iFieldName, Object iPropertyValue) {
     return field(iFieldName, iPropertyValue, new OType[0]);
   }
@@ -1078,6 +1085,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
    *         document is another document (using the dot (.) notation) then the document returned is the changed one or NULL if no
    *         document has been found in chain
    */
+  @Override
   public ODocument field(String iFieldName, Object iPropertyValue, OType... iFieldType) {
     if ("@class".equals(iFieldName)) {
       setClassName(iPropertyValue.toString());
@@ -1205,6 +1213,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
   /**
    * Removes a field.
    */
+  @Override
   public Object removeField(final String iFieldName) {
     checkForLoading();
     checkForFields();
@@ -1375,6 +1384,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
   /**
    * Returns the iterator fields
    */
+  @Override
   public Iterator<Entry<String, Object>> iterator() {
     checkForLoading();
     checkForFields();
@@ -1387,15 +1397,18 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
     return new Iterator<Entry<String, Object>>() {
       private Entry<String, Object> current;
 
+          @Override
       public boolean hasNext() {
         return iterator.hasNext();
       }
 
+          @Override
       public Entry<String, Object> next() {
         current = iterator.next();
         return current;
       }
 
+          @Override
       public void remove() {
         iterator.remove();
 
@@ -1422,6 +1435,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
    *
    * @return True if exists, otherwise false.
    */
+  @Override
   public boolean containsField(final String iFieldName) {
     if (iFieldName == null) {
         return false;
@@ -1731,6 +1745,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
   /**
    * Returns the number of fields in memory.
    */
+  @Override
   public int fields() {
     checkForLoading();
     checkForFields();
@@ -1803,6 +1818,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
     return (ODocument) save(iClusterName, false);
   }
 
+  @Override
   public ORecordAbstract save(final String iClusterName, final boolean forceCreate) {
     return getDatabase().save(this, iClusterName, ODatabase.OPERATION_MODE.SYNCHRONOUS, forceCreate, null, null);
   }
@@ -1937,6 +1953,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
     return this;
   }
 
+  @Override
   public void setClassNameIfExists(final String iClassName) {
     _immutableClazz = null;
     _immutableSchemaVersion = -1;
@@ -1953,6 +1970,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
     }
   }
 
+  @Override
   public OClass getSchemaClass() {
     if (_className == null) {
         fetchClassName();
@@ -1970,6 +1988,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
     return null;
   }
 
+  @Override
   public String getClassName() {
     if (_className == null) {
         getImmutableSchemaClass();
@@ -1978,6 +1997,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
     return _className;
   }
 
+  @Override
   public void setClassName(final String className) {
     _immutableClazz = null;
     _immutableSchemaVersion = -1;
@@ -2009,6 +2029,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
    * @throws OValidationException
    *           if the document breaks some validation constraints defined in the schema
    */
+  @Override
   public void validate() throws OValidationException {
     if (ODatabaseRecordThreadLocal.INSTANCE.isDefined() && !getDatabase().isValidationEnabled()) {
         return;
@@ -2200,6 +2221,7 @@ public class ODocument extends ORecordAbstract implements Iterable<Entry<String,
   /**
    * Internal.
    */
+  @Override
   protected byte getRecordType() {
     return RECORD_TYPE;
   }

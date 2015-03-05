@@ -82,6 +82,7 @@ public class OrientGraphNoTxRemoteTest extends GraphTest {
   }
 
   @Before
+  @Override
   public void setUp() throws Exception {
     Assume.assumeThat(System.getProperty("orientdb.test.env", "dev").toUpperCase(), IsEqual.equalTo("RELEASE"));
     super.setUp();
@@ -131,10 +132,12 @@ public class OrientGraphNoTxRemoteTest extends GraphTest {
     printTestPerformance("GMLReaderTestSuite", this.stopWatch());
   }
 
+  @Override
   public Graph generateGraph() {
     return generateGraph("graph");
   }
 
+  @Override
   public Graph generateGraph(final String graphDirectoryName) {
     final String url = "remote:localhost:3080/" + graphDirectoryName;
     OrientGraphNoTx graph = currentGraphs.get(url);
@@ -205,6 +208,7 @@ public class OrientGraphNoTxRemoteTest extends GraphTest {
     }
   }
 
+  @Override
   public void doTestSuite(final TestSuite testSuite) throws Exception {
     for (Method method : testSuite.getClass().getDeclaredMethods()) {
       if (method.getName().startsWith("test")) {

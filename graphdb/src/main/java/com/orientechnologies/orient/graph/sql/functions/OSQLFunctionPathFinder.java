@@ -130,6 +130,7 @@ public abstract class OSQLFunctionPathFinder extends OSQLFunctionMathAbstract {
     return path;
   }
 
+  @Override
   public boolean aggregateResults() {
     return false;
   }

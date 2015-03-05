@@ -30,6 +30,7 @@ import com.orientechnologies.common.log.OLogManager;
  * 
  */
 public class OObjectMethodFilter implements MethodFilter {
+  @Override
   public boolean isHandled(final Method m) {
     final String methodName = m.getName();
     final String fieldName = getFieldName(m);

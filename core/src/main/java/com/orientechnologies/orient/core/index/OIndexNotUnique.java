@@ -36,6 +36,7 @@ public class OIndexNotUnique extends OIndexMultiValues {
     super(typeId, algorithm, engine, valueContainerAlgorithm, metadata);
   }
 
+  @Override
   public boolean canBeUsedInEqualityOperators() {
     return true;
   }

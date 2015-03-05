@@ -75,6 +75,7 @@ public class OObjectFetchContext implements OFetchContext {
   }
 
   @SuppressWarnings({ "unchecked", "rawtypes" })
+  @Override
   public void onBeforeMap(ODocument iRootRecord, String iFieldName, final Object iUserObject) throws OFetchException {
     final Map map = (Map) iRootRecord.field(iFieldName);
     Map target = null;
@@ -97,23 +98,28 @@ public class OObjectFetchContext implements OFetchContext {
     OObjectSerializerHelper.setFieldValue(iUserObject, iFieldName, target);
   }
 
+  @Override
   public void onBeforeArray(ODocument iRootRecord, String iFieldName, Object iUserObject, OIdentifiable[] iArray)
       throws OFetchException {
     OObjectSerializerHelper.setFieldValue(iUserObject, iFieldName,
         Array.newInstance(iRootRecord.getSchemaClass().getProperty(iFieldName).getLinkedClass().getJavaClass(), iArray.length));
   }
 
+  @Override
   public void onAfterDocument(ODocument iRootRecord, ODocument iDocument, String iFieldName, Object iUserObject)
       throws OFetchException {
   }
 
+  @Override
   public void onBeforeDocument(ODocument iRecord, ODocument iDocument, String iFieldName, Object iUserObject)
       throws OFetchException {
   }
 
+  @Override
   public void onAfterArray(ODocument iRootRecord, String iFieldName, Object iUserObject) throws OFetchException {
   }
 
+  @Override
   public void onAfterMap(ODocument iRootRecord, String iFieldName, final Object iUserObject) throws OFetchException {
   }
 
@@ -124,6 +130,7 @@ public class OObjectFetchContext implements OFetchContext {
   }
 
   @SuppressWarnings({ "rawtypes", "unchecked" })
+  @Override
   public void onBeforeCollection(ODocument iRootRecord, String iFieldName, final Object iUserObject, final Iterable<?> iterable)
       throws OFetchException {
     if (iterable instanceof ORidBag) {
@@ -167,18 +174,23 @@ public class OObjectFetchContext implements OFetchContext {
     OObjectSerializerHelper.setFieldValue(iUserObject, iFieldName, target);
   }
 
+  @Override
   public void onAfterCollection(ODocument iRootRecord, String iFieldName, final Object iUserObject) throws OFetchException {
   }
 
+  @Override
   public void onAfterFetch(ODocument iRootRecord) throws OFetchException {
   }
 
+  @Override
   public void onBeforeFetch(ODocument iRootRecord) throws OFetchException {
   }
 
+  @Override
   public void onBeforeStandardField(Object iFieldValue, String iFieldName, Object iUserObject) {
   }
 
+  @Override
   public void onAfterStandardField(Object iFieldValue, String iFieldName, Object iUserObject) {
   }
 
@@ -198,6 +210,7 @@ public class OObjectFetchContext implements OFetchContext {
     return fetchPlan;
   }
 
+  @Override
   public boolean fetchEmbeddedDocuments() {
     return true;
   }

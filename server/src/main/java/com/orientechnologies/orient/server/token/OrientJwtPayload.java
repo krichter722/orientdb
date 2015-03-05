@@ -98,10 +98,12 @@ public class OrientJwtPayload implements OJwtPayload {
     this.userRid = userRid;
   }
 
+  @Override
   public String getDatabase() {
     return database;
   }
 
+  @Override
   public void setDatabase(String dbName) {
     this.database = dbName;
   }

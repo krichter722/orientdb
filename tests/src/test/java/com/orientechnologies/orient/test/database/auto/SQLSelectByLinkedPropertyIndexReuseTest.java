@@ -46,6 +46,7 @@ public class SQLSelectByLinkedPropertyIndexReuseTest extends AbstractIndexReuseT
   }
 
   @BeforeClass
+  @Override
   public void beforeClass() throws Exception {
     super.beforeClass();
 
@@ -58,6 +59,7 @@ public class SQLSelectByLinkedPropertyIndexReuseTest extends AbstractIndexReuseT
   }
 
   @AfterClass
+  @Override
   public void afterClass() throws Exception {
     if (database.isClosed()) {
       database.open("admin", "admin");

@@ -55,6 +55,7 @@ public abstract class OIndexMultiValues extends OIndexAbstract<Set<OIdentifiable
     super(type, algorithm, indexEngine, valueContainerAlgorithm, metadata);
   }
 
+  @Override
   public Set<OIdentifiable> get(Object key) {
     checkForRebuild();
 
@@ -97,6 +98,7 @@ public abstract class OIndexMultiValues extends OIndexAbstract<Set<OIdentifiable
     }
   }
 
+  @Override
   public OIndexMultiValues put(Object key, final OIdentifiable iSingleValue) {
     checkForRebuild();
 
@@ -296,6 +298,7 @@ public abstract class OIndexMultiValues extends OIndexAbstract<Set<OIdentifiable
     }
   }
 
+  @Override
   public OIndexMultiValues create(final String name, final OIndexDefinition indexDefinition, final String clusterIndexName,
       final Set<String> clustersToIndex, boolean rebuild, final OProgressListener progressListener) {
 
@@ -303,6 +306,7 @@ public abstract class OIndexMultiValues extends OIndexAbstract<Set<OIdentifiable
         determineValueSerializer());
   }
 
+  @Override
   protected OStreamSerializer determineValueSerializer() {
     if (ODefaultIndexFactory.SBTREEBONSAI_VALUE_CONTAINER.equals(valueContainerAlgorithm)) {
         return (OStreamSerializer) getDatabase().getSerializerFactory().getObjectSerializer(
@@ -430,6 +434,7 @@ public abstract class OIndexMultiValues extends OIndexAbstract<Set<OIdentifiable
     };
   }
 
+  @Override
   public long getSize() {
     checkForRebuild();
     acquireSharedLock();
@@ -441,6 +446,7 @@ public abstract class OIndexMultiValues extends OIndexAbstract<Set<OIdentifiable
 
   }
 
+  @Override
   public long getKeySize() {
     checkForRebuild();
     acquireSharedLock();

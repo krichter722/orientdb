@@ -33,10 +33,12 @@ public class OStreamSerializerRID implements OStreamSerializer, OBinarySerialize
   public static final OStreamSerializerRID INSTANCE = new OStreamSerializerRID();
   public static final byte ID = 16;
 
+  @Override
   public String getName() {
     return NAME;
   }
 
+  @Override
   public Object fromStream(final byte[] iStream) throws IOException {
     if (iStream == null) {
         return null;
@@ -45,6 +47,7 @@ public class OStreamSerializerRID implements OStreamSerializer, OBinarySerialize
     return new ORecordId().fromStream(iStream);
   }
 
+  @Override
   public byte[] toStream(final Object iObject) throws IOException {
     if (iObject == null) {
         return null;
@@ -53,34 +56,42 @@ public class OStreamSerializerRID implements OStreamSerializer, OBinarySerialize
     return ((OIdentifiable) iObject).getIdentity().toStream();
   }
 
+  @Override
   public int getObjectSize(OIdentifiable object, Object... hints) {
     return OLinkSerializer.INSTANCE.getObjectSize(object.getIdentity());
   }
 
+  @Override
   public void serialize(OIdentifiable object, byte[] stream, int startPosition, Object... hints) {
     OLinkSerializer.INSTANCE.serialize(object.getIdentity(), stream, startPosition);
   }
 
+  @Override
   public ORID deserialize(byte[] stream, int startPosition) {
     return OLinkSerializer.INSTANCE.deserialize(stream, startPosition);
   }
 
+  @Override
   public int getObjectSize(byte[] stream, int startPosition) {
     return OLinkSerializer.INSTANCE.getObjectSize(stream, startPosition);
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return OLinkSerializer.INSTANCE.getObjectSizeNative(stream, startPosition);
   }
 
+  @Override
   public void serializeNativeObject(OIdentifiable object, byte[] stream, int startPosition, Object... hints) {
     OLinkSerializer.INSTANCE.serializeNativeObject(object.getIdentity(), stream, startPosition);
   }
 
+  @Override
   public OIdentifiable deserializeNativeObject(byte[] stream, int startPosition) {
     return OLinkSerializer.INSTANCE.deserializeNativeObject(stream, startPosition);
   }
@@ -100,10 +111,12 @@ public class OStreamSerializerRID implements OStreamSerializer, OBinarySerialize
     return OLinkSerializer.INSTANCE.getObjectSizeInDirectMemory(pointer, offset);
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return OLinkSerializer.RID_SIZE;
   }

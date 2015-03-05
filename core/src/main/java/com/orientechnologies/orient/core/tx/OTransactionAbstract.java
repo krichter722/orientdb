@@ -76,14 +76,17 @@ public abstract class OTransactionAbstract implements OTransaction {
     return this;
   }
 
+  @Override
   public boolean isActive() {
     return status != TXSTATUS.INVALID && status != TXSTATUS.COMPLETED && status != TXSTATUS.ROLLED_BACK;
   }
 
+  @Override
   public TXSTATUS getStatus() {
     return status;
   }
 
+  @Override
   public ODatabaseDocumentTx getDatabase() {
     return database;
   }

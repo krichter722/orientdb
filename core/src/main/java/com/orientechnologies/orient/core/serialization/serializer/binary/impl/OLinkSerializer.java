@@ -45,32 +45,39 @@ public class OLinkSerializer implements OBinarySerializer<OIdentifiable> {
   public static final int       RID_SIZE         = OShortSerializer.SHORT_SIZE + CLUSTER_POS_SIZE;
   public static OLinkSerializer INSTANCE         = new OLinkSerializer();
 
+  @Override
   public int getObjectSize(final OIdentifiable rid, Object... hints) {
     return RID_SIZE;
   }
 
+  @Override
   public void serialize(final OIdentifiable rid, final byte[] stream, final int startPosition, Object... hints) {
     final ORID r = rid.getIdentity();
     short2bytes((short) r.getClusterId(), stream, startPosition);
     long2bytes(r.getClusterPosition(), stream, startPosition + OShortSerializer.SHORT_SIZE);
   }
 
+  @Override
   public ORecordId deserialize(final byte[] stream, final int startPosition) {
     return new ORecordId(bytes2short(stream, startPosition), bytes2long(stream, startPosition + OShortSerializer.SHORT_SIZE));
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return RID_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return RID_SIZE;
   }
 
+  @Override
   public void serializeNativeObject(OIdentifiable rid, byte[] stream, int startPosition, Object... hints) {
     final ORID r = rid.getIdentity();
 
@@ -79,6 +86,7 @@ public class OLinkSerializer implements OBinarySerializer<OIdentifiable> {
     OLongSerializer.INSTANCE.serialize(r.getClusterPosition(), stream, startPosition + OShortSerializer.SHORT_SIZE);
   }
 
+  @Override
   public ORecordId deserializeNativeObject(byte[] stream, int startPosition) {
     final int clusterId = OShortSerializer.INSTANCE.deserializeNative(stream, startPosition);
     // Wrong implementation but needed for binary compatibility should be used deserializeNative
@@ -117,10 +125,12 @@ public class OLinkSerializer implements OBinarySerializer<OIdentifiable> {
     return RID_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return RID_SIZE;
   }

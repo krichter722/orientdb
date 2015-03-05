@@ -21,6 +21,7 @@ public class IndexTxAwareOneValueGetTest extends DocumentDBBaseTest {
   }
 
   @BeforeClass
+  @Override
   public void beforeClass() throws Exception {
     super.beforeClass();
 
@@ -28,6 +29,7 @@ public class IndexTxAwareOneValueGetTest extends DocumentDBBaseTest {
   }
 
   @AfterMethod
+  @Override
   public void afterMethod() throws Exception {
     database.command(new OCommandSQL("delete from index:idxTxAwareOneValueGetTest")).execute();
 

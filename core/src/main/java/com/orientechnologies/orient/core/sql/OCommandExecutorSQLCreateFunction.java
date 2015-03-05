@@ -45,6 +45,7 @@ public class OCommandExecutorSQLCreateFunction extends OCommandExecutorSQLAbstra
   private List<String>       parameters = null;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLCreateFunction parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -84,6 +85,7 @@ public class OCommandExecutorSQLCreateFunction extends OCommandExecutorSQLAbstra
   /**
    * Execute the command and return the ODocument object created.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (name == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

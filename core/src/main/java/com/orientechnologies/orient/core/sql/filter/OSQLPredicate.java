@@ -64,6 +64,7 @@ public class OSQLPredicate extends OBaseParser implements OCommandPredicate {
     text(iText);
   }
 
+  @Override
   protected void throwSyntaxErrorException(final String iText) {
     final String syntax = getSyntax();
     if (syntax.equals("?")) {
@@ -122,6 +123,7 @@ public class OSQLPredicate extends OBaseParser implements OCommandPredicate {
     return evaluate(null, null, iContext);
   }
 
+  @Override
   public Object evaluate(final ORecord iRecord, ODocument iCurrentResult, final OCommandContext iContext) {
     if (rootCondition == null) {
         return true;

@@ -25,6 +25,7 @@ import java.nio.ByteOrder;
 public class OSafeBinaryConverter implements OBinaryConverter {
   public static final OSafeBinaryConverter INSTANCE = new OSafeBinaryConverter();
 
+  @Override
   public void putShort(byte[] buffer, int index, short value, ByteOrder byteOrder) {
     if (byteOrder.equals(ByteOrder.BIG_ENDIAN)) {
         short2BytesBigEndian(value, buffer, index);
@@ -33,6 +34,7 @@ public class OSafeBinaryConverter implements OBinaryConverter {
     }
   }
 
+  @Override
   public short getShort(byte[] buffer, int index, ByteOrder byteOrder) {
     if (byteOrder.equals(ByteOrder.BIG_ENDIAN)) {
         return bytes2ShortBigEndian(buffer, index);
@@ -41,6 +43,7 @@ public class OSafeBinaryConverter implements OBinaryConverter {
     return bytes2ShortLittleEndian(buffer, index);
   }
 
+  @Override
   public void putInt(byte[] buffer, int pointer, int value, ByteOrder byteOrder) {
     if (byteOrder.equals(ByteOrder.BIG_ENDIAN)) {
         int2BytesBigEndian(value, buffer, pointer);
@@ -49,6 +52,7 @@ public class OSafeBinaryConverter implements OBinaryConverter {
     }
   }
 
+  @Override
   public int getInt(byte[] buffer, int pointer, ByteOrder byteOrder) {
     if (byteOrder.equals(ByteOrder.BIG_ENDIAN)) {
         return bytes2IntBigEndian(buffer, pointer);
@@ -57,6 +61,7 @@ public class OSafeBinaryConverter implements OBinaryConverter {
     return bytes2IntLittleEndian(buffer, pointer);
   }
 
+  @Override
   public void putLong(byte[] buffer, int index, long value, ByteOrder byteOrder) {
     if (byteOrder.equals(ByteOrder.BIG_ENDIAN)) {
         long2BytesBigEndian(value, buffer, index);
@@ -65,6 +70,7 @@ public class OSafeBinaryConverter implements OBinaryConverter {
     }
   }
 
+  @Override
   public long getLong(byte[] buffer, int index, ByteOrder byteOrder) {
     if (byteOrder.equals(ByteOrder.BIG_ENDIAN)) {
         return bytes2LongBigEndian(buffer, index);
@@ -73,6 +79,7 @@ public class OSafeBinaryConverter implements OBinaryConverter {
     return bytes2LongLittleEndian(buffer, index);
   }
 
+  @Override
   public void putChar(byte[] buffer, int index, char character, ByteOrder byteOrder) {
     if (byteOrder.equals(ByteOrder.BIG_ENDIAN)) {
       buffer[index] = (byte) (character >>> 8);
@@ -84,6 +91,7 @@ public class OSafeBinaryConverter implements OBinaryConverter {
 
   }
 
+  @Override
   public char getChar(byte[] buffer, int index, ByteOrder byteOrder) {
     if (byteOrder.equals(ByteOrder.BIG_ENDIAN)) {
         return (char) (((buffer[index] & 0xFF) << 8) + (buffer[index + 1] & 0xFF));
@@ -92,6 +100,7 @@ public class OSafeBinaryConverter implements OBinaryConverter {
     return (char) (((buffer[index + 1] & 0xFF) << 8) + (buffer[index] & 0xFF));
   }
 
+  @Override
   public boolean nativeAccelerationUsed() {
     return false;
   }

@@ -42,6 +42,7 @@ public class OSQLFunctionUUID extends OSQLFunctionAbstract {
     super(NAME, 0, 0);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, final Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     return UUID.randomUUID();
@@ -51,6 +52,7 @@ public class OSQLFunctionUUID extends OSQLFunctionAbstract {
     return false;
   }
 
+  @Override
   public String getSyntax() {
     return "uuid()";
   }

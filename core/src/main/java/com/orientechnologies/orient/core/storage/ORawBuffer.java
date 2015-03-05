@@ -57,12 +57,14 @@ public class ORawBuffer extends OBuffer {
     this.recordType = ORecordInternal.getRecordType(iRecord);
   }
 
+  @Override
   public void readExternal(final ObjectInput iInput) throws IOException, ClassNotFoundException {
     super.readExternal(iInput);
     version.getSerializer().readFrom(iInput, version);
     recordType = iInput.readByte();
   }
 
+  @Override
   public void writeExternal(final ObjectOutput iOutput) throws IOException {
     super.writeExternal(iOutput);
     version.getSerializer().writeTo(iOutput, version);

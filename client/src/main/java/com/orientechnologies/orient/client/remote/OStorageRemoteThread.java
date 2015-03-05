@@ -81,6 +81,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     return sessionSerialId.decrementAndGet();
   }
 
+  @Override
   public void open(final String iUserName, final String iUserPassword, final Map<String, Object> iOptions) {
     pushSession();
     try {
@@ -100,6 +101,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     return delegate.getCollectionManagerClass();
   }
 
+  @Override
   public void create(final Map<String, Object> iOptions) {
     pushSession();
     try {
@@ -109,6 +111,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public void close(boolean iForce, boolean onDelete) {
     pushSession();
     try {
@@ -119,6 +122,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public boolean dropCluster(final String iClusterName, final boolean iTruncate) {
     pushSession();
     try {
@@ -128,6 +132,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public int getUsers() {
     pushSession();
     try {
@@ -137,6 +142,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public int addUser() {
     pushSession();
     try {
@@ -146,6 +152,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public OSharedResourceAdaptiveExternal getLock() {
     pushSession();
     try {
@@ -162,6 +169,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     delegate.setSessionId(serverURL, iSessionId, iToken);
   }
 
+  @Override
   public void reload() {
     pushSession();
     try {
@@ -171,6 +179,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public boolean exists() {
     pushSession();
     try {
@@ -180,6 +189,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public int removeUser() {
     pushSession();
     try {
@@ -189,6 +199,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public void close() {
     pushSession();
     try {
@@ -200,6 +211,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public void delete() {
     pushSession();
     try {
@@ -215,6 +227,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     return delegate;
   }
 
+  @Override
   public Set<String> getClusterNames() {
     pushSession();
     try {
@@ -236,6 +249,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     throw new UnsupportedOperationException("restore");
   }
 
+  @Override
   public OStorageOperationResult<OPhysicalPosition> createRecord(final ORecordId iRid, final byte[] iContent,
       ORecordVersion iRecordVersion, final byte iRecordType, final int iMode, ORecordCallback<Long> iCallback) {
     pushSession();
@@ -246,6 +260,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public OStorageOperationResult<ORawBuffer> readRecord(final ORecordId iRid, final String iFetchPlan, boolean iIgnoreCache,
       ORecordCallback<ORawBuffer> iCallback, boolean loadTombstones, LOCKING_STRATEGY iLockingStrategy) {
     pushSession();
@@ -256,6 +271,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public OStorageOperationResult<ORecordVersion> updateRecord(final ORecordId iRid, boolean updateContent, final byte[] iContent,
       final ORecordVersion iVersion, final byte iRecordType, final int iMode, ORecordCallback<ORecordVersion> iCallback) {
     pushSession();
@@ -266,6 +282,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public OStorageOperationResult<Boolean> deleteRecord(final ORecordId iRid, final ORecordVersion iVersion, final int iMode,
       ORecordCallback<Boolean> iCallback) {
     pushSession();
@@ -321,6 +338,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public long count(final int iClusterId) {
     pushSession();
     try {
@@ -350,10 +368,12 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public String toString() {
     return delegate.toString();
   }
 
+  @Override
   public long[] getClusterDataRange(final int iClusterId) {
     pushSession();
     try {
@@ -403,6 +423,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public long getSize() {
     pushSession();
     try {
@@ -412,6 +433,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public long countRecords() {
     pushSession();
     try {
@@ -421,6 +443,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public long count(final int[] iClusterIds) {
     pushSession();
     try {
@@ -430,6 +453,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public Object command(final OCommandRequestText iCommand) {
     pushSession();
     try {
@@ -439,6 +463,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public void commit(final OTransaction iTx, Runnable callback) {
     pushSession();
     try {
@@ -448,6 +473,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public void rollback(OTransaction iTx) {
     pushSession();
     try {
@@ -457,6 +483,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public int getClusterIdByName(final String iClusterName) {
     pushSession();
     try {
@@ -466,6 +493,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public int getDefaultClusterId() {
     pushSession();
     try {
@@ -475,6 +503,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public void setDefaultClusterId(final int defaultClusterId) {
     pushSession();
     try {
@@ -484,6 +513,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public int addCluster(final String iClusterName, boolean forceListBased, final Object... iArguments) {
     pushSession();
     try {
@@ -493,6 +523,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public int addCluster(String iClusterName, int iRequestedId, boolean forceListBased, Object... iParameters) {
     pushSession();
     try {
@@ -502,6 +533,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public boolean dropCluster(final int iClusterId, final boolean iTruncate) {
     pushSession();
     try {
@@ -511,6 +543,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public void synch() {
     pushSession();
     try {
@@ -520,6 +553,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public String getPhysicalClusterNameById(final int iClusterId) {
     pushSession();
     try {
@@ -529,6 +563,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public int getClusters() {
     pushSession();
     try {
@@ -538,6 +573,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public Collection<OCluster> getClusterInstances() {
     pushSession();
     try {
@@ -547,6 +583,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public OCluster getClusterById(final int iId) {
     pushSession();
     try {
@@ -556,6 +593,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public long getVersion() {
     pushSession();
     try {
@@ -583,6 +621,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public OStorageConfiguration getConfiguration() {
     pushSession();
     try {
@@ -592,10 +631,12 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public boolean isClosed() {
     return (sessionId < 0 && token == null) || delegate.isClosed();
   }
 
+  @Override
   public boolean checkForRecordValidity(final OPhysicalPosition ppos) {
     pushSession();
     try {
@@ -610,6 +651,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     return false;
   }
 
+  @Override
   public String getName() {
     pushSession();
     try {
@@ -619,6 +661,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     }
   }
 
+  @Override
   public String getURL() {
     return delegate.getURL();
   }
@@ -642,14 +685,17 @@ public class OStorageRemoteThread implements OStorageProxy {
     return 0;
   }
 
+  @Override
   public boolean existsResource(final String iName) {
     return delegate.existsResource(iName);
   }
 
+  @Override
   public synchronized <T> T getResource(final String iName, final Callable<T> iCallback) {
     return (T) delegate.getResource(iName, iCallback);
   }
 
+  @Override
   public <T> T removeResource(final String iName) {
     return (T) delegate.removeResource(iName);
   }
@@ -658,6 +704,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     return delegate.getClusterConfiguration();
   }
 
+  @Override
   public <V> V callInLock(final Callable<V> iCallable, final boolean iExclusiveLock) {
     return delegate.callInLock(iCallable, iExclusiveLock);
   }
@@ -679,6 +726,7 @@ public class OStorageRemoteThread implements OStorageProxy {
     delegate.checkForClusterPermissions(iClusterName);
   }
 
+  @Override
   public STATUS getStatus() {
     return delegate.getStatus();
   }

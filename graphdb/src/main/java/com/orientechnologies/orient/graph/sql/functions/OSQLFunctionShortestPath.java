@@ -56,6 +56,7 @@ public class OSQLFunctionShortestPath extends OSQLFunctionMathAbstract {
     super(NAME, 2, 3);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       final OCommandContext iContext) {
     final OModifiableBoolean shutdownFlag = new OModifiableBoolean();
@@ -131,6 +132,7 @@ public class OSQLFunctionShortestPath extends OSQLFunctionMathAbstract {
     }
   }
 
+  @Override
   public String getSyntax() {
     return "shortestPath(<sourceVertex>, <destinationVertex>, [<direction>])";
   }

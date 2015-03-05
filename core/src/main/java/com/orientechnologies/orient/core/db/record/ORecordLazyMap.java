@@ -126,14 +126,17 @@ public class ORecordLazyMap extends OTrackedMap<OIdentifiable> implements ORecor
     return ORecordMultiValueHelper.toString(this);
   }
 
+  @Override
   public boolean isAutoConvertToRecord() {
     return autoConvertToRecord;
   }
 
+  @Override
   public void setAutoConvertToRecord(boolean convertToRecord) {
     this.autoConvertToRecord = convertToRecord;
   }
 
+  @Override
   public void convertLinks2Records() {
     if (status == MULTIVALUE_CONTENT_TYPE.ALL_RECORDS || !autoConvertToRecord
         || getOwner().getInternalStatus() == STATUS.MARSHALLING) {
@@ -147,6 +150,7 @@ public class ORecordLazyMap extends OTrackedMap<OIdentifiable> implements ORecor
     status = MULTIVALUE_CONTENT_TYPE.ALL_RECORDS;
   }
 
+  @Override
   public boolean convertRecords2Links() {
     if (status == MULTIVALUE_CONTENT_TYPE.ALL_RIDS) {
         // PRECONDITIONS
@@ -256,10 +260,12 @@ public class ORecordLazyMap extends OTrackedMap<OIdentifiable> implements ORecor
     return recordType;
   }
 
+  @Override
   public Iterator<OIdentifiable> rawIterator() {
     return new OLazyRecordIterator(sourceRecord, super.values().iterator(), false);
   }
 
+  @Override
   public boolean detach() {
     return convertRecords2Links();
   }

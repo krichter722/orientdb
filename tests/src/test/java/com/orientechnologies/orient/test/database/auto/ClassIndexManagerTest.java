@@ -36,6 +36,7 @@ public class ClassIndexManagerTest  extends DocumentDBBaseTest {
 	}
 
 	@BeforeClass
+        @Override
   public void beforeClass() throws Exception {
 		super.beforeClass();
 
@@ -84,6 +85,7 @@ public class ClassIndexManagerTest  extends DocumentDBBaseTest {
   }
 
   @AfterMethod
+        @Override
   public void afterMethod() throws Exception {
 		database.command(new OCommandSQL("delete from classIndexManagerTestClass")).execute();
 		database.command(new OCommandSQL("delete from classIndexManagerTestClassTwo")).execute();

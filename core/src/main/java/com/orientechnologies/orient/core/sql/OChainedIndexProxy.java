@@ -124,6 +124,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     }
 
     final Set<OIndex<?>> involvedIndexes = new TreeSet<OIndex<?>>(new Comparator<OIndex<?>>() {
+      @Override
       public int compare(OIndex<?> o1, OIndex<?> o2) {
         return o1.getDefinition().getParamCount() - o2.getDefinition().getParamCount();
       }
@@ -258,6 +259,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     return Boolean.FALSE.equals(ignoreNullValues);
   }
 
+  @Override
   public String getDatabaseName() {
     return firstIndex.getDatabaseName();
   }
@@ -306,6 +308,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   /**
    * Returns internal index of last chain index, because proxy applicable to all operations that last index applicable.
    */
+  @Override
   public OIndexInternal<T> getInternal() {
     return (OIndexInternal<T>) lastIndex.getInternal();
   }
@@ -313,6 +316,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
   /**
    * {@inheritDoc}
    */
+  @Override
   public OIndexDefinition getDefinition() {
     return lastIndex.getDefinition();
   }
@@ -425,6 +429,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     }
   }
 
+  @Override
   public ODocument checkEntry(final OIdentifiable iRecord, final Object iKey) {
     return firstIndex.checkEntry(iRecord, iKey);
   }
@@ -439,10 +444,12 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public boolean contains(Object iKey) {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public OType[] getKeyTypes() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
@@ -451,18 +458,22 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public OIndex<T> put(Object iKey, OIdentifiable iValue) {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public boolean remove(Object key) {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public boolean remove(Object iKey, OIdentifiable iRID) {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public OIndex<T> clear() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
@@ -471,10 +482,12 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public long getSize() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public long getKeySize() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
@@ -484,6 +497,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public OIndex<T> delete() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
@@ -493,22 +507,27 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public String getType() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public boolean isAutomatic() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public long rebuild() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public long rebuild(OProgressListener iProgressListener) {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public ODocument getConfiguration() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
@@ -518,10 +537,12 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public ORID getIdentity() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public Set<String> getClusters() {
     throw new UnsupportedOperationException("Not allowed operation");
   }
@@ -551,6 +572,7 @@ public class OChainedIndexProxy<T> implements OIndex<T> {
     throw new UnsupportedOperationException("Not allowed operation");
   }
 
+  @Override
   public boolean supportsOrderedIterations() {
     return false;
   }

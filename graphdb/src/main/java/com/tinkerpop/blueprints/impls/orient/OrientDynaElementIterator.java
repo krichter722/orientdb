@@ -41,10 +41,12 @@ class OrientDynaElementIterator implements Iterator<Object> {
     this.graph = graph;
   }
 
+  @Override
   public boolean hasNext() {
     return this.itty.hasNext();
   }
 
+  @Override
   public Object next() {
     OrientElement currentElement = null;
 
@@ -81,6 +83,7 @@ class OrientDynaElementIterator implements Iterator<Object> {
     return currentElement;
   }
 
+  @Override
   public void remove() {
     throw new UnsupportedOperationException();
   }

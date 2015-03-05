@@ -64,6 +64,7 @@ public abstract class OCommandExecutorAbstract extends OBaseParser implements OC
     return progressListener;
   }
 
+  @Override
   public <RET extends OCommandExecutor> RET setProgressListener(final OProgressListener progressListener) {
     this.progressListener = progressListener;
     return (RET) this;
@@ -73,11 +74,13 @@ public abstract class OCommandExecutorAbstract extends OBaseParser implements OC
     return limit;
   }
 
+  @Override
   public <RET extends OCommandExecutor> RET setLimit(final int iLimit) {
     this.limit = iLimit;
     return (RET) this;
   }
 
+  @Override
   public Map<Object, Object> getParameters() {
     return parameters;
   }
@@ -87,6 +90,7 @@ public abstract class OCommandExecutorAbstract extends OBaseParser implements OC
     return null;
   }
 
+  @Override
   public OCommandContext getContext() {
     if (context == null) {
         context = new OBasicCommandContext();
@@ -94,6 +98,7 @@ public abstract class OCommandExecutorAbstract extends OBaseParser implements OC
     return context;
   }
 
+  @Override
   public void setContext(final OCommandContext iContext) {
     context = iContext;
   }
@@ -108,6 +113,7 @@ public abstract class OCommandExecutorAbstract extends OBaseParser implements OC
     return ORole.PERMISSION_READ;
   }
 
+  @Override
   public boolean involveSchema() {
     return false;
   }

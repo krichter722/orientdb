@@ -97,6 +97,7 @@ public class OConcurrentModificationException extends ONeedRetryException {
     return rid;
   }
 
+  @Override
   public String getMessage() {
     final String operation = ORecordOperation.getName(recordOperation);
 

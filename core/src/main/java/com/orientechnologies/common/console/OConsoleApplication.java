@@ -496,6 +496,7 @@ public class OConsoleApplication {
     }
 
     final Map<Method, Object> consoleMethods = new TreeMap<Method, Object>(new Comparator<Method>() {
+      @Override
       public int compare(Method o1, Method o2) {
         int res = o1.getName().compareTo(o2.getName());
         if (res == 0) {

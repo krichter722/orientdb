@@ -431,6 +431,7 @@ public class OClassIndexManager extends ODocumentHookAbstract {
     return iRecord;
   }
 
+  @Override
   public DISTRIBUTED_EXECUTION_MODE getDistributedExecutionMode() {
     return DISTRIBUTED_EXECUTION_MODE.TARGET_NODE;
   }

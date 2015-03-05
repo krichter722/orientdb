@@ -47,6 +47,7 @@ public class OCommandExecutorSQLAlterClass extends OCommandExecutorSQLAbstract i
   private ATTRIBUTES         attribute;
   private String             value;
 
+  @Override
   public OCommandExecutorSQLAlterClass parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -106,6 +107,7 @@ public class OCommandExecutorSQLAlterClass extends OCommandExecutorSQLAbstract i
   /**
    * Execute the ALTER CLASS.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     final ODatabaseDocument database = getDatabase();
 
@@ -123,6 +125,7 @@ public class OCommandExecutorSQLAlterClass extends OCommandExecutorSQLAbstract i
     return null;
   }
 
+  @Override
   public String getSyntax() {
     return "ALTER CLASS <class> <attribute-name> <attribute-value>";
   }

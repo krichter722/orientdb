@@ -39,61 +39,76 @@ public class OSecurityNull implements OSecurity {
     return true;
   }
 
+  @Override
   public OUser create() {
     return null;
   }
 
+  @Override
   public void load() {
   }
 
+  @Override
   public OUser getUser(String iUserName) {
     return null;
   }
 
+  @Override
   public OUser getUser(ORID iUserId) {
     return null;
   }
 
+  @Override
   public OUser createUser(String iUserName, String iUserPassword, String... iRoles) {
     return null;
   }
 
+  @Override
   public OUser createUser(String iUserName, String iUserPassword, ORole... iRoles) {
     return null;
   }
 
+  @Override
   public ORole getRole(String iRoleName) {
     return null;
   }
 
+  @Override
   public ORole getRole(OIdentifiable iRole) {
     return null;
   }
 
+  @Override
   public ORole createRole(String iRoleName, OSecurityRole.ALLOW_MODES iAllowMode) {
     return null;
   }
 
+  @Override
   public ORole createRole(String iRoleName, ORole iParent, OSecurityRole.ALLOW_MODES iAllowMode) {
     return null;
   }
 
+  @Override
   public List<ODocument> getAllUsers() {
     return null;
   }
 
+  @Override
   public List<ODocument> getAllRoles() {
     return null;
   }
 
+  @Override
   public OUser authenticate(String iUsername, String iUserPassword) {
     return null;
   }
 
+  @Override
   public OUser authenticate(OToken authToken) {
     return null;
   }
 
+  @Override
   public void close(boolean onDelete) {
   }
 
@@ -101,10 +116,12 @@ public class OSecurityNull implements OSecurity {
     return null;
   }
 
+  @Override
   public boolean dropUser(String iUserName) {
     return false;
   }
 
+  @Override
   public boolean dropRole(String iRoleName) {
     return false;
   }

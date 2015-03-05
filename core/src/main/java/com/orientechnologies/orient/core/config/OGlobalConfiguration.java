@@ -342,6 +342,7 @@ public enum OGlobalConfiguration {
   // PROFILER
   PROFILER_ENABLED("profiler.enabled", "Enable the recording of statistics and counters", Boolean.class, false,
       new OConfigurationChangeCallback() {
+        @Override
         public void change(final Object iCurrentValue, final Object iNewValue) {
           if ((Boolean) iNewValue) {
               Orient.instance().getProfiler().startRecording();
@@ -353,6 +354,7 @@ public enum OGlobalConfiguration {
 
   PROFILER_CONFIG("profiler.config", "Configures the profiler as <seconds-for-snapshot>,<archive-snapshot-size>,<summary-size>",
       String.class, null, new OConfigurationChangeCallback() {
+        @Override
         public void change(final Object iCurrentValue, final Object iNewValue) {
           Orient.instance().getProfiler().configure(iNewValue.toString());
         }
@@ -361,6 +363,7 @@ public enum OGlobalConfiguration {
   PROFILER_AUTODUMP_INTERVAL("profiler.autoDump.interval",
       "Dumps the profiler values at regular intervals. Time is expressed in seconds", Integer.class, 0,
       new OConfigurationChangeCallback() {
+        @Override
         public void change(final Object iCurrentValue, final Object iNewValue) {
           Orient.instance().getProfiler().setAutoDump((Integer) iNewValue);
         }
@@ -368,12 +371,14 @@ public enum OGlobalConfiguration {
 
   // LOG
   LOG_CONSOLE_LEVEL("log.console.level", "Console logging level", String.class, "info", new OConfigurationChangeCallback() {
+    @Override
     public void change(final Object iCurrentValue, final Object iNewValue) {
       OLogManager.instance().setLevel((String) iNewValue, ConsoleHandler.class);
     }
   }),
 
   LOG_FILE_LEVEL("log.file.level", "File logging level", String.class, "fine", new OConfigurationChangeCallback() {
+    @Override
     public void change(final Object iCurrentValue, final Object iNewValue) {
       OLogManager.instance().setLevel((String) iNewValue, FileHandler.class);
     }

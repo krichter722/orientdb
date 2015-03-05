@@ -38,6 +38,7 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertexType;
 public class ServerClusterSchemaTest extends AbstractServerClusterTest {
   final static int SERVERS = 3;
 
+  @Override
   public String getDatabaseName() {
     return "distributed-schema";
   }

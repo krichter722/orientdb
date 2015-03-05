@@ -47,6 +47,7 @@ public class OCommandExecutorSQLCreateClass extends OCommandExecutorSQLAbstract 
   private OClass             superClass;
   private int[]              clusterIds;
 
+  @Override
   public OCommandExecutorSQLCreateClass parse(final OCommandRequest iRequest) {
     final ODatabaseDocumentInternal database = getDatabase();
     init((OCommandRequestText) iRequest);
@@ -146,6 +147,7 @@ public class OCommandExecutorSQLCreateClass extends OCommandExecutorSQLAbstract 
   /**
    * Execute the CREATE CLASS.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (className == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

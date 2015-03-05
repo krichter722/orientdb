@@ -92,6 +92,7 @@ public class OIndexManagerShared extends OIndexManagerAbstract implements OIndex
    *          document with additional properties that can be used by index engine.
    * @return a newly created index instance
    */
+  @Override
   public OIndex<?> createIndex(final String iName, final String iType, final OIndexDefinition indexDefinition,
       final int[] clusterIdsToIndex, OProgressListener progressListener, ODocument metadata) {
     return createIndex(iName, iType, indexDefinition, clusterIdsToIndex, progressListener, metadata, null);
@@ -118,6 +119,7 @@ public class OIndexManagerShared extends OIndexManagerAbstract implements OIndex
    *          tip to an index factory what algorithm to use
    * @return a newly created index instance
    */
+  @Override
   public OIndex<?> createIndex(final String iName, final String iType, final OIndexDefinition indexDefinition,
       final int[] clusterIdsToIndex, OProgressListener progressListener, ODocument metadata, String algorithm) {
     if (getDatabase().getTransaction().isActive()) {
@@ -229,6 +231,7 @@ public class OIndexManagerShared extends OIndexManagerAbstract implements OIndex
     return algorithm;
   }
 
+  @Override
   public OIndexManager dropIndex(final String iIndexName) {
     if (getDatabase().getTransaction().isActive()) {
         throw new IllegalStateException("Cannot drop an index inside a transaction");
@@ -335,6 +338,7 @@ public class OIndexManagerShared extends OIndexManagerAbstract implements OIndex
     }
   }
 
+  @Override
   public boolean autoRecreateIndexesAfterCrash() {
     if (rebuildCompleted) {
         return false;
@@ -422,6 +426,7 @@ public class OIndexManagerShared extends OIndexManagerAbstract implements OIndex
     }
   }
 
+  @Override
   public void removeClassPropertyIndex(final OIndex<?> idx) {
     final OIndexDefinition indexDefinition = idx.getDefinition();
     if (indexDefinition == null || indexDefinition.getClassName() == null) {

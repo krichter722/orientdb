@@ -355,10 +355,12 @@ public abstract class OAbstractBlock implements OProcessorBlock {
     return value;
   }
 
+  @Override
   public OProcessorBlock getParentBlock() {
     return parentBlock;
   }
 
+  @Override
   public void setParentBlock(OProcessorBlock parentBlock) {
     this.parentBlock = parentBlock;
   }

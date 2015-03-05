@@ -35,6 +35,7 @@ import com.orientechnologies.orient.core.storage.impl.local.paginated.OLocalPagi
 public class OEngineLocalPaginated extends OEngineAbstract {
   public static final String NAME = "plocal";
 
+  @Override
   public OStorage createStorage(final String dbName, final Map<String, String> configuration) {
     try {
       // GET THE STORAGE
@@ -48,10 +49,12 @@ public class OEngineLocalPaginated extends OEngineAbstract {
     return null;
   }
 
+  @Override
   public String getName() {
     return NAME;
   }
 
+  @Override
   public boolean isShared() {
     return true;
   }

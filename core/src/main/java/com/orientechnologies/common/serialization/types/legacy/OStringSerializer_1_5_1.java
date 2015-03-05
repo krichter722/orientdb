@@ -41,10 +41,12 @@ public class OStringSerializer_1_5_1 implements OBinarySerializer<String> {
   public static final byte                    ID        = 13;
   private static final OBinaryConverter       CONVERTER = OBinaryConverterFactory.getConverter();
 
+  @Override
   public int getObjectSize(final String object, final Object... hints) {
     return object.length() * 2 + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public void serialize(final String object, final byte[] stream, final int startPosition, Object... hints) {
     final OCharSerializer charSerializer = OCharSerializer.INSTANCE;
     final int length = object.length();
@@ -54,6 +56,7 @@ public class OStringSerializer_1_5_1 implements OBinarySerializer<String> {
     }
   }
 
+  @Override
   public String deserialize(final byte[] stream, final int startPosition) {
     final OCharSerializer charSerializer = OCharSerializer.INSTANCE;
     final int len = OIntegerSerializer.INSTANCE.deserializeLiteral(stream, startPosition);
@@ -64,14 +67,17 @@ public class OStringSerializer_1_5_1 implements OBinarySerializer<String> {
     return stringBuilder.toString();
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return OIntegerSerializer.INSTANCE.deserializeLiteral(stream, startPosition) * 2 + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(final byte[] stream, final int startPosition) {
     return OIntegerSerializer.INSTANCE.deserializeNative(stream, startPosition) * 2 + OIntegerSerializer.INT_SIZE;
   }
@@ -140,10 +146,12 @@ public class OStringSerializer_1_5_1 implements OBinarySerializer<String> {
     return value;
   }
 
+  @Override
   public boolean isFixedLength() {
     return false;
   }
 
+  @Override
   public int getFixedLength() {
     return 0;
   }

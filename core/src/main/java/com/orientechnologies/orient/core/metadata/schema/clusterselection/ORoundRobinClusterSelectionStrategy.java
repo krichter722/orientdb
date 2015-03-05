@@ -29,6 +29,7 @@ public class ORoundRobinClusterSelectionStrategy implements OClusterSelectionStr
   public static final String NAME    = "round-robin";
   private AtomicLong         pointer = new AtomicLong(0);
 
+  @Override
   public int getCluster(final OClass clazz, final ODocument doc) {
     final int[] clusters = clazz.getClusterIds();
     if (clusters.length == 1) {

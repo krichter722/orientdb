@@ -180,10 +180,12 @@ public abstract class AbstractServerClusterInsertTest extends AbstractServerClus
     }
   }
 
+  @Override
   public String getDatabaseName() {
     return "distributed";
   }
 
+  @Override
   public void executeTest() throws Exception {
 
     ODatabaseDocumentTx database = poolFactory.get(getDatabaseURL(serverInstance.get(0)), "admin", "admin").acquire();

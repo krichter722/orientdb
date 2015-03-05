@@ -38,6 +38,7 @@ public class OTraverseRecordSetProcess extends OTraverseAbstractProcess<Iterator
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OIdentifiable process() {
     while (target.hasNext()) {
       record = target.next();

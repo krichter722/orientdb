@@ -216,6 +216,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return (RET) owner.reload();
   }
 
+  @Override
   public String getCustom(final String iName) {
     acquireSchemaReadLock();
     try {
@@ -229,6 +230,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OClassImpl setCustom(final String name, final String value) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -270,10 +272,12 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public void removeCustom(final String name) {
     setCustom(name, null);
   }
 
+  @Override
   public void clearCustom() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -301,6 +305,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Set<String> getCustomKeys() {
     acquireSchemaReadLock();
     try {
@@ -318,6 +323,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return Arrays.binarySearch(clusterIds, clusterId) >= 0;
   }
 
+  @Override
   public OClass getSuperClass() {
     acquireSchemaReadLock();
     try {
@@ -334,6 +340,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
    *          Super class as OClass instance
    * @return the object itself.
    */
+  @Override
   public OClass setSuperClass(final OClass superClass) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
     acquireSchemaWriteLock();
@@ -386,6 +393,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public String getName() {
     acquireSchemaReadLock();
     try {
@@ -395,6 +403,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OClass setName(final String name) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
     acquireSchemaWriteLock();
@@ -424,6 +433,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return this;
   }
 
+  @Override
   public long getSize() {
     acquireSchemaReadLock();
     try {
@@ -438,6 +448,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public String getShortName() {
     acquireSchemaReadLock();
     try {
@@ -447,6 +458,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OClass setShortName(String shortName) {
     if (shortName != null) {
       shortName = shortName.trim();
@@ -483,6 +495,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return this;
   }
 
+  @Override
   public String getStreamableName() {
     acquireSchemaReadLock();
     try {
@@ -492,6 +505,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Collection<OProperty> declaredProperties() {
     acquireSchemaReadLock();
     try {
@@ -501,6 +515,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Map<String, OProperty> propertiesMap() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
 
@@ -529,6 +544,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Collection<OProperty> properties() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
 
@@ -550,6 +566,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Collection<OProperty> getIndexedProperties() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
 
@@ -579,6 +596,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OProperty getProperty(String propertyName) {
     acquireSchemaReadLock();
     try {
@@ -602,10 +620,12 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OProperty createProperty(final String iPropertyName, final OType iType) {
     return addProperty(iPropertyName, iType, null, null);
   }
 
+  @Override
   public OProperty createProperty(final String iPropertyName, final OType iType, final OClass iLinkedClass) {
     if (iLinkedClass == null) {
         throw new OSchemaException("Missing linked class");
@@ -614,10 +634,12 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return addProperty(iPropertyName, iType, null, iLinkedClass);
   }
 
+  @Override
   public OProperty createProperty(final String iPropertyName, final OType iType, final OType iLinkedType) {
     return addProperty(iPropertyName, iType, iLinkedType, null);
   }
 
+  @Override
   public boolean existsProperty(String propertyName) {
     acquireSchemaReadLock();
     try {
@@ -641,6 +663,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public void dropProperty(final String propertyName) {
     if (getDatabase().getTransaction().isActive()) {
         throw new IllegalStateException("Cannot drop a property inside a transaction");
@@ -782,6 +805,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return document;
   }
 
+  @Override
   public Class<?> getJavaClass() {
     acquireSchemaReadLock();
     try {
@@ -801,6 +825,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public int getDefaultClusterId() {
     acquireSchemaReadLock();
     try {
@@ -810,6 +835,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public void setDefaultClusterId(final int defaultClusterId) {
     acquireSchemaWriteLock();
     try {
@@ -820,6 +846,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public int[] getClusterIds() {
     acquireSchemaReadLock();
     try {
@@ -829,6 +856,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public int[] getPolymorphicClusterIds() {
     acquireSchemaReadLock();
     try {
@@ -850,6 +878,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OClass addClusterId(final int clusterId) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -914,6 +943,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return this;
   }
 
+  @Override
   public OClass removeClusterId(final int clusterId) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -944,6 +974,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return this;
   }
 
+  @Override
   public Collection<OClass> getBaseClasses() {
     acquireSchemaReadLock();
     try {
@@ -957,6 +988,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Collection<OClass> getAllBaseClasses() {
     acquireSchemaReadLock();
     try {
@@ -993,6 +1025,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public float getOverSize() {
     acquireSchemaReadLock();
     try {
@@ -1013,6 +1046,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OClass setOverSize(final float overSize) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
     acquireSchemaWriteLock();
@@ -1053,6 +1087,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public boolean isAbstract() {
     acquireSchemaReadLock();
     try {
@@ -1062,6 +1097,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OClass setAbstract(boolean isAbstract) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -1091,6 +1127,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return this;
   }
 
+  @Override
   public boolean isStrictMode() {
     acquireSchemaReadLock();
     try {
@@ -1100,6 +1137,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public OClass setStrictMode(final boolean isStrict) {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_UPDATE);
 
@@ -1190,6 +1228,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public int compareTo(final OClass o) {
     acquireSchemaReadLock();
     try {
@@ -1199,10 +1238,12 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public long count() {
     return count(true);
   }
 
+  @Override
   public long count(final boolean isPolymorphic) {
     acquireSchemaReadLock();
     try {
@@ -1221,6 +1262,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
    *
    * @throws IOException
    */
+  @Override
   public void truncate() throws IOException {
     getDatabase().checkSecurity(ORule.ResourceGeneric.CLASS, ORole.PERMISSION_UPDATE);
 
@@ -1252,6 +1294,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
    * @return Returns true if the current instance extends the passed schema class (iClass)
    * @see #isSuperClassOf(OClass)
    */
+  @Override
   public boolean isSubClassOf(final String iClassName) {
     acquireSchemaReadLock();
     try {
@@ -1282,6 +1325,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
    * @return true if the current instance extends the passed schema class (iClass)
    * @see #isSuperClassOf(OClass)
    */
+  @Override
   public boolean isSubClassOf(final OClass clazz) {
     acquireSchemaReadLock();
     try {
@@ -1310,10 +1354,12 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
    * @return Returns true if the passed schema class extends the current instance
    * @see #isSubClassOf(OClass)
    */
+  @Override
   public boolean isSuperClassOf(final OClass clazz) {
     return clazz != null && clazz.isSubClassOf(this);
   }
 
+  @Override
   public Object get(final ATTRIBUTES iAttribute) {
     if (iAttribute == null) {
         throw new IllegalArgumentException("attribute is null");
@@ -1341,6 +1387,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     throw new IllegalArgumentException("Cannot find attribute '" + iAttribute + "'");
   }
 
+  @Override
   public OClass set(final ATTRIBUTES attribute, final Object iValue) {
     if (attribute == null) {
         throw new IllegalArgumentException("attribute is null");
@@ -1453,24 +1500,29 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     return prop;
   }
 
+  @Override
   public OIndex<?> createIndex(final String iName, final INDEX_TYPE iType, final String... fields) {
     return createIndex(iName, iType.name(), fields);
   }
 
+  @Override
   public OIndex<?> createIndex(final String iName, final String iType, final String... fields) {
     return createIndex(iName, iType, null, null, fields);
   }
 
+  @Override
   public OIndex<?> createIndex(final String iName, final INDEX_TYPE iType, final OProgressListener iProgressListener,
       final String... fields) {
     return createIndex(iName, iType.name(), iProgressListener, null, fields);
   }
 
+  @Override
   public OIndex<?> createIndex(String iName, String iType, OProgressListener iProgressListener, ODocument metadata,
       String... fields) {
     return createIndex(iName, iType, iProgressListener, metadata, null, fields);
   }
 
+  @Override
   public OIndex<?> createIndex(final String name, String type, final OProgressListener progressListener, ODocument metadata,
       String algorithm, final String... fields) {
     if (type == null) {
@@ -1511,10 +1563,12 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public boolean areIndexed(final String... fields) {
     return areIndexed(Arrays.asList(fields));
   }
 
+  @Override
   public boolean areIndexed(final Collection<String> fields) {
     final OIndexManager indexManager = getDatabase().getMetadata().getIndexManager();
 
@@ -1531,10 +1585,12 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Set<OIndex<?>> getInvolvedIndexes(final String... fields) {
     return getInvolvedIndexes(Arrays.asList(fields));
   }
 
+  @Override
   public Set<OIndex<?>> getInvolvedIndexes(final Collection<String> fields) {
     acquireSchemaReadLock();
     try {
@@ -1550,6 +1606,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Set<OIndex<?>> getClassInvolvedIndexes(final Collection<String> fields) {
 
     final OIndexManager indexManager = getDatabase().getMetadata().getIndexManager();
@@ -1562,10 +1619,12 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Set<OIndex<?>> getClassInvolvedIndexes(final String... fields) {
     return getClassInvolvedIndexes(Arrays.asList(fields));
   }
 
+  @Override
   public OIndex<?> getClassIndex(final String name) {
     acquireSchemaReadLock();
     try {
@@ -1575,6 +1634,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Set<OIndex<?>> getClassIndexes() {
     acquireSchemaReadLock();
     try {
@@ -1604,6 +1664,7 @@ public class OClassImpl extends ODocumentWrapperNoClass implements OClass {
     }
   }
 
+  @Override
   public Set<OIndex<?>> getIndexes() {
     acquireSchemaReadLock();
     try {

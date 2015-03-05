@@ -27,6 +27,7 @@ package com.orientechnologies.orient.core.index;
  * @since 20.03.12
  */
 public final class OAlwaysLessKey implements Comparable<Comparable<?>> {
+        @Override
 	public int compareTo(Comparable<?> o) {
 		return -1;
 	}

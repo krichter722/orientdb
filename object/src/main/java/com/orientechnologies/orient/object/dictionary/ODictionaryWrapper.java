@@ -38,11 +38,13 @@ public class ODictionaryWrapper extends ODictionary<Object> {
 	}
 
 	@SuppressWarnings("unchecked")
+        @Override
 	public <RET extends Object> RET get(final String iKey, final String iFetchPlan) {
 		final ORecord record = super.get(iKey);
 		return (RET) database.getUserObjectByRecord(record, iFetchPlan);
 	}
 
+        @Override
 	public void put(final String iKey, final Object iValue) {
 		final ODocument record = (ODocument) database.getRecordByUserObject(iValue, false);
 		super.put(iKey, record);

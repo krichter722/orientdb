@@ -77,6 +77,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
   public OSecurityShared() {
   }
 
+  @Override
   public OIdentifiable allowUser(final ODocument iDocument, final String iAllowFieldName, final String iUserName) {
     final OUser user = ODatabaseRecordThreadLocal.INSTANCE.get().getMetadata().getSecurity().getUser(iUserName);
     if (user == null) {
@@ -86,6 +87,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return allowIdentity(iDocument, iAllowFieldName, user.getDocument().getIdentity());
   }
 
+  @Override
   public OIdentifiable allowRole(final ODocument iDocument, final String iAllowFieldName, final String iRoleName) {
     final ORole role = ODatabaseRecordThreadLocal.INSTANCE.get().getMetadata().getSecurity().getRole(iRoleName);
     if (role == null) {
@@ -95,6 +97,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return allowIdentity(iDocument, iAllowFieldName, role.getDocument().getIdentity());
   }
 
+  @Override
   public OIdentifiable allowIdentity(final ODocument iDocument, final String iAllowFieldName, final OIdentifiable iId) {
     Set<OIdentifiable> field = iDocument.field(iAllowFieldName);
     if (field == null) {
@@ -106,6 +109,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return iId;
   }
 
+  @Override
   public OIdentifiable disallowUser(final ODocument iDocument, final String iAllowFieldName, final String iUserName) {
     final OUser user = ODatabaseRecordThreadLocal.INSTANCE.get().getMetadata().getSecurity().getUser(iUserName);
     if (user == null) {
@@ -115,6 +119,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return disallowIdentity(iDocument, iAllowFieldName, user.getDocument().getIdentity());
   }
 
+  @Override
   public OIdentifiable disallowRole(final ODocument iDocument, final String iAllowFieldName, final String iRoleName) {
     final ORole role = ODatabaseRecordThreadLocal.INSTANCE.get().getMetadata().getSecurity().getRole(iRoleName);
     if (role == null) {
@@ -124,6 +129,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return disallowIdentity(iDocument, iAllowFieldName, role.getDocument().getIdentity());
   }
 
+  @Override
   public OIdentifiable disallowIdentity(final ODocument iDocument, final String iAllowFieldName, final OIdentifiable iId) {
     Set<OIdentifiable> field = iDocument.field(iAllowFieldName);
     if (field != null) {
@@ -132,6 +138,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return iId;
   }
 
+  @Override
   public boolean isAllowed(final Set<OIdentifiable> iAllowAll, final Set<OIdentifiable> iAllowOperation) {
     if (iAllowAll == null || iAllowAll.isEmpty()) {
         return true;
@@ -175,6 +182,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return true;
   }
 
+  @Override
   public OUser authenticate(final String iUserName, final String iUserPassword) {
     final String dbName = getDatabase().getName();
     final OUser user = getUser(iUserName);
@@ -203,6 +211,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
   }
 
   // Token MUST be validated before being passed to this method.
+  @Override
   public OUser authenticate(final OToken authToken) {
     final String dbName = getDatabase().getName();
     if (authToken.getIsValid() != true) {
@@ -225,10 +234,12 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return user;
   }
 
+  @Override
   public OUser getUser(final String iUserName) {
     return getUser(iUserName, true);
   }
 
+  @Override
   public OUser getUser(final ORID iRecordId) {
     ODocument result;
     result = getDatabase().load(iRecordId, "roles:1");
@@ -238,6 +249,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return new OUser(result);
   }
 
+  @Override
   public OUser createUser(final String iUserName, final String iUserPassword, final String... iRoles) {
     final OUser user = new OUser(iUserName, iUserPassword);
 
@@ -250,6 +262,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return user.save();
   }
 
+  @Override
   public OUser createUser(final String userName, final String userPassword, final ORole... roles) {
     final OUser user = new OUser(userName, userPassword);
 
@@ -262,6 +275,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return user.save();
   }
 
+  @Override
   public boolean dropUser(final String iUserName) {
     final Number removed = getDatabase().<OCommandRequest> command(
         new OCommandSQL("delete from OUser where name = '" + iUserName + "'")).execute();
@@ -269,6 +283,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return removed != null && removed.intValue() > 0;
   }
 
+  @Override
   public ORole getRole(final OIdentifiable iRole) {
     final ODocument doc = iRole.getRecord();
     if ("ORole".equals(doc.getClassName())) {
@@ -278,6 +293,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return null;
   }
 
+  @Override
   public ORole getRole(final String roleName) {
     return getRole(roleName, true);
   }
@@ -294,15 +310,18 @@ public class OSecurityShared implements OSecurity, OCloseable {
 
   }
 
+  @Override
   public ORole createRole(final String iRoleName, final ORole.ALLOW_MODES iAllowMode) {
     return createRole(iRoleName, null, iAllowMode);
   }
 
+  @Override
   public ORole createRole(final String iRoleName, final ORole iParent, final ORole.ALLOW_MODES iAllowMode) {
     final ORole role = new ORole(iRoleName, iParent, iAllowMode);
     return role.save();
   }
 
+  @Override
   public boolean dropRole(final String iRoleName) {
     final Number removed = getDatabase().<OCommandRequest> command(
         new OCommandSQL("delete from ORole where name = '" + iRoleName + "'")).execute();
@@ -310,14 +329,17 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return removed != null && removed.intValue() > 0;
   }
 
+  @Override
   public List<ODocument> getAllUsers() {
     return getDatabase().<OCommandRequest> command(new OSQLSynchQuery<ODocument>("select from OUser")).execute();
   }
 
+  @Override
   public List<ODocument> getAllRoles() {
     return getDatabase().<OCommandRequest> command(new OSQLSynchQuery<ODocument>("select from ORole")).execute();
   }
 
+  @Override
   public OUser create() {
     if (!getDatabase().getMetadata().getSchema().getClasses().isEmpty()) {
         return null;
@@ -466,9 +488,11 @@ public class OSecurityShared implements OSecurity, OCloseable {
     return adminUser;
   }
 
+  @Override
   public void close(boolean onDelete) {
   }
 
+  @Override
   public void load() {
     final OClass userClass = getDatabase().getMetadata().getSchema().getClass("OUser");
     if (userClass != null) {
@@ -509,6 +533,7 @@ public class OSecurityShared implements OSecurity, OCloseable {
 
   }
 
+  @Override
   public void createClassTrigger() {
     final ODatabaseDocument db = ODatabaseRecordThreadLocal.INSTANCE.get();
     OClass classTrigger = db.getMetadata().getSchema().getClass(OClassTrigger.CLASSNAME);

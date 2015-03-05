@@ -60,22 +60,27 @@ public class OSimpleKeyIndexDefinition extends OAbstractIndexDefinition {
 
   }
 
+  @Override
   public List<String> getFields() {
     return Collections.emptyList();
   }
 
+  @Override
   public List<String> getFieldsToIndex() {
     return Collections.emptyList();
   }
 
+  @Override
   public String getClassName() {
     return null;
   }
 
+  @Override
   public Object createValue(final List<?> params) {
     return createValue(params != null ? params.toArray() : null);
   }
 
+  @Override
   public Object createValue(final Object... params) {
     if (params == null || params.length == 0) {
         return null;
@@ -99,10 +104,12 @@ public class OSimpleKeyIndexDefinition extends OAbstractIndexDefinition {
     return compositeKey;
   }
 
+  @Override
   public int getParamCount() {
     return keyTypes.length;
   }
 
+  @Override
   public OType[] getTypes() {
     return keyTypes;
   }
@@ -161,6 +168,7 @@ public class OSimpleKeyIndexDefinition extends OAbstractIndexDefinition {
     setNullValuesIgnored(!Boolean.FALSE.equals(document.<Boolean> field("nullValuesIgnored")));
   }
 
+  @Override
   public Object getDocumentValueToIndex(final ODocument iDocument) {
     throw new OIndexException("This method is not supported in given index definition.");
   }
@@ -200,6 +208,7 @@ public class OSimpleKeyIndexDefinition extends OAbstractIndexDefinition {
    * @param indexName
    * @param indexType
    */
+  @Override
   public String toCreateIndexDDL(final String indexName, final String indexType) {
     final StringBuilder ddl = new StringBuilder("create index ");
     ddl.append(indexName).append(' ').append(indexType).append(' ');

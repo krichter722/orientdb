@@ -111,100 +111,123 @@ public abstract class ODatabaseRecordWrapperAbstract<DB extends ODatabaseDocumen
     return super.dropCluster(iClusterName, iTruncate);
   }
 
+  @Override
   public boolean dropCluster(int iClusterId, final boolean iTruncate) {
     checkSecurity(ORule.ResourceGeneric.DATABASE, ORole.PERMISSION_UPDATE);
     checkClusterBoundedToClass(iClusterId);
     return super.dropCluster(iClusterId, iTruncate);
   }
 
+  @Override
   public OBinarySerializerFactory getSerializerFactory() {
     return underlying.getSerializerFactory();
   }
 
+  @Override
   public OTransaction getTransaction() {
     return underlying.getTransaction();
   }
 
+  @Override
   public void replaceStorage(OStorage iNewStorage) {
     underlying.replaceStorage(iNewStorage);
   }
 
+  @Override
   public ODatabase<ORecord> begin() {
     return underlying.begin();
   }
 
+  @Override
   public ODatabase<ORecord> begin(final TXTYPE iType) {
     return underlying.begin(iType);
   }
 
+  @Override
   public ODatabase<ORecord> begin(final OTransaction iTx) {
     return underlying.begin(iTx);
   }
 
+  @Override
   public boolean isMVCC() {
     checkOpeness();
     return underlying.isMVCC();
   }
 
+  @Override
   public <RET extends ODatabase<?>> RET setMVCC(final boolean iValue) {
     checkOpeness();
     return (RET) underlying.setMVCC(iValue);
   }
 
+  @Override
   public boolean isValidationEnabled() {
     return underlying.isValidationEnabled();
   }
 
+  @Override
   public <RET extends ODatabaseDocument> RET setValidationEnabled(final boolean iValue) {
     return (RET) underlying.setValidationEnabled(iValue);
   }
 
+  @Override
   public OSecurityUser getUser() {
     return underlying.getUser();
   }
 
+  @Override
   public void setUser(OSecurityUser user) {
     underlying.setUser(user);
   }
 
+  @Override
   public OMetadata getMetadata() {
     return underlying.getMetadata();
   }
 
+  @Override
   public ODictionary<ORecord> getDictionary() {
     return underlying.getDictionary();
   }
 
+  @Override
   public byte getRecordType() {
     return underlying.getRecordType();
   }
 
+  @Override
   public <REC extends ORecord> ORecordIteratorCluster<REC> browseCluster(final String iClusterName) {
     return underlying.browseCluster(iClusterName);
   }
 
+  @Override
   public <REC extends ORecord> ORecordIteratorCluster<REC> browseCluster(final String iClusterName, final Class<REC> iRecordClass) {
     return underlying.browseCluster(iClusterName, iRecordClass);
   }
 
+  @Override
   public <REC extends ORecord> ORecordIteratorCluster<REC> browseCluster(final String iClusterName, final Class<REC> iRecordClass,
       long startClusterPosition, long endClusterPosition, final boolean loadTombstones) {
 
     return underlying.browseCluster(iClusterName, iRecordClass, startClusterPosition, endClusterPosition, loadTombstones);
   }
 
+  @Override
   public <RET extends OCommandRequest> RET command(final OCommandRequest iCommand) {
     return (RET) underlying.command(iCommand);
   }
 
+  @Override
   public <RET extends List<?>> RET query(final OQuery<? extends Object> iCommand, final Object... iArgs) {
     return (RET) underlying.query(iCommand, iArgs);
   }
 
+  @Override
   public <RET extends Object> RET newInstance() {
     return (RET) underlying.newInstance();
   }
 
+  @Override
   public ODatabase<ORecord> delete(final ORID iRid) {
     underlying.delete(iRid);
     return this;
@@ -227,19 +250,23 @@ public abstract class ODatabaseRecordWrapperAbstract<DB extends ODatabaseDocumen
     return this;
   }
 
+  @Override
   public ODatabase<ORecord> delete(final ORecord iRecord) {
     underlying.delete(iRecord);
     return this;
   }
 
+  @Override
   public <RET extends ORecord> RET load(final ORID recordId) {
     return (RET) underlying.load(recordId);
   }
 
+  @Override
   public <RET extends ORecord> RET load(final ORID iRecordId, final String iFetchPlan) {
     return (RET) underlying.load(iRecordId, iFetchPlan);
   }
 
+  @Override
   public <RET extends ORecord> RET load(final ORID iRecordId, final String iFetchPlan, final boolean iIgnoreCache) {
     return (RET) underlying.load(iRecordId, iFetchPlan, iIgnoreCache);
   }
@@ -256,18 +283,22 @@ public abstract class ODatabaseRecordWrapperAbstract<DB extends ODatabaseDocumen
     return (RET) underlying.load(iObject, iFetchPlan, iIgnoreCache, loadTombstone, OStorage.LOCKING_STRATEGY.DEFAULT);
   }
 
+  @Override
   public <RET extends ORecord> RET getRecord(final OIdentifiable iIdentifiable) {
     return (RET) underlying.getRecord(iIdentifiable);
   }
 
+  @Override
   public <RET extends ORecord> RET load(final ORecord iRecord) {
     return (RET) underlying.load(iRecord);
   }
 
+  @Override
   public <RET extends ORecord> RET load(final ORecord iRecord, final String iFetchPlan) {
     return (RET) underlying.load(iRecord, iFetchPlan);
   }
 
+  @Override
   public <RET extends ORecord> RET load(final ORecord iRecord, final String iFetchPlan, final boolean iIgnoreCache) {
     return (RET) underlying.load(iRecord, iFetchPlan, iIgnoreCache);
   }
@@ -276,42 +307,51 @@ public abstract class ODatabaseRecordWrapperAbstract<DB extends ODatabaseDocumen
     return (RET) underlying.reload(iRecord, null, true);
   }
 
+  @Override
   public <RET extends ORecord> RET reload(final ORecord iRecord, final String iFetchPlan, final boolean iIgnoreCache) {
     return (RET) underlying.reload(iRecord, iFetchPlan, iIgnoreCache);
   }
 
+  @Override
   public <RET extends ORecord> RET save(final ORecord iRecord) {
     return (RET) underlying.save(iRecord);
   }
 
+  @Override
   public <RET extends ORecord> RET save(final ORecord iRecord, final String iClusterName) {
     return (RET) underlying.save(iRecord, iClusterName);
   }
 
+  @Override
   public <RET extends ORecord> RET save(final ORecord iRecord, final OPERATION_MODE iMode, boolean iForceCreate,
       final ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<ORecordVersion> iRecordUpdatedCallback) {
     return (RET) underlying.save(iRecord, iMode, iForceCreate, iRecordCreatedCallback, iRecordUpdatedCallback);
   }
 
+  @Override
   public <RET extends ORecord> RET save(final ORecord iRecord, final String iClusterName, final OPERATION_MODE iMode,
       boolean iForceCreate, final ORecordCallback<? extends Number> iRecordCreatedCallback,
       ORecordCallback<ORecordVersion> iRecordUpdatedCallback) {
     return (RET) underlying.save(iRecord, iClusterName, iMode, iForceCreate, iRecordCreatedCallback, iRecordUpdatedCallback);
   }
 
+  @Override
   public void setInternal(final ATTRIBUTES attribute, final Object iValue) {
     underlying.setInternal(attribute, iValue);
   }
 
+  @Override
   public boolean isRetainRecords() {
     return underlying.isRetainRecords();
   }
 
+  @Override
   public ODatabaseDocument setRetainRecords(boolean iValue) {
     underlying.setRetainRecords(iValue);
     return (ODatabaseDocument) this.getClass().cast(this);
   }
 
+  @Override
   public ORecord getRecordByUserObject(final Object iUserObject, final boolean iCreateIfNotAvailable) {
     if (databaseOwner != this) {
         return getDatabaseOwner().getRecordByUserObject(iUserObject, false);
@@ -320,18 +360,21 @@ public abstract class ODatabaseRecordWrapperAbstract<DB extends ODatabaseDocumen
     return (ORecord) iUserObject;
   }
 
+  @Override
   public void registerUserObject(final Object iObject, final ORecord iRecord) {
     if (databaseOwner != this) {
         getDatabaseOwner().registerUserObject(iObject, iRecord);
     }
   }
 
+  @Override
   public void registerUserObjectAfterLinkSave(ORecord iRecord) {
     if (databaseOwner != this) {
         getDatabaseOwner().registerUserObjectAfterLinkSave(iRecord);
     }
   }
 
+  @Override
   public Object getUserObjectByRecord(final OIdentifiable iRecord, final String iFetchPlan) {
     if (databaseOwner != this) {
         return databaseOwner.getUserObjectByRecord(iRecord, iFetchPlan);
@@ -340,6 +383,7 @@ public abstract class ODatabaseRecordWrapperAbstract<DB extends ODatabaseDocumen
     return iRecord;
   }
 
+  @Override
   public boolean existsUserObjectByRID(final ORID iRID) {
     if (databaseOwner != this) {
         return databaseOwner.existsUserObjectByRID(iRID);
@@ -347,38 +391,46 @@ public abstract class ODatabaseRecordWrapperAbstract<DB extends ODatabaseDocumen
     return false;
   }
 
+  @Override
   public <DBTYPE extends ODatabaseDocument> DBTYPE checkSecurity(ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     return (DBTYPE) underlying.checkSecurity(resourceGeneric, resourceSpecific, iOperation);
   }
 
+  @Override
   public <DBTYPE extends ODatabaseDocument> DBTYPE checkSecurity(final ORule.ResourceGeneric iResourceGeneric, final int iOperation,
       final Object iResourceSpecific) {
     return (DBTYPE) underlying.checkSecurity(iResourceGeneric, iOperation, iResourceSpecific);
   }
 
+  @Override
   public <DBTYPE extends ODatabaseDocument> DBTYPE checkSecurity(final ORule.ResourceGeneric iResourceGeneric, final int iOperation,
       final Object... iResourcesSpecific) {
     return (DBTYPE) underlying.checkSecurity(iResourceGeneric, iOperation, iResourcesSpecific);
   }
 
+  @Override
   public <DBTYPE extends ODatabase<?>> DBTYPE registerHook(final ORecordHook iHookImpl) {
     underlying.registerHook(iHookImpl);
     return (DBTYPE) this;
   }
 
+  @Override
   public <DBTYPE extends ODatabase<?>> DBTYPE registerHook(final ORecordHook iHookImpl, ORecordHook.HOOK_POSITION iPosition) {
     underlying.registerHook(iHookImpl, iPosition);
     return (DBTYPE) this;
   }
 
+  @Override
   public RESULT callbackHooks(final TYPE iType, final OIdentifiable iObject) {
     return underlying.callbackHooks(iType, iObject);
   }
 
+  @Override
   public Map<ORecordHook, ORecordHook.HOOK_POSITION> getHooks() {
     return underlying.getHooks();
   }
 
+  @Override
   public <DBTYPE extends ODatabase<?>> DBTYPE unregisterHook(final ORecordHook iHookImpl) {
     underlying.unregisterHook(iHookImpl);
     return (DBTYPE) this;

@@ -49,6 +49,7 @@ public class OCommandExecutorSQLCreateProperty extends OCommandExecutorSQLAbstra
   private String             linked;
   private boolean            unsafe           = false;
 
+  @Override
   public OCommandExecutorSQLCreateProperty parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -119,6 +120,7 @@ public class OCommandExecutorSQLCreateProperty extends OCommandExecutorSQLAbstra
   /**
    * Execute the CREATE PROPERTY.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (type == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

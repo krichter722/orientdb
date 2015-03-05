@@ -153,10 +153,12 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     return null;
   }
 
+  @Override
   public boolean isFullCheckpointOnChange() {
     return fullCheckpointOnChange;
   }
 
+  @Override
   public void setFullCheckpointOnChange(boolean fullCheckpointOnChange) {
     this.fullCheckpointOnChange = fullCheckpointOnChange;
   }
@@ -175,10 +177,12 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     return clustersCanNotBeSharedAmongClasses;
   }
 
+  @Override
   public OClusterSelectionFactory getClusterSelectionFactory() {
     return clusterSelectionFactory;
   }
 
+  @Override
   public int countClasses() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
 
@@ -190,6 +194,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     }
   }
 
+  @Override
   public OClass createClass(final Class<?> clazz) {
     OClass result;
 
@@ -222,6 +227,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     return result;
   }
 
+  @Override
   public OClass createClass(final Class<?> clazz, final int iDefaultClusterId) {
     OClass result;
 
@@ -254,26 +260,32 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     return result;
   }
 
+  @Override
   public OClass createClass(final String className) {
     return createClass(className, (OClass) null, (int[]) null);
   }
 
+  @Override
   public OClass createClass(final String iClassName, final OClass iSuperClass) {
     return createClass(iClassName, iSuperClass, (int[]) null);
   }
 
+  @Override
   public OClass createClass(final String className, final int iDefaultClusterId) {
     return createClass(className, null, new int[] { iDefaultClusterId });
   }
 
+  @Override
   public OClass createClass(final String className, final OClass iSuperClass, final int iDefaultClusterId) {
     return createClass(className, iSuperClass, new int[] { iDefaultClusterId });
   }
 
+  @Override
   public OClass getOrCreateClass(final String iClassName) {
     return getOrCreateClass(iClassName, null);
   }
 
+  @Override
   public OClass getOrCreateClass(final String iClassName, final OClass superClass) {
     if (iClassName == null) {
         return null;
@@ -362,6 +374,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     return createClass(className, superClass, -1);
   }
 
+  @Override
   public OClass createClass(final String className, final OClass superClass, int[] clusterIds) {
     final Character wrongCharacter = OSchemaShared.checkClassNameIfValid(className);
     if (wrongCharacter != null) {
@@ -458,6 +471,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     }
   }
 
+  @Override
   public OClass getClassByClusterId(int clusterId) {
     acquireSchemaReadLock();
     try {
@@ -476,6 +490,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
    * 
    * @see com.orientechnologies.orient.core.metadata.schema.OSchema#dropClass(java.lang.String)
    */
+  @Override
   public void dropClass(final String className) {
     final ODatabaseDocumentInternal db = getDatabase();
     final OStorage storage = db.getStorage();
@@ -545,6 +560,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     }
   }
 
+  @Override
   public boolean existsClass(final String iClassName) {
     if (iClassName == null) {
         return false;
@@ -563,6 +579,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
    * 
    * @see com.orientechnologies.orient.core.metadata.schema.OSchema#getClass(java.lang.Class)
    */
+  @Override
   public OClass getClass(final Class<?> iClass) {
     if (iClass == null) {
         return null;
@@ -576,6 +593,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
    * 
    * @see com.orientechnologies.orient.core.metadata.schema.OSchema#getClass(java.lang.String)
    */
+  @Override
   public OClass getClass(final String iClassName) {
     if (iClassName == null) {
         return null;
@@ -789,6 +807,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     }
   }
 
+  @Override
   public Collection<OClass> getClasses() {
     getDatabase().checkSecurity(ORule.ResourceGeneric.SCHEMA, ORole.PERMISSION_READ);
     acquireSchemaReadLock();
@@ -833,6 +852,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     }
   }
 
+  @Override
   public void create() {
     rwSpinLock.acquireWriteLock();
     try {
@@ -845,6 +865,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     }
   }
 
+  @Override
   public void close(boolean onDelete) {
     rwSpinLock.acquireWriteLock();
     try {
@@ -856,10 +877,12 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
   }
 
   @Deprecated
+  @Override
   public int getVersion() {
     return version;
   }
 
+  @Override
   public ORID getIdentity() {
     acquireSchemaReadLock();
     try {
@@ -895,6 +918,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     }
   }
 
+  @Override
   public OGlobalProperty getGlobalPropertyById(int id) {
     if (id >= properties.size()) {
         return null;
@@ -902,6 +926,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     return properties.get(id);
   }
 
+  @Override
   public OGlobalProperty createGlobalProperty(String name, OType type, Integer id) {
     OGlobalProperty global;
     if (id < properties.size() && (global = properties.get(id)) != null) {
@@ -918,6 +943,7 @@ public class OSchemaShared extends ODocumentWrapperNoClass implements OSchema, O
     return global;
   }
 
+  @Override
   public List<OGlobalProperty> getGlobalProperties() {
     return Collections.unmodifiableList(properties);
   }

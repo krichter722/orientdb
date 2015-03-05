@@ -39,6 +39,7 @@ public class OSQLFunctionDistance extends OSQLFunctionAbstract {
     super(NAME, 4, 5);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     try {
@@ -85,6 +86,7 @@ public class OSQLFunctionDistance extends OSQLFunctionAbstract {
     }
   }
 
+  @Override
   public String getSyntax() {
     return "distance(<field-x>,<field-y>,<x-value>,<y-value>[,<unit>])";
   }

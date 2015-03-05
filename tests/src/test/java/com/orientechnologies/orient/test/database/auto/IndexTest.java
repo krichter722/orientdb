@@ -73,6 +73,7 @@ public class IndexTest extends ObjectDBBaseTest {
   }
 
   @BeforeClass
+  @Override
   public void beforeClass() throws Exception {
     super.beforeClass();
 

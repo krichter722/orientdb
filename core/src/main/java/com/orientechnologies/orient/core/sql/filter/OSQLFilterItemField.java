@@ -84,6 +84,7 @@ public class OSQLFilterItemField extends OSQLFilterItemAbstract {
     super(iQueryToParse, iName);
   }
 
+  @Override
   public Object getValue(final OIdentifiable iRecord, final Object iCurrentResult, final OCommandContext iContext) {
     if (iRecord == null) {
         throw new OCommandExecutionException("expression item '" + name + "' cannot be resolved because current record is NULL");
@@ -108,10 +109,12 @@ public class OSQLFilterItemField extends OSQLFilterItemAbstract {
     return null;
   }
 
+  @Override
   public String getRoot() {
     return name;
   }
 
+  @Override
   public void setRoot(final OBaseParser iQueryToParse, final String iRoot) {
     this.name = iRoot;
   }

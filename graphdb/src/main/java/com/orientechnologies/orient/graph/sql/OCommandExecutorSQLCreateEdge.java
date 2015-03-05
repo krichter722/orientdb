@@ -61,6 +61,7 @@ public class OCommandExecutorSQLCreateEdge extends OCommandExecutorSQLRetryAbstr
   private Map<String, Object> fields;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLCreateEdge parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -121,6 +122,7 @@ public class OCommandExecutorSQLCreateEdge extends OCommandExecutorSQLRetryAbstr
   /**
    * Execute the command and return the ODocument object created.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (clazz == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

@@ -78,6 +78,7 @@ public class ORecordBytes extends ORecordAbstract {
     return this;
   }
 
+  @Override
   public ORecordBytes copy() {
     return (ORecordBytes) copyTo(new ORecordBytes());
   }
@@ -94,6 +95,7 @@ public class ORecordBytes extends ORecordAbstract {
     return _source;
   }
 
+  @Override
   public byte getRecordType() {
     return RECORD_TYPE;
   }

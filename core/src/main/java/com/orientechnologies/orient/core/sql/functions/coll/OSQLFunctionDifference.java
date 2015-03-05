@@ -62,6 +62,7 @@ public class OSQLFunctionDifference extends OSQLFunctionMultiValueAbstract<Set<O
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public Object execute(Object iThis, OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     if (iParams[0] == null) {
@@ -112,6 +113,7 @@ public class OSQLFunctionDifference extends OSQLFunctionMultiValueAbstract<Set<O
     }
   }
 
+  @Override
   public String getSyntax() {
     return "difference(<field>*)";
   }

@@ -141,6 +141,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
   }
 
   private final class IndexComparator implements Comparator<OIndex<?>> {
+    @Override
     public int compare(final OIndex<?> indexOne, final OIndex<?> indexTwo) {
       final OIndexDefinition definitionOne = indexOne.getDefinition();
       final OIndexDefinition definitionTwo = indexTwo.getDefinition();
@@ -200,6 +201,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
   /**
    * Compile the filter conditions only the first time.
    */
+  @Override
   public OCommandExecutorSQLSelect parse(final OCommandRequest iRequest) {
     super.parse(iRequest);
 
@@ -283,6 +285,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
    *
    * @return set of involved cluster names
    */
+  @Override
   public Set<String> getInvolvedClusters() {
 
     final Set<String> clusters = new HashSet<String>();
@@ -344,10 +347,12 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     return false;
   }
 
+  @Override
   public Iterator<OIdentifiable> iterator() {
     return iterator(null);
   }
 
+  @Override
   public Iterator<OIdentifiable> iterator(final Map<Object, Object> iArgs) {
     final Iterator<OIdentifiable> subIterator;
     if (target == null) {
@@ -369,6 +374,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     return subIterator;
   }
 
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     try {
       bindDefaultContextVariables();
@@ -412,6 +418,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
     return "SELECT [<Projections>] FROM <Target> [LET <Assignment>*] [WHERE <Condition>*] [ORDER BY <Fields>* [ASC|DESC]*] [LIMIT <MaxRecords>] [TIMEOUT <TimeoutInMs>] [LOCK none|record] [NOCACHE]";
   }
 
+  @Override
   public String getFetchPlan() {
     return fetchPlan != null ? fetchPlan : request.getFetchPlan();
   }
@@ -532,6 +539,7 @@ public class OCommandExecutorSQLSelect extends OCommandExecutorSQLResultsetAbstr
    *          Record to handle
    * @return false if limit has been reached, otherwise true
    */
+  @Override
   protected boolean handleResult(final OIdentifiable iRecord) {
     if (parallel) {
         // LOCK FOR PARALLEL EXECUTION. THIS PREVENT CONCURRENT ISSUES

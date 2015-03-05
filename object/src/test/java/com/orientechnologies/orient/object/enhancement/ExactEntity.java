@@ -9,6 +9,7 @@ import com.orientechnologies.orient.core.annotation.OBeforeSerialization;
 public class ExactEntity extends AbstractEntity {
 	private boolean before3Called = false;
 
+        @Override
 	public void reset() {
 		super.reset();
 		before3Called =  false;

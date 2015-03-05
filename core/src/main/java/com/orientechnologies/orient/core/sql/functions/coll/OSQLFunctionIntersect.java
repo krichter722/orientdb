@@ -44,6 +44,7 @@ public class OSQLFunctionIntersect extends OSQLFunctionMultiValueAbstract<Set<Ob
     super(NAME, 1, -1);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     Object value = iParams[0];
@@ -99,6 +100,7 @@ public class OSQLFunctionIntersect extends OSQLFunctionMultiValueAbstract<Set<Ob
     }
   }
 
+  @Override
   public String getSyntax() {
     return "intersect(<field>*)";
   }

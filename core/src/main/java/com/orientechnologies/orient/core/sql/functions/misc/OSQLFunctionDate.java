@@ -52,6 +52,7 @@ public class OSQLFunctionDate extends OSQLFunctionAbstract {
     date = new Date();
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, final Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     if (iParams.length == 0) {
@@ -86,6 +87,7 @@ public class OSQLFunctionDate extends OSQLFunctionAbstract {
     return false;
   }
 
+  @Override
   public String getSyntax() {
     return "date([<date-as-string>] [,<format>] [,<timezone>])";
   }

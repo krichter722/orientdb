@@ -95,6 +95,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
     return false;
   }
 
+  @Override
   public void close() {
     super.close();
 
@@ -109,10 +110,12 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
     database.setDefaultTransactionMode();
   }
 
+  @Override
   public int getId() {
     return id;
   }
 
+  @Override
   public void clearRecordEntries() {
     for (Entry<ORID, ORecordOperation> entry : recordEntries.entrySet()) {
       final ORID key = entry.getKey();
@@ -129,14 +132,17 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
     return recordEntries.size();
   }
 
+  @Override
   public Collection<ORecordOperation> getCurrentRecordEntries() {
     return recordEntries.values();
   }
 
+  @Override
   public Collection<ORecordOperation> getAllRecordEntries() {
     return allEntries.values();
   }
 
+  @Override
   public ORecordOperation getRecordEntry(ORID rid) {
     ORecordOperation e = allEntries.get(rid);
     if (e != null) {
@@ -163,6 +169,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
     return null;
   }
 
+  @Override
   public ORecord getRecord(final ORID rid) {
     final ORecordOperation e = getRecordEntry(rid);
     if (e != null) {
@@ -178,6 +185,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
   /**
    * Called by class iterator.
    */
+  @Override
   public List<ORecordOperation> getNewRecordEntriesByClass(final OClass iClass, final boolean iPolymorphic) {
     final List<ORecordOperation> result = new ArrayList<ORecordOperation>();
 
@@ -210,6 +218,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
   /**
    * Called by cluster iterator.
    */
+  @Override
   public List<ORecordOperation> getNewRecordEntriesByClusterIds(final int[] iIds) {
     final List<ORecordOperation> result = new ArrayList<ORecordOperation>();
 
@@ -235,11 +244,13 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
     return result;
   }
 
+  @Override
   public void clearIndexEntries() {
     indexEntries.clear();
     recordIndexOperations.clear();
   }
 
+  @Override
   public List<String> getInvolvedIndexes() {
     List<String> list = null;
     for (String indexName : indexEntries.keySet()) {
@@ -251,6 +262,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
     return list;
   }
 
+  @Override
   public ODocument getIndexChanges() {
 
     final ODocument result = new ODocument().setAllowChainedAccess(false);
@@ -286,6 +298,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
    * 
    * @return
    */
+  @Override
   public OTransactionIndexChanges getIndexChanges(final String iIndexName) {
     return indexEntries.get(iIndexName);
   }
@@ -293,6 +306,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
   /**
    * Bufferizes index changes to be flushed at commit time.
    */
+  @Override
   public void addIndexEntry(final OIndex<?> delegate, final String iIndexName, final OTransactionIndexChanges.OPERATION iOperation,
       final Object key, final OIdentifiable iValue) {
     OTransactionIndexChanges indexEntry = indexEntries.get(iIndexName);
@@ -336,6 +350,7 @@ public abstract class OTransactionRealAbstract extends OTransactionAbstract {
     }
   }
 
+  @Override
   public void updateIdentityAfterCommit(final ORID oldRid, final ORID newRid) {
     if (oldRid.equals(newRid)) {
         // NO CHANGE, IGNORE IT

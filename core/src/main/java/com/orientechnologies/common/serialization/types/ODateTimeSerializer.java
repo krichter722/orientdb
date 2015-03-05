@@ -35,30 +35,36 @@ import com.orientechnologies.common.directmemory.ODirectMemoryPointer;
    public static final byte          ID       = 5;
    public static ODateTimeSerializer INSTANCE = new ODateTimeSerializer();
 
+   @Override
    public int getObjectSize(Date object, Object... hints) {
      return OLongSerializer.LONG_SIZE;
    }
 
+   @Override
    public void serialize(Date object, byte[] stream, int startPosition, Object... hints) {
      final Calendar calendar = Calendar.getInstance();
      calendar.setTime(object);
      OLongSerializer.INSTANCE.serializeLiteral(calendar.getTimeInMillis(), stream, startPosition);
    }
 
+   @Override
    public Date deserialize(byte[] stream, int startPosition) {
      final Calendar calendar = Calendar.getInstance();
      calendar.setTimeInMillis(OLongSerializer.INSTANCE.deserializeLiteral(stream, startPosition));
      return calendar.getTime();
    }
 
+   @Override
    public int getObjectSize(byte[] stream, int startPosition) {
      return OLongSerializer.LONG_SIZE;
    }
 
+   @Override
    public byte getId() {
      return ID;
    }
 
+   @Override
    public int getObjectSizeNative(byte[] stream, int startPosition) {
      return OLongSerializer.LONG_SIZE;
    }
@@ -96,10 +102,12 @@ import com.orientechnologies.common.directmemory.ODirectMemoryPointer;
      return OLongSerializer.LONG_SIZE;
    }
 
+   @Override
    public boolean isFixedLength() {
      return true;
    }
 
+   @Override
    public int getFixedLength() {
      return OLongSerializer.LONG_SIZE;
    }

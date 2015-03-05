@@ -138,6 +138,7 @@ public interface ODatabase<T> extends OBackupable, Closeable, OUserObject2Record
   /**
    * Closes an opened database.
    */
+  @Override
   public void close();
 
   /**

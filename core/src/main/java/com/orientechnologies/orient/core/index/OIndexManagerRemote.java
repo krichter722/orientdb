@@ -40,6 +40,7 @@ public class OIndexManagerRemote extends OIndexManagerAbstract {
     super(iDatabase);
   }
 
+  @Override
   public OIndex<?> createIndex(final String iName, final String iType, final OIndexDefinition iIndexDefinition,
       final int[] iClusterIdsToIndex, final OProgressListener progressListener, ODocument metadata, String engine) {
 
@@ -86,6 +87,7 @@ public class OIndexManagerRemote extends OIndexManagerAbstract {
     return createIndex(iName, iType, indexDefinition, clusterIdsToIndex, progressListener, metadata, null);
   }
 
+  @Override
   public OIndexManager dropIndex(final String iIndexName) {
     acquireExclusiveLock();
     try {

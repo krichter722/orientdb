@@ -36,6 +36,7 @@ public class OLowZIPCompression extends OZIPCompression {
     return NAME;
   }
 
+  @Override
   protected void setLevel(ZipOutputStream zipOutputStream) {
     zipOutputStream.setLevel(1);
   }

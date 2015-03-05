@@ -42,6 +42,7 @@ public class OObjectEnumLazyIterator<TYPE extends Enum> implements Iterator<TYPE
 		this.enumClass = iEnumClass;
 	}
 
+        @Override
 	public TYPE next() {
 		final Object value = underlying.next();
 		if (value instanceof Number) {
@@ -51,10 +52,12 @@ public class OObjectEnumLazyIterator<TYPE extends Enum> implements Iterator<TYPE
                 }
 	}
 
+        @Override
 	public boolean hasNext() {
 		return underlying.hasNext();
 	}
 
+        @Override
 	public void remove() {
 		underlying.remove();
 		if (sourceRecord != null) {

@@ -25,6 +25,7 @@ public abstract class DocumentDBBaseTest extends BaseTest<ODatabaseDocumentTx> {
 		super(url, prefix);
 	}
 
+        @Override
 	protected ODatabaseDocumentTx createDatabaseInstance(String url) {
     return Orient.instance().getDatabaseFactory().createDatabase("graph", url);
   }

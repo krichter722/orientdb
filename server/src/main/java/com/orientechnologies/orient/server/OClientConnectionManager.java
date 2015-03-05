@@ -70,6 +70,7 @@ public class OClientConnectionManager {
         .getProfiler()
         .registerHookValue("server.connections.actives", "Number of active network connections", METRIC_TYPE.COUNTER,
             new OProfilerHookValue() {
+              @Override
               public Object getValue() {
                 return connections.size();
               }

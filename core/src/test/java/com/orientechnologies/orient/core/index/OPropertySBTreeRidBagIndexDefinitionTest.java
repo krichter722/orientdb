@@ -31,6 +31,7 @@ public class OPropertySBTreeRidBagIndexDefinitionTest extends OPropertyRidBagAbs
 	}
 
 	@BeforeMethod
+        @Override
 	public void beforeMethod() {
 		super.beforeMethod();
 

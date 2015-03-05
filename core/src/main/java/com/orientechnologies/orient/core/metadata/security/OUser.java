@@ -109,6 +109,7 @@ public class OUser extends ODocumentWrapper implements OSecurityUser {
    * @return The role that has granted the permission if any, otherwise a OSecurityAccessException exception is raised
    * @exception OSecurityAccessException
    */
+  @Override
   public ORole allow(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     if (roles == null || roles.isEmpty()) {
       if (document.field("roles") != null && !((Collection<OIdentifiable>) document.field("roles")).isEmpty()) {
@@ -139,6 +140,7 @@ public class OUser extends ODocumentWrapper implements OSecurityUser {
    *          Requested operation
    * @return The role that has granted the permission if any, otherwise null
    */
+  @Override
   public ORole checkIfAllowed(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     for (ORole r : roles) {
       if (r == null) {
@@ -196,6 +198,7 @@ public class OUser extends ODocumentWrapper implements OSecurityUser {
    * 
    * @return True is a rule is defined, otherwise false
    */
+  @Override
   public boolean isRuleDefined(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific) {
     for (ORole r : roles) {
         if (r == null) {
@@ -209,28 +212,34 @@ public class OUser extends ODocumentWrapper implements OSecurityUser {
     return false;
   }
 
+  @Override
   public boolean checkPassword(final String iPassword) {
     return OSecurityManager.instance().check(iPassword, (String) document.field("password"));
   }
 
+  @Override
   public String getName() {
     return document.field("name");
   }
 
+  @Override
   public OUser setName(final String iName) {
     document.field("name", iName);
     return this;
   }
 
+  @Override
   public String getPassword() {
     return document.field("password");
   }
 
+  @Override
   public OUser setPassword(final String iPassword) {
     document.field("password", iPassword);
     return this;
   }
 
+  @Override
   public STATUSES getAccountStatus() {
     final String status = (String) document.field("status");
     if (status == null) {
@@ -239,14 +248,17 @@ public class OUser extends ODocumentWrapper implements OSecurityUser {
     return STATUSES.valueOf(status);
   }
 
+  @Override
   public void setAccountStatus(STATUSES accountStatus) {
     document.field("status", accountStatus);
   }
 
+  @Override
   public Set<ORole> getRoles() {
     return roles;
   }
 
+  @Override
   public OUser addRole(final String iRole) {
     if (iRole != null) {
         addRole(document.getDatabase().getMetadata().getSecurity().getRole(iRole));
@@ -254,6 +266,7 @@ public class OUser extends ODocumentWrapper implements OSecurityUser {
     return this;
   }
 
+  @Override
   public OUser addRole(final OSecurityRole iRole) {
     if (iRole != null) {
         roles.add((ORole) iRole);
@@ -267,6 +280,7 @@ public class OUser extends ODocumentWrapper implements OSecurityUser {
     return this;
   }
 
+  @Override
   public boolean removeRole(final String iRoleName) {
     for (Iterator<ORole> it = roles.iterator(); it.hasNext();) {
         if (it.next().getName().equals(iRoleName)) {
@@ -277,6 +291,7 @@ public class OUser extends ODocumentWrapper implements OSecurityUser {
     return false;
   }
 
+  @Override
   public boolean hasRole(final String iRoleName, final boolean iIncludeInherited) {
     for (Iterator<ORole> it = roles.iterator(); it.hasNext();) {
       final ORole role = it.next();

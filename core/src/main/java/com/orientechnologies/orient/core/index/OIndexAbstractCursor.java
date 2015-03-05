@@ -109,6 +109,7 @@ public abstract class OIndexAbstractCursor implements OIndexCursor {
     return prefetchSize;
   }
 
+  @Override
   public void setPrefetchSize(final int prefetchSize) {
     this.prefetchSize = prefetchSize;
   }

@@ -191,6 +191,7 @@ public class ORole extends ODocumentWrapper implements OSecurityRole {
     }
   }
 
+  @Override
   public boolean allow(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iCRUDOperation) {
     final ORule rule = rules.get(resourceGeneric);
     if (rule != null) {
@@ -208,6 +209,7 @@ public class ORole extends ODocumentWrapper implements OSecurityRole {
     return mode == ALLOW_MODES.ALLOW_ALL_BUT;
   }
 
+  @Override
   public boolean hasRule(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific) {
     ORule rule = rules.get(resourceGeneric);
 
@@ -222,6 +224,7 @@ public class ORole extends ODocumentWrapper implements OSecurityRole {
     return true;
   }
 
+  @Override
   public ORole addRule(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     ORule rule = rules.get(resourceGeneric);
 
@@ -309,6 +312,7 @@ public class ORole extends ODocumentWrapper implements OSecurityRole {
    * 
    * @return
    */
+  @Override
   public ORole grant(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     ORule rule = rules.get(resourceGeneric);
 
@@ -327,6 +331,7 @@ public class ORole extends ODocumentWrapper implements OSecurityRole {
   /**
    * Revoke a permission to the resource.
    */
+  @Override
   public ORole revoke(final ORule.ResourceGeneric resourceGeneric, String resourceSpecific, final int iOperation) {
     if (iOperation == PERMISSION_NONE) {
         return this;
@@ -347,24 +352,29 @@ public class ORole extends ODocumentWrapper implements OSecurityRole {
     return this;
   }
 
+  @Override
   public String getName() {
     return document.field("name");
   }
 
+  @Override
   public ALLOW_MODES getMode() {
     return mode;
   }
 
+  @Override
   public ORole setMode(final ALLOW_MODES iMode) {
     this.mode = iMode;
     document.field("mode", mode == ALLOW_MODES.ALLOW_ALL_BUT ? STREAM_ALLOW : STREAM_DENY);
     return this;
   }
 
+  @Override
   public ORole getParentRole() {
     return parentRole;
   }
 
+  @Override
   public ORole setParentRole(final OSecurityRole iParent) {
     this.parentRole = (ORole) iParent;
     document.field("inheritedRole", parentRole != null ? parentRole.getDocument() : null);
@@ -377,6 +387,7 @@ public class ORole extends ODocumentWrapper implements OSecurityRole {
     return this;
   }
 
+  @Override
   public Set<ORule> getRuleSet() {
     return new HashSet<ORule>(rules.values());
   }

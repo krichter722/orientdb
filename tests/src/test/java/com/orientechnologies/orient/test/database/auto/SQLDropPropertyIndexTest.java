@@ -44,6 +44,7 @@ public class SQLDropPropertyIndexTest extends DocumentDBBaseTest {
 
 
   @BeforeMethod
+  @Override
   public void beforeMethod() throws Exception {
     super.beforeMethod();
 
@@ -54,6 +55,7 @@ public class SQLDropPropertyIndexTest extends DocumentDBBaseTest {
   }
 
   @AfterMethod
+  @Override
   public void afterMethod() throws Exception {
     database.command(new OCommandSQL("drop class DropPropertyIndexTestClass")).execute();
     database.getMetadata().getSchema().reload();

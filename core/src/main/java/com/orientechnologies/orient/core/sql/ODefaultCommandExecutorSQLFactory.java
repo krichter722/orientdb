@@ -89,6 +89,7 @@ public class ODefaultCommandExecutorSQLFactory implements OCommandExecutorSQLFac
   /**
    * {@inheritDoc}
    */
+  @Override
   public Set<String> getCommandNames() {
     return COMMANDS.keySet();
   }
@@ -96,6 +97,7 @@ public class ODefaultCommandExecutorSQLFactory implements OCommandExecutorSQLFac
   /**
    * {@inheritDoc}
    */
+  @Override
   public OCommandExecutorSQLAbstract createCommand(final String name) throws OCommandExecutionException {
     final Class<? extends OCommandExecutorSQLAbstract> clazz = COMMANDS.get(name);
 

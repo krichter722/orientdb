@@ -44,6 +44,7 @@ public class LockMultithreadingTest {
   private CountDownLatch                 countDownLatch             = new CountDownLatch(1);
 
   private class NonTransactionalAdder implements Callable<Void> {
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("Adder - " + Thread.currentThread().getId());
       countDownLatch.await();
@@ -67,6 +68,7 @@ public class LockMultithreadingTest {
 
     private int updateCounter = 0;
 
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("Updater - " + Thread.currentThread().getId());
 
@@ -108,6 +110,7 @@ public class LockMultithreadingTest {
 
   private class NonTransactionalDeleter implements Callable<Void> {
 
+    @Override
     public Void call() throws Exception {
       Thread.currentThread().setName("Deleter - " + Thread.currentThread().getId());
 

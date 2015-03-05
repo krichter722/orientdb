@@ -222,6 +222,7 @@ public class OrientGraph extends OrientTransactionalGraph {
    *
    * @return Features object
    */
+  @Override
   public Features getFeatures() {
 		makeActive();
 

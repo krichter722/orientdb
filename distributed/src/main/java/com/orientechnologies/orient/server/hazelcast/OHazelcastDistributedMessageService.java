@@ -175,6 +175,7 @@ public class OHazelcastDistributedMessageService implements ODistributedMessageS
     return buffer.toString();
   }
 
+  @Override
   public OHazelcastDistributedDatabase getDatabase(final String iDatabaseName) {
     return databases.get(iDatabaseName);
   }
@@ -311,6 +312,7 @@ public class OHazelcastDistributedMessageService implements ODistributedMessageS
     return total > 0 ? total / involved : 0;
   }
 
+  @Override
   public OHazelcastDistributedDatabase registerDatabase(final String iDatabaseName) {
     final OHazelcastDistributedDatabase db = new OHazelcastDistributedDatabase(manager, this, iDatabaseName);
     databases.put(iDatabaseName, db);

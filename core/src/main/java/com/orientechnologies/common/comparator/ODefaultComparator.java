@@ -35,6 +35,7 @@ public class ODefaultComparator implements Comparator<Object> {
   public static final ODefaultComparator INSTANCE = new ODefaultComparator();
 
   @SuppressWarnings("unchecked")
+  @Override
   public int compare(final Object objectOne, final Object objectTwo) {
     if (objectOne == null) {
       if (objectTwo == null) {

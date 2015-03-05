@@ -41,6 +41,7 @@ public class OSQLFunctionEval extends OSQLFunctionMathAbstract {
     super(NAME, 1, 1);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iRecord, final Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     if (predicate == null) {
@@ -58,10 +59,12 @@ public class OSQLFunctionEval extends OSQLFunctionMathAbstract {
     }
   }
 
+  @Override
   public boolean aggregateResults() {
     return false;
   }
 
+  @Override
   public String getSyntax() {
     return "eval(<expression>)";
   }

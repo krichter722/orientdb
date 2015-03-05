@@ -54,6 +54,7 @@ public class OCommandScript extends OCommandRequestTextAbstract {
     this("sql", iText);
   }
 
+  @Override
   public boolean isIdempotent() {
     return false;
   }
@@ -70,6 +71,7 @@ public class OCommandScript extends OCommandRequestTextAbstract {
     return this;
   }
 
+  @Override
   public OSerializableStream fromStream(byte[] iStream) throws OSerializationException {
     final OMemoryStream buffer = new OMemoryStream(iStream);
     language = buffer.getAsString();
@@ -77,6 +79,7 @@ public class OCommandScript extends OCommandRequestTextAbstract {
     return this;
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     final OMemoryStream buffer = new OMemoryStream();
     buffer.setUtf8(language);

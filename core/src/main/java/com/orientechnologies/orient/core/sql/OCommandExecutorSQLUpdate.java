@@ -88,6 +88,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract 
   private boolean                            updated           = false;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLUpdate parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -191,6 +192,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract 
     return this;
   }
 
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (subjectName == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
@@ -257,6 +259,7 @@ public class OCommandExecutorSQLUpdate extends OCommandExecutorSQLRetryAbstract 
    * Update current record.
    */
   @SuppressWarnings("unchecked")
+  @Override
   public boolean result(final Object iRecord) {
     final ODocument record = ((OIdentifiable) iRecord).getRecord();
 

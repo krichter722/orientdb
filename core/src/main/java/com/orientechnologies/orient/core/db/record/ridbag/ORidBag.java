@@ -132,10 +132,12 @@ public class ORidBag implements OStringBuilderSerializable, Iterable<OIdentifiab
     delegate.addAll(values);
   }
 
+  @Override
   public void add(OIdentifiable identifiable) {
     delegate.add(identifiable);
   }
 
+  @Override
   public void remove(OIdentifiable identifiable) {
     delegate.remove(identifiable);
   }

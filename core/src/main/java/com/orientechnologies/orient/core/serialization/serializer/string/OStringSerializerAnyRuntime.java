@@ -27,6 +27,7 @@ public class OStringSerializerAnyRuntime implements OStringSerializer {
 	public static final OStringSerializerAnyRuntime	INSTANCE	= new OStringSerializerAnyRuntime();
 	private static final String											NAME			= "au";
 
+        @Override
 	public String getName() {
 		return NAME;
 	}
@@ -34,6 +35,7 @@ public class OStringSerializerAnyRuntime implements OStringSerializer {
 	/**
 	 * Re-Create any object if the class has a public constructor that accepts a String as unique parameter.
 	 */
+        @Override
 	public Object fromStream(final String iStream) {
 		if (iStream == null || iStream.length() == 0) {
                     // NULL VALUE
@@ -56,6 +58,7 @@ public class OStringSerializerAnyRuntime implements OStringSerializer {
 		return null;
 	}
 
+        @Override
 	public StringBuilder toStream(final StringBuilder iOutput, Object iObject) {
 		if (iObject != null) {
 			iOutput.append(iObject.getClass().getName());

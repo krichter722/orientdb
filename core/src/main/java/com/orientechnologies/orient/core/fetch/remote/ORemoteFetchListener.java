@@ -39,18 +39,22 @@ public abstract class ORemoteFetchListener implements OFetchListener {
 
   protected abstract void sendRecord(ORecord iLinked);
 
+  @Override
   public void processStandardField(ODocument iRecord, Object iFieldValue, String iFieldName, OFetchContext iContext,
       final Object iusObject, final String iFormat) throws OFetchException {
   }
 
+  @Override
   public void parseLinked(ODocument iRootRecord, OIdentifiable iLinked, Object iUserObject, String iFieldName,
       OFetchContext iContext) throws OFetchException {
   }
 
+  @Override
   public void parseLinkedCollectionValue(ODocument iRootRecord, OIdentifiable iLinked, Object iUserObject, String iFieldName,
       OFetchContext iContext) throws OFetchException {
   }
 
+  @Override
   public Object fetchLinkedMapEntry(ODocument iRoot, Object iUserObject, String iFieldName, String iKey, ODocument iLinked,
       OFetchContext iContext) throws OFetchException {
     if (iLinked.getIdentity().isValid()) {
@@ -60,6 +64,7 @@ public abstract class ORemoteFetchListener implements OFetchListener {
     return null;
   }
 
+  @Override
   public Object fetchLinkedCollectionValue(ODocument iRoot, Object iUserObject, String iFieldName, ODocument iLinked,
       OFetchContext iContext) throws OFetchException {
     if (iLinked.getIdentity().isValid()) {
@@ -69,6 +74,7 @@ public abstract class ORemoteFetchListener implements OFetchListener {
     return null;
   }
 
+  @Override
   public Object fetchLinked(ODocument iRoot, Object iUserObject, String iFieldName, ODocument iLinked, OFetchContext iContext)
       throws OFetchException {
     sendRecord(iLinked);

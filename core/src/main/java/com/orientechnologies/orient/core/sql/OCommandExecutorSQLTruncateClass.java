@@ -41,6 +41,7 @@ public class OCommandExecutorSQLTruncateClass extends OCommandExecutorSQLAbstrac
   private OClass             schemaClass;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLTruncateClass parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -79,6 +80,7 @@ public class OCommandExecutorSQLTruncateClass extends OCommandExecutorSQLAbstrac
   /**
    * Execute the command.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (schemaClass == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

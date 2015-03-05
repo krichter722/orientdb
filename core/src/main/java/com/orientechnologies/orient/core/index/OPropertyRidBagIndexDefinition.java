@@ -49,6 +49,7 @@ public class OPropertyRidBagIndexDefinition extends OAbstractIndexDefinitionMult
     return OType.convert(param[0], keyType.getDefaultJavaType());
   }
 
+  @Override
   public void processChangeEvent(final OMultiValueChangeEvent<?, ?> changeEvent, final Map<Object, Integer> keysToAdd,
       final Map<Object, Integer> keysToRemove) {
     switch (changeEvent.getChangeType()) {

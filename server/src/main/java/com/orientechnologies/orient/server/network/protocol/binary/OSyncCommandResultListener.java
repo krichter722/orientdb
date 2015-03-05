@@ -50,6 +50,7 @@ import com.orientechnologies.orient.core.fetch.remote.ORemoteFetchListener;
      return fetchedRecordsToSend;
    }
 
+   @Override
    public boolean isEmpty() {
      return false;
    }

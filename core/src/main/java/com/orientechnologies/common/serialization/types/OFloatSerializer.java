@@ -41,26 +41,32 @@ public class OFloatSerializer implements OBinarySerializer<Float> {
   private static final OBinaryConverter CONVERTER  = OBinaryConverterFactory.getConverter();
   public static OFloatSerializer        INSTANCE   = new OFloatSerializer();
 
+  @Override
   public int getObjectSize(Float object, Object... hints) {
     return FLOAT_SIZE;
   }
 
+  @Override
   public void serialize(Float object, byte[] stream, int startPosition, Object... hints) {
     OIntegerSerializer.INSTANCE.serializeLiteral(Float.floatToIntBits(object), stream, startPosition);
   }
 
+  @Override
   public Float deserialize(final byte[] stream, final int startPosition) {
     return Float.intBitsToFloat(OIntegerSerializer.INSTANCE.deserializeLiteral(stream, startPosition));
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return FLOAT_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return FLOAT_SIZE;
   }
@@ -107,10 +113,12 @@ public class OFloatSerializer implements OBinarySerializer<Float> {
     return FLOAT_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return FLOAT_SIZE;
   }

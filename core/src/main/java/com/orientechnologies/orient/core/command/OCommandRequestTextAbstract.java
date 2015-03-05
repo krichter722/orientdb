@@ -59,26 +59,31 @@ public abstract class OCommandRequestTextAbstract extends OCommandRequestAbstrac
    * Delegates the execution to the configured command executor.
    */
   @SuppressWarnings("unchecked")
+  @Override
   public <RET> RET execute(final Object... iArgs) {
     setParameters(iArgs);
     return (RET) ODatabaseRecordThreadLocal.INSTANCE.get().getStorage().command(this);
   }
 
+  @Override
   public String getText() {
     return text;
   }
 
+  @Override
   public OCommandRequestText setText(final String iText) {
     this.text = iText;
     return this;
   }
 
+  @Override
   public OSerializableStream fromStream(byte[] iStream) throws OSerializationException {
     final OMemoryStream buffer = new OMemoryStream(iStream);
     fromStream(buffer);
     return this;
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     final OMemoryStream buffer = new OMemoryStream();
     return toStream(buffer);

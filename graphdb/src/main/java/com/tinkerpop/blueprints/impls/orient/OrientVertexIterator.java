@@ -76,6 +76,7 @@ public class OrientVertexIterator extends OLazyWrapperIterator<Vertex> {
     return v;
   }
 
+  @Override
   public boolean filter(final Vertex iObject) {
     if (iObject instanceof OrientVertex && ((OrientVertex) iObject).getRecord() == null) {
       return false;

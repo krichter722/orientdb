@@ -41,6 +41,7 @@ public class OCommandExecutorSQLTruncateCluster extends OCommandExecutorSQLAbstr
   private String             clusterName;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLTruncateCluster parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -76,6 +77,7 @@ public class OCommandExecutorSQLTruncateCluster extends OCommandExecutorSQLAbstr
   /**
    * Execute the command.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (clusterName == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

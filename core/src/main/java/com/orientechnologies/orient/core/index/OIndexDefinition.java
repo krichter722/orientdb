@@ -54,16 +54,19 @@ public interface OIndexDefinition extends OIndexCallback {
   /**
    * {@inheritDoc}
    */
+  @Override
   boolean equals(Object index);
 
   /**
    * {@inheritDoc}
    */
+  @Override
   int hashCode();
 
   /**
    * {@inheritDoc}
    */
+  @Override
   String toString();
 
   /**

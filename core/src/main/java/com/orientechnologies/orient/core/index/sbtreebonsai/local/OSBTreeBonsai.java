@@ -87,8 +87,10 @@ public interface OSBTreeBonsai<K, V> extends OTreeInternal<K, V> {
    */
   void delete();
 
+  @Override
   long size();
 
+  @Override
   V remove(K key);
 
   Collection<V> getValuesMinor(K key, boolean inclusive, int maxValuesToFetch);
@@ -97,10 +99,12 @@ public interface OSBTreeBonsai<K, V> extends OTreeInternal<K, V> {
 
   Collection<V> getValuesMajor(K key, boolean inclusive, int maxValuesToFetch);
 
+  @Override
   void loadEntriesMajor(K key, boolean inclusive, boolean ascSortOrder, RangeResultListener<K, V> listener);
 
   Collection<V> getValuesBetween(K keyFrom, boolean fromInclusive, K keyTo, boolean toInclusive, int maxValuesToFetch);
 
+  @Override
   K firstKey();
 
   K lastKey();

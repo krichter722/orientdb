@@ -145,6 +145,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     PROFILER_DELETE_RECORD = "db." + this.name + ".deleteRecord";
   }
 
+  @Override
   public void open(final String iUserName, final String iUserPassword, final Map<String, Object> iProperties) {
     if (status == STATUS.OPEN) {
         // ALREADY OPENED: THIS IS THE CASE WHEN A STORAGE INSTANCE IS
@@ -229,6 +230,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     open(iToken.getUserName(), "", iProperties);
   }
 
+  @Override
   public void create(final Map<String, Object> iProperties) {
     lock.acquireExclusiveLock();
     try {
@@ -331,6 +333,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     doClose(force, onDelete);
   }
 
+  @Override
   public void delete() {
     final long timer = Orient.instance().getProfiler().startChrono();
 
@@ -410,6 +413,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     }
   }
 
+  @Override
   public int addCluster(String clusterName, boolean forceListBased, final Object... parameters) {
     checkOpeness();
     checkLowDiskSpaceAndFullCheckpointRequests();
@@ -427,6 +431,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     }
   }
 
+  @Override
   public int addCluster(String clusterName, int requestedId, boolean forceListBased, Object... parameters) {
     checkLowDiskSpaceAndFullCheckpointRequests();
 
@@ -450,6 +455,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     }
   }
 
+  @Override
   public boolean dropCluster(final int clusterId, final boolean iTruncate) {
     checkLowDiskSpaceAndFullCheckpointRequests();
 
@@ -579,6 +585,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     cluster.getExternalModificationLock().allowModifications();
   }
 
+  @Override
   public long count(final int iClusterId) {
     return count(iClusterId, false);
   }
@@ -604,6 +611,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     return cluster.getEntries() - cluster.getTombstonesCount();
   }
 
+  @Override
   public long[] getClusterDataRange(final int iClusterId) {
     if (iClusterId == -1) {
         return new long[] { ORID.CLUSTER_POS_INVALID, ORID.CLUSTER_POS_INVALID };
@@ -619,6 +627,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     }
   }
 
+  @Override
   public long count(final int[] iClusterIds) {
     return count(iClusterIds, false);
   }
@@ -645,6 +654,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     return tot;
   }
 
+  @Override
   public OStorageOperationResult<OPhysicalPosition> createRecord(final ORecordId rid, final byte[] content,
       ORecordVersion recordVersion, final byte recordType, final int mode, final ORecordCallback<Long> callback) {
     checkOpeness();
@@ -879,11 +889,13 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     }
   }
 
+  @Override
   public Set<String> getClusterNames() {
     checkOpeness();
     return new HashSet<String>(clusterMap.keySet());
   }
 
+  @Override
   public int getClusterIdByName(final String clusterName) {
     checkOpeness();
 
@@ -909,6 +921,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     return -1;
   }
 
+  @Override
   public void commit(final OTransaction clientTx, Runnable callback) {
     checkOpeness();
     checkLowDiskSpaceAndFullCheckpointRequests();
@@ -977,6 +990,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     }
   }
 
+  @Override
   public void rollback(final OTransaction clientTx) {
     checkOpeness();
     modificationLock.requestModificationLock();
@@ -1017,6 +1031,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     return ppos != null && !ppos.recordVersion.isTombstone();
   }
 
+  @Override
   public void synch() {
     checkOpeness();
 
@@ -1050,6 +1065,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     }
   }
 
+  @Override
   public String getPhysicalClusterNameById(final int iClusterId) {
     checkOpeness();
 
@@ -1060,14 +1076,17 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     return clusters.get(iClusterId) != null ? clusters.get(iClusterId).getName() : null;
   }
 
+  @Override
   public int getDefaultClusterId() {
     return defaultClusterId;
   }
 
+  @Override
   public void setDefaultClusterId(final int defaultClusterId) {
     this.defaultClusterId = defaultClusterId;
   }
 
+  @Override
   public OCluster getClusterById(int iClusterId) {
     if (iClusterId == ORID.CLUSTER_ID_INVALID) {
         // GET THE DEFAULT CLUSTER
@@ -1094,6 +1113,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     return cluster;
   }
 
+  @Override
   public long getSize() {
     try {
 
@@ -1112,10 +1132,12 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     }
   }
 
+  @Override
   public int getClusters() {
     return clusterMap.size();
   }
 
+  @Override
   public Set<OCluster> getClusterInstances() {
     final Set<OCluster> result = new HashSet<OCluster>();
 
@@ -1190,6 +1212,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     return wereNonTxOperationsPerformedInPreviousOpen;
   }
 
+  @Override
   public void reload() {
   }
 
@@ -1210,6 +1233,7 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
   /**
    * Executes the command request and return the result back.
    */
+  @Override
   public Object command(final OCommandRequestText iCommand) {
     final OCommandExecutor executor = OCommandManager.instance().getExecutor(iCommand);
 
@@ -1371,10 +1395,12 @@ public abstract class OAbstractPaginatedStorage extends OStorageAbstract impleme
     lockManager.releaseSharedLock(iRid);
   }
 
+  @Override
   public ORecordConflictStrategy getConflictStrategy() {
     return recordConflictStrategy;
   }
 
+  @Override
   public void setConflictStrategy(final ORecordConflictStrategy conflictResolver) {
     this.recordConflictStrategy = conflictResolver;
   }

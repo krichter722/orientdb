@@ -42,6 +42,7 @@ public class JavaSimpleTestClass {
   private Date              dateField;
   private JavaTestInterface testAnonymous = new JavaTestInterface() {
 
+                                            @Override
                                             public int getNumber() {
                                               // TODO Auto-generated method stub
                                               return -1;

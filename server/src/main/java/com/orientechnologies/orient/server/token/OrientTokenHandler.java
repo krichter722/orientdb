@@ -154,6 +154,7 @@ public class OrientTokenHandler extends OServerPluginAbstract implements OTokenH
     return valid;
   }
 
+  @Override
   public byte[] getSignedWebToken(final ODatabaseDocumentInternal db, final OSecurityUser user) {
     final ByteArrayOutputStream tokenByteOS = new ByteArrayOutputStream(1024);
     final OrientJwtHeader header = new OrientJwtHeader();
@@ -180,6 +181,7 @@ public class OrientTokenHandler extends OServerPluginAbstract implements OTokenH
     return tokenByteOS.toByteArray();
   }
 
+  @Override
   public byte[] getSignedBinaryToken(final ODatabaseDocumentInternal db, final OSecurityUser user, final ONetworkProtocolData data) {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     try {
@@ -223,6 +225,7 @@ public class OrientTokenHandler extends OServerPluginAbstract implements OTokenH
     return baos.toByteArray();
   }
 
+  @Override
   public ONetworkProtocolData getProtocolDataFromToken(final OToken token) {
     if (token instanceof OBinaryToken) {
       final OBinaryToken binary = (OBinaryToken) token;
@@ -239,6 +242,7 @@ public class OrientTokenHandler extends OServerPluginAbstract implements OTokenH
     return null;
   }
 
+  @Override
   public OToken parseBinaryToken(final byte[] binaryToken) {
     try {
       final ByteArrayInputStream bais = new ByteArrayInputStream(binaryToken);
@@ -279,6 +283,7 @@ public class OrientTokenHandler extends OServerPluginAbstract implements OTokenH
     return sessionInMills;
   }
 
+  @Override
   public boolean isEnabled() {
     return enabled;
   }

@@ -113,23 +113,28 @@ public class ORecordLazyList extends ORecordTrackedList implements ORecordLazyMu
   /**
    * @return iterator that just returns the elements without convertion.
    */
+  @Override
   public Iterator<OIdentifiable> rawIterator() {
     lazyLoad(false);
     final Iterator<OIdentifiable> subIterator = new OLazyIterator<OIdentifiable>() {
       private int pos = -1;
 
+          @Override
       public boolean hasNext() {
         return pos < size() - 1;
       }
 
+          @Override
       public OIdentifiable next() {
         return ORecordLazyList.this.rawGet(++pos);
       }
 
+          @Override
       public void remove() {
         ORecordLazyList.this.remove(pos);
       }
 
+          @Override
       public OIdentifiable update(final OIdentifiable iValue) {
         return ORecordLazyList.this.set(pos, iValue);
       }
@@ -329,6 +334,7 @@ public class ORecordLazyList extends ORecordTrackedList implements ORecordLazyMu
     return super.toArray(a);
   }
 
+  @Override
   public void convertLinks2Records() {
     lazyLoad(false);
     if (contentType == MULTIVALUE_CONTENT_TYPE.ALL_RECORDS || !autoConvertToRecord) {
@@ -347,6 +353,7 @@ public class ORecordLazyList extends ORecordTrackedList implements ORecordLazyMu
     contentType = MULTIVALUE_CONTENT_TYPE.ALL_RECORDS;
   }
 
+  @Override
   public boolean convertRecords2Links() {
     if (contentType == MULTIVALUE_CONTENT_TYPE.ALL_RIDS || sourceRecord == null) {
         // PRECONDITIONS
@@ -371,10 +378,12 @@ public class ORecordLazyList extends ORecordTrackedList implements ORecordLazyMu
     return allConverted;
   }
 
+  @Override
   public boolean isAutoConvertToRecord() {
     return autoConvertToRecord;
   }
 
+  @Override
   public void setAutoConvertToRecord(boolean convertToDocument) {
     this.autoConvertToRecord = convertToDocument;
   }
@@ -478,6 +487,7 @@ public class ORecordLazyList extends ORecordTrackedList implements ORecordLazyMu
     return this;
   }
 
+  @Override
   public boolean detach() {
     return convertRecords2Links();
   }

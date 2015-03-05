@@ -21,6 +21,7 @@ public class SQLSelectIndexReuseTest extends AbstractIndexReuseTest {
   }
 
   @BeforeClass
+  @Override
   public void beforeClass() throws Exception {
     super.beforeClass();
     if (database.isClosed()) {
@@ -136,6 +137,7 @@ public class SQLSelectIndexReuseTest extends AbstractIndexReuseTest {
   }
 
   @AfterClass
+  @Override
   public void afterClass() throws Exception {
     if (database.isClosed()) {
       database.open("admin", "admin");

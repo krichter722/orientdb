@@ -30,6 +30,7 @@ public class OSMTPAuthenticator extends javax.mail.Authenticator {
     this.password = password;
   }
 
+  @Override
   public PasswordAuthentication getPasswordAuthentication() {
     return new PasswordAuthentication(userName, password);
   }

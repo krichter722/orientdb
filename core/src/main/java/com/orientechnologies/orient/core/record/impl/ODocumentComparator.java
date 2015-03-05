@@ -44,6 +44,7 @@ public class ODocumentComparator implements Comparator<OIdentifiable> {
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public int compare(final OIdentifiable iDoc1, final OIdentifiable iDoc2) {
     if (iDoc1 != null && iDoc1.equals(iDoc2)) {
         return 0;

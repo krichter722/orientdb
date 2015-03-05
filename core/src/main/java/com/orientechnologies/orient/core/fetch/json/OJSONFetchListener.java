@@ -32,6 +32,7 @@ import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
  */
 public class OJSONFetchListener implements OFetchListener {
 
+  @Override
   public void processStandardField(final ODocument iRecord, final Object iFieldValue, final String iFieldName,
       final OFetchContext iContext, final Object iusObject, final String iFormat) {
     try {
@@ -51,16 +52,19 @@ public class OJSONFetchListener implements OFetchListener {
     }
   }
 
+  @Override
   public Object fetchLinked(final ODocument iRecord, final Object iUserObject, final String iFieldName, final ODocument iLinked,
       final OFetchContext iContext) throws OFetchException {
     return iLinked;
   }
 
+  @Override
   public Object fetchLinkedMapEntry(final ODocument iRecord, final Object iUserObject, final String iFieldName, final String iKey,
       final ODocument iLinked, final OFetchContext iContext) throws OFetchException {
     return iLinked;
   }
 
+  @Override
   public void parseLinked(final ODocument iRootRecord, final OIdentifiable iLinked, final Object iUserObject,
       final String iFieldName, final OFetchContext iContext) throws OFetchException {
     try {
@@ -71,6 +75,7 @@ public class OJSONFetchListener implements OFetchListener {
     }
   }
 
+  @Override
   public void parseLinkedCollectionValue(ODocument iRootRecord, OIdentifiable iLinked, Object iUserObject, String iFieldName,
       OFetchContext iContext) throws OFetchException {
     try {
@@ -85,6 +90,7 @@ public class OJSONFetchListener implements OFetchListener {
     }
   }
 
+  @Override
   public Object fetchLinkedCollectionValue(ODocument iRoot, Object iUserObject, String iFieldName, ODocument iLinked,
       OFetchContext iContext) throws OFetchException {
     return iLinked;

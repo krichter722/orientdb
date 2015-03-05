@@ -267,6 +267,7 @@ public class OHazelcastPlugin extends ODistributedAbstractPlugin implements Memb
     return cluster;
   }
 
+  @Override
   public ODocument getNodeConfigurationById(final String iNodeId) {
     return (ODocument) getConfigurationMap().get(CONFIG_NODE_PREFIX + iNodeId);
   }
@@ -294,10 +295,12 @@ public class OHazelcastPlugin extends ODistributedAbstractPlugin implements Memb
     return nodeCfg;
   }
 
+  @Override
   public boolean isEnabled() {
     return enabled;
   }
 
+  @Override
   public NODE_STATUS getNodeStatus() {
     return status;
   }
@@ -314,6 +317,7 @@ public class OHazelcastPlugin extends ODistributedAbstractPlugin implements Memb
     ODistributedServerLog.warn(this, getLocalNodeName(), null, DIRECTION.NONE, "updated node status to '%s'", status);
   }
 
+  @Override
   public boolean checkNodeStatus(final NODE_STATUS iStatus2Check) {
     return status.equals(iStatus2Check);
   }
@@ -370,6 +374,7 @@ public class OHazelcastPlugin extends ODistributedAbstractPlugin implements Memb
     return messageService != null ? messageService.getDatabases() : Collections.EMPTY_SET;
   }
 
+  @Override
   public String getLocalNodeName() {
     return nodeName;
   }
@@ -474,6 +479,7 @@ public class OHazelcastPlugin extends ODistributedAbstractPlugin implements Memb
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public ODocument getStats() {
     final ODocument doc = new ODocument();
 
@@ -739,6 +745,7 @@ public class OHazelcastPlugin extends ODistributedAbstractPlugin implements Memb
     return getDatabaseStatus(iNodeName, iDatabaseName) != DB_STATUS.OFFLINE;
   }
 
+  @Override
   public boolean isOffline() {
     return status != NODE_STATUS.ONLINE;
   }
@@ -761,6 +768,7 @@ public class OHazelcastPlugin extends ODistributedAbstractPlugin implements Memb
     return hazelcastInstance;
   }
 
+  @Override
   public Lock getLock(final String iName) {
     return getHazelcastInstance().getLock(iName);
   }
@@ -817,6 +825,7 @@ public class OHazelcastPlugin extends ODistributedAbstractPlugin implements Memb
     }
   }
 
+  @Override
   public long getLastClusterChangeOn() {
     return lastClusterChangeOn;
   }

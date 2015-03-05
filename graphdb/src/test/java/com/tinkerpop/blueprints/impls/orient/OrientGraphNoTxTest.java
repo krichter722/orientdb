@@ -78,10 +78,12 @@ public class OrientGraphNoTxTest extends GraphTest {
     printTestPerformance("GMLReaderTestSuite", this.stopWatch());
   }
 
+  @Override
   public Graph generateGraph() {
     return generateGraph("graph");
   }
 
+  @Override
   public Graph generateGraph(final String graphDirectoryName) {
     final String url = OrientGraphTest.getStorageType() + ":" + getWorkingDirectory() + "/" + graphDirectoryName;
 
@@ -104,6 +106,7 @@ public class OrientGraphNoTxTest extends GraphTest {
     return graph;
   }
 
+  @Override
   public void doTestSuite(final TestSuite testSuite) throws Exception {
     String directory = getWorkingDirectory();
     deleteDirectory(new File(directory));

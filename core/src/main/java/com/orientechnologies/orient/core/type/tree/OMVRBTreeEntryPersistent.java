@@ -439,6 +439,7 @@ public class OMVRBTreeEntryPersistent<K, V> extends OMVRBTreeEntry<K, V> impleme
   /**
    * Invalidate serialized Value associated in order to be re-marshalled on the next node storing.
    */
+  @Override
   public V setValue(final V iValue) {
     V oldValue = getValue();
 
@@ -450,10 +451,12 @@ public class OMVRBTreeEntryPersistent<K, V> extends OMVRBTreeEntry<K, V> impleme
     return oldValue;
   }
 
+  @Override
   public int getSize() {
     return dataProvider != null ? dataProvider.getSize() : 0;
   }
 
+  @Override
   public int getPageSize() {
     return dataProvider.getPageSize();
   }
@@ -501,6 +504,7 @@ public class OMVRBTreeEntryPersistent<K, V> extends OMVRBTreeEntry<K, V> impleme
     pTree.signalNodeChanged(this);
   }
 
+  @Override
   public void onIdentityChanged(ORID rid) {
     if (left != null) {
       if (left.dataProvider.setParent(rid)) {

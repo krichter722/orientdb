@@ -25,15 +25,18 @@ import javax.persistence.spi.ProviderUtil;
 
 public class OJPAProviderUtil implements ProviderUtil {
 
+        @Override
 	public LoadState isLoadedWithoutReference(Object entity,
 			String attributeName) {
 		return LoadState.UNKNOWN;
 	}
 
+        @Override
 	public LoadState isLoadedWithReference(Object entity, String attributeName) {
 		return LoadState.UNKNOWN;
 	}
 
+        @Override
 	public LoadState isLoaded(Object entity) {
 		return LoadState.UNKNOWN;
 	}

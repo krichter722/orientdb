@@ -43,6 +43,7 @@ public class OSQLFunctionMin extends OSQLFunctionMathAbstract {
   }
 
   @SuppressWarnings({ "unchecked", "rawtypes" })
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
 
@@ -89,11 +90,13 @@ public class OSQLFunctionMin extends OSQLFunctionMathAbstract {
     return min;
   }
 
+  @Override
   public boolean aggregateResults() {
     // LET definitions (contain $current) does not require results aggregation
     return ((configuredParameters.length == 1) && !configuredParameters[0].toString().contains("$current"));
   }
 
+  @Override
   public String getSyntax() {
     return "min(<field> [,<field>*])";
   }

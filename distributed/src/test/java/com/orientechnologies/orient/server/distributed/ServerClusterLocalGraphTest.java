@@ -32,6 +32,7 @@ public class ServerClusterLocalGraphTest extends AbstractServerClusterGraphTest 
     execute();
   }
 
+  @Override
   protected String getDatabaseURL(final ServerRun server) {
     return "plocal:" + server.getDatabasePath(getDatabaseName());
   }

@@ -78,15 +78,18 @@ public class OHazelcastDistributedResponse implements ODistributedResponse, Exte
     this.senderNodeName = senderNodeName;
   }
 
+  @Override
   public Object getPayload() {
     return payload;
   }
 
+  @Override
   public ODistributedResponse setPayload(final Object payload) {
     this.payload = payload;
     return this;
   }
 
+  @Override
   public ODistributedResponse setExecutorNodeName(final String executorNodeName) {
     this.executorNodeName = executorNodeName;
     return this;

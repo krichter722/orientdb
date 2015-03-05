@@ -41,6 +41,7 @@ public class OCommandExecutorSQLRebuildIndex extends OCommandExecutorSQLAbstract
 
   private String             name;
 
+  @Override
   public OCommandExecutorSQLRebuildIndex parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -72,6 +73,7 @@ public class OCommandExecutorSQLRebuildIndex extends OCommandExecutorSQLAbstract
   /**
    * Execute the REMOVE INDEX.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (name == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

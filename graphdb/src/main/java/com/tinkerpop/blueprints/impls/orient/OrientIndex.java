@@ -80,14 +80,17 @@ public class OrientIndex<T extends OrientElement> implements Index<T> {
     }
   }
 
+  @Override
   public String getIndexName() {
     return underlying.getName();
   }
 
+  @Override
   public Class<T> getIndexClass() {
     return (Class<T>) this.indexClass;
   }
 
+  @Override
   public void put(final String key, final Object value, final T element) {
     final String keyTemp = key + SEPARATOR + value;
 
@@ -103,6 +106,7 @@ public class OrientIndex<T extends OrientElement> implements Index<T> {
   }
 
   @SuppressWarnings("rawtypes")
+  @Override
   public CloseableIterable<T> get(final String key, final Object iValue) {
     final String keyTemp = key + SEPARATOR + iValue;
     Collection<OIdentifiable> records = (Collection<OIdentifiable>) underlying.get(keyTemp);
@@ -114,10 +118,12 @@ public class OrientIndex<T extends OrientElement> implements Index<T> {
     return new OrientElementIterable<T>(graph, records);
   }
 
+  @Override
   public CloseableIterable<T> query(final String key, final Object query) throws UnsupportedOperationException {
     throw new UnsupportedOperationException();
   }
 
+  @Override
   public long count(final String key, final Object value) {
     final String keyTemp = key + SEPARATOR + value;
     final Collection<OIdentifiable> records = (Collection<OIdentifiable>) underlying.get(keyTemp);
@@ -127,6 +133,7 @@ public class OrientIndex<T extends OrientElement> implements Index<T> {
     return records.size();
   }
 
+  @Override
   public void remove(final String key, final Object value, final T element) {
     final String keyTemp = key + SEPARATOR + value;
     graph.setCurrentGraphInThreadLocal();
@@ -139,6 +146,7 @@ public class OrientIndex<T extends OrientElement> implements Index<T> {
     }
   }
 
+  @Override
   public String toString() {
     return StringFactory.indexString(this);
   }

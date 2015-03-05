@@ -53,6 +53,7 @@ public class OCommandExecutorSQLCreateVertex extends OCommandExecutorSQLSetAware
   private LinkedHashMap<String, Object> fields;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLCreateVertex parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -103,6 +104,7 @@ public class OCommandExecutorSQLCreateVertex extends OCommandExecutorSQLSetAware
   /**
    * Execute the command and return the ODocument object created.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (clazz == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

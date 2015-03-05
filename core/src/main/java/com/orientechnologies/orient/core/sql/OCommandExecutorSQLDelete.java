@@ -74,6 +74,7 @@ public class OCommandExecutorSQLDelete extends OCommandExecutorSQLAbstract imple
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLDelete parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -151,6 +152,7 @@ public class OCommandExecutorSQLDelete extends OCommandExecutorSQLAbstract imple
     return this;
   }
 
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (query == null && indexName == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
@@ -257,6 +259,7 @@ public class OCommandExecutorSQLDelete extends OCommandExecutorSQLAbstract imple
   /**
    * Deletes the current record.
    */
+  @Override
   public boolean result(final Object iRecord) {
     final ORecordAbstract record = (ORecordAbstract) iRecord;
 
@@ -303,6 +306,7 @@ public class OCommandExecutorSQLDelete extends OCommandExecutorSQLAbstract imple
     return indexName != null ? DISTRIBUTED_EXECUTION_MODE.REPLICATE : DISTRIBUTED_EXECUTION_MODE.LOCAL;
   }
 
+  @Override
   public String getSyntax() {
     return "DELETE FROM <Class>|RID|cluster:<cluster> [UNSAFE] [LOCK <NONE|RECORD>] [RETURNING <COUNT|BEFORE>] [WHERE <condition>*]";
   }

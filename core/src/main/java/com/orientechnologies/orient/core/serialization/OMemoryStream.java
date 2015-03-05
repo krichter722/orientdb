@@ -51,6 +51,7 @@ public class OMemoryStream extends OutputStream {
         .getProfiler()
       .registerHookValue("system.memory.stream.resize", "Number of resizes of memory stream buffer", METRIC_TYPE.COUNTER,
             new OProfilerHookValue() {
+              @Override
               public Object getValue() {
                 return metricResize;
               }

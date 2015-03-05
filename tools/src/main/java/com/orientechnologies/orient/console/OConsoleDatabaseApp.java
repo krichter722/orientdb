@@ -129,6 +129,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
       }
 
       new OSignalHandler().installDefaultSignals(new SignalHandler() {
+        @Override
         public void handle(Signal signal) {
           restoreTerminal();
         }
@@ -1234,6 +1235,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
 
       final List<OIndex<?>> indexes = new ArrayList<OIndex<?>>(currentDatabase.getMetadata().getIndexManager().getIndexes());
       Collections.sort(indexes, new Comparator<OIndex<?>>() {
+        @Override
         public int compare(OIndex<?> o1, OIndex<?> o2) {
           return o1.getName().compareToIgnoreCase(o2.getName());
         }
@@ -1329,6 +1331,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
 
       final List<OClass> classes = new ArrayList<OClass>(currentDatabase.getMetadata().getImmutableSchemaSnapshot().getClasses());
       Collections.sort(classes, new Comparator<OClass>() {
+        @Override
         public int compare(OClass o1, OClass o2) {
           return o1.getName().compareToIgnoreCase(o2.getName());
         }
@@ -1993,6 +1996,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     return answer;
   }
 
+  @Override
   public void onMessage(final String iText) {
     message(iText);
   }
@@ -2010,6 +2014,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     }
   }
 
+  @Override
   public boolean onProgress(final Object iTask, final long iCounter, final float iPercent) {
     final int completitionBar = (int) iPercent / 10;
 
@@ -2045,6 +2050,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     message("\nCurrent path: " + new File("").getAbsolutePath());
   }
 
+  @Override
   public void onCompletition(final Object iTask, final boolean iSucceed) {
     if (interactiveMode) {
         if (iSucceed) {
@@ -2123,6 +2129,7 @@ public class OConsoleDatabaseApp extends OrientConsole implements OCommandOutput
     return currentRecord;
   }
 
+  @Override
   protected void printApplicationInfo() {
     message("\nOrientDB console v." + OConstants.getVersion() + " " + OConstants.ORIENT_URL);
     message("\nType 'help' to display all the supported commands.");

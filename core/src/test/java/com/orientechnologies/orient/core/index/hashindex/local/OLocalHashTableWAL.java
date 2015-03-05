@@ -44,6 +44,7 @@ public class OLocalHashTableWAL extends OLocalHashTableTest {
   }
 
   @BeforeMethod(enabled = false)
+  @Override
   public void beforeMethod() throws IOException {
     OGlobalConfiguration.INDEX_TX_MODE.setValue("FULL");
     OGlobalConfiguration.WAL_MAX_SIZE.setValue(200 * 1024);

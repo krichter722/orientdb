@@ -185,6 +185,7 @@ public class OMVRBTreeRID extends OMVRBTreePersistent<OIdentifiable, OIdentifiab
     }
   }
 
+  @Override
   public OIdentifiable remove(final Object o) {
     final OIdentifiable removed;
 
@@ -282,6 +283,7 @@ public class OMVRBTreeRID extends OMVRBTreePersistent<OIdentifiable, OIdentifiab
     }
   }
 
+  @Override
   public boolean detach() {
     return saveAllNewEntries();
   }
@@ -295,6 +297,7 @@ public class OMVRBTreeRID extends OMVRBTreePersistent<OIdentifiable, OIdentifiab
     return tot;
   }
 
+  @Override
   public int getTreeSize() {
     ((OMVRBTreeRIDProvider) dataProvider).lazyUnmarshall();
     return super.getTreeSize();
@@ -400,6 +403,7 @@ public class OMVRBTreeRID extends OMVRBTreePersistent<OIdentifiable, OIdentifiab
   /**
    * Do nothing since the set is early saved
    */
+  @Override
   public OMVRBTreePersistent<OIdentifiable, OIdentifiable> save() {
     return this;
   }

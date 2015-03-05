@@ -64,6 +64,7 @@ public class OCommandExecutorSQLDeleteVertex extends OCommandExecutorSQLAbstract
   private OModifiableBoolean shutdownFlag = new OModifiableBoolean();
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLDeleteVertex parse(final OCommandRequest iRequest) {
     database = getDatabase();
 
@@ -134,6 +135,7 @@ public class OCommandExecutorSQLDeleteVertex extends OCommandExecutorSQLAbstract
   /**
    * Execute the command and return the ODocument object created.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (rid == null && query == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
@@ -173,6 +175,7 @@ public class OCommandExecutorSQLDeleteVertex extends OCommandExecutorSQLAbstract
   /**
    * Delete the current vertex.
    */
+  @Override
   public boolean result(final Object iRecord) {
     final OIdentifiable id = (OIdentifiable) iRecord;
     if (id.getIdentity().isValid()) {

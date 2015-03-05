@@ -49,6 +49,7 @@ public class OSQLFunctionSysdate extends OSQLFunctionAbstract {
     now = new Date();
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     if (iParams.length == 0) {
@@ -71,6 +72,7 @@ public class OSQLFunctionSysdate extends OSQLFunctionAbstract {
     return false;
   }
 
+  @Override
   public String getSyntax() {
     return "sysdate([<format>] [,<timezone>])";
   }

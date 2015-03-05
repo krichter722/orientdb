@@ -60,25 +60,30 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     }
   }
 
+  @Override
   public Iterator<TYPE> iterator() {
     return new OObjectEnumLazyIterator<TYPE>(enumClass, sourceRecord, serializedList.iterator());
   }
 
+  @Override
   public boolean contains(final Object o) {
 	  return this.indexOf(o) > -1;
   }
 
+  @Override
   public boolean add(TYPE element) {
     serializedList.add(element.name());
     return list.add(element);
   }
 
+  @Override
   public void add(int index, TYPE element) {
     setDirty();
     serializedList.add(index, element.name());
     list.add(index, element);
   }
 
+  @Override
   public TYPE get(final int index) {
     TYPE o = (TYPE) list.get(index);
     if (o == null) {
@@ -93,6 +98,7 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     return o;
   }
 
+  @Override
   public int indexOf(final Object o) {
 	  TYPE enumToCheck = objectToEnum(o);
 
@@ -103,6 +109,7 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
           }
   }
 
+  @Override
   public int lastIndexOf(final Object o) {
 	  TYPE enumToCheck = objectToEnum(o);
 
@@ -113,24 +120,29 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
           }
   }
 
+  @Override
   public Object[] toArray() {
     convertAll();
     return list.toArray();
   }
 
+  @Override
   public <T> T[] toArray(final T[] a) {
     convertAll();
     return list.toArray(a);
   }
 
+  @Override
   public int size() {
     return serializedList.size();
   }
 
+  @Override
   public boolean isEmpty() {
     return serializedList.isEmpty();
   }
 
+  @Override
   public boolean remove(Object o) {
     setDirty();
     int indexOfO = list.indexOf(o);
@@ -138,6 +150,7 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     return list.remove(o);
   }
 
+  @Override
   public boolean containsAll(Collection<?> c) {
     for (Object o : c) {
       if (!contains(o)) {
@@ -147,6 +160,7 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     return true;
   }
 
+  @Override
   public boolean addAll(Collection<? extends TYPE> c) {
     boolean dirty = false;
     for (TYPE element : c) {
@@ -158,6 +172,7 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     return dirty;
   }
 
+  @Override
   public boolean addAll(int index, Collection<? extends TYPE> c) {
     for (TYPE element : c) {
       add(index, element);
@@ -169,6 +184,7 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     return c.size() > 0;
   }
 
+  @Override
   public boolean removeAll(Collection<?> c) {
     boolean dirty = true;
     for (Object o : c) {
@@ -180,6 +196,7 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     return dirty;
   }
 
+  @Override
   public boolean retainAll(Collection<?> c) {
     boolean modified = false;
     Iterator<TYPE> e = iterator();
@@ -192,30 +209,36 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     return modified;
   }
 
+  @Override
   public void clear() {
     setDirty();
     serializedList.clear();
     list.clear();
   }
 
+  @Override
   public TYPE set(int index, TYPE element) {
     serializedList.set(index, element.name());
     return (TYPE) list.set(index, element);
   }
 
+  @Override
   public TYPE remove(int index) {
     serializedList.remove(index);
     return (TYPE) list.remove(index);
   }
 
+  @Override
   public ListIterator<TYPE> listIterator() {
     return (ListIterator<TYPE>) list.listIterator();
   }
 
+  @Override
   public ListIterator<TYPE> listIterator(int index) {
     return (ListIterator<TYPE>) list.listIterator(index);
   }
 
+  @Override
   public List<TYPE> subList(int fromIndex, int toIndex) {
     return (List<TYPE>) list.subList(fromIndex, toIndex);
   }
@@ -228,10 +251,12 @@ public class OObjectEnumLazyList<TYPE extends Enum<?>> implements List<TYPE>, OO
     convertAll();
   }
 
+  @Override
   public void detach(boolean nonProxiedInstance) {
     convertAll();
   }
 
+  @Override
   public void detachAll(boolean nonProxiedInstance, Map<Object, Object> alreadyDetached) {
     convertAll();
   }

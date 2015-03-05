@@ -73,6 +73,7 @@ public abstract class OServerCommandAbstract implements OServerCommand {
      return server;
    }
 
+   @Override
    public void configure(final OServer server) {
      this.server = server;
    }

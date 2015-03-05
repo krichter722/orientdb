@@ -48,6 +48,7 @@ public class OUnsafeByteArrayComparator implements Comparator<byte[]> {
 
   static {
     unsafe = (Unsafe) AccessController.doPrivileged(new PrivilegedAction<Object>() {
+      @Override
       public Object run() {
         try {
           Field f = Unsafe.class.getDeclaredField("theUnsafe");
@@ -71,6 +72,7 @@ public class OUnsafeByteArrayComparator implements Comparator<byte[]> {
 
   }
 
+  @Override
   public int compare(byte[] arrayOne, byte[] arrayTwo) {
     if (arrayOne.length > arrayTwo.length) {
         return 1;

@@ -30,33 +30,43 @@ public class OConsoleDatabaseListener implements ODatabaseListener {
 		this.console = console;
 	}
 
+        @Override
 	public void onCreate(ODatabase iDatabase) {
 	}
 
+        @Override
 	public void onDelete(ODatabase iDatabase) {
 	}
 
+        @Override
 	public void onOpen(ODatabase iDatabase) {
 	}
 
+        @Override
 	public void onBeforeTxBegin(ODatabase iDatabase) {
 	}
 
+        @Override
 	public void onBeforeTxRollback(ODatabase iDatabase) {
 	}
 
+        @Override
 	public void onAfterTxRollback(ODatabase iDatabase) {
 	}
 
+        @Override
 	public void onBeforeTxCommit(ODatabase iDatabase) {
 	}
 
+        @Override
 	public void onAfterTxCommit(ODatabase iDatabase) {
 	}
 
+        @Override
 	public void onClose(ODatabase iDatabase) {
 	}
 
+        @Override
 	public boolean onCorruptionRepairDatabase(ODatabase iDatabase, final String iProblem, String iWhatWillbeFixed) {
 		final String answer = console.ask("\nDatabase seems corrupted:\n> " + iProblem + "\nAuto-repair will execute this action:\n> "
 				+ iWhatWillbeFixed + "\n\nDo you want to repair it (Y/n)? ");

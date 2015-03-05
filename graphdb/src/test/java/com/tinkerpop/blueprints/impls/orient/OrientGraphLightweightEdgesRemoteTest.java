@@ -14,11 +14,13 @@ import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class OrientGraphLightweightEdgesRemoteTest extends OrientGraphRemoteTest {
   @Before
+  @Override
   public void setUp() throws Exception {
     Assume.assumeThat(getEnvironment(), IsEqual.equalTo(ENV.RELEASE));
     super.setUp();
   }
 
+  @Override
   public Graph generateGraph(final String graphDirectoryName) {
     OrientGraph graph = (OrientGraph) super.generateGraph(graphDirectoryName);
     graph.setUseLightweightEdges(true);

@@ -87,6 +87,7 @@ public class OIterateBlock extends OAbstractBlock {
       variableName = iVariableName;
     }
 
+    @Override
     public Iterator<Object> iterator() {
       return new OIterateBlockIterator();
     }
@@ -94,10 +95,12 @@ public class OIterateBlock extends OAbstractBlock {
     private class OIterateBlockIterator implements Iterator<Object> {
       private int p = 0;
 
+      @Override
       public boolean hasNext() {
         return p < objects.length;
       }
 
+      @Override
       public Object next() {
         if (p < objects.length) {
           final Object value = objects[p++];
@@ -110,6 +113,7 @@ public class OIterateBlock extends OAbstractBlock {
         }
       }
 
+      @Override
       public void remove() {
         throw new UnsupportedOperationException();
       }

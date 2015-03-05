@@ -78,6 +78,7 @@ public class ODefaultReplicationConflictResolver implements OReplicationConflict
   public ODefaultReplicationConflictResolver() {
   }
 
+  @Override
   public void startup(final OServer iServer, final ODistributedServerManager iCluster, final String iDatabaseName) {
     serverInstance = iServer;
     cluster = iCluster;
@@ -114,6 +115,7 @@ public class ODefaultReplicationConflictResolver implements OReplicationConflict
     }
   }
 
+  @Override
   public void shutdown() {
     if (database != null) {
         database.close();
@@ -250,6 +252,7 @@ public class ODefaultReplicationConflictResolver implements OReplicationConflict
    * @param iRID
    *          RID to search
    */
+  @Override
   public boolean existConflictsForRecord(final ORecordId iRID) {
     ODatabaseRecordThreadLocal.INSTANCE.set((ODatabaseDocumentInternal) database);
     if (index == null) {

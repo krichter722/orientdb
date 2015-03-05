@@ -55,6 +55,7 @@ public class OSQLCommandTask extends OAbstractReplicatedTask {
     params = iCommand.getParameters();
   }
 
+  @Override
   public Object execute(final OServer iServer, ODistributedServerManager iManager, final ODatabaseDocumentTx database)
       throws Exception {
     ODistributedServerLog.debug(this, iManager.getLocalNodeName(), getNodeSource(), DIRECTION.IN, "execute command=%s db=%s",
@@ -73,6 +74,7 @@ public class OSQLCommandTask extends OAbstractReplicatedTask {
     return res;
   }
 
+  @Override
   public QUORUM_TYPE getQuorumType() {
     return QUORUM_TYPE.ALL;
   }

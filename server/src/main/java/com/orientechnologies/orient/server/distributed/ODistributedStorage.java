@@ -206,6 +206,7 @@ public class ODistributedStorage implements OStorage, OFreezableStorage, OAutosh
     return wrapped.getCollectionManagerClass();
   }
 
+  @Override
   public Object command(final OCommandRequestText iCommand) {
 
     List<String> servers = (List<String>) iCommand.getContext().getVariable("servers");
@@ -427,6 +428,7 @@ public class ODistributedStorage implements OStorage, OFreezableStorage, OAutosh
     }
   }
 
+  @Override
   public OStorageOperationResult<OPhysicalPosition> createRecord(final ORecordId iRecordId, final byte[] iContent,
       final ORecordVersion iRecordVersion, final byte iRecordType, final int iMode, final ORecordCallback<Long> iCallback) {
     if (OScenarioThreadLocal.INSTANCE.get() == RUN_MODE.RUNNING_DISTRIBUTED) {
@@ -537,6 +539,7 @@ public class ODistributedStorage implements OStorage, OFreezableStorage, OAutosh
     }
   }
 
+  @Override
   public OStorageOperationResult<ORawBuffer> readRecord(final ORecordId iRecordId, final String iFetchPlan,
       final boolean iIgnoreCache, final ORecordCallback<ORawBuffer> iCallback, final boolean loadTombstones,
       LOCKING_STRATEGY iLockingStrategy) {
@@ -761,6 +764,7 @@ public class ODistributedStorage implements OStorage, OFreezableStorage, OAutosh
     return wrapped.existsResource(iName);
   }
 
+  @Override
   public OCluster getClusterByName(final String iName) {
     return wrapped.getClusterByName(iName);
   }
@@ -1082,6 +1086,7 @@ public class ODistributedStorage implements OStorage, OFreezableStorage, OAutosh
     return wrapped.addCluster(iClusterName, iRequestedId, forceListBased, iParameters);
   }
 
+  @Override
   public boolean dropCluster(final String iClusterName, final boolean iTruncate) {
     return wrapped.dropCluster(iClusterName, iTruncate);
   }
@@ -1101,6 +1106,7 @@ public class ODistributedStorage implements OStorage, OFreezableStorage, OAutosh
     return wrapped.count(iClusterId, countTombstones);
   }
 
+  @Override
   public long count(final int[] iClusterIds) {
     return wrapped.count(iClusterIds);
   }
@@ -1190,6 +1196,7 @@ public class ODistributedStorage implements OStorage, OFreezableStorage, OAutosh
     return wrapped.callInLock(iCallable, iExclusiveLock);
   }
 
+  @Override
   public STATUS getStatus() {
     return wrapped.getStatus();
   }
@@ -1224,6 +1231,7 @@ public class ODistributedStorage implements OStorage, OFreezableStorage, OAutosh
     return wrapped.getLock();
   }
 
+  @Override
   public OStorage getUnderlying() {
     return wrapped;
   }

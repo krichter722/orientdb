@@ -32,6 +32,7 @@ public class OStreamSerializerRecord implements OStreamSerializer {
   public static final String                  NAME     = "l";
   public static final OStreamSerializerRecord INSTANCE = new OStreamSerializerRecord();
 
+  @Override
   public String getName() {
     return NAME;
   }
@@ -39,6 +40,7 @@ public class OStreamSerializerRecord implements OStreamSerializer {
   /**
    * Re-Create any object if the class has a public constructor that accepts a String as unique parameter.
    */
+  @Override
   public Object fromStream(final byte[] iStream) throws IOException {
     if (iStream == null || iStream.length == 0) {
         // NULL VALUE
@@ -53,6 +55,7 @@ public class OStreamSerializerRecord implements OStreamSerializer {
     return obj;
   }
 
+  @Override
   public byte[] toStream(final Object iObject) throws IOException {
     if (iObject == null) {
         return null;

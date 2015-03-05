@@ -177,6 +177,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     return new IndexMetadata(indexName, loadedIndexDefinition, clusters, type, algorithm, valueContainerAlgorithm);
   }
 
+  @Override
   public void flush() {
     acquireSharedLock();
     try {
@@ -259,6 +260,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     return this;
   }
 
+  @Override
   public boolean loadFromConfiguration(final ODocument config) {
     acquireExclusiveLock();
     try {
@@ -306,6 +308,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     return loadMetadataInternal(config, type, algorithm, valueContainerAlgorithm);
   }
 
+  @Override
   public boolean contains(Object key) {
     checkForRebuild();
 
@@ -319,6 +322,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public ORID getIdentity() {
     acquireSharedLock();
     try {
@@ -328,6 +332,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public long rebuild() {
     return rebuild(new OIndexRebuildOutputListener(this));
   }
@@ -370,6 +375,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
   /**
    * Populates the index with all the existent records. Uses the massive insert intent to speed up and keep the consumed memory low.
    */
+  @Override
   public long rebuild(final OProgressListener iProgressListener) {
     long documentIndexed = 0;
 
@@ -447,10 +453,12 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     return documentIndexed;
   }
 
+  @Override
   public boolean remove(Object key, final OIdentifiable value) {
     return remove(key);
   }
 
+  @Override
   public boolean remove(Object key) {
     checkForRebuild();
 
@@ -514,6 +522,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public OIndex<T> clear() {
     checkForRebuild();
 
@@ -533,6 +542,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public OIndexInternal<T> delete() {
     modificationLock.requestModificationLock();
 
@@ -576,10 +586,12 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public String getType() {
     return type;
   }
@@ -594,10 +606,12 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     return name;
   }
 
+  @Override
   public OIndexInternal<T> getInternal() {
     return this;
   }
 
+  @Override
   public Set<String> getClusters() {
     acquireSharedLock();
     try {
@@ -607,6 +621,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public OIndexAbstract<T> addCluster(final String clusterName) {
     acquireExclusiveLock();
     try {
@@ -623,6 +638,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public OIndexAbstract<T> removeCluster(String iClusterName) {
     acquireExclusiveLock();
     try {
@@ -637,10 +653,12 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public ODocument checkEntry(final OIdentifiable iRecord, final Object iKey) {
     return null;
   }
 
+  @Override
   public ODocument updateConfiguration() {
     acquireExclusiveLock();
     try {
@@ -680,6 +698,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public void addTxOperation(final ODocument operationDocument) {
     checkForRebuild();
 
@@ -735,6 +754,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     txSnapshot.set(new IndexTxSnapshot());
   }
 
+  @Override
   public ODocument getConfiguration() {
     acquireSharedLock();
     try {
@@ -749,6 +769,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     return getConfiguration().field("metadata", OType.EMBEDDED);
   }
 
+  @Override
   public boolean isAutomatic() {
     acquireSharedLock();
     try {
@@ -758,6 +779,7 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public OType[] getKeyTypes() {
     acquireSharedLock();
     try {
@@ -783,22 +805,27 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     }
   }
 
+  @Override
   public OIndexDefinition getDefinition() {
     return indexDefinition;
   }
 
+  @Override
   public void freeze(boolean throwException) {
     modificationLock.prohibitModifications(throwException);
   }
 
+  @Override
   public void release() {
     modificationLock.allowModifications();
   }
 
+  @Override
   public void acquireModificationLock() {
     modificationLock.requestModificationLock();
   }
 
+  @Override
   public void releaseModificationLock() {
     try {
       modificationLock.releaseModificationLock();
@@ -831,10 +858,12 @@ public abstract class OIndexAbstract<T> implements OIndexInternal<T> {
     return name.hashCode();
   }
 
+  @Override
   public String getDatabaseName() {
     return databaseName;
   }
 
+  @Override
   public boolean isRebuiding() {
     return rebuilding;
   }

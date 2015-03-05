@@ -46,6 +46,7 @@ public class OStreamSerializerAnyStreamable implements OStreamSerializer {
   /**
    * Re-Create any object if the class has a public constructor that accepts a String as unique parameter.
    */
+  @Override
   public Object fromStream(final byte[] iStream) throws IOException {
     if (iStream == null || iStream.length == 0) {
         // NULL VALUE
@@ -88,6 +89,7 @@ public class OStreamSerializerAnyStreamable implements OStreamSerializer {
   /**
    * Serialize the class name size + class name + object content
    */
+  @Override
   public byte[] toStream(final Object iObject) throws IOException {
     if (iObject == null) {
         return null;
@@ -125,6 +127,7 @@ public class OStreamSerializerAnyStreamable implements OStreamSerializer {
     return result;
   }
 
+  @Override
   public String getName() {
     return NAME;
   }

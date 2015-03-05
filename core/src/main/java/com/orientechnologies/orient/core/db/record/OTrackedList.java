@@ -191,6 +191,7 @@ public class OTrackedList<T> extends ArrayList<T> implements ORecordElement, OTr
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public <RET> RET setDirty() {
     if (status != STATUS.UNMARSHALLING && sourceRecord != null
         && !(sourceRecord.isDirty() && ORecordInternal.isContentChanged(sourceRecord))) {
@@ -206,14 +207,17 @@ public class OTrackedList<T> extends ArrayList<T> implements ORecordElement, OTr
     }
   }
 
+  @Override
   public void addChangeListener(final OMultiValueChangeListener<Integer, T> changeListener) {
     changeListeners.add(changeListener);
   }
 
+  @Override
   public void removeRecordChangeListener(final OMultiValueChangeListener<Integer, T> changeListener) {
     changeListeners.remove(changeListener);
   }
 
+  @Override
   public List<T> returnOriginalState(final List<OMultiValueChangeEvent<Integer, T>> multiValueChangeEvents) {
     final List<T> reverted = new ArrayList<T>(this);
 
@@ -253,14 +257,17 @@ public class OTrackedList<T> extends ArrayList<T> implements ORecordElement, OTr
     }
   }
 
+  @Override
   public STATUS getInternalStatus() {
     return status;
   }
 
+  @Override
   public void setInternalStatus(final STATUS iStatus) {
     status = iStatus;
   }
 
+  @Override
   public Class<?> getGenericClass() {
     return genericClass;
   }

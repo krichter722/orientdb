@@ -211,12 +211,14 @@ public abstract class OMVRBTreePersistent<K, V> extends OMVRBTree<K, V> {
     return dataProvider.getSize();
   }
 
+  @Override
   protected void setSize(final int iSize) {
     if (dataProvider.setSize(iSize)) {
         markDirty();
     }
   }
 
+  @Override
   public int getDefaultPageSize() {
     return dataProvider.getDefaultPageSize();
   }

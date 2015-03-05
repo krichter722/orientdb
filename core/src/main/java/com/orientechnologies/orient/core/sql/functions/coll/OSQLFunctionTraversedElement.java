@@ -45,6 +45,7 @@ public class OSQLFunctionTraversedElement extends OSQLFunctionConfigurableAbstra
     super(name, 1, 2);
   }
 
+  @Override
   public boolean aggregateResults() {
     return false;
   }
@@ -59,10 +60,12 @@ public class OSQLFunctionTraversedElement extends OSQLFunctionConfigurableAbstra
     return true;
   }
 
+  @Override
   public String getSyntax() {
     return getName() + "(<beginIndex> [,<items>])";
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       final OCommandContext iContext) {
     return evaluate(iParams, iContext, null);

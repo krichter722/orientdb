@@ -50,6 +50,7 @@ public class OReentrantResourcePool<K, V> extends OResourcePool<K, V> {
     super(maxResources, listener);
   }
 
+  @Override
   public V getResource(K key, final long maxWaitMillis, Object... additionalArgs) throws OLockException {
     Map<K, ResourceHolder<V>> resourceHolderMap = activeResources.get();
 
@@ -76,6 +77,7 @@ public class OReentrantResourcePool<K, V> extends OResourcePool<K, V> {
     }
   }
 
+  @Override
   public boolean returnResource(final V res) {
     final Map<K, ResourceHolder<V>> resourceHolderMap = activeResources.get();
     if (resourceHolderMap != null) {
@@ -114,6 +116,7 @@ public class OReentrantResourcePool<K, V> extends OResourcePool<K, V> {
     return holder.counter;
   }
 
+  @Override
   public void remove(final V res) {
     this.resources.remove(res);
 

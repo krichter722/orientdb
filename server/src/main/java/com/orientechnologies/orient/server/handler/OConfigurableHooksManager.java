@@ -64,6 +64,7 @@ public class OConfigurableHooksManager implements ODatabaseLifecycleListener {
     onOpen(iDatabase);
   }
 
+  @Override
   public void onOpen(ODatabaseInternal iDatabase) {
     final ODatabase<?> db = (ODatabase<?>) iDatabase;
     for (OServerHookConfiguration hook : configuredHooks) {
@@ -92,6 +93,7 @@ public class OConfigurableHooksManager implements ODatabaseLifecycleListener {
     }
   }
 
+  @Override
   public void onClose(ODatabaseInternal iDatabase) {
   }
 

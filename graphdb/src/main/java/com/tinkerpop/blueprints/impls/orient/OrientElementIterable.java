@@ -40,6 +40,7 @@ public class OrientElementIterable<T extends Element> implements CloseableIterab
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public Iterator<T> iterator() {
     if (iterable == null) {
         return Collections.EMPTY_LIST.iterator();
@@ -48,6 +49,7 @@ public class OrientElementIterable<T extends Element> implements CloseableIterab
     return new OrientElementIterator<T>(this.graph, iterable.iterator());
   }
 
+  @Override
   public void close() {
 
   }

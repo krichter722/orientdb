@@ -161,10 +161,12 @@ public abstract class OAbstractProfiler extends OSharedResourceAbstract implemen
     installMemoryChecker();
   }
 
+  @Override
   public void shutdown() {
     stopRecording();
   }
 
+  @Override
   public int reportTip(final String iMessage) {
     final AtomicInteger counter = tips.get(iMessage);
     if (counter == null) {
@@ -181,6 +183,7 @@ public abstract class OAbstractProfiler extends OSharedResourceAbstract implemen
     return counter.incrementAndGet();
   }
 
+  @Override
   public boolean startRecording() {
     if (isRecording()) {
         return false;
@@ -190,6 +193,7 @@ public abstract class OAbstractProfiler extends OSharedResourceAbstract implemen
     return true;
   }
 
+  @Override
   public boolean stopRecording() {
     if (!isRecording()) {
         return false;
@@ -199,10 +203,12 @@ public abstract class OAbstractProfiler extends OSharedResourceAbstract implemen
     return true;
   }
 
+  @Override
   public boolean isRecording() {
     return recordingFrom > -1;
   }
 
+  @Override
   public void updateCounter(final String iStatName, final String iDescription, final long iPlus) {
     updateCounter(iStatName, iDescription, iPlus, iStatName);
   }
@@ -285,11 +291,13 @@ public abstract class OAbstractProfiler extends OSharedResourceAbstract implemen
     return metadata;
   }
 
+  @Override
   public void registerHookValue(final String iName, final String iDescription, final METRIC_TYPE iType,
       final OProfilerHookValue iHookValue) {
     registerHookValue(iName, iDescription, iType, iHookValue, iName);
   }
 
+  @Override
   public void registerHookValue(final String iName, final String iDescription, final METRIC_TYPE iType,
       final OProfilerHookValue iHookValue, final String iMetadataName) {
     if (iName != null) {

@@ -68,10 +68,12 @@ public class OMVRBTreeMapProvider<K, V> extends OMVRBTreeProviderAbstract<K, V> 
     valueSerializer = iValueSerializer;
   }
 
+  @Override
   public OMVRBTreeEntryDataProvider<K, V> getEntry(final ORID iRid) {
     return new OMVRBTreeMapEntryProvider<K, V>(this, iRid);
   }
 
+  @Override
   public OMVRBTreeEntryDataProvider<K, V> createEntry() {
     return new OMVRBTreeMapEntryProvider<K, V>(this);
   }
@@ -93,6 +95,7 @@ public class OMVRBTreeMapProvider<K, V> extends OMVRBTreeProviderAbstract<K, V> 
     super.load(iSt);
   }
 
+  @Override
   public boolean updateConfig() {
     final boolean changed = super.updateConfig();
     keepKeysInMemory = OGlobalConfiguration.MVRBTREE_ENTRY_KEYS_IN_MEMORY.getValueAsBoolean();
@@ -100,6 +103,7 @@ public class OMVRBTreeMapProvider<K, V> extends OMVRBTreeProviderAbstract<K, V> 
     return changed;
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     final OProfilerMBean profiler = Orient.instance().getProfiler();
     final long timer = profiler.startChrono();
@@ -132,6 +136,7 @@ public class OMVRBTreeMapProvider<K, V> extends OMVRBTreeProviderAbstract<K, V> 
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OSerializableStream fromStream(final byte[] iStream) throws OSerializationException {
     final OProfilerMBean profiler = Orient.instance().getProfiler();
     final long timer = profiler.startChrono();

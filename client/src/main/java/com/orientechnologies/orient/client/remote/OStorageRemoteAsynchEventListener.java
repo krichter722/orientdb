@@ -32,6 +32,7 @@ public class OStorageRemoteAsynchEventListener implements ORemoteServerEventList
     this.storage = storage;
   }
 
+  @Override
   public void onRequest(final byte iRequestCode, final Object obj) {
     if (iRequestCode == OChannelBinaryProtocol.REQUEST_PUSH_DISTRIB_CONFIG) {
       storage.updateClusterConfiguration(storage.getCurrentServerURL(), (byte[]) obj);

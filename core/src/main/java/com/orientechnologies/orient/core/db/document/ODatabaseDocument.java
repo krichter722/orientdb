@@ -72,11 +72,13 @@ public interface ODatabaseDocument extends ODatabase<ORecord>, ODatabaseSchemaAw
    * 
    * IMPORTANT: This command is not reentrant.
    */
+  @Override
   public void freeze();
 
   /**
    * Allows to execute write-related commands on DB. Called after {@link #freeze()} command.
    */
+  @Override
   public void release();
 
   /**
@@ -92,6 +94,7 @@ public interface ODatabaseDocument extends ODatabase<ORecord>, ODatabaseSchemaAw
    *          If <code>true</code> {@link com.orientechnologies.common.concur.lock.OModificationOperationProhibitedException}
    *          exception will be thrown in case of write command will be performed.
    */
+  @Override
   public void freeze(boolean throwException);
 
   /**

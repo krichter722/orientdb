@@ -642,21 +642,26 @@ public abstract class ORecordSerializerCSVAbstract extends ORecordSerializerStri
                       : OEntityManagerInternal.INSTANCE, iLinkedClass,
                   iObjHandler != null ? iObjHandler : new OUserObject2RecordHandler() {
 
+                    @Override
                     public Object getUserObjectByRecord(OIdentifiable iRecord, final String iFetchPlan) {
                       return iRecord;
                     }
 
+                    @Override
                     public ORecord getRecordByUserObject(Object iPojo, boolean iCreateIfNotAvailable) {
                       return new ODocument(iLinkedClass);
                     }
 
+                    @Override
                     public boolean existsUserObjectByRID(ORID iRID) {
                       return false;
                     }
 
+                    @Override
                     public void registerUserObject(Object iObject, ORecord iRecord) {
                     }
 
+                    @Override
                     public void registerUserObjectAfterLinkSave(ORecord iRecord) {
                     }
                   }, null, iSaveOnlyDirty);
@@ -873,21 +878,26 @@ public abstract class ORecordSerializerCSVAbstract extends ORecordSerializerStri
               iDatabase instanceof ODatabaseObject ? ((ODatabaseObject) iDatabase).getEntityManager()
                   : OEntityManagerInternal.INSTANCE, iLinkedClass,
               iObjHandler != null ? iObjHandler : new OUserObject2RecordHandler() {
+                @Override
                 public Object getUserObjectByRecord(OIdentifiable iRecord, final String iFetchPlan) {
                   return iRecord;
                 }
 
+                @Override
                 public ORecord getRecordByUserObject(Object iPojo, boolean iCreateIfNotAvailable) {
                   return new ODocument(linkedClass);
                 }
 
+                @Override
                 public boolean existsUserObjectByRID(ORID iRID) {
                   return false;
                 }
 
+                @Override
                 public void registerUserObject(Object iObject, ORecord iRecord) {
                 }
 
+                @Override
                 public void registerUserObjectAfterLinkSave(ORecord iRecord) {
                 }
               }, null, iSaveOnlyDirty);

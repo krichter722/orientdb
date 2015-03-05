@@ -44,6 +44,7 @@ public class OCommandSQLPojoWrapper implements OCommandRequest {
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public <RET> RET execute(Object... iArgs) {
     database.convertParameters(iArgs);
 
@@ -77,15 +78,18 @@ public class OCommandSQLPojoWrapper implements OCommandRequest {
     return (RET) result;
   }
 
+  @Override
   public int getLimit() {
     return command.getLimit();
   }
 
+  @Override
   public OCommandRequest setLimit(final int iLimit) {
     command.setLimit(iLimit);
     return this;
   }
 
+  @Override
   public boolean isIdempotent() {
     return command.isIdempotent();
   }

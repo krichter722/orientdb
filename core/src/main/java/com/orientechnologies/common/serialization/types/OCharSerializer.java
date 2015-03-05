@@ -39,10 +39,12 @@ public class OCharSerializer implements OBinarySerializer<Character> {
   private static final OBinaryConverter BINARY_CONVERTER = OBinaryConverterFactory.getConverter();
   public static OCharSerializer         INSTANCE         = new OCharSerializer();
 
+  @Override
   public int getObjectSize(final Character object, Object... hints) {
     return CHAR_SIZE;
   }
 
+  @Override
   public void serialize(final Character object, final byte[] stream, final int startPosition, final Object... hints) {
     serializeLiteral(object.charValue(), stream, startPosition);
   }
@@ -52,6 +54,7 @@ public class OCharSerializer implements OBinarySerializer<Character> {
     stream[startPosition + 1] = (byte) (value);
   }
 
+  @Override
   public Character deserialize(final byte[] stream, final int startPosition) {
     return deserializeLiteral(stream, startPosition);
   }
@@ -60,14 +63,17 @@ public class OCharSerializer implements OBinarySerializer<Character> {
     return (char) (((stream[startPosition] & 0xFF) << 8) + (stream[startPosition + 1] & 0xFF));
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return CHAR_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return CHAR_SIZE;
   }
@@ -115,10 +121,12 @@ public class OCharSerializer implements OBinarySerializer<Character> {
     return CHAR_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return CHAR_SIZE;
   }

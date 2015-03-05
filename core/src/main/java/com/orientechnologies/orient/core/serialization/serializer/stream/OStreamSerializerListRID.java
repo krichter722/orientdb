@@ -38,6 +38,7 @@ public class OStreamSerializerListRID implements OStreamSerializer, OBinarySeria
 
   public static final byte ID = 19;
 
+  @Override
   public Object fromStream(final byte[] iStream) throws IOException {
     if (iStream == null) {
         return null;
@@ -48,6 +49,7 @@ public class OStreamSerializerListRID implements OStreamSerializer, OBinarySeria
     return FORMAT.embeddedCollectionFromStream(null, OType.EMBEDDEDSET, null, OType.LINK, s);
   }
 
+  @Override
   public byte[] toStream(final Object iObject) throws IOException {
     if (iObject == null) {
         return null;
@@ -56,6 +58,7 @@ public class OStreamSerializerListRID implements OStreamSerializer, OBinarySeria
     return ((OMVRBTreeRIDSet) iObject).toStream();
   }
 
+  @Override
   public String getName() {
     return NAME;
   }

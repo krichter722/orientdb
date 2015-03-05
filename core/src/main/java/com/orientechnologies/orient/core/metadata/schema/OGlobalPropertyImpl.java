@@ -38,14 +38,17 @@ public class OGlobalPropertyImpl implements OGlobalProperty, ODocumentSerializab
     this.id = id;
   }
 
+  @Override
   public Integer getId() {
     return id;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public OType getType() {
     return type;
   }

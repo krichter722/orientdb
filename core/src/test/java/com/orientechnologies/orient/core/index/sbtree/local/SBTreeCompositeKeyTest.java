@@ -33,6 +33,7 @@ public class SBTreeCompositeKeyTest extends DatabaseAbstractTest {
   private OSBTree<OCompositeKey, OIdentifiable> localSBTree;
 
   @BeforeClass
+  @Override
   public void beforeClass() {
     super.beforeClass();
 
@@ -59,6 +60,7 @@ public class SBTreeCompositeKeyTest extends DatabaseAbstractTest {
   }
 
   @AfterClass
+  @Override
   public void afterClass() throws Exception {
     localSBTree.clear();
     localSBTree.delete();

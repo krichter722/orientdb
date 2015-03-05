@@ -64,10 +64,12 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
     return sourceRecord;
   }
 
+  @Override
   public Iterator<OIdentifiable> iterator() {
     return new ORecordTrackedIterator(sourceRecord, map.keySet().iterator());
   }
 
+  @Override
   public boolean add(final OIdentifiable e) {
     if (map.containsKey(e)) {
         return false;
@@ -90,6 +92,7 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
     return map.containsKey(o);
   }
 
+  @Override
   public boolean remove(Object o) {
     final Object old = map.remove(o);
     if (old != null) {
@@ -105,11 +108,13 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
     return false;
   }
 
+  @Override
   public void clear() {
     setDirty();
     map.clear();
   }
 
+  @Override
   public boolean removeAll(final Collection<?> c) {
     boolean changed = false;
     for (Object item : c) {
@@ -125,6 +130,7 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
     return changed;
   }
 
+  @Override
   public boolean addAll(final Collection<? extends OIdentifiable> c) {
     if (c == null || c.size() == 0) {
         return false;
@@ -138,6 +144,7 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
     return true;
   }
 
+  @Override
   public boolean retainAll(final Collection<?> c) {
     if (c == null || c.size() == 0) {
         return false;
@@ -156,6 +163,7 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public ORecordTrackedSet setDirty() {
     if (status != STATUS.UNMARSHALLING && sourceRecord != null
         && !(sourceRecord.isDirty() && ORecordInternal.isContentChanged(sourceRecord))) {
@@ -171,22 +179,27 @@ public class ORecordTrackedSet extends AbstractCollection<OIdentifiable> impleme
     }
   }
 
+  @Override
   public STATUS getInternalStatus() {
     return status;
   }
 
+  @Override
   public void setInternalStatus(final STATUS iStatus) {
     status = iStatus;
   }
 
+  @Override
   public void addChangeListener(final OMultiValueChangeListener<OIdentifiable, OIdentifiable> changeListener) {
     changeListeners.add(changeListener);
   }
 
+  @Override
   public void removeRecordChangeListener(final OMultiValueChangeListener<OIdentifiable, OIdentifiable> changeListener) {
     changeListeners.remove(changeListener);
   }
 
+  @Override
   public Set<OIdentifiable> returnOriginalState(final List<OMultiValueChangeEvent<OIdentifiable, OIdentifiable>> events) {
     final Set<OIdentifiable> reverted = new HashSet<OIdentifiable>(this);
 

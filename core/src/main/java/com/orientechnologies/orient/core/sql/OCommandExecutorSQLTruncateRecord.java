@@ -45,6 +45,7 @@ public class OCommandExecutorSQLTruncateRecord extends OCommandExecutorSQLAbstra
   private Set<String>        records          = new HashSet<String>();
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLTruncateRecord parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -84,6 +85,7 @@ public class OCommandExecutorSQLTruncateRecord extends OCommandExecutorSQLAbstra
   /**
    * Execute the command.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (records.isEmpty()) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

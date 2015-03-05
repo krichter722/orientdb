@@ -67,6 +67,7 @@ public class OAdaptiveLock extends OAbstractLock {
     this.ignoreThreadInterruption = ignoreThreadInterruption;
   }
 
+  @Override
   public void lock() {
     if (concurrent) {
         if (timeout > 0) {
@@ -119,6 +120,7 @@ public class OAdaptiveLock extends OAbstractLock {
     return true;
   }
 
+  @Override
   public void unlock() {
     if (concurrent) {
         lock.unlock();

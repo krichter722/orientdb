@@ -30,14 +30,17 @@ public class OStreamSerializerLiteral implements OStreamSerializer {
 
 	public static final OStreamSerializerLiteral	INSTANCE	= new OStreamSerializerLiteral();
 
+        @Override
 	public String getName() {
 		return NAME;
 	}
 
+        @Override
 	public Object fromStream(final byte[] iStream) throws IOException {
 		return ORecordSerializerStringAbstract.getTypeValue(OBinaryProtocol.bytes2string(iStream));
 	}
 
+        @Override
 	public byte[] toStream(final Object iObject) throws IOException {
 		if (iObject == null) {
                     return null;

@@ -44,6 +44,7 @@ public class LinkListIndexTest extends DocumentDBBaseTest {
 
 
   @AfterMethod
+        @Override
   public void afterMethod() throws Exception {
     database.command(new OCommandSQL("DELETE FROM LinkListIndexTestClass")).execute();
 

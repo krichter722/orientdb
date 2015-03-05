@@ -39,6 +39,7 @@ public class OSQLFunctionLast extends OSQLFunctionConfigurableAbstract {
     super(NAME, 1, 1);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       final OCommandContext iContext) {
     Object value = iParams[0];
@@ -56,6 +57,7 @@ public class OSQLFunctionLast extends OSQLFunctionConfigurableAbstract {
     return value;
   }
 
+  @Override
   public boolean aggregateResults() {
     return false;
   }
@@ -70,6 +72,7 @@ public class OSQLFunctionLast extends OSQLFunctionConfigurableAbstract {
     return false;
   }
 
+  @Override
   public String getSyntax() {
     return "last(<field>)";
   }

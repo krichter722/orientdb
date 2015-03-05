@@ -48,6 +48,7 @@ public class OObjectDatabaseTxPooled extends OObjectDatabaseTx implements ODatab
     super.open(iUserName, iUserPassword);
   }
 
+  @Override
   public void reuse(final Object iOwner, final Object[] iAdditionalArgs) {
     ownerPool = (OObjectDatabasePool) iOwner;
     if (isClosed()) {
@@ -129,6 +130,7 @@ public class OObjectDatabaseTxPooled extends OObjectDatabaseTx implements ODatab
     }
   }
 
+  @Override
   public void forceClose() {
     super.close();
   }
@@ -143,6 +145,7 @@ public class OObjectDatabaseTxPooled extends OObjectDatabaseTx implements ODatab
     super.checkOpeness();
   }
 
+  @Override
   public boolean isUnderlyingOpen() {
     return !super.isClosed();
   }

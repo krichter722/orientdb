@@ -42,6 +42,7 @@ public class OIndexAbstractDelegate<T> implements OIndex<T> {
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OIndexInternal<T> getInternal() {
     OIndex<?> internal = delegate;
     while (!(internal instanceof OIndexInternal) && internal != null)
@@ -50,31 +51,38 @@ public class OIndexAbstractDelegate<T> implements OIndex<T> {
     return (OIndexInternal<T>) internal;
   }
 
+  @Override
   public OIndex<T> create(final String name, final OIndexDefinition indexDefinition, final String clusterIndexName,
       final Set<String> clustersToIndex, boolean rebuild, final OProgressListener progressListener) {
     return delegate.create(name, indexDefinition, clusterIndexName, clustersToIndex, rebuild, progressListener);
   }
 
+  @Override
   public T get(final Object iKey) {
     return delegate.get(iKey);
   }
 
+  @Override
   public boolean contains(final Object iKey) {
     return delegate.contains(iKey);
   }
 
+  @Override
   public OIndex<T> put(final Object iKey, final OIdentifiable iValue) {
     return delegate.put(iKey, iValue);
   }
 
+  @Override
   public boolean remove(final Object key) {
     return delegate.remove(key);
   }
 
+  @Override
   public boolean remove(final Object iKey, final OIdentifiable iRID) {
     return delegate.remove(iKey, iRID);
   }
 
+  @Override
   public OIndex<T> clear() {
     return delegate.clear();
   }
@@ -95,6 +103,7 @@ public class OIndexAbstractDelegate<T> implements OIndex<T> {
     return delegate.iterateEntriesMinor(toKey, toInclusive, ascOrder);
   }
 
+  @Override
   public long getSize() {
     return delegate.getSize();
   }
@@ -104,6 +113,7 @@ public class OIndexAbstractDelegate<T> implements OIndex<T> {
     delegate.flush();
   }
 
+  @Override
   public OIndex<T> delete() {
     return delegate.delete();
   }
@@ -113,18 +123,22 @@ public class OIndexAbstractDelegate<T> implements OIndex<T> {
     delegate.deleteWithoutIndexLoad(indexName);
   }
 
+  @Override
   public String getName() {
     return delegate.getName();
   }
 
+  @Override
   public String getType() {
     return delegate.getType();
   }
 
+  @Override
   public boolean isAutomatic() {
     return delegate.isAutomatic();
   }
 
+  @Override
   public ODocument getConfiguration() {
     return delegate.getConfiguration();
   }
@@ -134,22 +148,27 @@ public class OIndexAbstractDelegate<T> implements OIndex<T> {
     return delegate.getMetadata();
   }
 
+  @Override
   public ORID getIdentity() {
     return delegate.getIdentity();
   }
 
+  @Override
   public long rebuild() {
     return delegate.rebuild();
   }
 
+  @Override
   public long rebuild(final OProgressListener iProgressListener) {
     return delegate.rebuild(iProgressListener);
   }
 
+  @Override
   public OType[] getKeyTypes() {
     return delegate.getKeyTypes();
   }
 
+  @Override
   public OIndexDefinition getDefinition() {
     return delegate.getDefinition();
   }
@@ -182,10 +201,12 @@ public class OIndexAbstractDelegate<T> implements OIndex<T> {
     return delegate.iterateEntries(keys, ascSortOrder);
   }
 
+  @Override
   public ODocument checkEntry(final OIdentifiable iRecord, final Object iKey) {
     return delegate.checkEntry(iRecord, iKey);
   }
 
+  @Override
   public Set<String> getClusters() {
     return delegate.getClusters();
   }
@@ -195,10 +216,12 @@ public class OIndexAbstractDelegate<T> implements OIndex<T> {
     return delegate.toString();
   }
 
+  @Override
   public long getKeySize() {
     return delegate.getKeySize();
   }
 
+  @Override
   public String getDatabaseName() {
     return delegate.getDatabaseName();
   }

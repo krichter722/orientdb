@@ -122,6 +122,7 @@ public class ORecordIteratorClusters<REC extends ORecord> extends OIdentifiableI
     return false;
   }
 
+  @Override
   public boolean hasNext() {
     checkDirection(true);
 
@@ -191,6 +192,7 @@ public class ORecordIteratorClusters<REC extends ORecord> extends OIdentifiableI
    * @return the next record found, otherwise the NoSuchElementException exception is thrown when no more records are found.
    */
   @SuppressWarnings("unchecked")
+  @Override
   public REC next() {
     checkDirection(true);
 

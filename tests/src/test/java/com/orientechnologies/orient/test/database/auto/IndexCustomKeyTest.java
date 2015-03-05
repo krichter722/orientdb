@@ -184,6 +184,7 @@ public class IndexCustomKeyTest extends DocumentDBBaseTest {
   }
 
   @BeforeMethod
+  @Override
   public void beforeMethod() throws Exception {
     super.beforeMethod();
 

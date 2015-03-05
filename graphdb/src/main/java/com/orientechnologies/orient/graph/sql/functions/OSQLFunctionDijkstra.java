@@ -55,6 +55,7 @@ public class OSQLFunctionDijkstra extends OSQLFunctionPathFinder {
     super(NAME, 3, 4);
   }
 
+  @Override
   public LinkedList<OrientVertex> execute(Object iThis, OIdentifiable iCurrentRecord, Object iCurrentResult,
       final Object[] iParams, OCommandContext iContext) {
     final OModifiableBoolean shutdownFlag = new OModifiableBoolean();
@@ -94,10 +95,12 @@ public class OSQLFunctionDijkstra extends OSQLFunctionPathFinder {
     }
   }
 
+  @Override
   public String getSyntax() {
     return "dijkstra(<sourceVertex>, <destinationVertex>, <weightEdgeFieldName>, [<direction>])";
   }
 
+  @Override
   protected float getDistance(final OrientVertex node, final OrientVertex target) {
     final Iterator<Edge> edges = node.getEdges(target, paramDirection).iterator();
     if (edges.hasNext()) {

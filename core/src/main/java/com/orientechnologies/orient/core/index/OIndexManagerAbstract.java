@@ -67,10 +67,12 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     super(new ODocument());
   }
 
+  @Override
   public boolean isFullCheckpointOnChange() {
     return fullCheckpointOnChange;
   }
 
+  @Override
   public void setFullCheckpointOnChange(boolean fullCheckpointOnChange) {
     this.fullCheckpointOnChange = fullCheckpointOnChange;
   }
@@ -130,6 +132,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public void create() {
     acquireExclusiveLock();
     try {
@@ -152,6 +155,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public void flush() {
     for (final OIndex<?> idx : indexes.values()) {
       OIndexInternal<?> indexInternal = idx.getInternal();
@@ -161,6 +165,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public Collection<? extends OIndex<?>> getIndexes() {
     final Collection<OIndex<?>> rawResult = indexes.values();
     final List<OIndex<?>> result = new ArrayList<OIndex<?>>(rawResult.size());
@@ -170,6 +175,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     return result;
   }
 
+  @Override
   public OIndex<?> getIndex(final String iName) {
     final OIndex<?> index = indexes.get(iName.toLowerCase());
     if (index == null) {
@@ -203,10 +209,12 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     save();
   }
 
+  @Override
   public boolean existsIndex(final String iName) {
     return indexes.containsKey(iName.toLowerCase());
   }
 
+  @Override
   public String getDefaultClusterName() {
     acquireSharedLock();
     try {
@@ -216,6 +224,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public void setDefaultClusterName(final String defaultClusterName) {
     acquireExclusiveLock();
     try {
@@ -225,6 +234,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public ODictionary<ORecord> getDictionary() {
     OIndex<?> idx;
     acquireSharedLock();
@@ -240,6 +250,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     return new ODictionary<ORecord>((OIndex<OIdentifiable>) idx);
   }
 
+  @Override
   public ODocument getConfiguration() {
     acquireSharedLock();
 
@@ -251,6 +262,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
 
   }
 
+  @Override
   public void close(boolean onDelete) {
     acquireExclusiveLock();
     try {
@@ -287,6 +299,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public OIndex<?> getIndex(final ORID iRID) {
     for (final OIndex<?> idx : indexes.values()) {
       if (idx.getIdentity().equals(iRID)) {
@@ -296,6 +309,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     return null;
   }
 
+  @Override
   public Set<OIndex<?>> getClassInvolvedIndexes(final String className, Collection<String> fields) {
     acquireSharedLock();
     try {
@@ -321,10 +335,12 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public Set<OIndex<?>> getClassInvolvedIndexes(final String className, final String... fields) {
     return getClassInvolvedIndexes(className, Arrays.asList(fields));
   }
 
+  @Override
   public boolean areIndexed(final String className, Collection<String> fields) {
     acquireSharedLock();
     try {
@@ -344,10 +360,12 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public boolean areIndexed(final String className, final String... fields) {
     return areIndexed(className, Arrays.asList(fields));
   }
 
+  @Override
   public Set<OIndex<?>> getClassIndexes(final String className) {
     final HashSet<OIndex<?>> coll = new HashSet<OIndex<?>>(4);
     getClassIndexes(className, coll);
@@ -374,6 +392,7 @@ public abstract class OIndexManagerAbstract extends ODocumentWrapperNoClass impl
     }
   }
 
+  @Override
   public OIndex<?> getClassIndex(String className, String indexName) {
     className = className.toLowerCase();
     indexName = indexName.toLowerCase();

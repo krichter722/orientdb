@@ -28,14 +28,17 @@ public class OStreamSerializerLong implements OStreamSerializer {
 
 	public static final OStreamSerializerLong	INSTANCE	= new OStreamSerializerLong();
 
+        @Override
 	public String getName() {
 		return NAME;
 	}
 
+        @Override
 	public Object fromStream(final byte[] iStream) throws IOException {
 		return OBinaryProtocol.bytes2long(iStream);
 	}
 
+        @Override
 	public byte[] toStream(final Object iObject) throws IOException {
 		return OBinaryProtocol.long2bytes((Long) iObject);
 	}

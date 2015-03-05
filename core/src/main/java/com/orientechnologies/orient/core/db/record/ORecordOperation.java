@@ -79,6 +79,7 @@ public class ORecordOperation implements OSerializableStream {
     return (ORecord) (record != null ? record.getRecord() : null);
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     try {
       final OMemoryStream stream = new OMemoryStream();
@@ -100,6 +101,7 @@ public class ORecordOperation implements OSerializableStream {
     }
   }
 
+  @Override
   public OSerializableStream fromStream(final byte[] iStream) throws OSerializationException {
     try {
       final OMemoryStream stream = new OMemoryStream(iStream);

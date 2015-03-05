@@ -31,6 +31,7 @@ public class OBalancedClusterSelectionStrategy implements OClusterSelectionStrat
   protected long              lastCount        = -1;
   protected int               smallerClusterId = -1;
 
+  @Override
   public int getCluster(final OClass iClass, final ODocument doc) {
     final int[] clusters = iClass.getClusterIds();
     if (clusters.length == 1) {

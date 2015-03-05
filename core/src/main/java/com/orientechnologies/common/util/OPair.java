@@ -55,14 +55,17 @@ public class OPair<K extends Comparable<K>, V> implements Entry<K, V>, Comparabl
     value = iValue;
   }
 
+  @Override
   public K getKey() {
     return key;
   }
 
+  @Override
   public V getValue() {
     return value;
   }
 
+  @Override
   public V setValue(final V iValue) {
     V oldValue = value;
     value = iValue;
@@ -114,6 +117,7 @@ public class OPair<K extends Comparable<K>, V> implements Entry<K, V>, Comparabl
     return true;
   }
 
+  @Override
   public int compareTo(final OPair<K, V> o) {
     return key.compareTo(o.key);
   }

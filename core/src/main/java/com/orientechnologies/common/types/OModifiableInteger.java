@@ -61,6 +61,7 @@ public class OModifiableInteger extends Number implements Comparable<OModifiable
 		value -= iValue;
 	}
 
+        @Override
 	public int compareTo(final OModifiableInteger anotherInteger) {
 		int thisVal = value;
 		int anotherVal = anotherInteger.value;

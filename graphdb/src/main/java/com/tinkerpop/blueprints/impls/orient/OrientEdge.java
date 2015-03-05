@@ -460,6 +460,7 @@ public class OrientEdge extends OrientElement implements Edge {
   /**
    * (Blueprints Extension) Returns "E" as base class name all the edge's sub-classes extend.
    */
+  @Override
   public final String getBaseClassName() {
     return OrientEdgeType.CLASS_NAME;
   }
@@ -475,6 +476,7 @@ public class OrientEdge extends OrientElement implements Edge {
   /**
    * Returns a string representation of the edge.
    */
+  @Override
   public String toString() {
     final OrientBaseGraph graph = getGraph();
     if (graph != null) {

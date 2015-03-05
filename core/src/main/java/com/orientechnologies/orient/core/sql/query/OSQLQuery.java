@@ -60,6 +60,7 @@ public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommand
    * Delegates to the OQueryExecutor the query execution.
    */
   @SuppressWarnings("unchecked")
+  @Override
   public List<T> run(final Object... iArgs) {
     final ODatabaseDocumentInternal database = ODatabaseRecordThreadLocal.INSTANCE.get();
     if (database == null) {
@@ -79,16 +80,19 @@ public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommand
   /**
    * Returns only the first record if any.
    */
+  @Override
   public T runFirst(final Object... iArgs) {
     setLimit(1);
     final List<T> result = execute(iArgs);
     return result != null && !result.isEmpty() ? result.get(0) : null;
   }
 
+  @Override
   public String getText() {
     return text;
   }
 
+  @Override
   public OCommandRequestText setText(final String iText) {
     text = iText;
     return this;
@@ -99,6 +103,7 @@ public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommand
     return "sql." + text;
   }
 
+  @Override
   public OSerializableStream fromStream(final byte[] iStream) throws OSerializationException {
     final OMemoryStream buffer = new OMemoryStream(iStream);
 
@@ -107,6 +112,7 @@ public abstract class OSQLQuery<T> extends OQueryAbstract<T> implements OCommand
     return this;
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     return queryToStream().toByteArray();
   }

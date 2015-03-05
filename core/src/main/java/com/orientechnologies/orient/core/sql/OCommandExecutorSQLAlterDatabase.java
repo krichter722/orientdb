@@ -47,6 +47,7 @@ public class OCommandExecutorSQLAlterDatabase extends OCommandExecutorSQLAbstrac
   private ODatabase.ATTRIBUTES attribute;
   private String               value;
 
+  @Override
   public OCommandExecutorSQLAlterDatabase parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -96,6 +97,7 @@ public class OCommandExecutorSQLAlterDatabase extends OCommandExecutorSQLAbstrac
   /**
    * Execute the ALTER DATABASE.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (attribute == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");
@@ -108,6 +110,7 @@ public class OCommandExecutorSQLAlterDatabase extends OCommandExecutorSQLAbstrac
     return null;
   }
 
+  @Override
   public String getSyntax() {
     return "ALTER DATABASE <attribute-name> <attribute-value>";
   }

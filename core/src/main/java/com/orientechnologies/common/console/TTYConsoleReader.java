@@ -85,6 +85,7 @@ public class TTYConsoleReader implements OConsoleReader {
     }
   }
 
+  @Override
   public String readLine() throws IOException {
     String consoleInput = "";
 
@@ -303,10 +304,12 @@ public class TTYConsoleReader implements OConsoleReader {
     }
   }
 
+  @Override
   public OConsoleApplication getConsole() {
     return console;
   }
 
+  @Override
   public void setConsole(OConsoleApplication iConsole) {
     console = iConsole;
   }

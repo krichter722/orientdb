@@ -43,6 +43,7 @@ public class OStreamSerializerAnyRecord implements OStreamSerializer {
   /**
    * Re-Create any object if the class has a public constructor that accepts a String as unique parameter.
    */
+  @Override
   public Object fromStream(byte[] iStream) throws IOException {
     if (iStream == null || iStream.length == 0) {
         // NULL VALUE
@@ -75,6 +76,7 @@ public class OStreamSerializerAnyRecord implements OStreamSerializer {
         + (cls != null ? cls.getSimpleName() : "?") + " has no constructor with suitable parameters: (ORID)");
   }
 
+  @Override
   public byte[] toStream(Object iObject) throws IOException {
     if (iObject == null) {
         return null;
@@ -90,6 +92,7 @@ public class OStreamSerializerAnyRecord implements OStreamSerializer {
     return OBinaryProtocol.string2bytes(buffer.toString());
   }
 
+  @Override
   public String getName() {
     return NAME;
   }

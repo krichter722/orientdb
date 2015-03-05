@@ -103,10 +103,12 @@ public class OMVRBTreeMemory<K, V> extends OMVRBTree<K, V> {
     return size;
   }
 
+  @Override
   protected void setSize(int pSize) {
     size = pSize;
   }
 
+  @Override
   public int getDefaultPageSize() {
     return defaultPageSize;
   }

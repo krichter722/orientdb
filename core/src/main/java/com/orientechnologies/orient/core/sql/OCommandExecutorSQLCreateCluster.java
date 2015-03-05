@@ -43,6 +43,7 @@ public class OCommandExecutorSQLCreateCluster extends OCommandExecutorSQLAbstrac
   private String             clusterName;
   private int                requestedId     = -1;
 
+  @Override
   public OCommandExecutorSQLCreateCluster parse(final OCommandRequest iRequest) {
     final ODatabaseDocumentInternal database = getDatabase();
 
@@ -75,6 +76,7 @@ public class OCommandExecutorSQLCreateCluster extends OCommandExecutorSQLAbstrac
   /**
    * Execute the CREATE CLUSTER.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (clusterName == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

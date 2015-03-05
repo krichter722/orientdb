@@ -41,6 +41,7 @@ public class OSQLFunctionDocument extends OSQLFunctionMultiValueAbstract<ODocume
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
 
@@ -78,6 +79,7 @@ public class OSQLFunctionDocument extends OSQLFunctionMultiValueAbstract<ODocume
     return prepareResult(context);
   }
 
+  @Override
   public String getSyntax() {
     return "document(<map>|[<key>,<value>]*)";
   }

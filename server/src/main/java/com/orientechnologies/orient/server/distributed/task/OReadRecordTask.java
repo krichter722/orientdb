@@ -69,6 +69,7 @@ import java.io.IOException;
      rid = new ORecordId(in.readUTF());
    }
 
+   @Override
    public QUORUM_TYPE getQuorumType() {
      return QUORUM_TYPE.READ;
    }

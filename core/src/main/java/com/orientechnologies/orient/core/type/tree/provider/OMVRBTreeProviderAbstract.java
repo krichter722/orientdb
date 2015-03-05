@@ -66,30 +66,37 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     updateConfig();
   }
 
+  @Override
   public int getKeySize() {
     return keySize;
   }
 
+  @Override
   public void setKeySize(int keySize) {
     this.keySize = keySize;
   }
 
+  @Override
   public int getSize() {
     return size;
   }
 
+  @Override
   public int getDefaultPageSize() {
     return pageSize;
   }
 
+  @Override
   public int getClusterId() {
     return clusterId;
   }
 
+  @Override
   public ORID getRoot() {
     return root;
   }
 
+  @Override
   public boolean setSize(final int iSize) {
     if (iSize != size) {
       size = iSize;
@@ -98,6 +105,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     return false;
   }
 
+  @Override
   public boolean setRoot(final ORID iRid) {
     if (root == null) {
         root = new ORecordId();
@@ -112,6 +120,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     return setDirty();
   }
 
+  @Override
   public boolean isDirty() {
     return record.isDirty();
   }
@@ -121,6 +130,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
    * 
    * @return
    */
+  @Override
   public boolean setDirty() {
     if (record.isDirty()) {
         return false;
@@ -129,6 +139,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     return true;
   }
 
+  @Override
   public boolean updateConfig() {
     boolean isChanged = false;
 
@@ -140,6 +151,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     return isChanged ? setDirty() : false;
   }
 
+  @Override
   public void load() {
     if (storage == null) {
         load(getDatabase());
@@ -183,6 +195,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     }
   }
 
+  @Override
   public void save() {
     if (storage == null) {
         save(getDatabase());
@@ -213,6 +226,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     ORecordInternal.unsetDirty(record);
   }
 
+  @Override
   public void delete() {
     if (storage == null) {
         delete(getDatabase());
@@ -237,6 +251,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     iSt.deleteRecord((ORecordId) record.getIdentity(), record.getRecordVersion(), (byte) 0, null);
   }
 
+  @Override
   public String toString() {
     return "index " + record.getIdentity();
   }
@@ -255,6 +270,7 @@ public abstract class OMVRBTreeProviderAbstract<K, V> implements OMVRBTreeProvid
     return ODatabaseRecordThreadLocal.INSTANCE.get();
   }
 
+  @Override
   public String getClusterName() {
     return clusterName;
   }

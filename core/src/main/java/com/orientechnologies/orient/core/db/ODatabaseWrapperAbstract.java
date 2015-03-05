@@ -52,11 +52,13 @@ public abstract class ODatabaseWrapperAbstract<DB extends ODatabaseInternal, T> 
     Orient.instance().getDatabaseFactory().register(databaseOwner);
   }
 
+  @Override
   public <THISDB extends ODatabase> THISDB open(final String iUserName, final String iUserPassword) {
     underlying.open(iUserName, iUserPassword);
     return (THISDB) this;
   }
 
+  @Override
   public <THISDB extends ODatabase> THISDB open(final OToken iToken) {
     underlying.open(iToken);
     Orient.instance().getDatabaseFactory().register(databaseOwner);
@@ -64,19 +66,23 @@ public abstract class ODatabaseWrapperAbstract<DB extends ODatabaseInternal, T> 
   }
 
 
+  @Override
   public <THISDB extends ODatabase> THISDB create() {
     return create(null);
   }
 
+  @Override
   public <THISDB extends ODatabase> THISDB create(final Map<OGlobalConfiguration, Object> iInitialSettings) {
     underlying.create(iInitialSettings);
     return (THISDB) this;
   }
 
+  @Override
   public boolean exists() {
     return underlying.exists();
   }
 
+  @Override
   public void reload() {
     underlying.reload();
   }
@@ -130,58 +136,71 @@ public abstract class ODatabaseWrapperAbstract<DB extends ODatabaseInternal, T> 
     underlying.restore(in, options, callable, iListener);
   }
 
+  @Override
   public void close() {
     underlying.close();
   }
 
+  @Override
   public void replaceStorage(OStorage iNewStorage) {
     underlying.replaceStorage(iNewStorage);
   }
 
+  @Override
   public void drop() {
     underlying.drop();
     Orient.instance().getDatabaseFactory().unregister(databaseOwner);
   }
 
+  @Override
   public STATUS getStatus() {
     return underlying.getStatus();
   }
 
+  @Override
   public <THISDB extends ODatabase> THISDB setStatus(final STATUS iStatus) {
     underlying.setStatus(iStatus);
     return (THISDB) this;
   }
 
+  @Override
   public String getName() {
     return underlying.getName();
   }
 
+  @Override
   public String getURL() {
     return underlying.getURL();
   }
 
+  @Override
   public OStorage getStorage() {
     return underlying.getStorage();
   }
 
+  @Override
   public OLocalRecordCache getLocalCache() {
     return underlying.getLocalCache();
   }
 
+  @Override
   public boolean isClosed() {
     return underlying.isClosed();
   }
 
+  @Override
   public long countClusterElements(final int iClusterId) {
     checkOpeness();
     return underlying.countClusterElements(iClusterId);
   }
 
+  @Override
   public long countClusterElements(final int[] iClusterIds) {
     checkOpeness();
     return underlying.countClusterElements(iClusterIds);
   }
 
+  @Override
   public long countClusterElements(final String iClusterName) {
     checkOpeness();
     return underlying.countClusterElements(iClusterName);
@@ -199,76 +218,92 @@ public abstract class ODatabaseWrapperAbstract<DB extends ODatabaseInternal, T> 
     return underlying.countClusterElements(iClusterIds, countTombstones);
   }
 
+  @Override
   public int getClusters() {
     checkOpeness();
     return underlying.getClusters();
   }
 
+  @Override
   public boolean existsCluster(String iClusterName) {
     checkOpeness();
     return underlying.existsCluster(iClusterName);
   }
 
+  @Override
   public Collection<String> getClusterNames() {
     checkOpeness();
     return underlying.getClusterNames();
   }
 
+  @Override
   public int getClusterIdByName(final String iClusterName) {
     checkOpeness();
     return underlying.getClusterIdByName(iClusterName);
   }
 
+  @Override
   public String getClusterNameById(final int iClusterId) {
     checkOpeness();
     return underlying.getClusterNameById(iClusterId);
   }
 
+  @Override
   public long getClusterRecordSizeById(int iClusterId) {
     return underlying.getClusterRecordSizeById(iClusterId);
   }
 
+  @Override
   public long getClusterRecordSizeByName(String iClusterName) {
     return underlying.getClusterRecordSizeByName(iClusterName);
   }
 
+  @Override
   public int addCluster(String iClusterName, int iRequestedId, Object... iParameters) {
     checkOpeness();
     return underlying.addCluster(iClusterName, iRequestedId, iParameters);
   }
 
+  @Override
   public int addCluster(final String iClusterName, final Object... iParameters) {
     checkOpeness();
     return underlying.addCluster(iClusterName, iParameters);
   }
 
+  @Override
   public boolean dropCluster(final String iClusterName, final boolean iTruncate) {
     getLocalCache().freeCluster(getClusterIdByName(iClusterName));
     return underlying.dropCluster(iClusterName, true);
   }
 
+  @Override
   public boolean dropCluster(final int iClusterId, final boolean iTruncate) {
     getLocalCache().freeCluster(iClusterId);
     return underlying.dropCluster(iClusterId, true);
   }
 
+  @Override
   public int getDefaultClusterId() {
     checkOpeness();
     return underlying.getDefaultClusterId();
   }
 
+  @Override
   public boolean declareIntent(final OIntent iIntent) {
     return underlying.declareIntent(iIntent);
   }
 
+  @Override
   public <DBTYPE extends ODatabase> DBTYPE getUnderlying() {
     return (DBTYPE) underlying;
   }
 
+  @Override
   public ODatabaseInternal<?> getDatabaseOwner() {
     return databaseOwner;
   }
 
+  @Override
   public ODatabaseInternal<?> setDatabaseOwner(final ODatabaseInternal<?> iOwner) {
     databaseOwner = iOwner;
     return this;
@@ -290,30 +325,37 @@ public abstract class ODatabaseWrapperAbstract<DB extends ODatabaseInternal, T> 
     return underlying.toString();
   }
 
+  @Override
   public Object setProperty(final String iName, final Object iValue) {
     return underlying.setProperty(iName, iValue);
   }
 
+  @Override
   public Object getProperty(final String iName) {
     return underlying.getProperty(iName);
   }
 
+  @Override
   public Iterator<Entry<String, Object>> getProperties() {
     return underlying.getProperties();
   }
 
+  @Override
   public Object get(final ATTRIBUTES iAttribute) {
     return underlying.get(iAttribute);
   }
 
+  @Override
   public <THISDB extends ODatabase> THISDB set(final ATTRIBUTES attribute, final Object iValue) {
     return (THISDB) underlying.set(attribute, iValue);
   }
 
+  @Override
   public void registerListener(final ODatabaseListener iListener) {
     underlying.registerListener(iListener);
   }
 
+  @Override
   public void unregisterListener(final ODatabaseListener iListener) {
     underlying.unregisterListener(iListener);
   }
@@ -328,18 +370,22 @@ public abstract class ODatabaseWrapperAbstract<DB extends ODatabaseInternal, T> 
     return underlying.getRecordMetadata(rid);
   }
 
+  @Override
   public long getSize() {
     return underlying.getSize();
   }
 
+  @Override
   public void freeze(boolean throwException) {
     underlying.freeze(throwException);
   }
 
+  @Override
   public void freeze() {
     underlying.freeze();
   }
 
+  @Override
   public void release() {
     underlying.release();
   }

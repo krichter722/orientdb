@@ -48,6 +48,7 @@ public class OCompositeKeySerializer implements OBinarySerializer<OCompositeKey>
   public static final OCompositeKeySerializer INSTANCE = new OCompositeKeySerializer();
   public static final byte                    ID       = 14;
 
+  @Override
   public int getObjectSize(OCompositeKey compositeKey, Object... hints) {
     final OType[] types = getKeyTypes(hints);
 
@@ -77,6 +78,7 @@ public class OCompositeKeySerializer implements OBinarySerializer<OCompositeKey>
     return size;
   }
 
+  @Override
   public void serialize(OCompositeKey compositeKey, byte[] stream, int startPosition, Object... hints) {
     final OType[] types = getKeyTypes(hints);
 
@@ -121,6 +123,7 @@ public class OCompositeKeySerializer implements OBinarySerializer<OCompositeKey>
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCompositeKey deserialize(byte[] stream, int startPosition) {
     final OCompositeKey compositeKey = new OCompositeKey();
 
@@ -144,18 +147,22 @@ public class OCompositeKeySerializer implements OBinarySerializer<OCompositeKey>
     return compositeKey;
   }
 
+  @Override
   public int getObjectSize(byte[] stream, int startPosition) {
     return OIntegerSerializer.INSTANCE.deserializeLiteral(stream, startPosition);
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public byte[] toStream(final Object iObject) throws IOException {
     throw new UnsupportedOperationException("CSV storage format is out of dated and is not supported.");
   }
 
+  @Override
   public Object fromStream(final byte[] iStream) throws IOException {
     final OCompositeKey compositeKey = new OCompositeKey();
     final OMemoryInputStream inputStream = new OMemoryInputStream(iStream);
@@ -171,14 +178,17 @@ public class OCompositeKeySerializer implements OBinarySerializer<OCompositeKey>
     return compositeKey;
   }
 
+  @Override
   public String getName() {
     return NAME;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return OIntegerSerializer.INSTANCE.deserializeNative(stream, startPosition);
   }
 
+  @Override
   public void serializeNativeObject(OCompositeKey compositeKey, byte[] stream, int startPosition, Object... hints) {
     final OType[] types = getKeyTypes(hints);
 
@@ -221,6 +231,7 @@ public class OCompositeKeySerializer implements OBinarySerializer<OCompositeKey>
     OIntegerSerializer.INSTANCE.serializeNative((startPosition - oldStartPosition), stream, oldStartPosition);
   }
 
+  @Override
   public OCompositeKey deserializeNativeObject(byte[] stream, int startPosition) {
     final OCompositeKey compositeKey = new OCompositeKey();
 
@@ -328,10 +339,12 @@ public class OCompositeKeySerializer implements OBinarySerializer<OCompositeKey>
     return pointer.getInt(offset);
   }
 
+  @Override
   public boolean isFixedLength() {
     return false;
   }
 
+  @Override
   public int getFixedLength() {
     return 0;
   }

@@ -59,6 +59,7 @@ public class OLazyRecordMultiIterator implements OLazyIterator<OIdentifiable>, O
     }
   }
 
+  @Override
   public OIdentifiable next() {
     if (!hasNext()) {
         throw new NoSuchElementException();
@@ -82,6 +83,7 @@ public class OLazyRecordMultiIterator implements OLazyIterator<OIdentifiable>, O
     return value;
   }
 
+  @Override
   public boolean hasNext() {
     final Iterator<OIdentifiable> underlying = getCurrentIterator();
     boolean again = underlying.hasNext();
@@ -94,6 +96,7 @@ public class OLazyRecordMultiIterator implements OLazyIterator<OIdentifiable>, O
     return again;
   }
 
+  @Override
   public OIdentifiable update(final OIdentifiable iValue) {
     final Iterator<OIdentifiable> underlying = getCurrentIterator();
     if (underlying instanceof OLazyIterator) {
@@ -107,6 +110,7 @@ public class OLazyRecordMultiIterator implements OLazyIterator<OIdentifiable>, O
     }
   }
 
+  @Override
   public void remove() {
     final Iterator<OIdentifiable> underlying = getCurrentIterator();
     underlying.remove();

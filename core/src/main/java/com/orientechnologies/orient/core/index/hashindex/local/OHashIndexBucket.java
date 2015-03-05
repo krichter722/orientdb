@@ -153,6 +153,7 @@ public class OHashIndexBucket<K, V> extends ODurablePage implements Iterable<OHa
     return getIntValue(SIZE_OFFSET);
   }
 
+  @Override
   public Iterator<Entry<K, V>> iterator() {
     return new EntryIterator(0);
   }

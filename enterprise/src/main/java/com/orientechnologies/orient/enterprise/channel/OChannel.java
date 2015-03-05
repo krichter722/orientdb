@@ -62,18 +62,21 @@ public abstract class OChannel extends OListenerManger<OChannelListener> {
 
     PROFILER.registerHookValue(profilerMetric + ".transmittedBytes", "Bytes transmitted to all the network channels",
         METRIC_TYPE.SIZE, new OProfilerHookValue() {
+          @Override
           public Object getValue() {
             return metricGlobalTransmittedBytes.get();
           }
         });
     PROFILER.registerHookValue(profilerMetric + ".receivedBytes", "Bytes received from all the network channels", METRIC_TYPE.SIZE,
         new OProfilerHookValue() {
+          @Override
           public Object getValue() {
             return metricGlobalReceivedBytes.get();
           }
         });
     PROFILER.registerHookValue(profilerMetric + ".flushes", "Number of times the network channels have been flushed",
         METRIC_TYPE.COUNTER, new OProfilerHookValue() {
+          @Override
           public Object getValue() {
             return metricGlobalFlushes.get();
           }
@@ -192,18 +195,21 @@ public abstract class OChannel extends OListenerManger<OChannelListener> {
 
     PROFILER.registerHookValue(profilerMetric + ".transmittedBytes", "Bytes transmitted to a network channel", METRIC_TYPE.SIZE,
         new OProfilerHookValue() {
+          @Override
           public Object getValue() {
             return metricTransmittedBytes;
           }
         }, dictProfilerMetric + ".transmittedBytes");
     PROFILER.registerHookValue(profilerMetric + ".receivedBytes", "Bytes received from a network channel", METRIC_TYPE.SIZE,
         new OProfilerHookValue() {
+          @Override
           public Object getValue() {
             return metricReceivedBytes;
           }
         }, dictProfilerMetric + ".receivedBytes");
     PROFILER.registerHookValue(profilerMetric + ".flushes", "Number of times the network channel has been flushed",
         METRIC_TYPE.COUNTER, new OProfilerHookValue() {
+          @Override
           public Object getValue() {
             return metricFlushes;
           }

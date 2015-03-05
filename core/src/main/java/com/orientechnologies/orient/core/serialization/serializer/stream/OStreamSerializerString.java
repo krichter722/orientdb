@@ -28,14 +28,17 @@ public class OStreamSerializerString implements OStreamSerializer {
 
 	public static final OStreamSerializerString	INSTANCE	= new OStreamSerializerString();
 
+        @Override
 	public String getName() {
 		return NAME;
 	}
 
+        @Override
 	public Object fromStream(final byte[] iStream) throws IOException {
 		return OBinaryProtocol.bytes2string(iStream);
 	}
 
+        @Override
 	public byte[] toStream(final Object iObject) throws IOException {
 		return OBinaryProtocol.string2bytes((String) iObject);
 	}

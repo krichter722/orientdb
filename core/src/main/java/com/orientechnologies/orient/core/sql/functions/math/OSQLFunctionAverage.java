@@ -47,6 +47,7 @@ public class OSQLFunctionAverage extends OSQLFunctionMathAbstract {
     super(NAME, 1, -1);
   }
 
+  @Override
   public Object execute(Object iThis, OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     if (iParams.length == 1) {
@@ -80,6 +81,7 @@ public class OSQLFunctionAverage extends OSQLFunctionMathAbstract {
     }
   }
 
+  @Override
   public String getSyntax() {
     return "avg(<field> [,<field>*])";
   }

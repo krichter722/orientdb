@@ -29,6 +29,7 @@ public class TrackedSetTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         Assert.assertEquals(event.getChangeType(), OMultiValueChangeEvent.OChangeType.ADD);
         Assert.assertNull(event.getOldValue());
@@ -65,6 +66,7 @@ public class TrackedSetTest {
     trackedSet.setInternalStatus(ORecordElement.STATUS.UNMARSHALLING);
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         changed.value = true;
       }
@@ -91,6 +93,7 @@ public class TrackedSetTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         changed.value = true;
       }
@@ -117,6 +120,7 @@ public class TrackedSetTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         Assert.assertEquals(event.getChangeType(), OMultiValueChangeEvent.OChangeType.REMOVE);
         Assert.assertEquals(event.getOldValue(), "value2");
@@ -166,6 +170,7 @@ public class TrackedSetTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         changed.value = true;
       }
@@ -192,6 +197,7 @@ public class TrackedSetTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         changed.value = true;
       }
@@ -226,6 +232,7 @@ public class TrackedSetTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         if (!firedEvents.remove(event)) {
             Assert.fail();
@@ -258,6 +265,7 @@ public class TrackedSetTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
     trackedSet.setInternalStatus(ORecordElement.STATUS.UNMARSHALLING);
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         changed.value = true;
       }
@@ -301,6 +309,7 @@ public class TrackedSetTest {
     final List<OMultiValueChangeEvent<String, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<String, String>>();
 
     trackedSet.addChangeListener(new OMultiValueChangeListener<String, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<String, String> event) {
         firedEvents.add(event);
       }

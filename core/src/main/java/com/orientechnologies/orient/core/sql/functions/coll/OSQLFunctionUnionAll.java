@@ -45,6 +45,7 @@ public class OSQLFunctionUnionAll extends OSQLFunctionMultiValueAbstract<Collect
     super(NAME, 1, -1);
   }
 
+  @Override
   public Object execute(final Object iThis, final OIdentifiable iCurrentRecord, final Object iCurrentResult,
       final Object[] iParams, OCommandContext iContext) {
     if (iParams.length == 1) {
@@ -81,6 +82,7 @@ public class OSQLFunctionUnionAll extends OSQLFunctionMultiValueAbstract<Collect
     }
   }
 
+  @Override
   public String getSyntax() {
     return "unionAll(<field>*)";
   }

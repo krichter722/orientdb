@@ -47,6 +47,7 @@ public class OCommandExecutorSQLFindReferences extends OCommandExecutorSQLEarlyR
   private String             classList;
   private StringBuilder      subQuery;
 
+  @Override
   public OCommandExecutorSQLFindReferences parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -88,6 +89,7 @@ public class OCommandExecutorSQLFindReferences extends OCommandExecutorSQLEarlyR
   /**
    * Execute the FIND REFERENCES.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (recordIds.isEmpty() && subQuery == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

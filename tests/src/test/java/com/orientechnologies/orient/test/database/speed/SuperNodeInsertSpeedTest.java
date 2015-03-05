@@ -60,6 +60,7 @@ public class SuperNodeInsertSpeedTest extends OrientMultiThreadTest {
       superNode = graph.getVertex(superNodeRID);
     }
 
+    @Override
     public void cycle() {
       final OrientVertex v = graph.addVertex("class:Client,cluster:client_" + currentThreadId(), "uid", counter.getAndIncrement());
 

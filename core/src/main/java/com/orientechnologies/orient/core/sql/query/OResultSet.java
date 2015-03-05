@@ -59,6 +59,7 @@ public class OResultSet<T> implements List<T>, Externalizable {
     return this;
   }
 
+  @Override
   public T set(int index, T element) {
     return underlying.set(index, element);
   }
@@ -139,6 +140,7 @@ public class OResultSet<T> implements List<T>, Externalizable {
     return underlying.toArray(a);
   }
 
+  @Override
   public boolean add(final T t) {
     if (limit > -1 && underlying.size() >= limit) {
         return false;
@@ -159,10 +161,12 @@ public class OResultSet<T> implements List<T>, Externalizable {
     throw new UnsupportedOperationException("remove");
   }
 
+  @Override
   public boolean addAll(final Collection<? extends T> c) {
     return underlying.addAll(c);
   }
 
+  @Override
   public boolean addAll(final int index, final Collection<? extends T> c) {
     return underlying.addAll(index, c);
   }
@@ -197,6 +201,7 @@ public class OResultSet<T> implements List<T>, Externalizable {
     return underlying.get(index);
   }
 
+  @Override
   public void add(final int index, T element) {
     underlying.add(index, element);
   }

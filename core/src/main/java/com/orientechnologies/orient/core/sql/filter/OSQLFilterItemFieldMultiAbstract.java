@@ -43,6 +43,7 @@ public abstract class OSQLFilterItemFieldMultiAbstract extends OSQLFilterItemAbs
     names = iNames;
   }
 
+  @Override
   public Object getValue(final OIdentifiable iRecord, Object iCurrentResult, OCommandContext iContext) {
     final ODocument doc = ((ODocument) iRecord);
 

@@ -42,6 +42,7 @@ public class OSQLFunctionEncode extends OSQLFunctionAbstract {
     super(NAME, 2, 2);
   }
 
+  @Override
   public Object execute(Object iThis, OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
 

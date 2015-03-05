@@ -38,6 +38,7 @@ public class OCommandExecutorSQLHide extends OCommandExecutorSQLAbstract {
 
   private ORID               recordIdToHide;
 
+  @Override
   public String getSyntax() {
     return "HIDE FROM RID";
   }

@@ -421,6 +421,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
   /**
    * (Blueprints Extension) Drops the database
    */
+  @Override
   public void drop() {
     makeActive();
 
@@ -430,11 +431,13 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
   }
 
   @SuppressWarnings({ "unchecked", "rawtypes" })
+  @Override
   public <T extends Element> Index<T> createIndex(final String indexName, final Class<T> indexClass,
       final Parameter... indexParameters) {
     makeActive();
 
     return executeOutsideTx(new OCallable<Index<T>, OrientBaseGraph>() {
+          @Override
       public Index<T> call(final OrientBaseGraph g) {
 
         final OIndexManager indexManager = database.getMetadata().getIndexManager();
@@ -487,6 +490,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *
    * @return Iterable of Index instances
    */
+  @Override
   public Iterable<Index<? extends Element>> getIndices() {
     makeActive();
 
@@ -499,6 +503,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param indexName
    *          Index name
    */
+  @Override
   public void dropIndex(final String indexName) {
     makeActive();
 
@@ -539,12 +544,14 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
     return addVertex(id, (Object[]) null);
   }
 
+  @Override
   public ORecordConflictStrategy getConflictStrategy() {
     makeActive();
 
     return database.getStorage().getConflictStrategy();
   }
 
+  @Override
   public OrientBaseGraph setConflictStrategy(final String iStrategyName) {
     makeActive();
 
@@ -552,6 +559,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
     return this;
   }
 
+  @Override
   public OrientBaseGraph setConflictStrategy(final ORecordConflictStrategy iResolver) {
     makeActive();
 
@@ -568,6 +576,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          Fields must be a odd pairs of key/value or a single object as Map containing entries as key/value pairs
    * @return The new OrientVertex created
    */
+  @Override
   public OrientVertex addVertex(Object id, final Object... prop) {
     makeActive();
 
@@ -649,6 +658,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          Fields must be a odd pairs of key/value or a single object as Map containing entries as key/value pairs
    * @return added vertex
    */
+  @Override
   public OrientVertex addTemporaryVertex(final String iClassName, final Object... prop) {
     makeActive();
 
@@ -724,6 +734,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param id
    *          Can by a String, ODocument or an OIdentifiable object.
    */
+  @Override
   public OrientVertex getVertex(final Object id) {
     makeActive();
 
@@ -778,6 +789,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param vertex
    *          Vertex to remove
    */
+  @Override
   public void removeVertex(final Vertex vertex) {
     makeActive();
 
@@ -789,6 +801,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *
    * @return Vertices as Iterable
    */
+  @Override
   public Iterable<Vertex> getVertices() {
     makeActive();
 
@@ -847,6 +860,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          Field value
    * @return Vertices as Iterable
    */
+  @Override
   public Iterable<Vertex> getVertices(final String iKey, Object iValue) {
     makeActive();
 
@@ -975,6 +989,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *
    * @return Edges as Iterable
    */
+  @Override
   public Iterable<Edge> getEdges() {
     makeActive();
 
@@ -1033,6 +1048,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          Field value
    * @return Edges as Iterable
    */
+  @Override
   public Iterable<Edge> getEdges(final String iKey, Object iValue) {
     makeActive();
 
@@ -1073,6 +1089,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param id
    *          Can by a String, ODocument or an OIdentifiable object.
    */
+  @Override
   public OrientEdge getEdge(final Object id) {
     makeActive();
 
@@ -1125,6 +1142,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param edge
    *          Edge to remove
    */
+  @Override
   public void removeEdge(final Edge edge) {
     makeActive();
 
@@ -1161,6 +1179,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
   /**
    * Closes the Graph. After closing the Graph cannot be used.
    */
+  @Override
   public void shutdown() {
     shutdown(true);
   }
@@ -1208,6 +1227,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
   /**
    * Returns the Graph URL.
    */
+  @Override
   public String toString() {
     return StringFactory.graphString(this, getRawGraph().getURL());
   }
@@ -1215,6 +1235,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
   /**
    * Returns the underlying Database instance as ODatabaseDocumentTx instance.
    */
+  @Override
   public ODatabaseDocumentTx getRawGraph() {
     return database;
   }
@@ -1236,6 +1257,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
   /**
    * Returns the V persistent class as OrientVertexType instance.
    */
+  @Override
   public OrientVertexType getVertexBaseType() {
     makeActive();
 
@@ -1248,6 +1270,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param iTypeName
    *          Vertex class name
    */
+  @Override
   public final OrientVertexType getVertexType(final String iTypeName) {
     makeActive();
 
@@ -1268,6 +1291,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          Vertex class name
    * @return OrientVertexType instance representing the persistent class
    */
+  @Override
   public OrientVertexType createVertexType(final String iClassName) {
     makeActive();
 
@@ -1283,6 +1307,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          Vertex class name to extend
    * @return OrientVertexType instance representing the persistent class
    */
+  @Override
   public OrientVertexType createVertexType(final String iClassName, final String iSuperClassName) {
     makeActive();
 
@@ -1298,6 +1323,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          OClass Vertex to extend
    * @return OrientVertexType instance representing the persistent class
    */
+  @Override
   public OrientVertexType createVertexType(final String iClassName, final OClass iSuperClass) {
     makeActive();
 
@@ -1317,6 +1343,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param iTypeName
    *          Vertex class name
    */
+  @Override
   public final void dropVertexType(final String iTypeName) {
     makeActive();
 
@@ -1332,6 +1359,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
   /**
    * Returns the E persistent class as OrientEdgeType instance.
    */
+  @Override
   public OrientEdgeType getEdgeBaseType() {
     makeActive();
 
@@ -1344,6 +1372,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param iTypeName
    *          Edge class name
    */
+  @Override
   public final OrientEdgeType getEdgeType(final String iTypeName) {
     makeActive();
 
@@ -1363,6 +1392,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          Edge class name
    * @return OrientEdgeType instance representing the persistent class
    */
+  @Override
   public OrientEdgeType createEdgeType(final String iClassName) {
     makeActive();
 
@@ -1378,6 +1408,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          Edge class name to extend
    * @return OrientEdgeType instance representing the persistent class
    */
+  @Override
   public OrientEdgeType createEdgeType(final String iClassName, final String iSuperClassName) {
     makeActive();
 
@@ -1393,6 +1424,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *          OClass Edge to extend
    * @return OrientEdgeType instance representing the persistent class
    */
+  @Override
   public OrientEdgeType createEdgeType(final String iClassName, final OClass iSuperClass) {
     makeActive();
 
@@ -1411,6 +1443,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param iTypeName
    *          Edge class name
    */
+  @Override
   public final void dropEdgeType(final String iTypeName) {
     makeActive();
 
@@ -1431,6 +1464,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @return The detached element
    * @see #attach(OrientElement)
    */
+  @Override
   public OrientElement detach(final OrientElement iElement) {
     makeActive();
 
@@ -1446,6 +1480,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @return The attached element
    * @see #detach(OrientElement)
    */
+  @Override
   public OrientElement attach(final OrientElement iElement) {
     makeActive();
 
@@ -1508,6 +1543,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param elementClass
    *          Element class as instances of Vertex and Edge
    */
+  @Override
   public <T extends Element> void dropKeyIndex(final String key, final Class<T> elementClass) {
     makeActive();
 
@@ -1671,6 +1707,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
   /**
    * Returns a OTraverse object to start traversing the graph.
    */
+  @Override
   public OTraverse traverse() {
     makeActive();
 
@@ -1683,6 +1720,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    * @param iCommand
    *          Command request between SQL, GREMLIN and SCRIPT commands
    */
+  @Override
   public OCommandRequest command(final OCommandRequest iCommand) {
     makeActive();
 
@@ -1694,6 +1732,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *
    * @return Long as number of total vertices
    */
+  @Override
   public long countVertices() {
     makeActive();
 
@@ -1705,6 +1744,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *
    * @return Long as number of total vertices
    */
+  @Override
   public long countVertices(final String iClassName) {
     makeActive();
 
@@ -1716,6 +1756,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *
    * @return Long as number of total edges
    */
+  @Override
   public long countEdges() {
     makeActive();
 
@@ -1731,6 +1772,7 @@ public abstract class OrientBaseGraph extends OrientConfigurableGraph implements
    *
    * @return Long as number of total edges
    */
+  @Override
   public long countEdges(final String iClassName) {
     makeActive();
 

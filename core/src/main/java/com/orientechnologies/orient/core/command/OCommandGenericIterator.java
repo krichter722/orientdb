@@ -38,6 +38,7 @@ public class OCommandGenericIterator implements Iterator<Object>, Iterable<Objec
 		this.command = command;
 	}
 
+        @Override
 	public boolean hasNext() {
 		checkForExecution();
 		if (resultOne != null) {
@@ -48,6 +49,7 @@ public class OCommandGenericIterator implements Iterator<Object>, Iterable<Objec
 		return false;
 	}
 
+        @Override
 	public Object next() {
 		checkForExecution();
 		if (resultOne != null) {
@@ -59,10 +61,12 @@ public class OCommandGenericIterator implements Iterator<Object>, Iterable<Objec
 		return null;
 	}
 
+        @Override
 	public Iterator<Object> iterator() {
 		return this;
 	}
 
+        @Override
 	public void remove() {
 		throw new UnsupportedOperationException("remove()");
 	}

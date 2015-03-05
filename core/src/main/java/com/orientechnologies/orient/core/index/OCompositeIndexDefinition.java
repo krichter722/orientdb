@@ -90,6 +90,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String getClassName() {
     return className;
   }
@@ -116,6 +117,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public List<String> getFields() {
     final List<String> fields = new LinkedList<String>();
     for (final OIndexDefinition indexDefinition : indexDefinitions) {
@@ -127,6 +129,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public List<String> getFieldsToIndex() {
     final List<String> fields = new LinkedList<String>();
     for (final OIndexDefinition indexDefinition : indexDefinitions) {
@@ -138,6 +141,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public Object getDocumentValueToIndex(final ODocument iDocument) {
     final List<OCompositeKey> compositeKeys = new ArrayList<OCompositeKey>(10);
     final OCompositeKey firstKey = new OCompositeKey();
@@ -177,6 +181,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public Object createValue(final List<?> params) {
     int currentParamIndex = 0;
     final OCompositeKey firstKey = new OCompositeKey();
@@ -298,6 +303,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public Object createValue(final Object... params) {
     return createValue(Arrays.asList(params));
   }
@@ -320,6 +326,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public int getParamCount() {
     int total = 0;
     for (final OIndexDefinition indexDefinition : indexDefinitions) {
@@ -331,6 +338,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public OType[] getTypes() {
     final List<OType> types = new LinkedList<OType>();
     for (final OIndexDefinition indexDefinition : indexDefinitions) {
@@ -403,6 +411,7 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
   /**
    * {@inheritDoc}
    */
+  @Override
   public String toCreateIndexDDL(final String indexName, final String indexType) {
     final StringBuilder ddl = new StringBuilder("create index ");
     ddl.append(indexName).append(" on ").append(className).append(" ( ");
@@ -500,53 +509,65 @@ public class OCompositeIndexDefinition extends OAbstractIndexDefinition {
       this.indexDefinitions = indexDefinitions;
     }
 
+    @Override
     public int size() {
       return underlying.size();
     }
 
+    @Override
     public boolean isEmpty() {
       return underlying.isEmpty();
     }
 
+    @Override
     public boolean containsKey(Object key) {
       final OCompositeKey compositeKey = convertToCompositeKey(key);
 
       return underlying.containsKey(compositeKey);
     }
 
+    @Override
     public boolean containsValue(Object value) {
       return underlying.containsValue(value);
     }
 
+    @Override
     public Integer get(Object key) {
       return underlying.get(convertToCompositeKey(key));
     }
 
+    @Override
     public Integer put(Object key, Integer value) {
       final OCompositeKey compositeKey = convertToCompositeKey(key);
       return underlying.put(compositeKey, value);
     }
 
+    @Override
     public Integer remove(Object key) {
       return underlying.remove(convertToCompositeKey(key));
     }
 
+    @Override
     public void putAll(Map<? extends Object, ? extends Integer> m) {
       throw new UnsupportedOperationException("Unsupported because of performance reasons");
     }
 
+    @Override
     public void clear() {
       underlying.clear();
     }
 
+    @Override
     public Set<Object> keySet() {
       throw new UnsupportedOperationException("Unsupported because of performance reasons");
     }
 
+    @Override
     public Collection<Integer> values() {
       return underlying.values();
     }
 
+    @Override
     public Set<Entry<Object, Integer>> entrySet() {
       throw new UnsupportedOperationException();
     }

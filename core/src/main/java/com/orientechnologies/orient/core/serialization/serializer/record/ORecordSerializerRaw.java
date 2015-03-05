@@ -46,6 +46,7 @@ public class ORecordSerializerRaw implements ORecordSerializer {
     return NAME;
   }
 
+  @Override
   public ORecord fromStream(final byte[] iSource, final ORecord iRecord, String[] iFields) {
     final ORecordBytes record = (ORecordBytes) iRecord;
     record.fromStream(iSource);
@@ -54,6 +55,7 @@ public class ORecordSerializerRaw implements ORecordSerializer {
     return record;
   }
 
+  @Override
   public byte[] toStream(final ORecord iSource, boolean iOnlyDelta) {
     try {
       return iSource.toStream();

@@ -52,10 +52,12 @@ public class OJSONFetchContext implements OFetchContext {
     settings = iSettings;
   }
 
+  @Override
   public void onBeforeFetch(final ODocument iRootRecord) {
     typesStack.add(new StringBuilder());
   }
 
+  @Override
   public void onAfterFetch(final ODocument iRootRecord) {
     StringBuilder buffer = typesStack.pop();
     if (settings.keepTypes && buffer.length() > 0) {
@@ -68,22 +70,27 @@ public class OJSONFetchContext implements OFetchContext {
     }
   }
 
+  @Override
   public void onBeforeStandardField(final Object iFieldValue, final String iFieldName, final Object iUserObject) {
     manageTypes(iFieldName, iFieldValue);
   }
 
+  @Override
   public void onAfterStandardField(Object iFieldValue, String iFieldName, Object iUserObject) {
   }
 
+  @Override
   public void onBeforeArray(final ODocument iRootRecord, final String iFieldName, final Object iUserObject,
       final OIdentifiable[] iArray) {
     onBeforeCollection(iRootRecord, iFieldName, iUserObject, null);
   }
 
+  @Override
   public void onAfterArray(final ODocument iRootRecord, final String iFieldName, final Object iUserObject) {
     onAfterCollection(iRootRecord, iFieldName, iUserObject);
   }
 
+  @Override
   public void onBeforeCollection(final ODocument iRootRecord, final String iFieldName, final Object iUserObject,
       final Iterable<?> iterable) {
     try {
@@ -96,6 +103,7 @@ public class OJSONFetchContext implements OFetchContext {
     }
   }
 
+  @Override
   public void onAfterCollection(final ODocument iRootRecord, final String iFieldName, final Object iUserObject) {
     try {
       settings.indentLevel--;
@@ -106,6 +114,7 @@ public class OJSONFetchContext implements OFetchContext {
     }
   }
 
+  @Override
   public void onBeforeMap(final ODocument iRootRecord, final String iFieldName, final Object iUserObject) {
     settings.indentLevel++;
     try {
@@ -118,6 +127,7 @@ public class OJSONFetchContext implements OFetchContext {
     }
   }
 
+  @Override
   public void onAfterMap(final ODocument iRootRecord, final String iFieldName, final Object iUserObject) {
     try {
       jsonWriter.endObject(settings.indentLevel, true);
@@ -130,6 +140,7 @@ public class OJSONFetchContext implements OFetchContext {
     settings.indentLevel--;
   }
 
+  @Override
   public void onBeforeDocument(final ODocument iRootRecord, final ODocument iDocument, final String iFieldName,
       final Object iUserObject) {
     settings.indentLevel++;
@@ -147,6 +158,7 @@ public class OJSONFetchContext implements OFetchContext {
     }
   }
 
+  @Override
   public void onAfterDocument(final ODocument iRootRecord, final ODocument iDocument, final String iFieldName,
       final Object iUserObject) {
     try {
@@ -215,6 +227,7 @@ public class OJSONFetchContext implements OFetchContext {
     }
   }
 
+  @Override
   public boolean fetchEmbeddedDocuments() {
     return settings.alwaysFetchEmbeddedDocuments;
   }

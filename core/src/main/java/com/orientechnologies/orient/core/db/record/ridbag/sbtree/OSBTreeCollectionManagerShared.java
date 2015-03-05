@@ -109,10 +109,12 @@ public class OSBTreeCollectionManagerShared extends OSBTreeCollectionManagerAbst
   public void clearPendingCollections() {
   }
 
+  @Override
   public Map<UUID, OBonsaiCollectionPointer> changedIds() {
     return collectionPointerChanges.get();
   }
 
+  @Override
   public void clearChangedIds() {
     collectionPointerChanges.get().clear();
   }

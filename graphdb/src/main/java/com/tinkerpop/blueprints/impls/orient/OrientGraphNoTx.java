@@ -81,6 +81,7 @@ public class OrientGraphNoTx extends OrientBaseGraph {
     config();
   }
 
+  @Override
   public Features getFeatures() {
     makeActive();
 

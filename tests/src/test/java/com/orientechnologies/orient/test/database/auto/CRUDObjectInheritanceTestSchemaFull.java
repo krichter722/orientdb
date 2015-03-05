@@ -74,6 +74,7 @@ public class CRUDObjectInheritanceTestSchemaFull extends ObjectDBBaseTest {
   }
 
   @BeforeClass
+  @Override
   public void beforeClass() throws Exception {
     super.beforeClass();
 

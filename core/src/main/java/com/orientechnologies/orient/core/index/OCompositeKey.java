@@ -115,6 +115,7 @@ public class OCompositeKey implements Comparable<OCompositeKey>, Serializable, O
    * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified
    *         object.
    */
+  @Override
   public int compareTo(final OCompositeKey otherKey) {
     final Iterator<Object> inIter = keys.iterator();
     final Iterator<Object> outIter = otherKey.keys.iterator();

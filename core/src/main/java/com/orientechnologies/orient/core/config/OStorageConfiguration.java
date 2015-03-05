@@ -180,6 +180,7 @@ public class OStorageConfiguration implements OSerializableStream {
     return unusualSymbols;
   }
 
+  @Override
   public OSerializableStream fromStream(final byte[] iStream) throws OSerializationException {
     final String[] values = new String(iStream).split("\\|");
     int index = 0;
@@ -362,6 +363,7 @@ public class OStorageConfiguration implements OSerializableStream {
     return this;
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     return toStream(Integer.MAX_VALUE);
   }

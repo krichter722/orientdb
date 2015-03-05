@@ -53,6 +53,7 @@ public class SQLSynchQuerySpeedTest extends SpeedTestMonoThread implements OComm
     }
   }
 
+  @Override
   public boolean result(final Object iRecord) {
     OrientTest.printRecord(resultCount++, iRecord);
     return true;

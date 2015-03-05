@@ -35,6 +35,7 @@ public class OStreamSerializerAnyStatic implements OStreamSerializer {
 		constructor = iClazz.getConstructor(String.class);
 	}
 
+        @Override
 	public String getName() {
 		return NAME;
 	}
@@ -43,6 +44,7 @@ public class OStreamSerializerAnyStatic implements OStreamSerializer {
 	 * Re-Create any object if the class has a public constructor that accepts a String as unique parameter.
 	 */
 
+        @Override
 	public Object fromStream(final byte[] iStream) throws IOException {
 		if (iStream == null || iStream.length == 0) {
                     // NULL VALUE
@@ -58,6 +60,7 @@ public class OStreamSerializerAnyStatic implements OStreamSerializer {
 		return null;
 	}
 
+        @Override
 	public byte[] toStream(final Object iObject) throws IOException {
 		if (iObject == null) {
                     return null;

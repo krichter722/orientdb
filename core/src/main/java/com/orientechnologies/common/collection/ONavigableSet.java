@@ -99,6 +99,7 @@ public interface ONavigableSet<E> extends SortedSet<E> {
 	 * 
 	 * @return an iterator over the elements in this set, in ascending order
 	 */
+        @Override
 	OLazyIterator<E> iterator();
 
 	/**
@@ -216,6 +217,7 @@ public interface ONavigableSet<E> extends SortedSet<E> {
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	SortedSet<E> subSet(E fromElement, E toElement);
 
 	/**
@@ -231,6 +233,7 @@ public interface ONavigableSet<E> extends SortedSet<E> {
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc} na
 	 */
+        @Override
 	SortedSet<E> headSet(E toElement);
 
 	/**
@@ -246,5 +249,6 @@ public interface ONavigableSet<E> extends SortedSet<E> {
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	SortedSet<E> tailSet(E fromElement);
 }

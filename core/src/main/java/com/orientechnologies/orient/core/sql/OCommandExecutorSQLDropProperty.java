@@ -48,6 +48,7 @@ public class OCommandExecutorSQLDropProperty extends OCommandExecutorSQLAbstract
   private String             fieldName;
   private boolean            force            = false;
 
+  @Override
   public OCommandExecutorSQLDropProperty parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -96,6 +97,7 @@ public class OCommandExecutorSQLDropProperty extends OCommandExecutorSQLAbstract
   /**
    * Execute the CREATE PROPERTY.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (fieldName == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not yet been parsed");

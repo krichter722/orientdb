@@ -12,6 +12,7 @@ import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class OrientGraphDefault extends OrientGraphTest {
 
+  @Override
   public Graph generateGraph(final String graphDirectoryName) {
     final OrientGraph graph = (OrientGraph) super.generateGraph(graphDirectoryName);
 

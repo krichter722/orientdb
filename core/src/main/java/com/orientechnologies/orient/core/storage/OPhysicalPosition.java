@@ -86,6 +86,7 @@ public class OPhysicalPosition implements OSerializableStream, Externalizable {
     return "rid(?:" + clusterPosition + ") record(type:" + recordType + " size:" + recordSize + " v:" + recordVersion + ")";
   }
 
+  @Override
   public OSerializableStream fromStream(final byte[] iStream) throws OSerializationException {
     int pos = 0;
 
@@ -103,6 +104,7 @@ public class OPhysicalPosition implements OSerializableStream, Externalizable {
     return this;
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     byte[] buffer = new byte[binarySize()];
     int pos = 0;
@@ -141,6 +143,7 @@ public class OPhysicalPosition implements OSerializableStream, Externalizable {
     return result;
   }
 
+  @Override
   public void writeExternal(final ObjectOutput out) throws IOException {
     out.writeLong(clusterPosition);
     out.writeByte(recordType);
@@ -148,6 +151,7 @@ public class OPhysicalPosition implements OSerializableStream, Externalizable {
     recordVersion.getSerializer().writeTo(out, recordVersion);
   }
 
+  @Override
   public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
     clusterPosition = in.readLong();
     recordType = in.readByte();

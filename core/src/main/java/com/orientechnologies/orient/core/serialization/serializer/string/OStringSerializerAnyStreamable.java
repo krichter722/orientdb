@@ -33,6 +33,7 @@ public class OStringSerializerAnyStreamable implements OStringSerializer {
   /**
    * Re-Create any object if the class has a public constructor that accepts a String as unique parameter.
    */
+  @Override
   public Object fromStream(final String iStream) {
     if (iStream == null || iStream.length() == 0) {
         // NULL VALUE
@@ -65,6 +66,7 @@ public class OStringSerializerAnyStreamable implements OStringSerializer {
    * 
    * @param iValue
    */
+  @Override
   public StringBuilder toStream(final StringBuilder iOutput, Object iValue) {
     if (iValue != null) {
       if (!(iValue instanceof OSerializableStream)) {
@@ -79,6 +81,7 @@ public class OStringSerializerAnyStreamable implements OStringSerializer {
     return iOutput;
   }
 
+  @Override
   public String getName() {
     return NAME;
   }

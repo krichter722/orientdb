@@ -296,6 +296,7 @@ public interface ONavigableMap<K, V> extends SortedMap<K, V> {
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	SortedMap<K, V> subMap(K fromKey, K toKey);
 
 	/**
@@ -311,6 +312,7 @@ public interface ONavigableMap<K, V> extends SortedMap<K, V> {
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	SortedMap<K, V> headMap(K toKey);
 
 	/**
@@ -326,5 +328,6 @@ public interface ONavigableMap<K, V> extends SortedMap<K, V> {
 	 * @throws IllegalArgumentException
 	 *           {@inheritDoc}
 	 */
+        @Override
 	SortedMap<K, V> tailMap(K fromKey);
 }

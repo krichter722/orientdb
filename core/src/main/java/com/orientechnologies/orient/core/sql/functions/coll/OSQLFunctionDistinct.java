@@ -41,6 +41,7 @@ public class OSQLFunctionDistinct extends OSQLFunctionAbstract {
     super(NAME, 1, 1);
   }
 
+  @Override
   public Object execute(Object iThis, final OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     final Object value = iParams[0];
@@ -58,6 +59,7 @@ public class OSQLFunctionDistinct extends OSQLFunctionAbstract {
     return true;
   }
 
+  @Override
   public String getSyntax() {
     return "distinct(<field>)";
   }

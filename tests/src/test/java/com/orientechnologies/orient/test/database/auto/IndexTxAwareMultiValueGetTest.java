@@ -26,6 +26,7 @@ public class IndexTxAwareMultiValueGetTest extends DocumentDBBaseTest {
   }
 
   @BeforeClass
+  @Override
   public void beforeClass() throws Exception {
     super.beforeClass();
 
@@ -33,6 +34,7 @@ public class IndexTxAwareMultiValueGetTest extends DocumentDBBaseTest {
   }
 
   @AfterMethod
+  @Override
   public void afterMethod() throws Exception {
     database.command(new OCommandSQL("delete from index:idxTxAwareMultiValueGetTest")).execute();
 

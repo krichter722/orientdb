@@ -76,6 +76,7 @@ public interface ORecord extends ORecordElement, OIdentifiable, Serializable, OS
   /**
    * Returns the record identity as &lt;cluster-id&gt;:&lt;cluster-position&gt;
    */
+  @Override
   public ORID getIdentity();
 
   /**

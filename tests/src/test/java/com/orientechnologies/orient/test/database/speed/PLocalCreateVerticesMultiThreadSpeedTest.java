@@ -52,6 +52,7 @@ public class PLocalCreateVerticesMultiThreadSpeedTest extends OrientMultiThreadT
       graph.getRawGraph().declareIntent(new OIntentMassiveInsert());
     }
 
+    @Override
     public void cycle() {
       graph
           .addVertex("class:Client,cluster:client_" + currentThreadId(), "uid", "" + currentThreadId() + "_" + data.getCyclesDone());

@@ -52,6 +52,7 @@ public class SQLIndexWithoutSchemaTest extends AbstractIndexReuseTest {
   }
 
   @AfterClass
+  @Override
   public void afterClass() throws Exception {
     if (database.isClosed()) {
         database.open("admin", "admin");

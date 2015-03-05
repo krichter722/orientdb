@@ -94,10 +94,12 @@ public class OLocalRecordCache extends OAbstractRecordCache {
    * @param rid
    *          unique identifier of record
    */
+  @Override
   public void deleteRecord(final ORID rid) {
     super.deleteRecord(rid);
   }
 
+  @Override
   public void shutdown() {
     super.shutdown();
   }

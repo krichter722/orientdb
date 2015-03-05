@@ -175,6 +175,7 @@ public class IndexConcurrencyTest {
       t.start();
     }
 
+    @Override
     public void run() {
       addSubTree(m_name, m_startLetter);
     }
@@ -229,6 +230,7 @@ public class IndexConcurrencyTest {
       t.start();
     }
 
+    @Override
     public void run() {
       deleteSubTree(m_name);
     }

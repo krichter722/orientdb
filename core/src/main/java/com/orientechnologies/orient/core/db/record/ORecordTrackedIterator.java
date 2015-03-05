@@ -38,14 +38,17 @@ public class ORecordTrackedIterator implements Iterator<OIdentifiable> {
     this.underlying = iIterator;
   }
 
+  @Override
   public OIdentifiable next() {
     return (OIdentifiable) underlying.next();
   }
 
+  @Override
   public boolean hasNext() {
     return underlying.hasNext();
   }
 
+  @Override
   public void remove() {
     underlying.remove();
     if (sourceRecord != null) {

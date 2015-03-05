@@ -39,6 +39,7 @@ public class OIndexDictionary extends OIndexOneValue {
     super(typeId, algorithm, engine, valueContainerAlgorithm, metadata);
   }
 
+  @Override
   public OIndexOneValue put(Object key, final OIdentifiable value) {
 
     key = getCollatingValue(key);
@@ -81,10 +82,12 @@ public class OIndexDictionary extends OIndexOneValue {
     return null;
   }
 
+  @Override
   public boolean canBeUsedInEqualityOperators() {
     return true;
   }
 
+  @Override
   public boolean supportsOrderedIterations() {
     return false;
   }

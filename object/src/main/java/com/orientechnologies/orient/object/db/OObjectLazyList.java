@@ -67,10 +67,12 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     addAll(iSourceList);
   }
 
+  @Override
   public Iterator<TYPE> iterator() {
     return new OObjectLazyListIterator<TYPE>(this, sourceRecord);
   }
 
+  @Override
   public boolean contains(final Object o) {
     if (o instanceof Proxy) {
         return recordList.contains(OObjectEntitySerializer.getDocument((Proxy) o));
@@ -81,6 +83,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return super.contains(o);
   }
 
+  @Override
   public boolean add(TYPE element) {
     boolean dirty = false;
     OIdentifiable record;
@@ -116,6 +119,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return super.add(element);
   }
 
+  @Override
   public void add(int index, TYPE element) {
     setDirty();
     OIdentifiable record;
@@ -146,6 +150,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     super.add(index, element);
   }
 
+  @Override
   public TYPE get(final int index) {
     TYPE o = (TYPE) super.get(index);
     if (o == null) {
@@ -164,6 +169,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return o;
   }
 
+  @Override
   public int indexOf(final Object o) {
     if (o instanceof Proxy) {
         return recordList.indexOf(OObjectEntitySerializer.getDocument((Proxy) o));
@@ -174,6 +180,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return super.indexOf(o);
   }
 
+  @Override
   public int lastIndexOf(final Object o) {
     if (o instanceof Proxy) {
         return recordList.lastIndexOf(OObjectEntitySerializer.getDocument((Proxy) o));
@@ -184,24 +191,29 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return super.lastIndexOf(o);
   }
 
+  @Override
   public Object[] toArray() {
     convertAll();
     return super.toArray();
   }
 
+  @Override
   public <T> T[] toArray(final T[] a) {
     convertAll();
     return super.toArray(a);
   }
 
+  @Override
   public int size() {
     return recordList.size();
   }
 
+  @Override
   public boolean isEmpty() {
     return recordList.isEmpty();
   }
 
+  @Override
   public boolean remove(Object o) {
     setDirty();
     if (o instanceof OIdentifiable) {
@@ -230,6 +242,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return super.remove(o);
   }
 
+  @Override
   public boolean containsAll(Collection<?> c) {
     for (Object o : c) {
       if (!contains(o)) {
@@ -239,6 +252,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return true;
   }
 
+  @Override
   public boolean addAll(Collection<? extends TYPE> c) {
     boolean dirty = false;
     for (TYPE element : c) {
@@ -250,6 +264,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return dirty;
   }
 
+  @Override
   public boolean addAll(int index, Collection<? extends TYPE> c) {
     for (TYPE element : c) {
       add(index, element);
@@ -261,6 +276,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return c.size() > 0;
   }
 
+  @Override
   public boolean removeAll(Collection<?> c) {
     boolean dirty = true;
     for (Object o : c) {
@@ -272,6 +288,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return dirty;
   }
 
+  @Override
   public boolean retainAll(Collection<?> c) {
     boolean modified = false;
     Iterator<TYPE> e = iterator();
@@ -285,6 +302,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return modified;
   }
 
+  @Override
   public void clear() {
     setDirty();
     if (orphanRemoval && sourceRecord != null) {
@@ -296,6 +314,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     super.clear();
   }
 
+  @Override
   public TYPE set(int index, TYPE element) {
     OIdentifiable record;
     if (element instanceof OIdentifiable) {
@@ -325,6 +344,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return (TYPE) super.set(index, element);
   }
 
+  @Override
   public TYPE remove(int index) {
     TYPE element;
     OIdentifiable record = recordList.remove(index);
@@ -344,14 +364,17 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return element;
   }
 
+  @Override
   public ListIterator<TYPE> listIterator() {
     return (ListIterator<TYPE>) super.listIterator();
   }
 
+  @Override
   public ListIterator<TYPE> listIterator(int index) {
     return (ListIterator<TYPE>) super.listIterator(index);
   }
 
+  @Override
   public List<TYPE> subList(int fromIndex, int toIndex) {
     return (List<TYPE>) super.subList(fromIndex, toIndex);
   }
@@ -369,10 +392,12 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     return convertToRecord;
   }
 
+  @Override
   public void setConvertToRecord(boolean convertToRecord) {
     this.convertToRecord = convertToRecord;
   }
 
+  @Override
   public boolean isConverted() {
     return converted;
   }
@@ -381,6 +406,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     convertAll();
   }
 
+  @Override
   public void detach(boolean nonProxiedInstance) {
     convertAll();
   }
@@ -452,6 +478,7 @@ public class OObjectLazyList<TYPE> extends ArrayList<TYPE> implements OLazyObjec
     }
   }
 
+  @Override
   public void detachAll(boolean nonProxiedInstance, Map<Object, Object> alreadyDetached) {
     convertAndDetachAll(nonProxiedInstance, alreadyDetached);
   }

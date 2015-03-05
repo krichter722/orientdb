@@ -53,6 +53,7 @@ public class OComposableProcessor extends OConfigurableStatefulFactory<String, O
     return process(null, template, iContext, new ODocument().setOrdered(true), iReadOnly);
   }
 
+  @Override
   public Object process(final OProcessorBlock iParent, final Object iContent, final OCommandContext iContext,
       final ODocument iOutput, final boolean iReadOnly) {
     if (!(iContent instanceof ODocument)) {

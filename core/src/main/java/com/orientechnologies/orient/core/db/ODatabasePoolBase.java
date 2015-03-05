@@ -70,12 +70,14 @@ public abstract class ODatabasePoolBase<DB extends ODatabaseInternal> extends Th
         synchronized (this) {
             if (dbPool == null) {
                 dbPool = new ODatabasePoolAbstract<DB>(this, iMinSize, iMaxSize, idleTimeout, timeBetweenEvictionRunsMillis) {
+                    @Override
                     public void onShutdown() {
                         if (owner instanceof ODatabasePoolBase<?>) {
                             ((ODatabasePoolBase<?>) owner).close();
                         }
                     }
 
+                    @Override
                     public DB createNewResource(final String iDatabaseName, final Object... iAdditionalArgs) {
                         if (iAdditionalArgs.length < 2) {
                             throw new OSecurityAccessException("Username and/or password missed");
@@ -83,6 +85,7 @@ public abstract class ODatabasePoolBase<DB extends ODatabaseInternal> extends Th
                         return createResource(owner, iDatabaseName, iAdditionalArgs);
                     }
 
+                    @Override
                     public boolean reuseResource(final String iKey, final Object[] iAdditionalArgs, final DB iValue) {
                         if (((ODatabasePooled) iValue).isUnderlyingOpen()) {
                             ((ODatabasePooled) iValue).reuse(owner, iAdditionalArgs);

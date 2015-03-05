@@ -67,6 +67,7 @@ public interface ORidBagDelegate extends Iterable<OIdentifiable>, ORecordLazyMul
 
   public ORecord getOwner();
 
+  @Override
   public String toString();
 
   public Set<OMultiValueChangeListener<OIdentifiable, OIdentifiable>> getChangeListeners();

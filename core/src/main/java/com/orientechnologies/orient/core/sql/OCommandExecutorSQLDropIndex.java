@@ -40,6 +40,7 @@ public class OCommandExecutorSQLDropIndex extends OCommandExecutorSQLAbstract im
 
   private String             name;
 
+  @Override
   public OCommandExecutorSQLDropIndex parse(final OCommandRequest iRequest) {
     init((OCommandRequestText) iRequest);
 
@@ -71,6 +72,7 @@ public class OCommandExecutorSQLDropIndex extends OCommandExecutorSQLAbstract im
   /**
    * Execute the REMOVE INDEX.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (name == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

@@ -42,36 +42,43 @@ public class OBinaryTypeSerializer implements OBinarySerializer<byte[]> {
     return length + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public int getObjectSize(byte[] object, Object... hints) {
     return object.length + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public void serialize(final byte[] object, final byte[] stream, final int startPosition, final Object... hints) {
     int len = object.length;
     OIntegerSerializer.INSTANCE.serializeLiteral(len, stream, startPosition);
     System.arraycopy(object, 0, stream, startPosition + OIntegerSerializer.INT_SIZE, len);
   }
 
+  @Override
   public byte[] deserialize(final byte[] stream, final int startPosition) {
     final int len = OIntegerSerializer.INSTANCE.deserializeLiteral(stream, startPosition);
     return Arrays.copyOfRange(stream, startPosition + OIntegerSerializer.INT_SIZE, startPosition + OIntegerSerializer.INT_SIZE
         + len);
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return OIntegerSerializer.INSTANCE.deserializeLiteral(stream, startPosition) + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public int getObjectSizeNative(byte[] stream, int startPosition) {
     return CONVERTER.getInt(stream, startPosition, ByteOrder.nativeOrder()) + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public void serializeNativeObject(byte[] object, byte[] stream, int startPosition, Object... hints) {
     final int len = object.length;
     CONVERTER.putInt(stream, startPosition, len, ByteOrder.nativeOrder());
     System.arraycopy(object, 0, stream, startPosition + OIntegerSerializer.INT_SIZE, len);
   }
 
+  @Override
   public byte[] deserializeNativeObject(byte[] stream, int startPosition) {
     final int len = CONVERTER.getInt(stream, startPosition, ByteOrder.nativeOrder());
     return Arrays.copyOfRange(stream, startPosition + OIntegerSerializer.INT_SIZE, startPosition + OIntegerSerializer.INT_SIZE
@@ -100,14 +107,17 @@ public class OBinaryTypeSerializer implements OBinarySerializer<byte[]> {
     return pointer.getInt(offset) + OIntegerSerializer.INT_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public boolean isFixedLength() {
     return false;
   }
 
+  @Override
   public int getFixedLength() {
     return 0;
   }

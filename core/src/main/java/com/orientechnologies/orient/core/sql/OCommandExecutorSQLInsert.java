@@ -68,6 +68,7 @@ public class OCommandExecutorSQLInsert extends OCommandExecutorSQLSetAware imple
   private boolean                        unsafe           = false;
 
   @SuppressWarnings("unchecked")
+  @Override
   public OCommandExecutorSQLInsert parse(final OCommandRequest iRequest) {
     final ODatabaseDocument database = getDatabase();
 
@@ -176,6 +177,7 @@ public class OCommandExecutorSQLInsert extends OCommandExecutorSQLSetAware imple
   /**
    * Execute the INSERT and return the ODocument object created.
    */
+  @Override
   public Object execute(final Map<Object, Object> iArgs) {
     if (newRecords == null && content == null && subQuery == null) {
         throw new OCommandExecutionException("Cannot execute the command because it has not been parsed yet");

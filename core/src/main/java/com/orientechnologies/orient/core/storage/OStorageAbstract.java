@@ -67,36 +67,45 @@ public abstract class OStorageAbstract extends OSharedContainerImpl implements O
     lock = new OSharedResourceAdaptiveExternal(OGlobalConfiguration.ENVIRONMENT_CONCURRENT.getValueAsBoolean(), timeout, true);
   }
 
+  @Override
   public abstract OCluster getClusterByName(final String iClusterName);
 
+  @Override
   public OStorage getUnderlying() {
     return this;
   }
 
+  @Override
   public OStorageConfiguration getConfiguration() {
     return configuration;
   }
 
+  @Override
   public boolean isClosed() {
     return status == STATUS.CLOSED;
   }
 
+  @Override
   public boolean checkForRecordValidity(final OPhysicalPosition ppos) {
     return ppos != null && !ppos.recordVersion.isTombstone();
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public String getURL() {
     return url;
   }
 
+  @Override
   public void close() {
     close(false, false);
   }
 
+  @Override
   public void close(final boolean iForce, boolean onDelete) {
     lock.acquireExclusiveLock();
     try {
@@ -118,30 +127,37 @@ public abstract class OStorageAbstract extends OSharedContainerImpl implements O
   /**
    * Returns current storage's version as serial.
    */
+  @Override
   public long getVersion() {
     return version.get();
   }
 
+  @Override
   public boolean dropCluster(final String iClusterName, final boolean iTruncate) {
     return dropCluster(getClusterIdByName(iClusterName), iTruncate);
   }
 
+  @Override
   public int getUsers() {
     return lock.getUsers();
   }
 
+  @Override
   public int addUser() {
     return lock.addUser();
   }
 
+  @Override
   public int removeUser() {
     return lock.removeUser();
   }
 
+  @Override
   public OSharedResourceAdaptiveExternal getLock() {
     return lock;
   }
 
+  @Override
   public long countRecords() {
     long tot = 0;
 
@@ -154,6 +170,7 @@ public abstract class OStorageAbstract extends OSharedContainerImpl implements O
     return tot;
   }
 
+  @Override
   public <V> V callInLock(final Callable<V> iCallable, final boolean iExclusiveLock) {
     if (iExclusiveLock) {
         lock.acquireExclusiveLock();
@@ -180,10 +197,12 @@ public abstract class OStorageAbstract extends OSharedContainerImpl implements O
     return url != null ? url : "?";
   }
 
+  @Override
   public STATUS getStatus() {
     return status;
   }
 
+  @Override
   public void checkForClusterPermissions(final String iClusterName) {
     // CHECK FOR ORESTRICTED
     OMetadata metaData = ODatabaseRecordThreadLocal.INSTANCE.get().getMetadata();

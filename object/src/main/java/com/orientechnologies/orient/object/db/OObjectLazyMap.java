@@ -153,10 +153,12 @@ public class OObjectLazyMap<TYPE> extends HashMap<Object, Object> implements Ser
     return convertToRecord;
   }
 
+  @Override
   public void setConvertToRecord(boolean convertToRecord) {
     this.convertToRecord = convertToRecord;
   }
 
+  @Override
   public boolean isConverted() {
     return converted;
   }
@@ -183,6 +185,7 @@ public class OObjectLazyMap<TYPE> extends HashMap<Object, Object> implements Ser
     return super.get(iKey);
   }
   
+  @Override
   public Object getOrDefault(Object key, Object defaultValue) 
   {
 	 String keyAsString = String.valueOf(key);
@@ -217,6 +220,7 @@ public class OObjectLazyMap<TYPE> extends HashMap<Object, Object> implements Ser
     }
   }
 
+  @Override
   public Map<Object, OIdentifiable> getUnderlying() {
     return underlying;
   }
@@ -245,10 +249,12 @@ public class OObjectLazyMap<TYPE> extends HashMap<Object, Object> implements Ser
     convertAll();
   }
 
+  @Override
   public void detach(boolean nonProxiedInstance) {
     convertAll();
   }
 
+  @Override
   public void detachAll(boolean nonProxiedInstance, Map<Object, Object> alreadyDetached) {
     convertAndDetachAll(nonProxiedInstance, alreadyDetached);
 

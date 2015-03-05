@@ -65,6 +65,7 @@ public class GraphInsertSpeedMTTest extends OrientMultiThreadTest {
       graph.getRawGraph().declareIntent(new OIntentMassiveInsert());
     }
 
+    @Override
     public void cycle() {
       OrientVertex superNode = graph.addVertex("class:Client", "name", "superNode", "uid", counter.getAndIncrement());
       for (int i = 0; i < EDGES; ++i) {

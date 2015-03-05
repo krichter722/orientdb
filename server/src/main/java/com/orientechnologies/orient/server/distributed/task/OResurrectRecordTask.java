@@ -77,6 +77,7 @@ import java.io.IOException;
      return Boolean.FALSE;
    }
 
+   @Override
    public QUORUM_TYPE getQuorumType() {
      return QUORUM_TYPE.NONE;
    }

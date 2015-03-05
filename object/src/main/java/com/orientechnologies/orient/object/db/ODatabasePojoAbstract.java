@@ -85,22 +85,27 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
     super.close();
   }
 
+  @Override
   public OTransaction getTransaction() {
     return underlying.getTransaction();
   }
 
+  @Override
   public ODatabase<T> begin() {
     return (ODatabase<T>) underlying.begin();
   }
 
+  @Override
   public ODatabase<T> begin(final TXTYPE iType) {
     return (ODatabase<T>) underlying.begin(iType);
   }
 
+  @Override
   public ODatabase<T> begin(final OTransaction iTx) {
     return (ODatabase<T>) underlying.begin(iTx);
   }
 
+  @Override
   public ODatabase<T> commit() {
     return commit(false);
   }
@@ -116,6 +121,7 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
     return this;
   }
 
+  @Override
   public ODatabase<T> rollback() {
     return rollback(false);
   }
@@ -186,6 +192,7 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
     ORecordInternal.unsetDirty(record);
   }
 
+  @Override
   public void setInternal(final ATTRIBUTES attribute, final Object iValue) {
     underlying.setInternal(attribute, iValue);
   }
@@ -221,14 +228,17 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
     return record.getIdentity();
   }
 
+  @Override
   public OSecurityUser getUser() {
     return underlying.getUser();
   }
 
+  @Override
   public void setUser(OSecurityUser user) {
     underlying.setUser(user);
   }
 
+  @Override
   public OMetadata getMetadata() {
     return underlying.getMetadata();
   }
@@ -236,6 +246,7 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
   /**
    * Returns a wrapped OCommandRequest instance to catch the result-set by converting it before to return to the user application.
    */
+  @Override
   public <RET extends OCommandRequest> RET command(final OCommandRequest iCommand) {
     return (RET) new OCommandSQLPojoWrapper(this, underlying.command(iCommand));
   }
@@ -278,48 +289,58 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
     return this;
   }
 
+  @Override
   public ODatabase<T> delete(final ORID iRID) {
     underlying.delete(iRID);
     return this;
   }
 
+  @Override
   public ODatabase<T> delete(final ORID iRID, final ORecordVersion iVersion) {
     underlying.delete(iRID, iVersion);
     return this;
   }
 
+  @Override
   public ODatabase<T> cleanOutRecord(final ORID iRID, final ORecordVersion iVersion) {
     underlying.cleanOutRecord(iRID, iVersion);
     return this;
   }
 
+  @Override
   public <DBTYPE extends ODatabase<?>> DBTYPE registerHook(final ORecordHook iHookImpl) {
     underlying.registerHook(iHookImpl);
     return (DBTYPE) this;
   }
 
+  @Override
   public <DBTYPE extends ODatabase<?>> DBTYPE registerHook(final ORecordHook iHookImpl, ORecordHook.HOOK_POSITION iPosition) {
     underlying.registerHook(iHookImpl, iPosition);
     return (DBTYPE) this;
   }
 
+  @Override
   public RESULT callbackHooks(final TYPE iType, final OIdentifiable iObject) {
     return underlying.callbackHooks(iType, iObject);
   }
 
+  @Override
   public Map<ORecordHook, ORecordHook.HOOK_POSITION> getHooks() {
     return underlying.getHooks();
   }
 
+  @Override
   public <DBTYPE extends ODatabase<?>> DBTYPE unregisterHook(final ORecordHook iHookImpl) {
     underlying.unregisterHook(iHookImpl);
     return (DBTYPE) this;
   }
 
+  @Override
   public boolean isMVCC() {
     return underlying.isMVCC();
   }
 
+  @Override
   public <DBTYPE extends ODatabase<?>> DBTYPE setMVCC(final boolean iMvcc) {
     underlying.setMVCC(iMvcc);
     return (DBTYPE) this;
@@ -347,6 +368,7 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
     return this;
   }
 
+  @Override
   public ODocument getRecordByUserObject(final Object iPojo, final boolean iCreateIfNotAvailable) {
     if (iPojo instanceof ODocument) {
         return (ODocument) iPojo;
@@ -376,6 +398,7 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
     return record;
   }
 
+  @Override
   public boolean existsUserObjectByRID(ORID iRID) {
     return rid2Records.containsKey(iRID);
   }
@@ -388,6 +411,7 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
     return objects2Records.containsKey(iEntity);
   }
 
+  @Override
   public T getUserObjectByRecord(final OIdentifiable iRecord, final String iFetchPlan) {
     return getUserObjectByRecord(iRecord, iFetchPlan, true);
   }
@@ -457,6 +481,7 @@ public abstract class ODatabasePojoAbstract<T extends Object> extends ODatabaseW
   /**
    * Register a new POJO
    */
+  @Override
   public void registerUserObject(final Object iObject, final ORecord iRecord) {
     if (!(iRecord instanceof ODocument)) {
         return;

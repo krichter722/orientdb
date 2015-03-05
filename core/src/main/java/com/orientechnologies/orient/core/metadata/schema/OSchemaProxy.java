@@ -49,34 +49,41 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
     return delegate.makeSnapshot();
   }
 
+  @Override
   public void create() {
     setCurrentDatabaseInThreadLocal();
     delegate.create();
   }
 
+  @Override
   public int countClasses() {
     return delegate.countClasses();
   }
 
+  @Override
   public OClass createClass(final Class<?> iClass) {
     setCurrentDatabaseInThreadLocal();
     return delegate.createClass(iClass);
   }
 
+  @Override
   public OClass createClass(final Class<?> iClass, final int iDefaultClusterId) {
     setCurrentDatabaseInThreadLocal();
     return delegate.createClass(iClass, iDefaultClusterId);
   }
 
+  @Override
   public OClass createClass(final String iClassName) {
     setCurrentDatabaseInThreadLocal();
     return delegate.createClass(iClassName);
   }
 
+  @Override
   public OClass getOrCreateClass(final String iClassName) {
     return getOrCreateClass(iClassName, null);
   }
 
+  @Override
   public OClass getOrCreateClass(final String iClassName, final OClass iSuperClass) {
     if (iClassName == null) {
         return null;
@@ -93,21 +100,25 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
     return cls;
   }
 
+  @Override
   public OClass createClass(final String iClassName, final OClass iSuperClass) {
     setCurrentDatabaseInThreadLocal();
     return delegate.createClass(iClassName, iSuperClass, (int[]) null);
   }
 
+  @Override
   public OClass createClass(final String iClassName, final int iDefaultClusterId) {
     setCurrentDatabaseInThreadLocal();
     return delegate.createClass(iClassName, iDefaultClusterId);
   }
 
+  @Override
   public OClass createClass(final String iClassName, final OClass iSuperClass, final int iDefaultClusterId) {
     setCurrentDatabaseInThreadLocal();
     return delegate.createClass(iClassName, iSuperClass, iDefaultClusterId);
   }
 
+  @Override
   public OClass createClass(final String iClassName, final OClass iSuperClass, final int[] iClusterIds) {
     setCurrentDatabaseInThreadLocal();
     return delegate.createClass(iClassName, iSuperClass, iClusterIds);
@@ -131,11 +142,13 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
     return delegate.createAbstractClass(iClassName, iSuperClass);
   }
 
+  @Override
   public void dropClass(final String iClassName) {
     setCurrentDatabaseInThreadLocal();
     delegate.dropClass(iClassName);
   }
 
+  @Override
   public boolean existsClass(final String iClassName) {
     if (iClassName == null) {
         return false;
@@ -144,6 +157,7 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
     return delegate.existsClass(iClassName.toLowerCase());
   }
 
+  @Override
   public OClass getClass(final Class<?> iClass) {
     if (iClass == null) {
         return null;
@@ -152,6 +166,7 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
     return delegate.getClass(iClass);
   }
 
+  @Override
   public OClass getClass(final String iClassName) {
     if (iClassName == null) {
         return null;
@@ -160,6 +175,7 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
     return delegate.getClass(iClassName);
   }
 
+  @Override
   public Collection<OClass> getClasses() {
     return delegate.getClasses();
   }
@@ -170,6 +186,7 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
 
   }
 
+  @Override
   public <RET extends ODocumentWrapper> RET reload() {
     setCurrentDatabaseInThreadLocal();
     delegate.reload();
@@ -177,16 +194,19 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
     return (RET) delegate;
   }
 
+  @Override
   public <RET extends ODocumentWrapper> RET save() {
     setCurrentDatabaseInThreadLocal();
     return (RET) delegate.save();
   }
 
+  @Override
   public int getVersion() {
     setCurrentDatabaseInThreadLocal();
     return delegate.getVersion();
   }
 
+  @Override
   public ORID getIdentity() {
     setCurrentDatabaseInThreadLocal();
     return delegate.getIdentity();
@@ -195,6 +215,7 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
   public void close() {
   }
 
+  @Override
   public String toString() {
     setCurrentDatabaseInThreadLocal();
     return delegate.toString();
@@ -220,6 +241,7 @@ public class OSchemaProxy extends OProxedResource<OSchemaShared> implements OSch
     return delegate.getGlobalProperties();
   }
 
+  @Override
   public OGlobalProperty createGlobalProperty(String name, OType type, Integer id) {
     return delegate.createGlobalProperty(name, type, id);
   }

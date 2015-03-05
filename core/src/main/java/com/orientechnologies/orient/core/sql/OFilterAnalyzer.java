@@ -106,6 +106,7 @@ public class OFilterAnalyzer {
       indexSearchResults.add(lastCondition);
     }
     Collections.sort(indexSearchResults, new Comparator<OIndexSearchResult>() {
+      @Override
       public int compare(final OIndexSearchResult searchResultOne, final OIndexSearchResult searchResultTwo) {
         return searchResultTwo.getFieldCount() - searchResultOne.getFieldCount();
       }

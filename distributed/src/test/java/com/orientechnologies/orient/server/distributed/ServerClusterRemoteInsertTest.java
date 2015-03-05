@@ -20,6 +20,7 @@ package com.orientechnologies.orient.server.distributed;
  */
 public class ServerClusterRemoteInsertTest extends AbstractServerClusterInsertTest {
 
+  @Override
   protected String getDatabaseURL(final ServerRun server) {
     return "remote:" + server.getBinaryProtocolAddress() + "/" + getDatabaseName();
   }

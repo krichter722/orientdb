@@ -35,6 +35,7 @@ public class OFunctionTrigger extends ODocumentHookAbstract {
     setIncludeClasses("OFunction");
   }
 
+  @Override
   public DISTRIBUTED_EXECUTION_MODE getDistributedExecutionMode() {
     return DISTRIBUTED_EXECUTION_MODE.TARGET_NODE;
   }

@@ -53,10 +53,12 @@ public class OBasicCommandContext implements OCommandContext {
   public OBasicCommandContext() {
   }
 
+  @Override
   public Object getVariable(String iName) {
     return getVariable(iName, null);
   }
 
+  @Override
   public Object getVariable(String iName, final Object iDefault) {
     if (iName == null) {
         return iDefault;
@@ -130,6 +132,7 @@ public class OBasicCommandContext implements OCommandContext {
     return result != null ? result : iDefault;
   }
 
+  @Override
   public OCommandContext setVariable(String iName, final Object iValue) {
     if (iName == null) {
         return null;
@@ -182,6 +185,7 @@ public class OBasicCommandContext implements OCommandContext {
     return this;
   }
 
+  @Override
   public long updateMetric(final String iName, final long iValue) {
     if (!recordMetrics) {
         return -1;
@@ -201,6 +205,7 @@ public class OBasicCommandContext implements OCommandContext {
   /**
    * Returns a read-only map with all the variables.
    */
+  @Override
   public Map<String, Object> getVariables() {
     final HashMap<String, Object> map = new HashMap<String, Object>();
     if (child != null) {
@@ -219,6 +224,7 @@ public class OBasicCommandContext implements OCommandContext {
    * 
    * @return
    */
+  @Override
   public OCommandContext setChild(final OCommandContext iContext) {
     if (iContext == null) {
       if (child != null) {
@@ -235,10 +241,12 @@ public class OBasicCommandContext implements OCommandContext {
     return this;
   }
 
+  @Override
   public OCommandContext getParent() {
     return parent;
   }
 
+  @Override
   public OCommandContext setParent(final OCommandContext iParentContext) {
     if (parent != iParentContext) {
       parent = iParentContext;
@@ -254,10 +262,12 @@ public class OBasicCommandContext implements OCommandContext {
     return getVariables().toString();
   }
 
+  @Override
   public boolean isRecordingMetrics() {
     return recordMetrics;
   }
 
+  @Override
   public OCommandContext setRecordingMetrics(final boolean recordMetrics) {
     this.recordMetrics = recordMetrics;
     return this;
@@ -272,6 +282,7 @@ public class OBasicCommandContext implements OCommandContext {
     }
   }
 
+  @Override
   public boolean checkTimeout() {
     if (timeoutMs > 0) {
       if (System.currentTimeMillis() - executionStartedOn > timeoutMs) {

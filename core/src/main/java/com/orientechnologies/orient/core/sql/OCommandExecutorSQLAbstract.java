@@ -81,10 +81,12 @@ public abstract class OCommandExecutorSQLAbstract extends OCommandExecutorAbstra
     return OCommandDistributedReplicateRequest.DISTRIBUTED_EXECUTION_MODE.REPLICATE;
   }
 
+  @Override
   public boolean isIdempotent() {
     return false;
   }
 
+  @Override
   protected void throwSyntaxErrorException(final String iText) {
     throw new OCommandSQLParsingException(iText + ". Use " + getSyntax(), parserText, parserGetPreviousPosition());
   }

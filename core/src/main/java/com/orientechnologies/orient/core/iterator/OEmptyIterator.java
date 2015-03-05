@@ -30,14 +30,17 @@ public class OEmptyIterator<T> implements Iterator<T> {
   public static final OEmptyIterator<Object>        ANY_INSTANCE          = new OEmptyIterator<Object>();
   public static final OEmptyIterator<OIdentifiable> IDENTIFIABLE_INSTANCE = new OEmptyIterator<OIdentifiable>();
 
+  @Override
   public boolean hasNext() {
     return false;
   }
 
+  @Override
   public T next() {
     return null;
   }
 
+  @Override
   public void remove() {
   }
 }

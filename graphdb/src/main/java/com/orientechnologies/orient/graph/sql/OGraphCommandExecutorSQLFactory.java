@@ -156,6 +156,7 @@ public class OGraphCommandExecutorSQLFactory implements OCommandExecutorSQLFacto
   /**
    * {@inheritDoc}
    */
+  @Override
   public Set<String> getCommandNames() {
     return COMMANDS.keySet();
   }
@@ -163,6 +164,7 @@ public class OGraphCommandExecutorSQLFactory implements OCommandExecutorSQLFacto
   /**
    * {@inheritDoc}
    */
+  @Override
   public OCommandExecutorSQLAbstract createCommand(final String name) throws OCommandExecutionException {
     final Class<? extends OCommandExecutorSQLAbstract> clazz = COMMANDS.get(name);
 

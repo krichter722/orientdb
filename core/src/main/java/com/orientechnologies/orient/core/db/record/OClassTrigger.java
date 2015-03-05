@@ -76,6 +76,7 @@ public class OClassTrigger extends ODocumentHookAbstract {
   public OClassTrigger() {
   }
 
+  @Override
   public DISTRIBUTED_EXECUTION_MODE getDistributedExecutionMode() {
     return DISTRIBUTED_EXECUTION_MODE.SOURCE_NODE;
   }
@@ -180,6 +181,7 @@ public class OClassTrigger extends ODocumentHookAbstract {
     }
   }
 
+  @Override
   public RESULT onTrigger(final TYPE iType, final ORecord iRecord) {
     if (ODatabaseRecordThreadLocal.INSTANCE.isDefined() && ODatabaseRecordThreadLocal.INSTANCE.get().getStatus() != STATUS.OPEN) {
         return RESULT.RECORD_NOT_CHANGED;

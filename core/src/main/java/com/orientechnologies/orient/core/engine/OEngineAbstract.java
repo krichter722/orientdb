@@ -37,9 +37,11 @@ public abstract class OEngineAbstract implements OEngine {
 		return dbMode;
 	}
 
+        @Override
 	public void shutdown() {
 	}
 
+        @Override
 	public void removeStorage(final OStorage iStorage) {
 	}
 }

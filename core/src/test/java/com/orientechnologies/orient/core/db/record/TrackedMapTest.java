@@ -32,6 +32,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         Assert.assertEquals(event.getChangeType(), OMultiValueChangeEvent.OChangeType.ADD);
         Assert.assertNull(event.getOldValue());
@@ -63,6 +64,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         Assert.assertEquals(event.getChangeType(), OMultiValueChangeEvent.OChangeType.UPDATE);
         Assert.assertEquals(event.getOldValue(), "value1");
@@ -94,6 +96,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         changed.value = true;
       }
@@ -120,6 +123,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         changed.value = true;
       }
@@ -143,6 +147,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         changed.value = true;
       }
@@ -167,6 +172,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         Assert.assertEquals(event.getChangeType(), OMultiValueChangeEvent.OChangeType.REMOVE);
         Assert.assertEquals(event.getOldValue(), "value1");
@@ -196,6 +202,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         changed.value = true;
       }
@@ -221,6 +228,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     map.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         changed.value = true;
       }
@@ -252,6 +260,7 @@ public class TrackedMapTest {
     final ORef<Boolean> changed = new ORef<Boolean>(false);
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         if (!firedEvents.remove(event)) {
             Assert.fail();
@@ -284,6 +293,7 @@ public class TrackedMapTest {
     trackedMap.setInternalStatus(ORecordElement.STATUS.UNMARSHALLING);
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         changed.value = true;
       }
@@ -329,6 +339,7 @@ public class TrackedMapTest {
     final List<OMultiValueChangeEvent<Object, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<Object, String>>();
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         firedEvents.add(event);
       }
@@ -365,6 +376,7 @@ public class TrackedMapTest {
     final List<OMultiValueChangeEvent<Object, String>> firedEvents = new ArrayList<OMultiValueChangeEvent<Object, String>>();
 
     trackedMap.addChangeListener(new OMultiValueChangeListener<Object, String>() {
+      @Override
       public void onAfterRecordChanged(final OMultiValueChangeEvent<Object, String> event) {
         firedEvents.add(event);
       }

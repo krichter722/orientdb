@@ -72,6 +72,7 @@ public class ORecordSerializerBinaryV0 implements ODocumentSerializer {
     utf8 = Charset.forName("UTF-8");
   }
 
+  @Override
   public void deserializePartial(final ODocument document, final BytesContainer bytes, final String[] iFields) {
     final String className = readString(bytes);
     if (className.length() != 0) {

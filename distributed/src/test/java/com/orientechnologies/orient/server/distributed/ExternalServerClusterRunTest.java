@@ -27,6 +27,7 @@ import org.junit.Test;
  * Start 3 servers and wait for external commands
  */
 public class ExternalServerClusterRunTest extends AbstractServerClusterTest {
+  @Override
   public String getDatabaseName() {
     return "distributed";
   }

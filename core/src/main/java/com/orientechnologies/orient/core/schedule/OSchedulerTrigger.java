@@ -33,6 +33,7 @@ public class OSchedulerTrigger extends ODocumentHookAbstract {
     setIncludeClasses(OScheduler.CLASSNAME);
   }
 
+  @Override
   public DISTRIBUTED_EXECUTION_MODE getDistributedExecutionMode() {
     return DISTRIBUTED_EXECUTION_MODE.TARGET_NODE;
   }

@@ -219,6 +219,7 @@ public class OrientCommitMT {
       }
     }
 
+    @Override
     public void run() {
       try {
         Thread.sleep((long) (Math.random() * this.maxSleepTime));
@@ -484,6 +485,7 @@ public class OrientCommitMT {
         return this.customId;
       }
 
+      @Override
       public String toString() {
         return "Operation:" + this.operation + ", ORID:" + this.orientId + ", CustomId:" + this.customId;
       }

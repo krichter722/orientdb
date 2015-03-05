@@ -91,6 +91,7 @@ public class OTrackedSet<T> extends HashSet<T> implements ORecordElement, OTrack
     };
   }
 
+  @Override
   public boolean add(final T e) {
     if (super.add(e)) {
       addOwnerToEmbeddedDoc(e);
@@ -150,6 +151,7 @@ public class OTrackedSet<T> extends HashSet<T> implements ORecordElement, OTrack
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public OTrackedSet<T> setDirty() {
     if (status != STATUS.UNMARSHALLING && sourceRecord != null
         && !(sourceRecord.isDirty() && ORecordInternal.isContentChanged(sourceRecord))) {
@@ -165,22 +167,27 @@ public class OTrackedSet<T> extends HashSet<T> implements ORecordElement, OTrack
     }
   }
 
+  @Override
    public STATUS getInternalStatus() {
     return status;
   }
 
+  @Override
   public void setInternalStatus(final STATUS iStatus) {
     status = iStatus;
   }
 
+  @Override
   public void addChangeListener(final OMultiValueChangeListener<T, T> changeListener) {
     changeListeners.add(changeListener);
   }
 
+  @Override
   public void removeRecordChangeListener(final OMultiValueChangeListener<T, T> changeListener) {
     changeListeners.remove(changeListener);
   }
 
+  @Override
   public Set<T> returnOriginalState(final List<OMultiValueChangeEvent<T, T>> multiValueChangeEvents) {
     final Set<T> reverted = new HashSet<T>(this);
 
@@ -204,6 +211,7 @@ public class OTrackedSet<T> extends HashSet<T> implements ORecordElement, OTrack
     return reverted;
   }
 
+  @Override
   public Class<?> getGenericClass() {
     return genericClass;
   }

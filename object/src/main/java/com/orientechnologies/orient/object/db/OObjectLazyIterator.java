@@ -60,6 +60,7 @@ public class OObjectLazyIterator<TYPE> implements Iterator<TYPE>, Serializable {
     this.orphanRemoval = iOrphanRemoval;
   }
 
+  @Override
   public TYPE next() {
     return next(fetchPlan);
   }
@@ -99,10 +100,12 @@ public class OObjectLazyIterator<TYPE> implements Iterator<TYPE>, Serializable {
     return (TYPE) value;
   }
 
+  @Override
   public boolean hasNext() {
     return underlying.hasNext();
   }
 
+  @Override
   public void remove() {
     underlying.remove();
     if (sourceRecord != null) {

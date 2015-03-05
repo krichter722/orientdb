@@ -87,6 +87,7 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
   /**
    * Lazy unmarshall the RID if not in memory.
    */
+  @Override
   public OIdentifiable getKeyAt(final int iIndex) {
     if (rids != null && rids[iIndex] != null) {
         return rids[iIndex];
@@ -104,10 +105,12 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
   /**
    * Returns the key
    */
+  @Override
   public OIdentifiable getValueAt(final int iIndex) {
     return getKeyAt(iIndex);
   }
 
+  @Override
   public boolean setValueAt(int iIndex, final OIdentifiable iValue) {
     if (iValue == null) {
         return false;
@@ -126,6 +129,7 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
     return setDirty();
   }
 
+  @Override
   public boolean insertAt(final int iIndex, final OIdentifiable iKey, final OIdentifiable iValue) {
     if (iIndex < size) {
       // MOVE RIGHT TO MAKE ROOM FOR THE ITEM
@@ -150,6 +154,7 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
     return setDirty();
   }
 
+  @Override
   public boolean removeAt(final int iIndex) {
     if (iIndex > -1 && iIndex < size - 1) {
       // SHIFT LEFT THE VALUES
@@ -169,6 +174,7 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
     return setDirty();
   }
 
+  @Override
   public boolean copyDataFrom(final OMVRBTreeEntryDataProvider<OIdentifiable, OIdentifiable> iFrom, final int iStartPosition) {
     size = iFrom.getSize() - iStartPosition;
     final OMVRBTreeRIDEntryProvider from = (OMVRBTreeRIDEntryProvider) iFrom;
@@ -179,6 +185,7 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
     return setDirty();
   }
 
+  @Override
   public boolean truncate(final int iNewSize) {
     moveToIndex(iNewSize).fill((size - iNewSize) * ORecordId.PERSISTENT_SIZE, (byte) 0);
     if (rids != null) {
@@ -188,6 +195,7 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
     return setDirty();
   }
 
+  @Override
   public boolean copyFrom(final OMVRBTreeEntryDataProvider<OIdentifiable, OIdentifiable> iSource) {
     final OMVRBTreeRIDEntryProvider source = (OMVRBTreeRIDEntryProvider) iSource;
 
@@ -197,6 +205,7 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
     return setDirty();
   }
 
+  @Override
   public OSerializableStream fromStream(final byte[] iStream) throws OSerializationException {
     if (stream == null) {
         stream = new OMemoryStream(iStream);
@@ -219,6 +228,7 @@ public class OMVRBTreeRIDEntryProvider extends OMVRBTreeEntryDataProviderAbstrac
     return this;
   }
 
+  @Override
   public byte[] toStream() throws OSerializationException {
     if (stream == null) {
         stream = new OMemoryStream();

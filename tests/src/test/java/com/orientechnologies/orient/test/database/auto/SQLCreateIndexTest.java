@@ -28,6 +28,7 @@ public class SQLCreateIndexTest extends DocumentDBBaseTest {
 	}
 
   @BeforeClass
+  @Override
   public void beforeClass() throws Exception {
 		super.beforeClass();
 
@@ -50,6 +51,7 @@ public class SQLCreateIndexTest extends DocumentDBBaseTest {
   }
 
   @AfterClass
+  @Override
   public void afterClass() throws Exception {
     if (database.isClosed()) {
         database.open("admin", "admin");

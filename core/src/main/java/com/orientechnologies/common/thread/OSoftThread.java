@@ -45,9 +45,11 @@ public abstract class OSoftThread extends Thread implements OService {
 
   protected abstract void execute() throws Exception;
 
+  @Override
   public void startup() {
   }
 
+  @Override
   public void shutdown() {
   }
 

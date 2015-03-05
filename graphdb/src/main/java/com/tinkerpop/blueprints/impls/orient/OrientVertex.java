@@ -554,6 +554,7 @@ public class OrientVertex extends OrientElement implements OrientExtendedVertex 
     return toAdd;
   }
 
+  @Override
   public OrientVertex copy() {
     final OrientVertex v = new OrientVertex();
     super.copyTo(v);
@@ -1181,6 +1182,7 @@ public class OrientVertex extends OrientElement implements OrientExtendedVertex 
   /**
    * Returns a string representation of the vertex.
    */
+  @Override
   public String toString() {
     final OrientBaseGraph graph = getGraph();
     if (graph != null) {

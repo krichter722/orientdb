@@ -198,6 +198,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     asynchEventListener = null;
   }
 
+  @Override
   public void open(final String iUserName, final String iUserPassword, final Map<String, Object> iOptions) {
     addUser();
 
@@ -230,6 +231,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     }
   }
 
+  @Override
   public void reload() {
 
     lock.acquireExclusiveLock();
@@ -266,16 +268,19 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     }
   }
 
+  @Override
   public void create(final Map<String, Object> iOptions) {
     throw new UnsupportedOperationException(
         "Cannot create a database in a remote server. Please use the console or the OServerAdmin class.");
   }
 
+  @Override
   public boolean exists() {
     throw new UnsupportedOperationException(
         "Cannot check the existance of a database in a remote server. Please use the console or the OServerAdmin class.");
   }
 
+  @Override
   public void close(final boolean iForce, boolean onDelete) {
     if (status == STATUS.CLOSED) {
         return;
@@ -319,11 +324,13 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     }
   }
 
+  @Override
   public void delete() {
     throw new UnsupportedOperationException(
         "Cannot delete a database in a remote server. Please use the console or the OServerAdmin class.");
   }
 
+  @Override
   public Set<String> getClusterNames() {
     lock.acquireSharedLock();
     try {
@@ -335,6 +342,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     }
   }
 
+  @Override
   public OStorageOperationResult<OPhysicalPosition> createRecord(final ORecordId iRid, final byte[] iContent,
       ORecordVersion iRecordVersion, final byte iRecordType, int iMode, final ORecordCallback<Long> iCallback) {
 
@@ -395,6 +403,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
             final OSBTreeCollectionManager collectionManager = ODatabaseRecordThreadLocal.INSTANCE.get()
                 .getSbTreeCollectionManager();
             Callable<Object> response = new Callable<Object>() {
+                      @Override
               public Object call() throws Exception {
                 final long result;
 
@@ -475,6 +484,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     } while (true);
   }
 
+  @Override
   public OStorageOperationResult<ORawBuffer> readRecord(final ORecordId iRid, final String iFetchPlan, final boolean iIgnoreCache,
       final ORecordCallback<ORawBuffer> iCallback, boolean loadTombstones, LOCKING_STRATEGY iLockingStrategy) {
 
@@ -542,6 +552,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     } while (true);
   }
 
+  @Override
   public OStorageOperationResult<ORecordVersion> updateRecord(final ORecordId iRid, boolean updateContent, final byte[] iContent,
       final ORecordVersion iVersion, final byte iRecordType, int iMode, final ORecordCallback<ORecordVersion> iCallback) {
 
@@ -587,6 +598,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
           final int sessionId = getSessionId();
           final OSBTreeCollectionManager collectionManager = ODatabaseRecordThreadLocal.INSTANCE.get().getSbTreeCollectionManager();
           Callable<Object> response = new Callable<Object>() {
+                  @Override
             public Object call() throws Exception {
               ORecordVersion result;
 
@@ -621,6 +633,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     } while (true);
   }
 
+  @Override
   public OStorageOperationResult<Boolean> deleteRecord(final ORecordId iRid, final ORecordVersion iVersion, int iMode,
       final ORecordCallback<Boolean> iCallback) {
 
@@ -699,6 +712,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     throw new UnsupportedOperationException("restore");
   }
 
+  @Override
   public long count(final int iClusterId) {
     return count(new int[] { iClusterId });
   }
@@ -708,6 +722,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     return count(new int[] { iClusterId }, countTombstones);
   }
 
+  @Override
   public long[] getClusterDataRange(final int iClusterId) {
 
     OChannelBinaryAsynchClient network = null;
@@ -883,6 +898,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     } while (true);
   }
 
+  @Override
   public long getSize() {
 
     OChannelBinaryAsynchClient network = null;
@@ -938,10 +954,12 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     } while (true);
   }
 
+  @Override
   public long count(final int[] iClusterIds) {
     return count(iClusterIds, false);
   }
 
+  @Override
   public long count(final int[] iClusterIds, boolean countTombstones) {
 
     OChannelBinaryAsynchClient network = null;
@@ -979,6 +997,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
   /**
    * Execute the command remotely and get the results back.
    */
+  @Override
   public Object command(final OCommandRequestText iCommand) {
 
     if (!(iCommand instanceof OSerializableStream)) {
@@ -1105,6 +1124,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     return result;
   }
 
+  @Override
   public void commit(final OTransaction iTx, Runnable callback) {
 
     final List<ORecordOperation> committedEntries = new ArrayList<ORecordOperation>();
@@ -1218,9 +1238,11 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     } while (true);
   }
 
+  @Override
   public void rollback(OTransaction iTx) {
   }
 
+  @Override
   public int getClusterIdByName(final String iClusterName) {
     lock.acquireSharedLock();
     try {
@@ -1244,18 +1266,22 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     }
   }
 
+  @Override
   public int getDefaultClusterId() {
     return defaultClusterId;
   }
 
+  @Override
   public void setDefaultClusterId(int defaultClusterId) {
     this.defaultClusterId = defaultClusterId;
   }
 
+  @Override
   public int addCluster(final String iClusterName, boolean forceListBased, final Object... iArguments) {
     return addCluster(iClusterName, -1, forceListBased, iArguments);
   }
 
+  @Override
   public int addCluster(String iClusterName, int iRequestedId, boolean forceListBased, Object... iParameters) {
 
     OChannelBinaryAsynchClient network = null;
@@ -1300,6 +1326,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     } while (true);
   }
 
+  @Override
   public boolean dropCluster(final int iClusterId, final boolean iTruncate) {
 
     OChannelBinaryAsynchClient network = null;
@@ -1347,9 +1374,11 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     } while (true);
   }
 
+  @Override
   public void synch() {
   }
 
+  @Override
   public String getPhysicalClusterNameById(final int iClusterId) {
     lock.acquireSharedLock();
     try {
@@ -1375,6 +1404,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     }
   }
 
+  @Override
   public Collection<OCluster> getClusterInstances() {
     lock.acquireSharedLock();
     try {
@@ -1386,6 +1416,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     }
   }
 
+  @Override
   public OCluster getClusterById(int iClusterId) {
     lock.acquireSharedLock();
     try {
@@ -1499,6 +1530,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
     return clientId;
   }
 
+  @Override
   public int getClusters() {
     lock.acquireSharedLock();
     try {
@@ -1973,6 +2005,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
       if (callback != null) {
         final int sessionId = getSessionId();
         Callable<Object> response = new Callable<Object>() {
+          @Override
           public Object call() throws Exception {
             Boolean result;
 
@@ -2152,6 +2185,7 @@ public class OStorageRemote extends OStorageAbstract implements OStorageProxy {
       if (iCallback != null) {
         final int sessionId = getSessionId();
         Callable<Object> response = new Callable<Object>() {
+          @Override
           public Object call() throws Exception {
             Boolean result;
 

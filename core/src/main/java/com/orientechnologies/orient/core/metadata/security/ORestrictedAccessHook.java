@@ -41,6 +41,7 @@ public class ORestrictedAccessHook extends ODocumentHookAbstract {
   public ORestrictedAccessHook() {
   }
 
+  @Override
   public DISTRIBUTED_EXECUTION_MODE getDistributedExecutionMode() {
     return DISTRIBUTED_EXECUTION_MODE.BOTH;
   }

@@ -318,10 +318,12 @@ public class OEmbeddedRidBag implements ORidBagDelegate {
     }
   }
 
+  @Override
   public void addChangeListener(final OMultiValueChangeListener<OIdentifiable, OIdentifiable> changeListener) {
     changeListeners.add(changeListener);
   }
 
+  @Override
   public void removeRecordChangeListener(final OMultiValueChangeListener<OIdentifiable, OIdentifiable> changeListener) {
     changeListeners.remove(changeListener);
   }

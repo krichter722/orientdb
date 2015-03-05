@@ -33,6 +33,7 @@ public class ServerClusterLocalInsertTest extends AbstractServerClusterInsertTes
     return "distributed-insertnotx";
   }
 
+  @Override
   protected String getDatabaseURL(final ServerRun server) {
     return "plocal:" + server.getDatabasePath(getDatabaseName());
   }

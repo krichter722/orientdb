@@ -85,6 +85,7 @@ public class OrientGraphQuery extends DefaultGraphQuery {
       }
     }
 
+    @Override
     protected Set<String> getIndexedKeys(final Class<? extends Element> elementClass) {
       return ((OrientBaseGraph) graph).getIndexedKeys(elementClass, true);
     }

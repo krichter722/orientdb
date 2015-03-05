@@ -31,10 +31,12 @@ import com.orientechnologies.common.comparator.ODefaultComparator;
 public class OCaseInsensitiveCollate extends ODefaultComparator implements OCollate {
   public static final String NAME = "ci";
 
+  @Override
   public String getName() {
     return NAME;
   }
 
+  @Override
   public Object transform(final Object obj) {
     if (obj instanceof String) {
         return ((String) obj).toLowerCase();

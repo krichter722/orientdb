@@ -55,42 +55,51 @@ public class OObjectCustomSerializerSet<TYPE> extends HashSet<TYPE> implements O
     addAll(iSourceCollection);
   }
 
+  @Override
   public Iterator<TYPE> iterator() {
     return (Iterator<TYPE>) new OObjectCustomSerializerIterator<TYPE>(deserializeClass, sourceRecord, underlying.iterator());
   }
 
+  @Override
   public int size() {
     return underlying.size();
   }
 
+  @Override
   public boolean isEmpty() {
     return underlying.isEmpty();
   }
 
+  @Override
   public boolean contains(final Object o) {
     boolean underlyingContains = underlying.contains(OObjectEntitySerializer.serializeFieldValue(deserializeClass, o));
     return underlyingContains || super.contains(o);
   }
 
+  @Override
   public Object[] toArray() {
     return toArray(new Object[size()]);
   }
 
+  @Override
   public <T> T[] toArray(final T[] a) {
     convertAll();
     return super.toArray(a);
   }
 
+  @Override
   public boolean add(final TYPE e) {
     underlying.add(OObjectEntitySerializer.serializeFieldValue(deserializeClass, e));
     return super.add(e);
   }
 
+  @Override
   public boolean remove(final Object e) {
     underlying.remove(OObjectEntitySerializer.serializeFieldValue(deserializeClass, e));
     return super.remove(e);
   }
 
+  @Override
   public boolean containsAll(final Collection<?> c) {
     for (Object o : c) {
         if (!super.contains(o) && !underlying.contains(OObjectEntitySerializer.serializeFieldValue(deserializeClass, o))) {
@@ -101,6 +110,7 @@ public class OObjectCustomSerializerSet<TYPE> extends HashSet<TYPE> implements O
     return true;
   }
 
+  @Override
   public boolean addAll(final Collection<? extends TYPE> c) {
     boolean modified = false;
     setDirty();
@@ -110,6 +120,7 @@ public class OObjectCustomSerializerSet<TYPE> extends HashSet<TYPE> implements O
     return modified;
   }
 
+  @Override
   public boolean retainAll(final Collection<?> c) {
     boolean modified = false;
     Iterator<TYPE> e = iterator();
@@ -122,11 +133,13 @@ public class OObjectCustomSerializerSet<TYPE> extends HashSet<TYPE> implements O
     return modified;
   }
 
+  @Override
   public void clear() {
     setDirty();
     underlying.clear();
   }
 
+  @Override
   public boolean removeAll(final Collection<?> c) {
     setDirty();
     boolean modified = super.removeAll(c);
@@ -155,10 +168,12 @@ public class OObjectCustomSerializerSet<TYPE> extends HashSet<TYPE> implements O
     convertAll();
   }
 
+  @Override
   public void detach(boolean nonProxiedInstance) {
     convertAll();
   }
 
+  @Override
   public void detachAll(boolean nonProxiedInstance, Map<Object, Object> alreadyDetached) {
     convertAll();
   }

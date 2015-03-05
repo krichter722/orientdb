@@ -109,6 +109,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     init();
   }
 
+  @Override
   public <T> T newInstance(final Class<T> iType) {
     return (T) newInstance(iType.getSimpleName(), null, new Object[0]);
   }
@@ -117,6 +118,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return (T) newInstance(iType.getSimpleName(), null, iArgs);
   }
 
+  @Override
   public <RET> RET newInstance(String iClassName) {
     return (RET) newInstance(iClassName, null, new Object[0]);
   }
@@ -201,6 +203,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return null;
   }
 
+  @Override
   public <RET> OObjectIteratorClass<RET> browseClass(final Class<RET> iClusterClass) {
     return browseClass(iClusterClass, true);
   }
@@ -224,6 +227,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return new OObjectIteratorClass<RET>(this, (ODatabaseDocumentTx) getUnderlying(), iClassName, iPolymorphic);
   }
 
+  @Override
   public <RET> OObjectIteratorCluster<RET> browseCluster(final String iClusterName) {
     checkOpeness();
     checkSecurity(ORule.ResourceGeneric.CLUSTER, ORole.PERMISSION_READ, iClusterName);
@@ -232,6 +236,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
         getClusterIdByName(iClusterName));
   }
 
+  @Override
   public <RET> RET load(final Object iPojo) {
     return (RET) load(iPojo, null);
   }
@@ -244,6 +249,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return (RET) reload(iPojo, null, iIgnoreCache);
   }
 
+  @Override
   public <RET> RET reload(Object iPojo, final String iFetchPlan, final boolean iIgnoreCache) {
     checkOpeness();
     if (iPojo == null) {
@@ -258,6 +264,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return (RET) iPojo;
   }
 
+  @Override
   public <RET> RET load(final Object iPojo, final String iFetchPlan) {
     return (RET) load(iPojo, iFetchPlan, false);
   }
@@ -318,6 +325,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return detachAll(iPojo, returnNonProxiedInstance, new HashMap<Object, Object>());
   }
 
+  @Override
   public <RET> RET load(final Object iPojo, final String iFetchPlan, final boolean iIgnoreCache) {
     return (RET) load(iPojo, iFetchPlan, iIgnoreCache, false, OStorage.LOCKING_STRATEGY.DEFAULT);
   }
@@ -343,14 +351,17 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     }
   }
 
+  @Override
   public <RET> RET load(final ORID recordId) {
     return (RET) load(recordId, null);
   }
 
+  @Override
   public <RET> RET load(final ORID iRecordId, final String iFetchPlan) {
     return (RET) load(iRecordId, iFetchPlan, false);
   }
 
+  @Override
   public <RET> RET load(final ORID iRecordId, final String iFetchPlan, final boolean iIgnoreCache) {
     return (RET) load(iRecordId, iFetchPlan, iIgnoreCache, false, OStorage.LOCKING_STRATEGY.DEFAULT);
   }
@@ -379,6 +390,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
    * Reflection to extract the field values. <br>
    * If a multi value (array, collection or map of objects) is passed, then each single object is stored separately.
    */
+  @Override
   public <RET> RET save(final Object iContent) {
     return (RET) save(iContent, (String) null, OPERATION_MODE.SYNCHRONOUS, false, null, null);
   }
@@ -389,6 +401,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
    * Reflection to extract the field values. <br>
    * If a multi value (array, collection or map of objects) is passed, then each single object is stored separately.
    */
+  @Override
   public <RET> RET save(final Object iContent, OPERATION_MODE iMode, boolean iForceCreate,
       final ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<ORecordVersion> iRecordUpdatedCallback) {
     return (RET) save(iContent, null, iMode, false, iRecordCreatedCallback, iRecordUpdatedCallback);
@@ -405,6 +418,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
    * 
    * @see ODocument#validate()
    */
+  @Override
   public <RET> RET save(final Object iPojo, final String iClusterName) {
     return (RET) save(iPojo, iClusterName, OPERATION_MODE.SYNCHRONOUS, false, null, null);
   }
@@ -420,6 +434,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
    * 
    * @see ODocument#validate()
    */
+  @Override
   public <RET> RET save(final Object iPojo, final String iClusterName, OPERATION_MODE iMode, boolean iForceCreate,
       final ORecordCallback<? extends Number> iRecordCreatedCallback, ORecordCallback<ORecordVersion> iRecordUpdatedCallback) {
     checkOpeness();
@@ -460,6 +475,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     }
   }
 
+  @Override
   public ODatabaseObject delete(final Object iPojo) {
     checkOpeness();
 
@@ -528,11 +544,13 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return this;
   }
 
+  @Override
   public long countClass(final String iClassName) {
     checkOpeness();
     return underlying.countClass(iClassName);
   }
 
+  @Override
   public long countClass(final String iClassName, final boolean iPolymorphic) {
     checkOpeness();
     return underlying.countClass(iClassName, iPolymorphic);
@@ -543,6 +561,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return underlying.countClass(iClass.getSimpleName());
   }
 
+  @Override
   public ODictionary<Object> getDictionary() {
     checkOpeness();
     if (dictionary == null) {
@@ -616,6 +635,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     return this;
   }
 
+  @Override
   public OEntityManager getEntityManager() {
     return entityManager;
   }
@@ -677,6 +697,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     this.automaticSchemaGeneration = automaticSchemaGeneration;
   }
 
+  @Override
   public Object newInstance() {
     checkOpeness();
     return new ODocument();
@@ -734,14 +755,17 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
     }
   }
 
+  @Override
   public boolean isLazyLoading() {
     return lazyLoading;
   }
 
+  @Override
   public void setLazyLoading(final boolean lazyLoading) {
     this.lazyLoading = lazyLoading;
   }
 
+  @Override
   public String getType() {
     return TYPE;
   }
@@ -782,6 +806,7 @@ public class OObjectDatabaseTx extends ODatabasePojoAbstract<Object> implements 
   public void registerUserObject(final Object iObject, final ORecord iRecord) {
   }
 
+  @Override
   public void registerUserObjectAfterLinkSave(ORecord iRecord) {
   }
 

@@ -28,6 +28,7 @@ import com.orientechnologies.orient.core.storage.OStorage;
  * 
  */
 public interface OOrientListener extends OOrientShutdownListener {
+  @Override
   public void onShutdown();
 
   public void onStorageRegistered(final OStorage storage);

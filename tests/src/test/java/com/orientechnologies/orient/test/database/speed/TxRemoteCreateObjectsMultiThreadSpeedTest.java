@@ -42,6 +42,7 @@ public class TxRemoteCreateObjectsMultiThreadSpeedTest extends OrientMultiThread
       database.begin(TXTYPE.NOTX);
     }
 
+    @Override
     public void cycle() {
       record.reset();
       record.value(data.getCyclesDone() + "|Gipsy|Cat|European|Italy|" + (data.getCyclesDone() + 300) + ".00").save("csv");

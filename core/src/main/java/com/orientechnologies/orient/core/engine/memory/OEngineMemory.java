@@ -33,6 +33,7 @@ public class OEngineMemory extends OEngineAbstract {
 	public OEngineMemory() {
 	}
 
+        @Override
 	public OStorage createStorage(String url, Map<String, String> configuration) {
 		try {
 			return new ODirectMemoryStorage(url, url, getMode(configuration));
@@ -42,10 +43,12 @@ public class OEngineMemory extends OEngineAbstract {
 		return null;
 	}
 
+        @Override
 	public String getName() {
 		return NAME;
 	}
 
+        @Override
 	public boolean isShared() {
 		return true;
 	}

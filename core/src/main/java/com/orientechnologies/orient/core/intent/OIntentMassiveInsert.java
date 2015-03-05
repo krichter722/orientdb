@@ -42,6 +42,7 @@ public class OIntentMassiveInsert implements OIntent {
   private boolean                                     disableSecurity   = true;
   private boolean                                     disableHooks      = true;
 
+  @Override
   public void begin(final ODatabaseDocumentInternal iDatabase) {
     if (disableSecurity) {
       // DISABLE CHECK OF SECURITY
@@ -85,6 +86,7 @@ public class OIntentMassiveInsert implements OIntent {
     }
   }
 
+  @Override
   public void end(final ODatabaseDocumentInternal iDatabase) {
     if (disableSecurity) {
         if (currentUser != null) {

@@ -60,6 +60,7 @@ public class OSBTreeRidBagTest extends ORidBagTest {
   }
 
   @BeforeMethod
+  @Override
   public void beforeMethod() throws IOException {
     topThreshold = OGlobalConfiguration.RID_BAG_EMBEDDED_TO_SBTREEBONSAI_THRESHOLD.getValueAsInteger();
     bottomThreshold = OGlobalConfiguration.RID_BAG_SBTREEBONSAI_TO_EMBEDDED_THRESHOLD.getValueAsInteger();
@@ -75,6 +76,7 @@ public class OSBTreeRidBagTest extends ORidBagTest {
   }
 
   @AfterMethod
+  @Override
   public void afterMethod() throws IOException {
     OGlobalConfiguration.RID_BAG_EMBEDDED_TO_SBTREEBONSAI_THRESHOLD.setValue(topThreshold);
     OGlobalConfiguration.RID_BAG_SBTREEBONSAI_TO_EMBEDDED_THRESHOLD.setValue(bottomThreshold);

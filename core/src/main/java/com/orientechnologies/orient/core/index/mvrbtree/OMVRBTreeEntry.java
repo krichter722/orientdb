@@ -113,6 +113,7 @@ public abstract class OMVRBTreeEntry<K, V> implements Map.Entry<K, V>, Comparabl
    * 
    * @return the key
    */
+  @Override
   public K getKey() {
     return getKey(tree.pageIndex);
   }
@@ -133,6 +134,7 @@ public abstract class OMVRBTreeEntry<K, V> implements Map.Entry<K, V>, Comparabl
    * 
    * @return the value associated with the key
    */
+  @Override
   public V getValue() {
     if (tree.pageIndex == -1) {
         return getValueAt(0);
@@ -319,6 +321,7 @@ public abstract class OMVRBTreeEntry<K, V> implements Map.Entry<K, V>, Comparabl
   /**
    * Compares two nodes by their first keys.
    */
+  @Override
   public int compareTo(final OMVRBTreeEntry<K, V> o) {
     if (o == null) {
         return 1;

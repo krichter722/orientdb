@@ -29,6 +29,7 @@ public abstract class OQueryAbstract<T extends Object> extends OCommandRequestAb
   }
 
   @SuppressWarnings("unchecked")
+  @Override
   public <RET> RET execute(final Object... iArgs) {
     return (RET) run(iArgs);
   }
@@ -36,6 +37,7 @@ public abstract class OQueryAbstract<T extends Object> extends OCommandRequestAb
   /**
    * Returns the current fetch plan.
    */
+  @Override
   public String getFetchPlan() {
     return fetchPlan;
   }
@@ -43,6 +45,7 @@ public abstract class OQueryAbstract<T extends Object> extends OCommandRequestAb
   /**
    * Sets the fetch plan to use.
    */
+  @Override
   public OQueryAbstract setFetchPlan(final String fetchPlan) {
     OFetchHelper.checkFetchPlanValid(fetchPlan);
     if (fetchPlan != null && fetchPlan.length() == 0) {
@@ -60,6 +63,7 @@ public abstract class OQueryAbstract<T extends Object> extends OCommandRequestAb
   public void reset() {
   }
 
+  @Override
   public boolean isIdempotent() {
     return true;
   }

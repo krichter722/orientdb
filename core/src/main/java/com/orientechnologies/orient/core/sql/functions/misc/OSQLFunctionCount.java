@@ -41,6 +41,7 @@ public class OSQLFunctionCount extends OSQLFunctionMathAbstract {
     super(NAME, 1, 1);
   }
 
+  @Override
   public Object execute(Object iThis, OIdentifiable iCurrentRecord, Object iCurrentResult, final Object[] iParams,
       OCommandContext iContext) {
     if (iParams[0] != null) {
@@ -50,10 +51,12 @@ public class OSQLFunctionCount extends OSQLFunctionMathAbstract {
     return total;
   }
 
+  @Override
   public boolean aggregateResults() {
     return true;
   }
 
+  @Override
   public String getSyntax() {
     return "count(<field>|*)";
   }

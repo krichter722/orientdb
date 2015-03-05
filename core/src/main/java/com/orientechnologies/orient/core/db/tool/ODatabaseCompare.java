@@ -324,12 +324,14 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
     boolean ok = true;
 
     final OIndexManager indexManagerOne = makeDbCall(databaseDocumentTxOne, new ODbRelatedCall<OIndexManager>() {
+      @Override
       public OIndexManager call() {
         return databaseDocumentTxOne.getMetadata().getIndexManager();
       }
     });
 
     final OIndexManager indexManagerTwo = makeDbCall(databaseDocumentTxTwo, new ODbRelatedCall<OIndexManager>() {
+      @Override
       public OIndexManager call() {
         return databaseDocumentTxTwo.getMetadata().getIndexManager();
       }
@@ -337,18 +339,21 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
 
     final Collection<? extends OIndex<?>> indexesOne = makeDbCall(databaseDocumentTxOne,
         new ODbRelatedCall<Collection<? extends OIndex<?>>>() {
+          @Override
           public Collection<? extends OIndex<?>> call() {
             return indexManagerOne.getIndexes();
           }
         });
 
     int indexesSizeOne = makeDbCall(databaseDocumentTxTwo, new ODbRelatedCall<Integer>() {
+      @Override
       public Integer call() {
         return indexesOne.size();
       }
     });
 
     int indexesSizeTwo = makeDbCall(databaseDocumentTxTwo, new ODbRelatedCall<Integer>() {
+      @Override
       public Integer call() {
         return indexManagerTwo.getIndexes().size();
       }
@@ -369,23 +374,27 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
 
     final Iterator<? extends OIndex<?>> iteratorOne = makeDbCall(databaseDocumentTxOne,
         new ODbRelatedCall<Iterator<? extends OIndex<?>>>() {
+          @Override
           public Iterator<? extends OIndex<?>> call() {
             return indexesOne.iterator();
           }
         });
 
     while (makeDbCall(databaseDocumentTxOne, new ODbRelatedCall<Boolean>() {
+      @Override
       public Boolean call() {
         return iteratorOne.hasNext();
       }
     })) {
       final OIndex indexOne = makeDbCall(databaseDocumentTxOne, new ODbRelatedCall<OIndex<?>>() {
+        @Override
         public OIndex<?> call() {
           return iteratorOne.next();
         }
       });
 
       final OIndex<?> indexTwo = makeDbCall(databaseDocumentTxTwo, new ODbRelatedCall<OIndex<?>>() {
+        @Override
         public OIndex<?> call() {
           return indexManagerTwo.getIndex(indexOne.getName());
         }
@@ -439,12 +448,14 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
       }
 
       final long indexOneSize = makeDbCall(databaseDocumentTxOne, new ODbRelatedCall<Long>() {
+        @Override
         public Long call() {
           return indexOne.getSize();
         }
       });
 
       final long indexTwoSize = makeDbCall(databaseDocumentTxTwo, new ODbRelatedCall<Long>() {
+        @Override
         public Long call() {
           return indexTwo.getSize();
         }
@@ -498,6 +509,7 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
 
       if (((compareEntriesForAutomaticIndexes && !indexOne.getType().equals("DICTIONARY")) || !indexOne.isAutomatic())) {
         final OIndexKeyCursor indexKeyCursorOne = makeDbCall(databaseDocumentTxOne, new ODbRelatedCall<OIndexKeyCursor>() {
+          @Override
           public OIndexKeyCursor call() {
             return indexOne.keyCursor();
           }
@@ -514,12 +526,14 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
           final Object indexKey = key;
 
           Object indexOneValue = makeDbCall(databaseDocumentTxOne, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
               return indexOne.get(indexKey);
             }
           });
 
           final Object indexTwoValue = makeDbCall(databaseDocumentTxTwo, new ODbRelatedCall<Object>() {
+            @Override
             public Object call() {
               return indexTwo.get(indexKey);
             }
@@ -742,6 +756,7 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
                 // DOCUMENT: TRY TO INSTANTIATE AND COMPARE
 
                 makeDbCall(databaseDocumentTxOne, new ODocumentHelper.ODbRelatedCall<Object>() {
+                  @Override
                   public Object call() {
                     doc1.reset();
                     doc1.fromStream(buffer1.buffer);
@@ -750,6 +765,7 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
                 });
 
                 makeDbCall(databaseDocumentTxTwo, new ODocumentHelper.ODbRelatedCall<Object>() {
+                  @Override
                   public Object call() {
                     doc2.reset();
                     doc2.fromStream(buffer2.buffer);
@@ -760,6 +776,7 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
                 if (rid.toString().equals(storage1.getConfiguration().schemaRecordId)
                     && rid.toString().equals(storage2.getConfiguration().schemaRecordId)) {
                   makeDbCall(databaseDocumentTxOne, new ODocumentHelper.ODbRelatedCall<java.lang.Object>() {
+                    @Override
                     public Object call() {
                       convertSchemaDoc(doc1);
                       return null;
@@ -767,6 +784,7 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
                   });
 
                   makeDbCall(databaseDocumentTxTwo, new ODocumentHelper.ODbRelatedCall<java.lang.Object>() {
+                    @Override
                     public Object call() {
                       convertSchemaDoc(doc2);
                       return null;
@@ -849,11 +867,13 @@ public class ODatabaseCompare extends ODatabaseImpExpAbstract {
   private void reportIndexDiff(OIndex<?> indexOne, Object key, final Object indexOneValue, final Object indexTwoValue) {
     listener.onMessage("\n- ERR: Entry values for key '" + key + "' are different for index " + indexOne.getName());
     listener.onMessage("\n--- DB1: " + makeDbCall(databaseDocumentTxOne, new ODbRelatedCall<String>() {
+      @Override
       public String call() {
         return indexOneValue.toString();
       }
     }));
     listener.onMessage("\n--- DB2: " + makeDbCall(databaseDocumentTxOne, new ODbRelatedCall<String>() {
+      @Override
       public String call() {
         return indexTwoValue.toString();
       }

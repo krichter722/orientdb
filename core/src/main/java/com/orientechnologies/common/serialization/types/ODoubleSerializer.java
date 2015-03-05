@@ -41,26 +41,32 @@ public class ODoubleSerializer implements OBinarySerializer<Double> {
   private static final OBinaryConverter CONVERTER   = OBinaryConverterFactory.getConverter();
   public static ODoubleSerializer       INSTANCE    = new ODoubleSerializer();
 
+  @Override
   public int getObjectSize(Double object, Object... hints) {
     return DOUBLE_SIZE;
   }
 
+  @Override
   public void serialize(final Double object, final byte[] stream, final int startPosition, final Object... hints) {
     OLongSerializer.INSTANCE.serializeLiteral(Double.doubleToLongBits(object), stream, startPosition);
   }
 
+  @Override
   public Double deserialize(final byte[] stream, final int startPosition) {
     return Double.longBitsToDouble(OLongSerializer.INSTANCE.deserializeLiteral(stream, startPosition));
   }
 
+  @Override
   public int getObjectSize(final byte[] stream, final int startPosition) {
     return DOUBLE_SIZE;
   }
 
+  @Override
   public byte getId() {
     return ID;
   }
 
+  @Override
   public int getObjectSizeNative(final byte[] stream, final int startPosition) {
     return DOUBLE_SIZE;
   }
@@ -108,10 +114,12 @@ public class ODoubleSerializer implements OBinarySerializer<Double> {
     return DOUBLE_SIZE;
   }
 
+  @Override
   public boolean isFixedLength() {
     return true;
   }
 
+  @Override
   public int getFixedLength() {
     return DOUBLE_SIZE;
   }

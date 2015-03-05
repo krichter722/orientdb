@@ -166,10 +166,12 @@ public class OObjectCustomSerializerMap<TYPE> extends HashMap<Object, Object> im
     convertAll();
   }
 
+  @Override
   public void detach(boolean nonProxiedInstance) {
     convertAll();
   }
 
+  @Override
   public void detachAll(boolean nonProxiedInstance, Map<Object, Object> alreadyDetached) {
     convertAll();
   }

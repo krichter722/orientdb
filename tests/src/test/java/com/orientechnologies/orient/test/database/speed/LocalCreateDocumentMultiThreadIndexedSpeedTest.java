@@ -55,6 +55,7 @@ public class LocalCreateDocumentMultiThreadIndexedSpeedTest extends OrientMultiT
       database.begin(TXTYPE.NOTX);
     }
 
+    @Override
     public void cycle() {
       record.reset();
 

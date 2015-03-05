@@ -118,6 +118,7 @@ public abstract class OAbstractRecordCache {
 
     Orient.instance().getProfiler()
         .registerHookValue(profilerPrefix + "current", "Number of entries in cache", METRIC_TYPE.SIZE, new OProfilerHookValue() {
+          @Override
           public Object getValue() {
             return getSize();
           }

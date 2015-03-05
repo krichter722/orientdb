@@ -45,10 +45,12 @@ public class OStorageConfigurationSegment extends OStorageConfiguration {
         + "/database.ocf", "classic", fileTemplate.maxSize, fileTemplate.fileIncrementSize));
   }
 
+  @Override
   public void close() throws IOException {
     segment.close();
   }
 
+  @Override
   public void create() throws IOException {
     segment.create(START_SIZE);
     super.create();
@@ -132,6 +134,7 @@ public class OStorageConfigurationSegment extends OStorageConfiguration {
     }
   }
 
+  @Override
   public void synch() throws IOException {
     segment.getFile().synch();
   }

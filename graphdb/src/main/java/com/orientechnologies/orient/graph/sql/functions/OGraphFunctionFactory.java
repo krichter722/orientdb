@@ -53,14 +53,17 @@ public class OGraphFunctionFactory implements OSQLFunctionFactory {
     FUNCTIONS.put(iName.toLowerCase(Locale.ENGLISH), iImplementation);
   }
 
+  @Override
   public Set<String> getFunctionNames() {
     return FUNCTIONS.keySet();
   }
 
+  @Override
   public boolean hasFunction(final String name) {
     return FUNCTIONS.containsKey(name.toLowerCase());
   }
 
+  @Override
   public OSQLFunction createFunction(final String name) {
     final Object obj = FUNCTIONS.get(name.toLowerCase());
 

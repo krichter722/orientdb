@@ -58,6 +58,7 @@ public class OSystemVariableResolver implements OVariableParserListener {
     return resolved;
   }
 
+  @Override
   public String resolve(final String variable) {
     return resolveVariable(variable);
   }
